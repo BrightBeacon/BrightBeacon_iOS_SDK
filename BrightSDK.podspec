@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.author       = { "BrightBeacon" => "o2owlkj@163.com" }
   s.platform     = :ios 
   s.source       = { :git => "https://github.com/BrightBeacon/iOS-SDK.git", :tag => "1.0.0" }
-  s.source_files =  'BrightSDK/*.h'
+  s.source_files =  'BrightSDK/**/*.h'
   s.preserve_paths = 'BrightSDK/libBrightSDK.a'
   s.vendored_libraries = 'BrightSDK/libBrightSDK.a'
   s.ios.deployment_target = '6.0'
