@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'CoreLocation'
   s.requires_arc = true
   s.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/BrightSDK"',
-                   'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/Headers/BrightSDK"' }
+                   'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/BrightSDK/Headers"' }
   s.license      = {
     :type => 'Copyright',
     :text => <<-LICENSE
