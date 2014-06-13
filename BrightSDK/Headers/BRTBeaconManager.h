@@ -2,9 +2,9 @@
 //  BRTBeaconManager.h
 //  BrightSDK
 //
-//  Version : 1.3.0
-//  Created by Marcin Klimek on 9/18/13.
-//  Copyright (c) 2013 Bright. All rights reserved.
+//  Version : 1.0.0
+//  Created by Bright Beacon on 19/04/14.
+//  Copyright (c) 2014 Bright. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,20 +13,13 @@
 #import "BRTBeacon.h"
 #import "BRTRegion.h"
 
-//#define kUUID @"B9407F30-F5F8-466E-AFF9-25556B57FE6D"
-//#define kUUID   @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
-//#define kUUID   @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
-//#define BRT_PROXIMITY_UUID             [[NSUUID alloc] initWithUUIDString:kUUID]
-//#define BRT_MACBEACON_PROXIMITY_UUID   [[NSUUID alloc] initWithUUIDString:@"08D4A950-80F0-4D42-A14B-D53E063516E6"]
-//#define BRT_IOSBEACON_PROXIMITY_UUID   [[NSUUID alloc] initWithUUIDString:@"8492E75F-4FD6-469D-B132-043FE94921D8"]
-
 CBCentralManager *centralManager;
 
 @class BRTBeaconManager;
 
 /**
  
- The BRTBeaconManagerDelegate protocol defines the delegate methods to respond for related events.
+ BRTBeaconManagerDelegate协议定义了回调方法来响应关联的事件.
  */
 
 @protocol BRTBeaconManagerDelegate <NSObject>
@@ -34,13 +27,12 @@ CBCentralManager *centralManager;
 @optional
 
 /**
- * Delegate method invoked during ranging.
- * Allows to retrieve NSArray of all discoverd beacons
- * represented with BRTBeacon objects.
+ * 范围扫描触发的回调方法
+ * 检索出所有的beacon设备，每个设备都是一个BRTBeacon实例.
  *
- * @param manager Bright beacon manager
- * @param beacons all beacons as BRTBeacon objects
- * @param region Bright beacon region
+ * @param manager Bright beacon 管理器
+ * @param beacons 所有的beacon设备，即BRTBeacon实体
+ * @param region Bright beacon 区域
  *
  * @return void
  */
@@ -49,12 +41,11 @@ CBCentralManager *centralManager;
              inRegion:(BRTBeaconRegion *)region;
 
 /**
- * Delegate method invoked wehen ranging fails
- * for particular region. Related NSError object passed.
+ * 范围扫描失败触发的回调方法，已经关联的错误信息
  *
- * @param manager Bright beacon manager
- * @param region Bright beacon region
- * @param error object containing error info
+ * @param manager Bright beacon 管理器
+ * @param region Bright beacon 区域
+ * @param error 错误信息
  *
  * @return void
  */
@@ -64,12 +55,11 @@ rangingBeaconsDidFailForRegion:(BRTBeaconRegion *)region
 
 
 /**
- * Delegate method invoked wehen monitoring fails
- * for particular region. Related NSError object passed.
+ * 区域监听失败触发的回调方法，以及关联的错误信息
  *
- * @param manager Bright beacon manager
- * @param region Bright beacon region
- * @param error object containing error info
+ * @param manager Bright beacon 管理器
+ * @param region Bright beacon 区域
+ * @param error 错误信息
  *
  * @return void
  */
@@ -77,11 +67,10 @@ rangingBeaconsDidFailForRegion:(BRTBeaconRegion *)region
 monitoringDidFailForRegion:(BRTBeaconRegion *)region
            withError:(NSError *)error;
 /**
- * Method triggered when iOS device enters Bright 
- * beacon region during monitoring.
+ * 在区域监听中，iOS设备进入beacon设备区域触发该方法
  *
- * @param manager Bright beacon manager
- * @param region Bright beacon region
+ * @param manager Bright beacon 管理器
+ * @param region Bright beacon 区域
  *
  * @return void
  */
@@ -90,11 +79,10 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 
 /**
- * Method triggered when iOS device leaves Bright
- * beacon region during monitoring.
+ * 在区域监听中，iOS设备离开beacon设备区域触发该方法
  *
- * @param manager Bright beacon manager
- * @param region Bright beacon region
+ * @param manager Bright beacon 管理器
+ * @param region Bright beacon 区域
  *
  * @return void
  */
@@ -102,12 +90,11 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
        didExitRegion:(BRTBeaconRegion *)region;
 
 /**
- * Method triggered when Bright beacon region state
- * was determined using requBRTStateForRegion:
+ * 在调用requestStateForRegion:方法，当beacon区域状态变化会触发该方法
  *
- * @param manager Bright beacon manager
- * @param state Bright beacon region state
- * @param region Bright beacon region
+ * @param manager Bright beacon 管理器
+ * @param state Bright beacon 区域状态
+ * @param region Bright beacon 区域
  *
  * @return void
  */
@@ -116,11 +103,10 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
              forRegion:(BRTRegion *)region;
 
 /**
- * Method triggered when device starts advertising
- * as iBeacon.
+ * 当设备模拟iBeacon广播信息，调用该方法.
  *
- * @param manager Bright beacon manager
- * @param error info about any error
+ * @param manager Bright beacon 管理器
+ * @param error 错误描述信息
  *
  * @return void
  */
@@ -128,12 +114,10 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
                                   error:(NSError *)error;
 
 /**
- * Delegate method invoked to handle discovered
- * BRTBeacon objects using CoreBluetooth framework
- * in particular region.
+ * 在该区域使用CoreBluetooth framework发现BRTBeacon将回调该方法
  *
- * @param manager Bright beacon manager
- * @param beacon BRTBeacon object
+ * @param manager Bright beacon 管理器
+ * @param beacon BRTBeacon 实体
  *
  * @return void
  */
@@ -141,11 +125,9 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
           didDiscoverBeacon:(BRTBeacon *)beacon;
 
 /**
- * Delegate method invoked when CoreBluetooth based
- * discovery process fails.
+ * 当使用CoreBluetooth扫描产生错误回调该方法
  *
- * @param manager Bright beacon manager
- * @param region Bright beacon region
+ * @param manager Bright beacon 管理器
  *
  * @return void
  */
@@ -157,12 +139,12 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 /**
  
- The BRTBeaconManager class defines the interface for handling and configuring the Bright beacons and get related events to your application. You use an instance of this class to BRTablish the parameters that describes each beacon behavior. You can also use a beacon manager object to retrieve all beacons in range.
+ BRTBeaconManager 类定义了操作、配置Bright Beacon，以及获取相关事件通知应用程序的接口。使用本类的实例来建立参数描述每个beacon设备，你也可以检索范围内所有的beacon设备。
  
- A beacon manager object provides support for the following location-related activities:
+ 一个管理器提供支持以下位置相关的活动:
  
- * Monitoring distinct regions of interBRT and generating location events when the user enters or leaves those regions (works in background mode).
- * Reporting the range to nearby beacons and ther distance for the device.
+ * 监测不同感兴趣的区域和生成定位事件当用户进入或离开这些区域(在后台模式)。
+ * 提供范围附近的beacon设备和它的距离。
  
  */
 
@@ -171,7 +153,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 @property (nonatomic, weak) id <BRTBeaconManagerDelegate> delegate;
 
 /**
- Allows to avoid beacons with unknown state (proximity == 0), when ranging. Default value is NO.
+ 屏蔽范围扫描时，未知状态的设备(proximity == 0)，默认NO.
  */
 @property (nonatomic) BOOL avoidUnknownStateBeacons;
 
@@ -179,9 +161,9 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 
 /**
- * Delegate method register developer key
+ * 注册开发者appkey，申请地址：http://www.brtbeacon.com/api
  *
- * @param appKey Bright beacon developer key
+ * @param appKey Bright beacon 开发者密钥
  *
  * @return void
  */
@@ -190,42 +172,40 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 /// @name CoreLocation based iBeacon monitoring and ranging methods
 
 /**
- * Range all Bright beacons that are visible in range.
- * Delegate method beaconManager:didRangeBeacons:inRegion: 
- * is used to retrieve found beacons. Returned NSArray contains 
- * BRTBeacon objects.
+ * 范围扫描所有的可见的Bright Beacon设备.
+ * 检索Bright Beacon设备，通过回调函数beaconManager:didRangeBeacons:inRegion:
+ * 返回一个NSArray包含的
+ * BRTBeacon 对象。
  *
- * @param region Bright beacon region
+ * @param region Bright beacon 区域
  *
  * @return void
  */
 -(void)startRangingBeaconsInRegion:(BRTBeaconRegion*)region;
 
 /**
- * Start monitoring for particular region.
- * Functionality works in the background mode as well.
- * Every time you enter or leave region appropriet
- * delegate method inovked: beaconManager:didEnterRegtion:
- * and beaconManager:didExitRegion:
+ * 开始监测区域Start monitoring for particular region.
+ * 改功能在后台也能够工作.
+ * 只要你进入或者离开区域，都会回调: beaconManager:didEnterRegtion:
+ * 或 beaconManager:didExitRegion:
  *
- * @param region Bright beacon region
+ * @param region Bright beacon 区域
  *
  * @return void
  */
 -(void)startMonitoringForRegion:(BRTBeaconRegion*)region;
 
 /**
- * Stops ranging Bright beacons.
+ * 停止范围扫描 Bright beacon设备.
  *
- * @param region Bright beacon region
+ * @param region Bright beacon 区域
  *
  * @return void
  */
 -(void)stopRangingBeaconsInRegion:(BRTBeaconRegion*)region;
 
 /**
- * Unsubscribe application from iOS monitoring of
- * Bright beacon region.
+ * 注销程序iOS区域检测
  *
  * @param region Bright beacon region
  *
@@ -234,23 +214,23 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 -(void)stopMonitoringForRegion:(BRTBeaconRegion *)region;
 
 /**
- * Allows to validate current state for particular region
+ * 允许为特定区域验证当前状态
  *
- * @param region Bright beacon region
+ * @param region Bright beacon 区域
  *
  * @return void
  */
 -(void)requestStateForRegion:(BRTBeaconRegion *)region;
 
-/// @name Turning device into iBeacon
+/// @name 转换设备为 iBeacon
 
 /**
- * Allows to turn device into virtual Bright beacon.
+ * 设备模拟成 Bright beacon.
  *
- * @param proximityUUID proximity UUID beacon value
- * @param major minor beacon value
- * @param minor major beacon value
- * @param identifier unique identifier for you region
+ * @param proximityUUID beacon设备UUID值
+ * @param major beacon设备major值
+ * @param minor beacon设备minor值
+ * @param identifier 唯一的区域标识
  *
  * @return void
  */
@@ -261,20 +241,19 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
                                    power:(NSNumber *)power;
 
 /**
- * Stop beacon advertising
+ * 停止模拟beacon广播
  *
  * @return void
  */
 -(void)stopAdvertising;
 
 
-/// @name CoreBluetooth based utility methods
+/// @name 基于蓝牙CoreBluetooth方法
 
 
 /**
- * Start beacon discovery process based on CoreBluetooth 
- * framework. Method is useful for older beacons discovery 
- * that are not advertising as iBeacons.
+ * 开始beacon设备扫描，基于CoreBluetooth
+ * framework. 该方法用于扫描不是iBeacons一样广播数据的蓝牙设备.
  *
  *
  * @return void
@@ -283,7 +262,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 
 /**
- * Stops CoreBluetooth based beacon discovery process.
+ * 停止基于 CoreBluetooth 的beacon扫描.
  *
  * @return void
  */

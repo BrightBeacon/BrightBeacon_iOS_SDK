@@ -2,9 +2,9 @@
 //  BRTBeaconDefinitions.h
 //  BrightSDK
 //
-//  Version : 1.3.0
-//  Created by Marcin Klimek on 9/26/13.
-//  Copyright (c) 2013 Bright. All rights reserved.
+//  Version : 1.0.0
+//  Created by Bright Beacon on 19/04/14.
+//  Copyright (c) 2014 Bright. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

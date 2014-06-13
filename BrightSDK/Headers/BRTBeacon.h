@@ -2,9 +2,9 @@
 //  BRTBeacon.h
 //  BrightSDK
 //
-//  Version : 1.3.0
-//  Created by Marcin Klimek on 9/19/13.
-//  Copyright (c) 2013 Bright. All rights reserved.
+//  Version : 1.0.0
+//  Created by Bright Beacon on 21/04/14.
+//  Copyright (c) 2014 Bright. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -24,12 +24,12 @@
 @class BRTBeacon;
 
 ////////////////////////////////////////////////////////////////////
-// Bright beacon delegate protocol
+// Bright Beacon delegate protocol
 
 
 /**
  
- BRTBeaconDelegate defines beacon connection delegate mathods. Connection is asynchronous operation so you need to be prepared that eg. beaconDidDisconnectWith: method can be invoked without previous action.
+ BRTBeaconDelegate 定义了 beacon 连接相关的委托方法，beacon 的连接是一个异步操作，因此你只需要实现例如beaconDidDisconnectWith:相关方法，它们会被自动回调.
  
  */
 
@@ -38,29 +38,29 @@
 @optional
 
 /**
- * Delegate method that indicates error in beacon connection.
+ * beacon连接产生错误回调该方法.
  *
- * @param beacon reference to beacon object
- * @param error information about reason of error
+ * @param beacon 关联的beacon实体
+ * @param error 错误的描述信息
  *
  * @return void
  */
 - (void)beaconConnectionDidFail:(BRTBeacon*)beacon withError:(NSError*)error;
 
 /**
- * Delegate method that indicates success in beacon connection.
+ * beacon连接成功回调该方法
  *
- * @param beacon reference to beacon object
+ * @param beacon 关联的beacon实体
  *
  * @return void
  */
 - (void)beaconConnectionDidSucceeded:(BRTBeacon*)beacon;
 
 /**
- * Delegate method that beacon did disconnect with device.
+ * beacon与设备已经断开连接回调该方法
  *
- * @param beacon reference to beacon object
- * @param error information about reason of error
+ * @param beacon 关联的beacon实体
+ * @param error 错误的描述信息
  *
  * @return void
  */
@@ -74,10 +74,10 @@
 
 /**
  
- The BRTBeacon class represents a beacon that was encountered during region monitoring. You do not create instances of this class directly. The BRTBeaconManager object reports encountered beacons to its associated delegate object. You can use the information in a beacon object to identify which beacon was encountered.
+ BRTBeacon类代表了一个在该区域监听中遇到的beacon设备. 你不需要直接实例化这个类. BRTBeaconManager在扫描到beacon设备时会回调相应delegate的方法传人BRTBeacon.你可以通过BRTBeacon里的信息来识别不同的设备.
  
  
-BRTBeacon class contains basic Apple CLBeacon object reference as well as some additional functionality. It allows to  connect with Bright beacon to read / write its characteristics.
+ BRTBeacon类既包含了苹果CLBeacon类的基本方法，同时也新增了一些扩展方法，它能连接到beacon设备读取和写人一些特征（characteristics）.
  
  */
 
@@ -89,23 +89,29 @@ extern CBCentralManager *centralManager;
 @property (nonatomic, weak)     id <BRTBeaconDelegate>  delegate;
 
 /////////////////////////////////////////////////////
-// bluetooth beacon available when used with
+// 蓝牙设备也可以通过下面的方法识别到
 // startBrightBeaconsDiscoveryForRegion:
 
+/**
+ *  invalidTime
+ *
+ *  Discussion:
+ *    beacon设备上一次出现的时间戳，一般用于维护是设备生存周期，例如5s内未再次收到该设备信号，就移除该beacon设备.
+ */
 @property (nonatomic, unsafe_unretained) NSInteger invalidTime;
 
 /**
  *  macAddress
  *
  *  Discussion:
- *    Hardware MAC address of the beacon.
+ *    beacon设备的物理地址.
  */
 @property (nonatomic, strong)   NSString*               macAddress;
 
 /**
  *  name
  *
- *    name associated with the beacon.
+ *    beacon设备名.
  *
  */
 @property (nonatomic, strong)   NSString*               name;
@@ -113,7 +119,7 @@ extern CBCentralManager *centralManager;
 /**
  *  proximityUUID
  *
- *    Proximity identifier associated with the beacon.
+ *    beacon设备临近区域的UUID.
  *
  */
 @property (nonatomic, strong)   NSUUID*                 proximityUUID;
@@ -121,7 +127,7 @@ extern CBCentralManager *centralManager;
 /**
  *  major
  *
- *    Most significant value associated with the region. If a major value wasn't specified, this will be nil.
+ *    区域关联的主要属性值. 如果未设定该值，默认是nil.
  *
  */
 @property (nonatomic, strong)   NSNumber*               major;
@@ -129,7 +135,7 @@ extern CBCentralManager *centralManager;
 /**
  *  minor
  *
- *    Least significant value associated with the region. If a minor value wasn't specified, this will be nil.
+ *    区域关联的次要属性值. 如果未设定该值，默认是nil.
  *
  */
 @property (nonatomic, strong)   NSNumber*               minor;
@@ -139,8 +145,8 @@ extern CBCentralManager *centralManager;
 /**
  *  rssi
  *
- *    Received signal strength in decibels of the specified beacon.
- *    This value is an average of the RSSI samples collected since this beacon was last reported.
+ *    beacon的接收信号强度指示（Received Signal Strength Indicator）以分贝为单位.
+ *    该值是根据本次beacon发射的信号所收集到样本的平均值.
  *
  */
 @property (nonatomic)           NSInteger               rssi;
@@ -148,7 +154,7 @@ extern CBCentralManager *centralManager;
 /**
  *  distance
  *
- *    Distance between phone and beacon calculated based on rssi and measured power.
+ *    根据接收信号强度指示（rssi）和测量功率（measured power：距离一米的rssi值）计算出的beacon设备到手机的距离.
  *
  */
 @property (nonatomic, strong)   NSNumber*               distance;
@@ -156,86 +162,79 @@ extern CBCentralManager *centralManager;
 /**
  *  proximity
  *
- *    The value in this property gives a general sense of the relative distance to the beacon. Use it to quickly identify beacons that are nearer to the user rather than farther away.
+ *    该值代表着一般意义上的相对距离远近，可以通过它快速确定beacon设备距离用户是在附近或是很远.
  */
 @property (nonatomic)           CLProximity             proximity;
 
 /**
  *  measuredPower
  *
- *    rssi value measured from 1m. This value is used for device calibration.
+ *    该值是1米处的rssi值，用于设备校准.
  */
 @property (nonatomic, strong)   NSNumber*               measuredPower;
 
 /**
- *  hardwareVersion
+ *  peripheral
  *
- *    Reference of the device peripheral object.
+ *    代表一个周边设备，用于蓝牙连接.
  */
 @property (nonatomic, strong)   CBPeripheral*           peripheral;
 
 /////////////////////////////////////////////////////
-// properties filled when read characteristic
+// 通过蓝牙连接，读取的属性
 
-/// @name Properties available after connection
+/// @name 连接之后属性可用
 
 
 /**
- *  firmwareUpdateInfo
+ *  isConnected
  *
- *    Flag indicating connection status.
+ *    标示连接状态.
  */
 @property (nonatomic, readonly)   BOOL                  isConnected;
 
 /**
  *  power
  *
- *    Power of signal in dBm. Value available after connection with the beacon. It takes one of the values represented by BRTBeaconPower .
+ *    以分贝计的发射功率，连接后可用
  */
 @property (nonatomic, unsafe_unretained)   BRTBeaconPower           power;
 
 /**
  *  advInterval
  *
- *    Advertising interval of the beacon. Value change from 50ms to 2000ms. Value available after connection with the beacon
+ *    广播发射间隔，值范围100ms~10000ms,连接后可用
  */
 @property (nonatomic, strong)   NSNumber*               advInterval;
 
 /**
  *  ledState
  *
+ *    led灯状态，连接后可用
  */
 @property (nonatomic, unsafe_unretained)   BOOL          ledState;
 
 /**
  *  hardwareVersion
  *
- *    Version of device hardware. Value available after connection with the beacon
+ *    硬件版本，连接后可用
  */
 @property (nonatomic, strong)   NSString*               hardwareVersion;
 
 /**
  *  firmwareVersion
  *
- *    Version of device firmware. Value available after connection with the beacon
+ *    固件版本，连接后可用
  */
 @property (nonatomic, strong)   NSString*               firmwareVersion;
 
 
-/**
- *  firmwareUpdateInfo
- *
- *    Firmware update availability status. Value available after connection with the beacon and firmware version check.
- */
-@property (readonly, nonatomic) BRTBeaconFirmwareUpdate firmwareUpdateInfo;
-
-
-/// @name Connection handling methods
+/// @name 连接beacon相关的方法
 
 
 /**
- * Connect to particular beacon using bluetooth.
- * Connection is required to change values like
+ * 蓝牙连接到beacon设备
+ * 只能连接之后才可以修改
  * Major, Minor, Power and Advertising interval.
  *
  * @return void
@@ -243,61 +242,56 @@ extern CBCentralManager *centralManager;
 -(void)connectToBeacon;
 
 /**
- * Disconnect device with particular beacon
+ * 断开蓝牙连接
  *
  * @return void
  */
 -(void)disconnectBeacon;
 
 
-/// @name Methods for reading beacon configuration
+/// @name 读取beacon配置信息相关的方法
 
 
 /**
- * Read name of connected beacon (Previous connection
- * required)
+ * 读取连接中的beacon设备名 (要求已经连接成功)
  *
- * @param completion block with name value as param
+ * @param completion 读取设备名完成回调
  *
  * @return void
  */
 - (void)readBeaconNameWithCompletion:(BRTStringCompletionBlock)completion;
 
 /**
- * Read Proximity UUID of connected beacon (Previous connection
- * required)
+ * 读取连接中的beacon设备临近的UUID值 (要求已经连接成功)
  *
- * @param completion block with major value as param
+ * @param completion 读取ProximityUUID值回调
  *
  * @return void
  */
 - (void)readBeaconProximityUUIDWithCompletion:(BRTStringCompletionBlock)completion;
 
 /**
- * Read major of connected beacon (Previous connection
- * required)
+ * 读取连接中的beacon设备的major值 (要求已经连接成功)
  *
- * @param completion block with major value as param
+ * @param completion 读取major值完成回调
  *
  * @return void
  */
 - (void)readBeaconMajorWithCompletion:(BRTUnsignedShortCompletionBlock)completion;
 
 /**
- * Read minor of connected beacon (Previous connection
- * required)
+ * 读取连接中的beacon设备的minor值 (要求已经连接成功)
  *
- * @param completion block with minor value as param
+ * @param completion 读取minor值完成回调
  *
  * @return void
  */
 - (void)readBeaconMinorWithCompletion:(BRTUnsignedShortCompletionBlock)completion;
 
 /**
- * Read advertising interval of connected beacon (Previous connection
- * required)
+ * 读取连接中的beacon设备的发射间隔 (要求已经连接成功)
  *
- * @param completion block with advertising interval value as param
+ * @param completion 读取发射间隔值完成回调
  *
  * @return void
  */
@@ -305,103 +299,98 @@ extern CBCentralManager *centralManager;
 
 
 /**
- * Read power of connected beacon (Previous connection
- * required)
+ * 读取连接中的beacon设备的发射功率 (要求已经连接成功)
  *
- * @param completion block with power value as param
+ * @param completion 读取发射功率值完成回调
  *
- * @return float value of beacon power
+ * @return beacon功率的float值
  */
 - (void)readBeaconPowerWithCompletion:(BRTPowerCompletionBlock)completion;
 
 /**
- * Read led state of connected beacon (Previous connection
- * required)
+ * 读取连接中的beacon设备的led灯状态 (要求已经连接成功)
  *
- * @param completion block with led state value as param
+ * @param completion 读取led灯状态完成回调
  *
  * @return void
  */
 - (void)readBeaconLedStateWithCompletion:(BRTBoolCompletionBlock)completion;
 
 /**
- * Read MeasuredPower of connected beacon (Previous connection
- * required)
+ * 读取连接中的beacon设备的测量功率 (要求已经连接成功)
  *
- * @param completion block with MeasuredPower value as param
+ * @param completion 读取测量功率值完成回调
  *
  * @return void
  */
 - (void)readBeaconMeasuredPowerWithCompletion:(BRTShortCompletionBlock)completion;
 
 /**
- * Read firmware version of connected beacon (Previous connection
- * required)
+ * 读取连接中的beacon设备的固件版本 (要求已经连接成功)
  *
- * @param completion block with firmware version value as param
+ * @param completion 读取固件版本信息完成回调
  *
  * @return void
  */
 - (void)readBeaconFirmwareVersionWithCompletion:(BRTStringCompletionBlock)completion;
 
 /**
- * Read hardware version of connected beacon (Previous connection
- * required)
+ * 读取连接中的beacon设备的硬件版本 (要求已经连接成功)
  *
- * @param completion block with hardware version value as param
+ * @param completion 读取硬件版本信息完成回调
  *
  * @return void
  */
 - (void)readBeaconHardwareVersionWithCompletion:(BRTStringCompletionBlock)completion;
 
 
-/// @name Methods for writing beacon configuration
+/// @name 写人beacon配置信息相关的方法
 
 /**
- * Writes name param to bluetooth connected beacon.
+ * 写入设备名
  *
- * @param name beacon value
- * @param completion block handling operation completion
+ * @param name 设备名
+ * @param completion 写入完成回调
  *
  * @return void
  */
 - (void)writeBeaconName:(NSString *)name withCompletion:(BRTStringCompletionBlock)completion;
 
 /**
- * Writes Proximity UUID param to bluetooth connected beacon. Please  remember that If you change the UUID to your very own value anyone can read it, copy it and spoof your beacons. So if you are working on a mission critical application where security is an issue - be sure to implement it on your end. We are also working on a secure mode for our beacons and it will be included in one of the next firmware updates.
+ * 写入 Proximity UUID 到连接中的蓝牙设备. 请注意虽然你是把UUID当作自己项目中私用，但是别人也可以读取、复制这个UUID来模仿你Beacon，所以如果你正开发一个很关键的应用程序的时候，安全是需要考虑的问题，你必须自己实现它。我们也尽力在保证我们beacon的安全性，在下一个版本中我们会提供更好的安全模式。
  *
- * @param pUUID new Proximity UUID value
- * @param completion block handling operation completion
+ * @param pUUID 待写入的 Proximity UUID 值
+ * @param completion 写入完成回调
  *
  * @return void
  */
 - (void)writeBeaconProximityUUID:(NSString*)pUUID withCompletion:(BRTStringCompletionBlock)completion;
 
 /**
- * Writes major param to bluetooth connected beacon.
+ * 写入 major 到连接中的蓝牙设备.
  *
- * @param major major beacon value
- * @param completion block handling operation completion
+ * @param major 待写入的major值
+ * @param completion 写入完成回调
  *
  * @return void
  */
 - (void)writeBeaconMajor:(unsigned short)major withCompletion:(BRTUnsignedShortCompletionBlock)completion;
 
 /**
- * Writes minor param to bluetooth connected beacon.
+ * 写入 minor 到连接中的蓝牙设备.
  *
- * @param minor minor beacon value
- * @param completion block handling operation completion
+ * @param minor 待写入的minor值
+ * @param completion 写入完成回调
  *
  * @return void
  */
 - (void)writeBeaconMinor:(unsigned short)minor withCompletion:(BRTUnsignedShortCompletionBlock)completion;
 
 /**
- * Writes advertising interval (in milisec) of connected beacon.
+ * 写入发射频率 (以毫秒计) 到连接中的蓝牙设备.
  *
- * @param advertising interval of beacon (50 - 2000 ms)
- * @param completion block handling operation completion
+ * @param advertising 待写入发送频率值 (100 - 10000 ms)
+ * @param completion 写入完成回调
  *
  * @return void
  */
@@ -409,55 +398,50 @@ extern CBCentralManager *centralManager;
 
 
 /**
- * Writes power of bluetooth connected beacon.
+ * 写入发射功率到连接中的蓝牙设备
  *
- * @param power advertising beacon power (can take value from BRTBeaconPowerLevel1 / waak to BRTBeaconPowerLevel8 / strong)
- * @param completion block handling operation completion
+ * @param power beacon设备发射功率值 (取值范围从 BRTBeaconPowerLevel1 /弱 到 BRTBeaconPowerLevel8 / 强)
+ * @param completion 写入完成回调
  *
  * @return void
  */
 - (void)writeBeaconPower:(BRTBeaconPower)power withCompletion:(BRTPowerCompletionBlock)completion;
 
 /**
- * Writes led state of connected beacon (Previous connection
- * required)
+ * 写入led灯状态到连接中的蓝牙设备
  *
- * @param completion block with led state value as param
+ * @param ladState led灯状态 （YES 打开 NO 关闭）
+ * @param completion 写入完成回调
  *
  * @return void
  */
 - (void)writeBeaconLedState:(BOOL)ledState withCompletion:(BRTBoolCompletionBlock)completion;
 
 /**
- * Writes MeasuredPower of connected beacon (Previous connection
- * required)
- * @param MeasuredPower value as param
- * @param completion block with MeasuredPower value as param
+ * 写入测量功率到连接中的蓝牙设备
+ * @param MeasuredPower 测量功率 （1米处的rssi值）
+ * @param completion 写入完成回调
  *
  * @return void
  */
 - (void)writeBeaconMeasuredPower:(short)measurePower withCompletion:(BRTShortCompletionBlock)completion;
 
-/// @name Firmware update handling methods
+/// @name 固件更新相关方法
 
 /**
- * Verifies if new firmware version is available for download
- * without any additional action. Internet connection
- * is required to pass this process.
+ * 需要网络连接
  *
- * @param completion Block handling operation completion
+ * @param completion 完成回调
  *
  * @return void
  */
 -(void)checkFirmwareUpdateWithCompletion:(BRTFirmwareUpdateCompletionBlock)completion;
 
 /**
- * Verifies if new firmware version is available for download
- * and updates firmware of connected beacon. Internet connection 
- * is required to pass this process.
+ * 需要网络连接
  *
- * @param progress Block handling operation progress
- * @param completion Block handling operation completion
+ * @param progress 处理进度回调
+ * @param completion 处理完成回调
  *
  * @return void
  */
@@ -465,7 +449,7 @@ extern CBCentralManager *centralManager;
                           andCompletion:(BRTCompletionBlock)completion;
 
 /**
- * resetBeaconToDefault
+ * 重置beacon设备默认值，该操作要求已经成功执行 [BRTBeaconManager registerApp:YOUR_KEY];
  *
  *
  * @return void
@@ -473,7 +457,7 @@ extern CBCentralManager *centralManager;
 -(void)resetBeaconToDefault;
 
 /**
- * resetBeaconToDefault
+ * 重置beacon设备默认KEY，该操作可以解除设备开发者绑定，让beacon设备可以重新被连接设定新的YOUR_KEY，该操作要求已经成功执行[BRTBeaconManager registerApp:YOUR_KEY];
  *
  * @return void
  */

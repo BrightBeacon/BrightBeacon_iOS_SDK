@@ -2,8 +2,8 @@
 //  BRTBeaconUpdateInfo.h
 //  BrightSDK
 //
-//  Version : 1.3.0
-//  Created by Marcin Klimek on 27/11/13.
+//  Version : 1.0.0
+//  Created by Bright Beacon on 20/04/14.
 //  Copyright (c) 2013 Bright. All rights reserved.
 //
 

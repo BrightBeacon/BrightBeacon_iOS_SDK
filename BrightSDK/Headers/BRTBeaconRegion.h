@@ -2,9 +2,9 @@
 //  BRTBeaconRegion.h
 //  BrightSDK
 //
-//  Version : 1.3.0
-//  Created by Marcin Klimek on 9/21/13.
-//  Copyright (c) 2013 Bright. All rights reserved.
+//  Version : 1.0.0
+//  Created by Bright Beacon on 20/04/14.
+//  Copyright (c) 2014 Bright. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,11 +14,11 @@
 
 /**
  
- A BRTBeaconRegion object defines a type of region that is based on the device’s proximity to a Bluetooth beacon, as opposed to a geographic location. A beacon region looks for devices whose identifying information matches the information you provide. When that device comes in range, the region triggers the delivery of an appropriate notification.
+ BRTBeaconRegion定义了一类区域，是基于蓝牙设备,而不是一个地理位置。beacon区域寻找设备的识别信息匹配您提供的信息，当一个设备范围,该区域触发一个适当的通知
  
- You can monitor beacon regions in two ways. To receive notifications when a device enters or exits the vicinity of a beacon, use the startMonitoringForRegion: method of your location manager object. While a beacon is in range, you can also call the startRangingBeaconsInRegion: method to begin receiving notifications when the relative distance to the beacon changes.
+ 您可以监视信标区域在两个方面。设备进入或退出时接收通知附近的beacon,使用startMonitoringForRegion:你的位置管理器对象的方法。当beacon在范围内,你也可以调用startRangingBeaconsInRegion:方法开始时接收通知的相对的距离变化.
  
- BRTBeaconRegion extends basic CLBeaconRegion Core Location object, allowing to directly initialize region that is supported by Bright Cloud platform.
+ BRTBeaconRegion 扩展了基本的CLBeaconRegion类。
  
  */
 @interface BRTBeaconRegion : CLBeaconRegion
