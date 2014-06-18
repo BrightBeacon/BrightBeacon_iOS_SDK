@@ -36,5 +36,5 @@ Alternatively, you can install manually. Follow steps described below:
 
 Congratulations! You are done.
 ## Docs
-* [Current documentation](//github.com/BrightBeacon/BrightBeacon_iOS_SDK/Documents/index.html)
-* [Community for AprilBeacon](http://brtbeacon.com)
+* [Current Documentation](//github.com/BrightBeacon/BrightBeacon_iOS_SDK/Documents/index.html)
+* [Community for BrightBeacon](http://brtbeacon.com)
