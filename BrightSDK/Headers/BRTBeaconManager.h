@@ -11,7 +11,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "BRTBeaconRegion.h"
 #import "BRTBeacon.h"
-#import "BRTRegion.h"
 
 CBCentralManager *centralManager;
 
@@ -100,7 +99,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  */
 -(void)beaconManager:(BRTBeaconManager *)manager
      didDetermineState:(CLRegionState)state
-             forRegion:(BRTRegion *)region;
+             forRegion:(BRTBeaconRegion *)region;
 
 /**
  * 当设备模拟iBeacon广播信息，调用该方法.

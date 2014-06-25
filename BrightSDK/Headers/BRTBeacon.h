@@ -85,7 +85,6 @@
 
 extern CBCentralManager *centralManager;
 
-@property (nonatomic)           BRTBeaconFirmwarestate  firmwarestate;
 @property (nonatomic, weak)     id <BRTBeaconDelegate>  delegate;
 
 /////////////////////////////////////////////////////
@@ -104,7 +103,7 @@ extern CBCentralManager *centralManager;
  *  macAddress
  *
  *  Discussion:
- *    beacon设备的物理地址.
+ *    beacon设备的物理地址.建议使用该值作为Beacon标识
  */
 @property (nonatomic, strong)   NSString*               macAddress;
 
@@ -127,7 +126,7 @@ extern CBCentralManager *centralManager;
 /**
  *  major
  *
- *    区域关联的主要属性值. 如果未设定该值，默认是nil.
+ *    区域关联的主要属性值. 如果未设定该值，默认是0.
  *
  */
 @property (nonatomic, strong)   NSNumber*               major;
@@ -135,7 +134,7 @@ extern CBCentralManager *centralManager;
 /**
  *  minor
  *
- *    区域关联的次要属性值. 如果未设定该值，默认是nil.
+ *    区域关联的次要属性值. 如果未设定该值，默认是0.
  *
  */
 @property (nonatomic, strong)   NSNumber*               minor;
@@ -172,6 +171,13 @@ extern CBCentralManager *centralManager;
  *    该值是1米处的rssi值，用于设备校准.
  */
 @property (nonatomic, strong)   NSNumber*               measuredPower;
+
+/**
+ *  region
+ *
+ *    该值是设备所在region.
+ */
+@property (nonatomic, strong)   CLBeaconRegion*               region;
 
 /**
  *  peripheral
@@ -214,19 +220,6 @@ extern CBCentralManager *centralManager;
  */
 @property (nonatomic, unsafe_unretained)   BOOL          ledState;
 
-/**
- *  hardwareVersion
- *
- *    硬件版本，连接后可用
- */
-@property (nonatomic, strong)   NSString*               hardwareVersion;
-
-/**
- *  firmwareVersion
- *
- *    固件版本，连接后可用
- */
-@property (nonatomic, strong)   NSString*               firmwareVersion;
 
 
 /// @name 连接beacon相关的方法
@@ -427,26 +420,6 @@ extern CBCentralManager *centralManager;
 - (void)writeBeaconMeasuredPower:(short)measurePower withCompletion:(BRTShortCompletionBlock)completion;
 
 /// @name 固件更新相关方法
-
-/**
- * 需要网络连接
- *
- * @param completion 完成回调
- *
- * @return void
- */
--(void)checkFirmwareUpdateWithCompletion:(BRTFirmwareUpdateCompletionBlock)completion;
-
-/**
- * 需要网络连接
- *
- * @param progress 处理进度回调
- * @param completion 处理完成回调
- *
- * @return void
- */
--(void)updateBeaconFirmwareWithProgress:(BRTStringCompletionBlock)progress
-                          andCompletion:(BRTCompletionBlock)completion;
 
 /**
  * 重置beacon设备默认值，该操作要求已经成功执行 [BRTBeaconManager registerApp:YOUR_KEY];

@@ -8,8 +8,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BRTBeaconUpdateInfo.h"
-
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
 
@@ -22,29 +20,13 @@ typedef enum : char
     BRTBeaconPowerLevelPlus4 = 3,
 } BRTBeaconPower;
 
-typedef enum : int
-{
-    BRTBeaconFirmwarestateBoot,
-    BRTBeaconFirmwarestateApp
-} BRTBeaconFirmwarestate;
-
-typedef enum : int
-{
-    BRTBeaconFirmwareUpdateNone,
-    BRTBeaconFirmwareUpdateAvailable,
-    BRTBeaconFirmwareUpdateNotAvailable
-} BRTBeaconFirmwareUpdate;
-
 typedef void(^BRTCompletionBlock)(NSError* error);
-typedef void(^BRTFirmwareUpdateCompletionBlock)(BOOL updateAvailable, BRTBeaconUpdateInfo* updateInfo, NSError* error);
+//typedef void(^BRTFirmwareUpdateCompletionBlock)(BOOL updateAvailable, BRTBeaconUpdateInfo* updateInfo, NSError* error);
 typedef void(^BRTUnsignedShortCompletionBlock)(unsigned short value, NSError* error);
 typedef void(^BRTShortCompletionBlock)(short value, NSError* error);
 typedef void(^BRTPowerCompletionBlock)(BRTBeaconPower value, NSError* error);
 typedef void(^BRTBoolCompletionBlock)(BOOL value, NSError* error);
 typedef void(^BRTStringCompletionBlock)(NSString* value, NSError* error);
-
-
-
 
 ////////////////////////////////////////////////////////////////////
 // Interface definition

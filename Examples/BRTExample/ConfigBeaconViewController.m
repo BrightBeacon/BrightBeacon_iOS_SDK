@@ -27,7 +27,7 @@
 
 #import "BRTBeaconManager.h"
 
-@interface ConfigBeaconViewController () <UITableViewDelegate,BRTBeaconDelegate , UITableViewDataSource,BRTBeaconManagerDelegate>
+@interface ConfigBeaconViewController () <UITableViewDelegate,BRTBeaconDelegate , UITableViewDataSource,BRTBeaconManagerDelegate,UITextFieldDelegate>
 {
     UInt16 advertisingInterval;
 }
@@ -70,7 +70,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.beaconArray = [[NSMutableArray alloc] init];
-    self.beaconsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, 320, 480)];
+    self.beaconsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     self.beaconsTableView.delegate = self;
     self.beaconsTableView.dataSource = self;
     
@@ -278,5 +278,8 @@
     // Save a local copy of the peripheral, so CoreBluetooth doesn't get rid of it
     
 }
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.view endEditing:YES];
+    return NO;
+}
 @end

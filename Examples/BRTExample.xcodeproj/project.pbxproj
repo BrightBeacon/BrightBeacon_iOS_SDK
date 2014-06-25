@@ -25,6 +25,7 @@
 		581F1A2B18ECF2E9001C47BE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581F1A0D18ECF2E9001C47BE /* UIKit.framework */; };
 		581F1A3318ECF2E9001C47BE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 581F1A3118ECF2E9001C47BE /* InfoPlist.strings */; };
 		581F1A3518ECF2E9001C47BE /* BRTExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 581F1A3418ECF2E9001C47BE /* BRTExampleTests.m */; };
+		58FCA3DE195A79AA00399D5C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58FCA3DD195A79AA00399D5C /* AdSupport.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		581F1A3018ECF2E9001C47BE /* BRTExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BRTExampleTests-Info.plist"; sourceTree = "<group>"; };
 		581F1A3218ECF2E9001C47BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		581F1A3418ECF2E9001C47BE /* BRTExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRTExampleTests.m; sourceTree = "<group>"; };
+		58FCA3DD195A79AA00399D5C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58FCA3DE195A79AA00399D5C /* AdSupport.framework in Frameworks */,
 				581F1A0C18ECF2E9001C47BE /* CoreGraphics.framework in Frameworks */,
 				581F1A0E18ECF2E9001C47BE /* UIKit.framework in Frameworks */,
 				133AB5A31941C8A000356A47 /* libBrightSDK.a in Frameworks */,
@@ -113,6 +116,7 @@
 		581F1A0818ECF2E9001C47BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				58FCA3DD195A79AA00399D5C /* AdSupport.framework */,
 				133AB5A21941C8A000356A47 /* libBrightSDK.a */,
 				581F1A0918ECF2E9001C47BE /* Foundation.framework */,
 				581F1A0B18ECF2E9001C47BE /* CoreGraphics.framework */,
