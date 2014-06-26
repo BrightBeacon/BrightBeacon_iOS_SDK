@@ -67,12 +67,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.beaconArray = [[NSMutableArray alloc] init];
     self.beaconsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     self.beaconsTableView.delegate = self;
     self.beaconsTableView.dataSource = self;
+    
     
     [self.view addSubview:self.beaconsTableView];
     
@@ -81,7 +85,6 @@
     
     [self showDeviceDetails:false];
 }
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     // Don't keep it going while we're not showing.
@@ -111,7 +114,6 @@
     self.beaconsTableView.hidden = show;
     self.deviceView.hidden = !show;
     self.saveButton.hidden = !show;
-    
     if (show) {
         [self.defaultButton setTitle:@"Default" forState:UIControlStateNormal];
     }

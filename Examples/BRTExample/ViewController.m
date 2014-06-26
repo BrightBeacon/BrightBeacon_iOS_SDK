@@ -23,6 +23,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
 	// Do any additional setup after loading the view, typically from a nib.
     [BRTBeaconManager registerApp:BRT_SDK_KEY];
 }
