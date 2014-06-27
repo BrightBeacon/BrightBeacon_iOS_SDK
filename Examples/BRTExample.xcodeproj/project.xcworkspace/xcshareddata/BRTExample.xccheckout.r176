@@ -5,36 +5,41 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>3420C020-CDB3-4981-B555-9519CF7CE6B0</string>
+	<string>3F074CE0-053A-4EE0-98BA-608761EB81A3</string>
 	<key>IDESourceControlProjectName</key>
 	<string>BRTExample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>29B4EB20-1C1A-4256-BC48-DCBFFCA21EF7</key>
-		<string>https://github.com/BrightBeacon/BrightBeacon_iOS_SDK.git</string>
+		<key>961EACB4-8070-434A-83E6-0916243DCFE0</key>
+		<string>https://www.o2okj.com/svn/IOS/Beacons</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Examples/BRTExample.xcodeproj/project.xcworkspace</string>
+	<string>BRTExample/BRTExample.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>29B4EB20-1C1A-4256-BC48-DCBFFCA21EF7</key>
+		<key>961EACB4-8070-434A-83E6-0916243DCFE0</key>
 		<string>../../..</string>
 	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>961EACB4-8070-434A-83E6-0916243DCFE0</key>
+		<string>https://www.o2okj.com/svn/IOS</string>
+	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/BrightBeacon/BrightBeacon_iOS_SDK.git</string>
+	<string>https://www.o2okj.com/svn/IOS/Beacons/BRTExample/BRTExample.xcodeproj</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>29B4EB20-1C1A-4256-BC48-DCBFFCA21EF7</string>
+	<string>961EACB4-8070-434A-83E6-0916243DCFE0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
+			<string>public.vcs.subversion</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>29B4EB20-1C1A-4256-BC48-DCBFFCA21EF7</string>
+			<string>961EACB4-8070-434A-83E6-0916243DCFE0</string>
 			<key>IDESourceControlWCCName</key>
-			<string>BrightBeacon_iOS_SDK</string>
+			<string>Beacons</string>
 		</dict>
 	</array>
 </dict>

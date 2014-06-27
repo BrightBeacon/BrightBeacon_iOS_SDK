@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		133AB5A31941C8A000356A47 /* libBrightSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 133AB5A21941C8A000356A47 /* libBrightSDK.a */; };
 		138F4EF819344E79004771EE /* RangeBeaconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 138F4EF719344E79004771EE /* RangeBeaconViewController.m */; };
 		138F4EFB19345BB9004771EE /* ConfigBeaconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 138F4EFA19345BB9004771EE /* ConfigBeaconViewController.m */; };
 		13AAFC2E1935C568003BBAE5 /* NetEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 13AAFC2D1935C568003BBAE5 /* NetEngine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -25,7 +24,8 @@
 		581F1A2B18ECF2E9001C47BE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581F1A0D18ECF2E9001C47BE /* UIKit.framework */; };
 		581F1A3318ECF2E9001C47BE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 581F1A3118ECF2E9001C47BE /* InfoPlist.strings */; };
 		581F1A3518ECF2E9001C47BE /* BRTExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 581F1A3418ECF2E9001C47BE /* BRTExampleTests.m */; };
-		58FCA3DE195A79AA00399D5C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58FCA3DD195A79AA00399D5C /* AdSupport.framework */; };
+		582019EF195D13E800E5A5AE /* libBrightSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 582019EE195D13E800E5A5AE /* libBrightSDK.a */; };
+		58652A33195C07680047C92F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58652A32195C07680047C92F /* AdSupport.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		133AB5A21941C8A000356A47 /* libBrightSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBrightSDK.a; path = SDK/libBrightSDK.a; sourceTree = "<group>"; };
 		138F4EF619344E79004771EE /* RangeBeaconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeBeaconViewController.h; sourceTree = "<group>"; };
 		138F4EF719344E79004771EE /* RangeBeaconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeBeaconViewController.m; sourceTree = "<group>"; };
 		138F4EF919345BB9004771EE /* ConfigBeaconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigBeaconViewController.h; sourceTree = "<group>"; };
@@ -65,7 +64,8 @@
 		581F1A3018ECF2E9001C47BE /* BRTExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BRTExampleTests-Info.plist"; sourceTree = "<group>"; };
 		581F1A3218ECF2E9001C47BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		581F1A3418ECF2E9001C47BE /* BRTExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRTExampleTests.m; sourceTree = "<group>"; };
-		58FCA3DD195A79AA00399D5C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		582019EE195D13E800E5A5AE /* libBrightSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBrightSDK.a; path = SDK/libBrightSDK.a; sourceTree = "<group>"; };
+		58652A32195C07680047C92F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,10 +73,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58FCA3DE195A79AA00399D5C /* AdSupport.framework in Frameworks */,
+				58652A33195C07680047C92F /* AdSupport.framework in Frameworks */,
+				582019EF195D13E800E5A5AE /* libBrightSDK.a in Frameworks */,
 				581F1A0C18ECF2E9001C47BE /* CoreGraphics.framework in Frameworks */,
 				581F1A0E18ECF2E9001C47BE /* UIKit.framework in Frameworks */,
-				133AB5A31941C8A000356A47 /* libBrightSDK.a in Frameworks */,
 				581F1A0A18ECF2E9001C47BE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,8 +116,8 @@
 		581F1A0818ECF2E9001C47BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				58FCA3DD195A79AA00399D5C /* AdSupport.framework */,
-				133AB5A21941C8A000356A47 /* libBrightSDK.a */,
+				582019EE195D13E800E5A5AE /* libBrightSDK.a */,
+				58652A32195C07680047C92F /* AdSupport.framework */,
 				581F1A0918ECF2E9001C47BE /* Foundation.framework */,
 				581F1A0B18ECF2E9001C47BE /* CoreGraphics.framework */,
 				581F1A0D18ECF2E9001C47BE /* UIKit.framework */,
@@ -222,6 +222,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = thomasho;
 				TargetAttributes = {
+					581F1A0518ECF2E9001C47BE = {
+						DevelopmentTeam = L2S5E9QH3S;
+					};
 					581F1A2618ECF2E9001C47BE = {
 						TestTargetID = 581F1A0518ECF2E9001C47BE;
 					};
@@ -402,12 +405,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 欧拓欧 网络科技 (AWM3R3VMHX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 欧拓欧 网络科技 (AWM3R3VMHX)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BRTExample/BRTExample-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/SDK/Headers\"",
+					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SDK/Headers",
 				);
 				INFOPLIST_FILE = "BRTExample/BRTExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -417,7 +424,7 @@
 					"$(PROJECT_DIR)/SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				PROVISIONING_PROFILE = "A509E0AF-CE24-4494-8190-3E45B3D91040";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -427,12 +434,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BRTExample/BRTExample-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/SDK/Headers\"",
+					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SDK/Headers",
 				);
 				INFOPLIST_FILE = "BRTExample/BRTExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -442,7 +452,7 @@
 					"$(PROJECT_DIR)/SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				PROVISIONING_PROFILE = "A509E0AF-CE24-4494-8190-3E45B3D91040";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

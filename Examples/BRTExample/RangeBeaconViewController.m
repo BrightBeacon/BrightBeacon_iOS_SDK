@@ -7,15 +7,11 @@
 //
 
 #import "RangeBeaconViewController.h"
-#import "BRTBeaconManager.h"
 #import "BRTBeacon.h"
-
-#define defaultUUID   @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
+#import "BRTBeaconSDK.h"
 
 @interface RangeBeaconViewController ()<BRTBeaconManagerDelegate>
 @property (nonatomic, strong) IBOutlet UITableView     *tableview;
-@property (nonatomic, strong) BRTBeaconManager         *beaconManager;
-@property (nonatomic, strong) BRTBeaconRegion          *region;
 @property (nonatomic, strong) NSArray                  *beaconsArray;
 @end
 
@@ -25,23 +21,11 @@
 {
     [super viewDidAppear:animated];
     
-    self.beaconManager = [[BRTBeaconManager alloc] init];
-    self.beaconManager.delegate = self;
+    [BRTBeaconSDK startRangingOption:RangingOptionOnRanged onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
+        self.beaconsArray = beacons;
+        [self.tableview reloadData];
+    }];
     
-    /*
-     * Creates sample region object (you can additionaly pass major / minor values).
-     *
-     * We specify it using only the ESTIMOTE_PROXIMITY_UUID because we want to discover all
-     * hardware beacons with Estimote's proximty UUID.
-     */
-    self.region = [[BRTBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:defaultUUID]
-                                                      identifier:@"BrtSampleRegion"];
-    
-    /*
-     * Starts looking for Estimote beacons.
-     * All callbacks will be delivered to beaconManager delegate.
-     */
-    [self.beaconManager startRangingBeaconsInRegion:self.region];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -51,25 +35,16 @@
     /*
      *Stops ranging after exiting the view.
      */
-    [self.beaconManager stopRangingBeaconsInRegion:self.region];
+    [BRTBeaconSDK stopRangingBrightBeacons];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+    if ([[[UIDevice currentDevice] systemVersion] intValue]>=7) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
-}
-
-#pragma mark - BRTBeaconManager delegate
-
-- (void)beaconManager:(BRTBeaconManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(BRTBeaconRegion *)region
-{
-    NSLog(@"%@",beacons.description);
-    self.beaconsArray = beacons;
-    [self.tableview reloadData];
+	// Do any additional setup after loading the view, typically from a nib.
 }
 
 #pragma mark - TableViewDelegate
@@ -80,7 +55,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 70;
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -95,7 +70,8 @@
      */
     BRTBeacon *beacon = [self.beaconsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"UUID: %@", beacon.proximityUUID.UUIDString];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Major: %@, Minor: %@ ,Distance: %.2f", beacon.major, beacon.minor ,[beacon.distance floatValue]];
+    cell.detailTextLabel.numberOfLines = 2;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Major:%@,Minor:%@,MAC:%@\nDistance:%.2f,RSSI:%d", beacon.major, beacon.minor ,beacon.macAddress,[beacon.distance floatValue],beacon.rssi];
     
     [cell.textLabel setFont:[UIFont systemFontOfSize:11]];
     

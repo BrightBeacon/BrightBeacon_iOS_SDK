@@ -10,7 +10,8 @@
 #import "BRTBeaconManager.h"
 #import "BRTBeacon.h"
 
-#define BRT_SDK_KEY @"E71E63CE42A40F3D43B3E47C64344075"
+//#define BRT_SDK_KEY @"E71E63CE42A40F3D43B3E47C64344075"
+#define BRT_SDK_KEY @"00000000000000000000000000000000"   //32-0
 
 @interface ViewController ()<BRTBeaconManagerDelegate>
 
@@ -23,11 +24,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
 	// Do any additional setup after loading the view, typically from a nib.
     [BRTBeaconManager registerApp:BRT_SDK_KEY];
+    if ([[[UIDevice currentDevice] systemVersion] intValue]>=7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
 }
-
+- (IBAction)back:(UIStoryboardSegue *)segue
+{
+    //back here
+}
 @end

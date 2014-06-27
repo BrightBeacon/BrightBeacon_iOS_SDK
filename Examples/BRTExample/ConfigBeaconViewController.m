@@ -27,7 +27,7 @@
 
 #import "BRTBeaconManager.h"
 
-@interface ConfigBeaconViewController () <UITableViewDelegate,BRTBeaconDelegate , UITableViewDataSource,BRTBeaconManagerDelegate,UITextFieldDelegate>
+@interface ConfigBeaconViewController () <UITableViewDelegate,BRTBeaconDelegate , UITableViewDataSource,BRTBeaconManagerDelegate>
 {
     UInt16 advertisingInterval;
 }
@@ -67,16 +67,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.beaconArray = [[NSMutableArray alloc] init];
-    self.beaconsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    self.beaconsTableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     self.beaconsTableView.delegate = self;
     self.beaconsTableView.dataSource = self;
-    
     
     [self.view addSubview:self.beaconsTableView];
     
@@ -84,13 +80,18 @@
     self.beaconManager.delegate = self;
     
     [self showDeviceDetails:false];
+    if ([[[UIDevice currentDevice] systemVersion] intValue]>=7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
 }
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     // Don't keep it going while we're not showing.
     
     [super viewWillDisappear:animated];
     [self.beaconManager stopBrightBeaconDiscovery];
+    [self.brtBeacon disconnectBeacon];
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,6 +115,7 @@
     self.beaconsTableView.hidden = show;
     self.deviceView.hidden = !show;
     self.saveButton.hidden = !show;
+    
     if (show) {
         [self.defaultButton setTitle:@"Default" forState:UIControlStateNormal];
     }
@@ -280,8 +282,5 @@
     // Save a local copy of the peripheral, so CoreBluetooth doesn't get rid of it
     
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self.view endEditing:YES];
-    return NO;
-}
+
 @end
