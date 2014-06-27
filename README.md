@@ -10,7 +10,7 @@ Support Blooth4.0 (above iOS 6.0).
 
 ## How to install
 ### From CocoaPods
-Remenber to update your local repo
+Remember to update your local repo
 ```
 pod repo update
 ```
