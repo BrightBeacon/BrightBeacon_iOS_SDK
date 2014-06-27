@@ -6,7 +6,7 @@ iOS-SDK
 
 Bright SDK plays with Apple iBeacon technology, using Bright hardware beacons as well as Bright Virtual Beacon iOS Application. To find out more about it read API section on our website, please. You can review SDK documentation and check our Community Portal to get answers for most common questions related to our Hardware and Software.
 
-Support Blooth4.0 (above iOS 6.0).
+Support Bluetooth4.0 (above iOS 6.0).
 
 ## How to install
 ### From CocoaPods
