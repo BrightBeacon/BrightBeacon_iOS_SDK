@@ -6,8 +6,14 @@ iOS-SDK
 
 Bright SDK plays with Apple iBeacon technology, using Bright hardware beacons as well as Bright Virtual Beacon iOS Application. To find out more about it read API section on our website, please. You can review SDK documentation and check our Community Portal to get answers for most common questions related to our Hardware and Software.
 
+Support Blooth4.0 (above iOS 6.0).
+
 ## How to install
 ### From CocoaPods
+Remenber to update your local repo
+```
+pod repo update
+```
 Add the following line to your Podfile:
 
 	pod 'BrightSDK'
@@ -36,5 +42,5 @@ Alternatively, you can install manually. Follow steps described below:
 
 Congratulations! You are done.
 ## Docs
-* [Current Documentation](//github.com/BrightBeacon/BrightBeacon_iOS_SDK/Documents/index.html)
-* [Community for BrightBeacon](http://brtbeacon.com)
+* [Current Documentation](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)
+* [Community for BrightBeacon](http://www.brtbeacon.com)
