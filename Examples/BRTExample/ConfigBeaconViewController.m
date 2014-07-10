@@ -254,7 +254,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    return 100;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -267,9 +267,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
     
-    
-    cell.textLabel.text = beacon.name;
-    cell.detailTextLabel.text = beacon.macAddress;
+    cell.textLabel.numberOfLines = 4;
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ \n%@ %@",beacon.proximityUUID.UUIDString,beacon.name,beacon.macAddress];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"major:%@  minor:%@  mpower:%@ distance:%@",beacon.major,beacon.minor,beacon.measuredPower,beacon.distance];
     
     return cell;
 }

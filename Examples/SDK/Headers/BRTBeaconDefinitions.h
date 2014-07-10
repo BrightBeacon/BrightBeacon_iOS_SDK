@@ -21,12 +21,12 @@ typedef enum : char
 } BRTBeaconPower;
 
 typedef void(^BRTCompletionBlock)(NSError* error);
-//typedef void(^BRTFirmwareUpdateCompletionBlock)(BOOL updateAvailable, BRTBeaconUpdateInfo* updateInfo, NSError* error);
 typedef void(^BRTUnsignedShortCompletionBlock)(unsigned short value, NSError* error);
 typedef void(^BRTShortCompletionBlock)(short value, NSError* error);
 typedef void(^BRTPowerCompletionBlock)(BRTBeaconPower value, NSError* error);
 typedef void(^BRTBoolCompletionBlock)(BOOL value, NSError* error);
 typedef void(^BRTStringCompletionBlock)(NSString* value, NSError* error);
+typedef void(^BRTConnectCompletionBlock)(BOOL connected, NSError* error);
 
 ////////////////////////////////////////////////////////////////////
 // Interface definition

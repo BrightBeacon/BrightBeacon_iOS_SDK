@@ -233,6 +233,7 @@ extern CBCentralManager *centralManager;
  * @return void
  */
 -(void)connectToBeacon;
+-(void)connectToBeaconWithCompletion:(BRTConnectCompletionBlock)completion;
 
 /**
  * 断开蓝牙连接
@@ -339,6 +340,15 @@ extern CBCentralManager *centralManager;
 
 /// @name 写人beacon配置信息相关的方法
 
+/**
+ * 写入设备信息
+ *
+ * @param values 设备信息
+ * @param completion 写入完成回调
+ *
+ * @return void
+ */
+- (void)writeBeaconValues:(NSDictionary*)values withCompletion:(BRTCompletionBlock)completion;
 /**
  * 写入设备名
  *

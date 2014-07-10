@@ -9,8 +9,8 @@
 #import "BRTBeaconRegion.h"
 #import "BRTBeacon.h"
 
-//超时移除BrightBeacon时间，与硬件发射频率设置配合
-#define InvalidTime 5
+//超时移除BrightBeacon时间，与硬件发射频率设置配合，默认5s未收到信号移除
+#define InvalidTime 10
 
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
@@ -69,6 +69,7 @@ typedef void(^RequestStateForRegionsCompletionBlock)(BRTBeaconRegion* region, CL
  * @return void
  */
 + (void) startRangingOption:(RangingOptions)option onCompletion:(RangingBrightBeaconsCompletionBlock)completion;
++ (void) startRangingOption:(RangingOptions)option uuids:(NSArray*)uuids onCompletion:(RangingBrightBeaconsCompletionBlock)completion;
 + (void) startMonitoringForRegions:(NSArray *)regions onCompletion:(MonitoringForRegionsCompletionBlock)completion;
 + (void) requestStateForRegions:(NSArray *)regions onCompletion:(RequestStateForRegionsCompletionBlock)completion;
 

@@ -258,6 +258,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  * @return void
  */
 -(void)startBrightBeaconsDiscovery;
+- (void)startBrightBeaconsDiscoveryAllowDuplicatesKey;
 
 
 /**

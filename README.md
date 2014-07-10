@@ -41,6 +41,26 @@ Alternatively, you can install manually. Follow steps described below:
 4. Go to Build Settings section of project settings and search for Header Search Paths. Add line containing "$(SRCROOT)/../BrightSDK/Headers".
 
 Congratulations! You are done.
+## How to use
+###Scan BrightBeacons
+```
+    [BRTBeaconSDK startRangingOption:RangingOptionOnRanged uuids:nil onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
+        if (!error) {
+        	//beacons: all brigthbeacons in all regions
+        	//region: current region
+        	//error: error info
+        }
+    }];
+    //uuid limit
+    [BRTBeaconSDK startRangingOption:RangingOptionOnRanged uuids:[[[NSUUID alloc] initWithUUIDString:@"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"]] onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
+        if (!error) {
+        	//beacons: all brigthbeacons in all regions
+        	//region: current region
+        	//error: error info
+        }
+    }];
+    
+```
 ## Docs
 * [Current Documentation](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)
 * [Community for BrightBeacon](http://www.brtbeacon.com)
