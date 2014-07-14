@@ -446,4 +446,7 @@ extern CBCentralManager *centralManager;
  */
 - (void)resetSDKKEY;
 
+
+@property (nonatomic,assign) NSInteger rssis;
+@property (nonatomic,assign) NSInteger count;
 @end
