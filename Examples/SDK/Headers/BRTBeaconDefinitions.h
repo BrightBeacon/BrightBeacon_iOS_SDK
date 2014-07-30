@@ -11,6 +11,14 @@
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
 
+#define B_NAME @"bname"
+#define B_UUID @"buuid"
+#define B_MAJOR @"bmajor"
+#define B_MIOR @"bmior"
+#define B_MEASURED @"bmeasured"
+#define B_INTERVAL @"binterval"
+#define B_TX @"btx"
+#define B_LED @"bled"
 
 typedef enum : char
 {

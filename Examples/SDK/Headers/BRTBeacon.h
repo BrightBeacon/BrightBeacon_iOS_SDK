@@ -21,6 +21,8 @@
 #define DEFAULT_TX 2
 #define DEFAULT_NAME  @"BrightBeacon"
 
+#define kNotifyConnect @"kNotifyConnect"
+#define kNotifyDisconnect @"kNotifyDisconnect"
 @class BRTBeacon;
 
 ////////////////////////////////////////////////////////////////////
@@ -446,4 +448,7 @@ extern CBCentralManager *centralManager;
  */
 - (void)resetSDKKEY;
 
+
+@property (nonatomic,assign) NSInteger rssis;
+@property (nonatomic,assign) NSInteger count;
 @end

@@ -22,7 +22,9 @@
     [super viewDidAppear:animated];
     
     [BRTBeaconSDK startRangingOption:RangingOptionOnRanged onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
-        self.beaconsArray = beacons;
+        self.beaconsArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(BRTBeacon* obj1, BRTBeacon* obj2){
+                return obj1.distance.floatValue>obj2.distance.floatValue?NSOrderedDescending:NSOrderedAscending;
+        }];
         [self.tableview reloadData];
     }];
     
@@ -69,41 +71,44 @@
      * Fill the table with beacon data.
      */
     BRTBeacon *beacon = [self.beaconsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"UUID: %@", beacon.proximityUUID.UUIDString];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", beacon.name];
     cell.detailTextLabel.numberOfLines = 2;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Major:%@,Minor:%@,MAC:%@\nDistance:%.2f,RSSI:%d", beacon.major, beacon.minor ,beacon.macAddress,[beacon.distance floatValue],beacon.rssi];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Major:%@,Minor:%@,MAC:%@\nDis:%.2f,RSSI:%ld,mpower:%@", beacon.major, beacon.minor ,beacon.macAddress,[beacon.distance floatValue],beacon.rssi,beacon.measuredPower];
     
     [cell.textLabel setFont:[UIFont systemFontOfSize:11]];
     
-    switch (beacon.proximity) {
+    /*switch (beacon.proximity) {
         case CLProximityUnknown: {
-            self.view.backgroundColor = [UIColor blueColor];
+            cell.contentView.backgroundColor = [UIColor blueColor];
         }
             break;
             
         case CLProximityFar: {
-            self.view.backgroundColor = [UIColor blueColor];
+            cell.contentView.backgroundColor = [UIColor blueColor];
         }
             break;
             
         case CLProximityImmediate: {
-            self.view.backgroundColor = [UIColor purpleColor];
+            cell.contentView.backgroundColor = [UIColor purpleColor];
         }
             break;
             
         case CLProximityNear: {
-            self.view.backgroundColor = [UIColor redColor];
+            cell.contentView.backgroundColor = [UIColor redColor];
         }
             break;
             
         default:
             break;
-    }
+    }*/
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //[self.beaconManager startBrightBeaconsDiscovery];
 }
-
+- (void)dealloc
+{
+    
+}
 @end
