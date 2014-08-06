@@ -68,7 +68,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.beaconsTableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+    self.beaconsTableView = [[UITableView alloc] initWithFrame:self.deviceView.bounds];
     self.beaconsTableView.delegate = self;
     self.beaconsTableView.dataSource = self;
     
@@ -196,7 +196,7 @@
     
     cell.detailTextLabel.numberOfLines = 0;
     cell.textLabel.text = [NSString stringWithFormat:@"%@",beacon.name];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"UDID:%@ MAC:%@ major:%@  minor:%@  mpower:%@ distance:%@ RSSI:%ld",beacon.proximityUUID.UUIDString,beacon.macAddress,beacon.major,beacon.minor,beacon.measuredPower,beacon.distance,beacon.rssi];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"UDID:%@ MAC:%@ major:%@  minor:%@  mpower:%@ distance:%@ RSSI:%d",beacon.proximityUUID.UUIDString,beacon.macAddress,beacon.major,beacon.minor,beacon.measuredPower,beacon.distance,beacon.rssi];
     
     return cell;
 }
@@ -240,8 +240,8 @@
     
     advertisingInterval = self.brtBeacon.advInterval.shortValue;
     [self.intervalLabel setText:[NSString stringWithFormat:@" %dms", (unsigned int)advertisingInterval]];
-    self.intervalSlider.value = advertisingInterval/50;
-    self.intervalStepper.value = advertisingInterval/5;
+    self.intervalSlider.value = advertisingInterval/50.0;
+    self.intervalStepper.value = advertisingInterval;
 }
 - (void)dealloc
 {

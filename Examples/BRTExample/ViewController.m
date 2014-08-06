@@ -10,8 +10,7 @@
 #import "BRTBeaconManager.h"
 #import "BRTBeacon.h"
 
-//#define BRT_SDK_KEY @"E71E63CE42A40F3D43B3E47C64344075"
-#define BRT_SDK_KEY @"00000000000000000000000000000000"   //32-0
+#define BRT_SDK_KEY @"E71E63CE42A40F3D43B3E47C64344075"
 
 @interface ViewController ()<BRTBeaconManagerDelegate>
 

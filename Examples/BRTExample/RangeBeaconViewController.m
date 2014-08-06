@@ -9,10 +9,14 @@
 #import "RangeBeaconViewController.h"
 #import "BRTBeacon.h"
 #import "BRTBeaconSDK.h"
+#import "AdjustViewController.h"
 
 @interface RangeBeaconViewController ()<BRTBeaconManagerDelegate>
 @property (nonatomic, strong) IBOutlet UITableView     *tableview;
 @property (nonatomic, strong) NSArray                  *beaconsArray;
+@property (nonatomic ,strong) NSString *uniqueMacAddr;
+
+@property (nonatomic,assign) AdjustViewController *adjustController;
 @end
 
 @implementation RangeBeaconViewController
@@ -21,12 +25,26 @@
 {
     [super viewDidAppear:animated];
     
-    [BRTBeaconSDK startRangingOption:RangingOptionOnRanged onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
-        self.beaconsArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(BRTBeacon* obj1, BRTBeacon* obj2){
-                return obj1.distance.floatValue>obj2.distance.floatValue?NSOrderedDescending:NSOrderedAscending;
-        }];
-        [self.tableview reloadData];
-    }];
+    [BRTBeaconSDK startRangingOption:RangingOptionOnRanged onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error)
+     {
+         if (!self.adjustController) {
+             self.beaconsArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(BRTBeacon* obj1, BRTBeacon* obj2){
+                 return obj1.distance.floatValue>obj2.distance.floatValue?NSOrderedDescending:NSOrderedAscending;
+             }];
+             [self.tableview reloadData];
+
+         }
+         else{
+             for (BRTBeacon *item in beacons) {
+                 if ([item.macAddress isEqualToString:self.uniqueMacAddr]) {
+                     [self.adjustController beaconAdjust:item];
+                     break;
+                 }
+             }
+         }
+         
+                  
+     }];
     
 }
 
@@ -37,7 +55,9 @@
     /*
      *Stops ranging after exiting the view.
      */
-    [BRTBeaconSDK stopRangingBrightBeacons];
+    if(!self.adjustController){
+        [BRTBeaconSDK stopRangingBrightBeacons];
+    }
 }
 
 - (void)viewDidLoad
@@ -46,6 +66,7 @@
     if ([[[UIDevice currentDevice] systemVersion] intValue]>=7) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    self.uniqueMacAddr = @"";
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -57,7 +78,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    return 100;
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -72,40 +93,18 @@
      */
     BRTBeacon *beacon = [self.beaconsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", beacon.name];
-    cell.detailTextLabel.numberOfLines = 2;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Major:%@,Minor:%@,MAC:%@\nDis:%.2f,RSSI:%ld,mpower:%@", beacon.major, beacon.minor ,beacon.macAddress,[beacon.distance floatValue],beacon.rssi,beacon.measuredPower];
-    
-    [cell.textLabel setFont:[UIFont systemFontOfSize:11]];
-    
-    /*switch (beacon.proximity) {
-        case CLProximityUnknown: {
-            cell.contentView.backgroundColor = [UIColor blueColor];
-        }
-            break;
-            
-        case CLProximityFar: {
-            cell.contentView.backgroundColor = [UIColor blueColor];
-        }
-            break;
-            
-        case CLProximityImmediate: {
-            cell.contentView.backgroundColor = [UIColor purpleColor];
-        }
-            break;
-            
-        case CLProximityNear: {
-            cell.contentView.backgroundColor = [UIColor redColor];
-        }
-            break;
-            
-        default:
-            break;
-    }*/
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
+    cell.detailTextLabel.numberOfLines = 0;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Major:%@,Minor:%@,MAC:%@\nDis:%.2f,RSSI:%d,mpower:%@", beacon.major, beacon.minor ,beacon.macAddress,[beacon.distance floatValue],beacon.rssi,beacon.measuredPower];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //[self.beaconManager startBrightBeaconsDiscovery];
+    self.uniqueMacAddr = [(BRTBeacon *)[self.beaconsArray objectAtIndex:indexPath.row] macAddress];
+    UIStoryboard *st = [UIStoryboard storyboardWithName:[[NSBundle mainBundle].infoDictionary objectForKey:@"UIMainStoryboardFile"] bundle:[NSBundle mainBundle]];
+    AdjustViewController *adjust = [st instantiateViewControllerWithIdentifier:@"AdjustViewController"];
+        [self presentViewController:adjust animated:YES completion:nil];
+    self.adjustController = adjust;
 }
 - (void)dealloc
 {

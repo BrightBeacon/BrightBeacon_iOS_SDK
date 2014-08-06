@@ -10,7 +10,7 @@
 #import "BRTBeacon.h"
 
 //超时移除BrightBeacon时间，与硬件发射频率设置配合，默认5s未收到信号移除
-#define InvalidTime 5
+#define InvalidTime 2
 
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
@@ -80,4 +80,11 @@ typedef void(^RequestStateForRegionsCompletionBlock)(BRTBeaconRegion* region, CL
  */
 + (void) stopRangingBrightBeacons;
 + (void) stopMonitoringForRegions:(NSArray *)regions;
+
+/**
+ * rssi 转换成 距离（米）
+ *
+ * @return float 距离（米）
+ */
++ (float)rssiToDistance:(BRTBeacon*)beacon;
 @end

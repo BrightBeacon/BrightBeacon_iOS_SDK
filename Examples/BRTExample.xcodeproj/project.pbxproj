@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		138F4EF819344E79004771EE /* RangeBeaconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 138F4EF719344E79004771EE /* RangeBeaconViewController.m */; };
 		138F4EFB19345BB9004771EE /* ConfigBeaconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 138F4EFA19345BB9004771EE /* ConfigBeaconViewController.m */; };
-		13AAFC2E1935C568003BBAE5 /* NetEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 13AAFC2D1935C568003BBAE5 /* NetEngine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		581F1A0A18ECF2E9001C47BE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581F1A0918ECF2E9001C47BE /* Foundation.framework */; };
 		581F1A0C18ECF2E9001C47BE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581F1A0B18ECF2E9001C47BE /* CoreGraphics.framework */; };
 		581F1A0E18ECF2E9001C47BE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581F1A0D18ECF2E9001C47BE /* UIKit.framework */; };
@@ -25,7 +24,9 @@
 		581F1A3318ECF2E9001C47BE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 581F1A3118ECF2E9001C47BE /* InfoPlist.strings */; };
 		581F1A3518ECF2E9001C47BE /* BRTExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 581F1A3418ECF2E9001C47BE /* BRTExampleTests.m */; };
 		58652A33195C07680047C92F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58652A32195C07680047C92F /* AdSupport.framework */; };
-		58AFC4F01988F4D200540197 /* libBrightSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58AFC4EF1988F4D200540197 /* libBrightSDK.a */; };
+		58B950E71989D67F006C6FCA /* AdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B950E61989D67F006C6FCA /* AdjustViewController.m */; };
+		58DC58201991C944000C3761 /* libBrightSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DC581F1991C944000C3761 /* libBrightSDK.a */; };
+		58FAB0DB1991C780001388B6 /* SDK in Resources */ = {isa = PBXBuildFile; fileRef = 58FAB0DA1991C780001388B6 /* SDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +44,6 @@
 		138F4EF719344E79004771EE /* RangeBeaconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeBeaconViewController.m; sourceTree = "<group>"; };
 		138F4EF919345BB9004771EE /* ConfigBeaconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigBeaconViewController.h; sourceTree = "<group>"; };
 		138F4EFA19345BB9004771EE /* ConfigBeaconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigBeaconViewController.m; sourceTree = "<group>"; };
-		13AAFC2C1935C568003BBAE5 /* NetEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetEngine.h; sourceTree = "<group>"; };
-		13AAFC2D1935C568003BBAE5 /* NetEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetEngine.m; sourceTree = "<group>"; };
 		581F1A0618ECF2E9001C47BE /* BRTExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BRTExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		581F1A0918ECF2E9001C47BE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		581F1A0B18ECF2E9001C47BE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,12 +64,10 @@
 		581F1A3218ECF2E9001C47BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		581F1A3418ECF2E9001C47BE /* BRTExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRTExampleTests.m; sourceTree = "<group>"; };
 		58652A32195C07680047C92F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		58AFC4EA1988F4D200540197 /* BRTBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeacon.h; sourceTree = "<group>"; };
-		58AFC4EB1988F4D200540197 /* BRTBeaconDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeaconDefinitions.h; sourceTree = "<group>"; };
-		58AFC4EC1988F4D200540197 /* BRTBeaconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeaconManager.h; sourceTree = "<group>"; };
-		58AFC4ED1988F4D200540197 /* BRTBeaconRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeaconRegion.h; sourceTree = "<group>"; };
-		58AFC4EE1988F4D200540197 /* BRTBeaconSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeaconSDK.h; sourceTree = "<group>"; };
-		58AFC4EF1988F4D200540197 /* libBrightSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBrightSDK.a; sourceTree = "<group>"; };
+		58B950E51989D67F006C6FCA /* AdjustViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustViewController.h; sourceTree = "<group>"; };
+		58B950E61989D67F006C6FCA /* AdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustViewController.m; sourceTree = "<group>"; };
+		58DC581F1991C944000C3761 /* libBrightSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBrightSDK.a; path = SDK/libBrightSDK.a; sourceTree = "<group>"; };
+		58FAB0DA1991C780001388B6 /* SDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SDK; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58DC58201991C944000C3761 /* libBrightSDK.a in Frameworks */,
 				58652A33195C07680047C92F /* AdSupport.framework in Frameworks */,
-				58AFC4F01988F4D200540197 /* libBrightSDK.a in Frameworks */,
 				581F1A0C18ECF2E9001C47BE /* CoreGraphics.framework in Frameworks */,
 				581F1A0E18ECF2E9001C47BE /* UIKit.framework in Frameworks */,
 				581F1A0A18ECF2E9001C47BE /* Foundation.framework in Frameworks */,
@@ -121,6 +118,7 @@
 		581F1A0818ECF2E9001C47BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				58DC581F1991C944000C3761 /* libBrightSDK.a */,
 				58652A32195C07680047C92F /* AdSupport.framework */,
 				581F1A0918ECF2E9001C47BE /* Foundation.framework */,
 				581F1A0B18ECF2E9001C47BE /* CoreGraphics.framework */,
@@ -133,18 +131,18 @@
 		581F1A0F18ECF2E9001C47BE /* BRTExample */ = {
 			isa = PBXGroup;
 			children = (
-				58AFC4E81988F4D200540197 /* SDK */,
+				58FAB0DA1991C780001388B6 /* SDK */,
 				581F1A1818ECF2E9001C47BE /* AppDelegate.h */,
 				581F1A1918ECF2E9001C47BE /* AppDelegate.m */,
 				581F1A1B18ECF2E9001C47BE /* Main.storyboard */,
-				13AAFC2C1935C568003BBAE5 /* NetEngine.h */,
-				13AAFC2D1935C568003BBAE5 /* NetEngine.m */,
 				581F1A1E18ECF2E9001C47BE /* ViewController.h */,
 				581F1A1F18ECF2E9001C47BE /* ViewController.m */,
 				138F4EF619344E79004771EE /* RangeBeaconViewController.h */,
 				138F4EF719344E79004771EE /* RangeBeaconViewController.m */,
 				138F4EF919345BB9004771EE /* ConfigBeaconViewController.h */,
 				138F4EFA19345BB9004771EE /* ConfigBeaconViewController.m */,
+				58B950E51989D67F006C6FCA /* AdjustViewController.h */,
+				58B950E61989D67F006C6FCA /* AdjustViewController.m */,
 				581F1A2118ECF2E9001C47BE /* Images.xcassets */,
 				581F1A1018ECF2E9001C47BE /* Supporting Files */,
 			);
@@ -178,27 +176,6 @@
 				581F1A3118ECF2E9001C47BE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		58AFC4E81988F4D200540197 /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-				58AFC4E91988F4D200540197 /* Headers */,
-				58AFC4EF1988F4D200540197 /* libBrightSDK.a */,
-			);
-			path = SDK;
-			sourceTree = "<group>";
-		};
-		58AFC4E91988F4D200540197 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				58AFC4EA1988F4D200540197 /* BRTBeacon.h */,
-				58AFC4EB1988F4D200540197 /* BRTBeaconDefinitions.h */,
-				58AFC4EC1988F4D200540197 /* BRTBeaconManager.h */,
-				58AFC4ED1988F4D200540197 /* BRTBeaconRegion.h */,
-				58AFC4EE1988F4D200540197 /* BRTBeaconSDK.h */,
-			);
-			path = Headers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,9 +225,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = thomasho;
 				TargetAttributes = {
-					581F1A0518ECF2E9001C47BE = {
-						DevelopmentTeam = L2S5E9QH3S;
-					};
 					581F1A2618ECF2E9001C47BE = {
 						TestTargetID = 581F1A0518ECF2E9001C47BE;
 					};
@@ -281,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				581F1A2218ECF2E9001C47BE /* Images.xcassets in Resources */,
+				58FAB0DB1991C780001388B6 /* SDK in Resources */,
 				581F1A1418ECF2E9001C47BE /* InfoPlist.strings in Resources */,
 				581F1A1D18ECF2E9001C47BE /* Main.storyboard in Resources */,
 			);
@@ -306,7 +281,7 @@
 				581F1A1A18ECF2E9001C47BE /* AppDelegate.m in Sources */,
 				138F4EF819344E79004771EE /* RangeBeaconViewController.m in Sources */,
 				581F1A1618ECF2E9001C47BE /* main.m in Sources */,
-				13AAFC2E1935C568003BBAE5 /* NetEngine.m in Sources */,
+				58B950E71989D67F006C6FCA /* AdjustViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,16 +406,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BRTExample/BRTExample-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/SDK/Headers",
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				INFOPLIST_FILE = "BRTExample/BRTExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/BRTExample/SDK",
+					"$(PROJECT_DIR)/SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A509E0AF-CE24-4494-8190-3E45B3D91040";
@@ -453,16 +433,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Rail Transit (Group) Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BRTExample/BRTExample-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/SDK/Headers",
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				INFOPLIST_FILE = "BRTExample/BRTExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/BRTExample/SDK",
+					"$(PROJECT_DIR)/SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A509E0AF-CE24-4494-8190-3E45B3D91040";
