@@ -62,5 +62,6 @@ Congratulations! You are done.
     
 ```
 ## Docs
-* [Current Documentation](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)
-* [Community for BrightBeacon](http://www.brtbeacon.com)
+* [Current Documentation](http://brtbeacon.com/developers_ios.html)
+* [API Documentation](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)
+* [BBS for BrightBeacon](http://bbs.brtbeacon.com)
