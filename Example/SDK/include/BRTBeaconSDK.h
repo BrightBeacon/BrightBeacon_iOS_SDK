@@ -9,7 +9,7 @@
 #import "BRTBeaconRegion.h"
 #import "BRTBeacon.h"
 
-//超时移除BrightBeacon时间，与硬件发射频率设置配合，默认5s未收到信号移除
+//超时移除BrightBeacon时间，与硬件发射频率设置配合，默认2s未收到信号移除
 #define InvalidTime 2
 
 ////////////////////////////////////////////////////////////////////
@@ -39,7 +39,7 @@ typedef void(^RequestStateForRegionsCompletionBlock)(BRTBeaconRegion* region, CL
 /// @name beacon快捷扫描BrightBeacon相关的方法
 
 /**
-* 注册开发者appkey，申请地址：http://www.brtbeacon.com/api
+* 注册开发者appkey，申请地址：http://www.brtbeacon.com/developers.shtml
 *
 * @param appKey Bright beacon 开发者密钥
 *
@@ -74,7 +74,7 @@ typedef void(^RequestStateForRegionsCompletionBlock)(BRTBeaconRegion* region, CL
 + (void) requestStateForRegions:(NSArray *)regions onCompletion:(RequestStateForRegionsCompletionBlock)completion;
 
 /**
- * 停止扫描、监测
+ * 停止扫描、监测,if(regions==nil)停止所有当前监听区域
  *
  * @return void
  */

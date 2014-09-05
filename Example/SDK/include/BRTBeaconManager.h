@@ -12,6 +12,11 @@
 #import "BRTBeaconRegion.h"
 #import "BRTBeacon.h"
 
+#define BLE_SHOWTIPS YES
+#define BLE_TITLE @"需要打开蓝牙"
+#define BLE_TIPS @"使用低功耗蓝牙可以发现身边的商家、商品信息"
+#define BLE_BUTTON @"好的"
+
 CBCentralManager *centralManager;
 
 @class BRTBeaconManager;

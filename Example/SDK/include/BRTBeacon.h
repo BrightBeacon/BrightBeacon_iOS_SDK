@@ -15,14 +15,22 @@
 #define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
 #define DEFAULT_MAJOR 0
 #define DEFAULT_MINOR 0
-#define DEFAULT_MEASURED -55
+#define DEFAULT_MEASURED -65
 #define DEFAULT_LED 1
-#define DEFAULT_INTERVAL 250
+#define DEFAULT_INTERVAL 400
 #define DEFAULT_TX 2
 #define DEFAULT_NAME  @"BrightBeacon"
+#define DEFAULT_MODE 0
 
 #define kNotifyConnect @"kNotifyConnect"
 #define kNotifyDisconnect @"kNotifyDisconnect"
+
+typedef enum : int
+{
+    DevelopMode=0,
+    PublishMode,
+} DevelopPublishMode;
+
 @class BRTBeacon;
 
 ////////////////////////////////////////////////////////////////////
@@ -87,7 +95,7 @@
 
 extern CBCentralManager *centralManager;
 
-@property (nonatomic, weak)     id <BRTBeaconDelegate>  delegate;
+@property (nonatomic, unsafe_unretained)     id <BRTBeaconDelegate>  delegate;
 
 /////////////////////////////////////////////////////
 // 蓝牙设备也可以通过下面的方法识别到
@@ -151,6 +159,14 @@ extern CBCentralManager *centralManager;
  *
  */
 @property (nonatomic)           NSInteger               rssi;
+
+/*
+ *  accuracy
+ *
+ *   该值代表了米级的精度，值越小表明位置越精准，负值则表示无效
+ *
+ */
+@property (nonatomic) CLLocationAccuracy accuracy;
 
 /**
  *  distance
@@ -221,6 +237,27 @@ extern CBCentralManager *centralManager;
  *    led灯状态，连接后可用
  */
 @property (nonatomic, unsafe_unretained)   BOOL          ledState;
+
+/**
+ *  battery
+ *
+ *    battery电量，范围 0~100 ，连接后可用
+ */
+@property (nonatomic, strong)    NSNumber*    battery;
+
+/**
+ *  temperature
+ *
+ *    温度，范围 -40~125℃ ，连接后可用
+ */
+@property (nonatomic, strong)    NSNumber*    temperature;
+
+/**
+ *  mode
+ *
+ *    Beacon模式，开发模式，部署模式，连接后可用
+ */
+@property (nonatomic, unsafe_unretained)    DevelopPublishMode    mode;
 
 
 
@@ -322,6 +359,22 @@ extern CBCentralManager *centralManager;
 - (void)readBeaconMeasuredPowerWithCompletion:(BRTShortCompletionBlock)completion;
 
 /**
+ * 读取连接中的beacon设备的电量 (要求已经连接成功)
+ *
+ * @param completion 读取当前电量完成回调
+ *
+ * @return void
+ */
+- (void)readBeaconBatteryWithCompletion:(BRTShortCompletionBlock)completion;
+
+/**
+ *  读取连接中的beacon设备周围的温度 (要求已经连接成功)
+ *
+ *  @param completion 读取当前温度完成回调
+ */
+- (void)readBeaconTemperatureWithCompletion:(BRTShortCompletionBlock)completion;
+
+/**
  * 读取连接中的beacon设备的固件版本 (要求已经连接成功)
  *
  * @param completion 读取固件版本信息完成回调
@@ -339,6 +392,14 @@ extern CBCentralManager *centralManager;
  */
 - (void)readBeaconHardwareVersionWithCompletion:(BRTStringCompletionBlock)completion;
 
+/**
+ * 读取连接中的beacon设备的温度信息 (要求已经连接成功)
+ *
+ * @param completion 读取温度信息完成回调
+ *
+ * @return void
+ */
+- (void)readBeaconTemperatureWithCompletion:(BRTShortCompletionBlock)completion;
 
 /// @name 写人beacon配置信息相关的方法
 
@@ -351,87 +412,13 @@ extern CBCentralManager *centralManager;
  * @return void
  */
 - (void)writeBeaconValues:(NSDictionary*)values withCompletion:(BRTCompletionBlock)completion;
-/**
- * 写入设备名
- *
- * @param name 设备名
- * @param completion 写入完成回调
- *
- * @return void
- */
-- (void)writeBeaconName:(NSString *)name withCompletion:(BRTStringCompletionBlock)completion;
 
 /**
- * 写入 Proximity UUID 到连接中的蓝牙设备. 请注意虽然你是把UUID当作自己项目中私用，但是别人也可以读取、复制这个UUID来模仿你Beacon，所以如果你正开发一个很关键的应用程序的时候，安全是需要考虑的问题，你必须自己实现它。我们也尽力在保证我们beacon的安全性，在下一个版本中我们会提供更好的安全模式。
+ *  云端更新固件
  *
- * @param pUUID 待写入的 Proximity UUID 值
- * @param completion 写入完成回调
- *
- * @return void
+ *  @param fwPathString
  */
-- (void)writeBeaconProximityUUID:(NSString*)pUUID withCompletion:(BRTStringCompletionBlock)completion;
-
-/**
- * 写入 major 到连接中的蓝牙设备.
- *
- * @param major 待写入的major值
- * @param completion 写入完成回调
- *
- * @return void
- */
-- (void)writeBeaconMajor:(unsigned short)major withCompletion:(BRTUnsignedShortCompletionBlock)completion;
-
-/**
- * 写入 minor 到连接中的蓝牙设备.
- *
- * @param minor 待写入的minor值
- * @param completion 写入完成回调
- *
- * @return void
- */
-- (void)writeBeaconMinor:(unsigned short)minor withCompletion:(BRTUnsignedShortCompletionBlock)completion;
-
-/**
- * 写入发射频率 (以毫秒计) 到连接中的蓝牙设备.
- *
- * @param advertising 待写入发送频率值 (100 - 10000 ms)
- * @param completion 写入完成回调
- *
- * @return void
- */
-- (void)writeBeaconAdvInterval:(unsigned short)interval withCompletion:(BRTUnsignedShortCompletionBlock)completion;
-
-
-/**
- * 写入发射功率到连接中的蓝牙设备
- *
- * @param power beacon设备发射功率值 (取值范围从 BRTBeaconPowerLevel1 /弱 到 BRTBeaconPowerLevel8 / 强)
- * @param completion 写入完成回调
- *
- * @return void
- */
-- (void)writeBeaconPower:(BRTBeaconPower)power withCompletion:(BRTPowerCompletionBlock)completion;
-
-/**
- * 写入led灯状态到连接中的蓝牙设备
- *
- * @param ladState led灯状态 （YES 打开 NO 关闭）
- * @param completion 写入完成回调
- *
- * @return void
- */
-- (void)writeBeaconLedState:(BOOL)ledState withCompletion:(BRTBoolCompletionBlock)completion;
-
-/**
- * 写入测量功率到连接中的蓝牙设备
- * @param MeasuredPower 测量功率 （1米处的rssi值）
- * @param completion 写入完成回调
- *
- * @return void
- */
-- (void)writeBeaconMeasuredPower:(short)measurePower withCompletion:(BRTShortCompletionBlock)completion;
-
-/// @name 固件更新相关方法
+-(void)updateBeaconFirmwareWithProgress:(BRTShortCompletionBlock)progress andCompletion:(BRTCompletionBlock)completion;
 
 /**
  * 重置beacon设备默认值，该操作要求已经成功执行 [BRTBeaconManager registerApp:YOUR_KEY];
@@ -447,6 +434,15 @@ extern CBCentralManager *centralManager;
  * @return void
  */
 - (void)resetSDKKEY;
+
+/**
+ * 设置此Beacon处于开发者模式（DevelopMode）还是发布模式（PublishMode）
+ * 如果Beacon处于开发者模式，则可以用32个0的SDK KEY进行任意链接， 如果Beacon处于发布模式，则需要对应配置过Beacon的SDK KEY 才能再一次进行连接，确保Beacon部署安全
+ * @return void
+ */
+- (void)writeBeaconMode:(DevelopPublishMode)mode withCompletion:(BRTCompletionBlock)completion;
+
+
 
 
 @property (nonatomic,assign) NSInteger rssis;

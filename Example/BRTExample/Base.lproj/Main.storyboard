@@ -44,9 +44,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hIQ-aY-EvI">
-                                <rect key="frame" x="10" y="120" width="300" height="130"/>
+                                <rect key="frame" x="10" y="97" width="300" height="153"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -67,10 +67,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zb5-nW-6OK">
-                                <rect key="frame" x="10" y="35" width="300" height="77"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zb5-nW-6OK">
+                                <rect key="frame" x="10" y="35" width="300" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fJb-Eo-Owf">
@@ -135,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1099" y="138"/>
+            <point key="canvasLocation" x="1172" y="152"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Mh1-bO-2h8">
@@ -154,7 +154,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bpo-a2-9T1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="632" y="138"/>
+            <point key="canvasLocation" x="633" y="163"/>
         </scene>
         <!--Config Beacon View Controller - BrightBeacon-->
         <scene sceneID="G1c-0d-OFa">
@@ -175,7 +175,7 @@
                                         <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="12" id="LVS-hc-vbw">
-                                        <rect key="frame" x="230" y="78" width="70" height="30"/>
+                                        <rect key="frame" x="70" y="78" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -193,55 +193,55 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TX Power (dbm)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ozD-DX-YpR">
-                                        <rect key="frame" x="20" y="304" width="110" height="21"/>
+                                        <rect key="frame" x="20" y="269" width="110" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="12" id="Zep-HY-Cbr">
-                                        <rect key="frame" x="230" y="154" width="70" height="30"/>
+                                        <rect key="frame" x="230" y="119" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Measured Power" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZpP-Ul-EHv">
-                                        <rect key="frame" x="20" y="158" width="116" height="21"/>
+                                        <rect key="frame" x="20" y="121" width="116" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advertising Interval" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6dx-CN-CJz">
-                                        <rect key="frame" x="20" y="233" width="132" height="21"/>
+                                        <rect key="frame" x="20" y="195" width="132" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="250 ms" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gw9-3j-dmF">
-                                        <rect key="frame" x="223" y="233" width="77" height="21"/>
+                                        <rect key="frame" x="223" y="195" width="77" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0tD-Yy-Tsn">
-                                        <rect key="frame" x="20" y="199" width="116" height="21"/>
+                                        <rect key="frame" x="20" y="158" width="55" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="12" id="Wmf-s6-fWh">
-                                        <rect key="frame" x="230" y="116" width="70" height="30"/>
+                                        <rect key="frame" x="230" y="81" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ieg-6h-1wq">
-                                        <rect key="frame" x="20" y="120" width="42" height="21"/>
+                                        <rect key="frame" x="156" y="82" width="42" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="HXf-X9-0Fv">
-                                        <rect key="frame" x="144" y="301" width="156" height="44"/>
+                                        <rect key="frame" x="144" y="258" width="156" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="-23"/>
@@ -251,27 +251,27 @@
                                         </segments>
                                     </segmentedControl>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="2" maxValue="100" id="OGe-8E-R6U">
-                                        <rect key="frame" x="18" y="261" width="182" height="31"/>
+                                        <rect key="frame" x="18" y="224" width="182" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="intervalChanged:" destination="97b-7m-o1d" eventType="valueChanged" id="CsT-VS-5zr"/>
                                         </connections>
                                     </slider>
                                     <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minimumValue="100" maximumValue="5000" stepValue="50" id="QlN-7s-0uj">
-                                        <rect key="frame" x="206" y="262" width="94" height="27"/>
+                                        <rect key="frame" x="206" y="224" width="94" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <connections>
                                             <action selector="intervalStepPressed:" destination="97b-7m-o1d" eventType="valueChanged" id="hDA-fk-Pbc"/>
                                         </connections>
                                     </stepper>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="12" id="mpy-x7-h76">
-                                        <rect key="frame" x="117" y="195" width="183" height="30"/>
+                                        <rect key="frame" x="117" y="157" width="183" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="K5Q-r7-sym">
-                                        <rect key="frame" x="100" y="363" width="121" height="44"/>
+                                        <rect key="frame" x="100" y="378" width="121" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" red="0.15294118230000001" green="0.67058825489999996" blue="0.85098046059999999" alpha="1" colorSpace="deviceRGB"/>
@@ -279,6 +279,28 @@
                                         </state>
                                         <connections>
                                             <segue destination="TjI-Ww-4nb" kind="unwind" unwindAction="back:" id="rEF-Ai-UFq"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Battery:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YvP-pQ-q3k">
+                                        <rect key="frame" x="20" y="308" width="72" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ciR-gY-eaD">
+                                        <rect key="frame" x="100" y="308" width="72" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fI9-KB-eWU">
+                                        <rect key="frame" x="236" y="309" width="64" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Read">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="readBatteryButtonPressed:" destination="97b-7m-o1d" eventType="touchUpInside" id="qrP-ku-umU"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -316,6 +338,7 @@
                     <connections>
                         <outlet property="TXSegment" destination="HXf-X9-0Fv" id="Qiq-oC-KmP"/>
                         <outlet property="UUIDText" destination="mmE-wa-4pH" id="JJ4-G9-NtD"/>
+                        <outlet property="batteryLabel" destination="ciR-gY-eaD" id="rMZ-Qt-Ygq"/>
                         <outlet property="defaultButton" destination="cJr-wk-aZb" id="yBT-2b-HtU"/>
                         <outlet property="deviceView" destination="9WD-Xk-scW" id="VXd-w5-fHW"/>
                         <outlet property="intervalLabel" destination="gw9-3j-dmF" id="hVJ-FA-Vcn"/>

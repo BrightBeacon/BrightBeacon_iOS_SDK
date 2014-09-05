@@ -19,6 +19,7 @@
 #define B_INTERVAL @"binterval"
 #define B_TX @"btx"
 #define B_LED @"bled"
+#define B_MODE @"bmode"
 
 typedef enum : char
 {

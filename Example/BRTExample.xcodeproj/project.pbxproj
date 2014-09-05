@@ -24,9 +24,8 @@
 		581F1A3318ECF2E9001C47BE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 581F1A3118ECF2E9001C47BE /* InfoPlist.strings */; };
 		581F1A3518ECF2E9001C47BE /* BRTExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 581F1A3418ECF2E9001C47BE /* BRTExampleTests.m */; };
 		58652A33195C07680047C92F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58652A32195C07680047C92F /* AdSupport.framework */; };
+		58A4C06D19B9AFF000608BF6 /* libBrightSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A4C06C19B9AFF000608BF6 /* libBrightSDK.a */; };
 		58B950E71989D67F006C6FCA /* AdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B950E61989D67F006C6FCA /* AdjustViewController.m */; };
-		58DC58201991C944000C3761 /* libBrightSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DC581F1991C944000C3761 /* libBrightSDK.a */; };
-		58FAB0DB1991C780001388B6 /* SDK in Resources */ = {isa = PBXBuildFile; fileRef = 58FAB0DA1991C780001388B6 /* SDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,10 +63,14 @@
 		581F1A3218ECF2E9001C47BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		581F1A3418ECF2E9001C47BE /* BRTExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRTExampleTests.m; sourceTree = "<group>"; };
 		58652A32195C07680047C92F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		58A4C06719B9AFF000608BF6 /* BRTBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeacon.h; sourceTree = "<group>"; };
+		58A4C06819B9AFF000608BF6 /* BRTBeaconDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeaconDefinitions.h; sourceTree = "<group>"; };
+		58A4C06919B9AFF000608BF6 /* BRTBeaconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeaconManager.h; sourceTree = "<group>"; };
+		58A4C06A19B9AFF000608BF6 /* BRTBeaconRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeaconRegion.h; sourceTree = "<group>"; };
+		58A4C06B19B9AFF000608BF6 /* BRTBeaconSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeaconSDK.h; sourceTree = "<group>"; };
+		58A4C06C19B9AFF000608BF6 /* libBrightSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBrightSDK.a; sourceTree = "<group>"; };
 		58B950E51989D67F006C6FCA /* AdjustViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustViewController.h; sourceTree = "<group>"; };
 		58B950E61989D67F006C6FCA /* AdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustViewController.m; sourceTree = "<group>"; };
-		58DC581F1991C944000C3761 /* libBrightSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBrightSDK.a; path = SDK/libBrightSDK.a; sourceTree = "<group>"; };
-		58FAB0DA1991C780001388B6 /* SDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SDK; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58DC58201991C944000C3761 /* libBrightSDK.a in Frameworks */,
 				58652A33195C07680047C92F /* AdSupport.framework in Frameworks */,
+				58A4C06D19B9AFF000608BF6 /* libBrightSDK.a in Frameworks */,
 				581F1A0C18ECF2E9001C47BE /* CoreGraphics.framework in Frameworks */,
 				581F1A0E18ECF2E9001C47BE /* UIKit.framework in Frameworks */,
 				581F1A0A18ECF2E9001C47BE /* Foundation.framework in Frameworks */,
@@ -118,7 +121,6 @@
 		581F1A0818ECF2E9001C47BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				58DC581F1991C944000C3761 /* libBrightSDK.a */,
 				58652A32195C07680047C92F /* AdSupport.framework */,
 				581F1A0918ECF2E9001C47BE /* Foundation.framework */,
 				581F1A0B18ECF2E9001C47BE /* CoreGraphics.framework */,
@@ -131,7 +133,7 @@
 		581F1A0F18ECF2E9001C47BE /* BRTExample */ = {
 			isa = PBXGroup;
 			children = (
-				58FAB0DA1991C780001388B6 /* SDK */,
+				58A4C06519B9AFF000608BF6 /* SDK */,
 				581F1A1818ECF2E9001C47BE /* AppDelegate.h */,
 				581F1A1918ECF2E9001C47BE /* AppDelegate.m */,
 				581F1A1B18ECF2E9001C47BE /* Main.storyboard */,
@@ -176,6 +178,27 @@
 				581F1A3118ECF2E9001C47BE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		58A4C06519B9AFF000608BF6 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				58A4C06619B9AFF000608BF6 /* include */,
+				58A4C06C19B9AFF000608BF6 /* libBrightSDK.a */,
+			);
+			path = SDK;
+			sourceTree = SOURCE_ROOT;
+		};
+		58A4C06619B9AFF000608BF6 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				58A4C06719B9AFF000608BF6 /* BRTBeacon.h */,
+				58A4C06819B9AFF000608BF6 /* BRTBeaconDefinitions.h */,
+				58A4C06919B9AFF000608BF6 /* BRTBeaconManager.h */,
+				58A4C06A19B9AFF000608BF6 /* BRTBeaconRegion.h */,
+				58A4C06B19B9AFF000608BF6 /* BRTBeaconSDK.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,7 +278,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				581F1A2218ECF2E9001C47BE /* Images.xcassets in Resources */,
-				58FAB0DB1991C780001388B6 /* SDK in Resources */,
 				581F1A1418ECF2E9001C47BE /* InfoPlist.strings in Resources */,
 				581F1A1D18ECF2E9001C47BE /* Main.storyboard in Resources */,
 			);
@@ -410,11 +432,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BRTExample/BRTExample-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/SDK/Headers",
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
 				INFOPLIST_FILE = "BRTExample/BRTExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -423,7 +440,7 @@
 					"$(PROJECT_DIR)/SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A509E0AF-CE24-4494-8190-3E45B3D91040";
+				PROVISIONING_PROFILE = "91A70DFA-B66B-4460-97FE-8BE0DFCF332D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -437,11 +454,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BRTExample/BRTExample-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/SDK/Headers",
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
 				INFOPLIST_FILE = "BRTExample/BRTExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -450,7 +462,7 @@
 					"$(PROJECT_DIR)/SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A509E0AF-CE24-4494-8190-3E45B3D91040";
+				PROVISIONING_PROFILE = "91A70DFA-B66B-4460-97FE-8BE0DFCF332D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

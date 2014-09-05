@@ -49,15 +49,17 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *TXSegment;
 @property (weak, nonatomic) IBOutlet UILabel *intervalLabel;
 @property (weak, nonatomic) IBOutlet UISlider *intervalSlider;
-- (IBAction)intervalChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UIStepper *intervalStepper;
+@property (weak, nonatomic) IBOutlet UILabel *batteryLabel;
 
 @property (strong, nonatomic) NSArray *beaconArray;
 @property (strong, nonatomic) UITableView *beaconsTableView;
 
 @property (strong, nonatomic) BRTBeacon *brtBeacon;
 
+- (IBAction)intervalChanged:(id)sender;
 - (IBAction)intervalStepPressed:(id)sender;
+- (IBAction)readBatteryButtonPressed:(id)sender;
 
 @end
 
@@ -141,6 +143,11 @@
     [self.intervalLabel setText:[NSString stringWithFormat:@" %dms", (unsigned int)advertisingInterval]];
 }
 
+- (IBAction)readBatteryButtonPressed:(id)sender{
+    [self.brtBeacon readBeaconBatteryWithCompletion:^(short value, NSError *error) {
+        self.batteryLabel.text = [NSString stringWithFormat:@"%d",self.brtBeacon.battery.unsignedShortValue];
+    }];
+}
 
 - (IBAction)defaultClick:(id)sender {
     if (self.saveButton.hidden) {
@@ -160,6 +167,8 @@
     self.intervalStepper.value = advertisingInterval;
     [self.intervalLabel setText:[NSString stringWithFormat:@" %dms", (unsigned int)advertisingInterval]];
     [self.TXSegment setSelectedSegmentIndex:DEFAULT_TX];
+    
+    [self.brtBeacon resetSDKKEY]; //reset SDK key to default,allow another SDK key connect
 }
 - (IBAction)saveClick:(id)sender {
     NSDictionary *values = @{B_UUID: self.UUIDText.text,
@@ -211,7 +220,7 @@
         if(connected){
             [weakself refreshValues];
         }else{
-            if (error.code == 7) {
+            if (error.code == 2) {
                 [[[UIAlertView alloc] initWithTitle:@"提示" message:@"连接APPKEY不正确，无法连入" delegate:weakself cancelButtonTitle:@"关闭" otherButtonTitles: nil] show];
             }else{
                 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"连接已断开！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
@@ -242,6 +251,7 @@
     [self.intervalLabel setText:[NSString stringWithFormat:@" %dms", (unsigned int)advertisingInterval]];
     self.intervalSlider.value = advertisingInterval/50.0;
     self.intervalStepper.value = advertisingInterval;
+    self.batteryLabel.text = [NSString stringWithFormat:@"%d",self.brtBeacon.battery.unsignedShortValue];
 }
 - (void)dealloc
 {

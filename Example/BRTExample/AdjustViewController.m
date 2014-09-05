@@ -33,7 +33,7 @@
         self.rssis = [NSMutableDictionary dictionary];
     }
     if (isStarting) {
-        NSString *rssi = [NSString stringWithFormat:@"%d",beacon.rssi];
+        NSString *rssi = [NSString stringWithFormat:@"%ld",beacon.rssi];
         NSString *count = [self.rssis valueForKey:rssi];
         if (count) {
             [self.rssis setObject:[NSString stringWithFormat:@"%d",count.intValue+1] forKey:rssi];
@@ -43,8 +43,8 @@
         [self adjustButtonClicked:nil];
     }
     
-    self.titleLabel.text = [NSString stringWithFormat:@"Name:%@\nMajor:%@,Minor:%@ MAC:%@ measuredPower:%@",beacon.name, beacon.major, beacon.minor ,beacon.macAddress,beacon.measuredPower];
-    self.distanceLabel.text = [NSString stringWithFormat:@"当前距离:%.1f 米",beacon.distance.floatValue];
+    self.titleLabel.text = [NSString stringWithFormat:@"%@",beacon.name];
+    self.distanceLabel.text = [NSString stringWithFormat:@"当前距离:%.2f米\nRSSI:%ld\nMajor:%@,Minor:%@\nMAC:%@\nmeasurePower:%@",[beacon.distance floatValue], beacon.rssi, beacon.major, beacon.minor ,beacon.macAddress,beacon.measuredPower];
 }
 - (IBAction)adjustButtonClicked:(UIButton*)sender {
     sender.selected = !sender.selected;
@@ -67,7 +67,7 @@
                 __unsafe_unretained typeof(self) weakself = self;
                 [self.brtbeacon connectToBeaconWithCompletion:^(BOOL connected, NSError *error) {
                     if (connected) {
-                        [weakself.brtbeacon writeBeaconMeasuredPower:[[NSNumber numberWithFloat:avgrssi] shortValue] withCompletion:^(short value, NSError *error) {
+                        [weakself.brtbeacon writeBeaconValues:@{B_MEASURED: [NSNumber numberWithFloat:avgrssi]} withCompletion:^(NSError *error) {
                             [weakself.brtbeacon disconnectBeacon];
                         }];
                     }
