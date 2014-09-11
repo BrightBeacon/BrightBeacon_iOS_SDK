@@ -368,13 +368,6 @@ extern CBCentralManager *centralManager;
 - (void)readBeaconBatteryWithCompletion:(BRTShortCompletionBlock)completion;
 
 /**
- *  读取连接中的beacon设备周围的温度 (要求已经连接成功)
- *
- *  @param completion 读取当前温度完成回调
- */
-- (void)readBeaconTemperatureWithCompletion:(BRTShortCompletionBlock)completion;
-
-/**
  * 读取连接中的beacon设备的固件版本 (要求已经连接成功)
  *
  * @param completion 读取固件版本信息完成回调
