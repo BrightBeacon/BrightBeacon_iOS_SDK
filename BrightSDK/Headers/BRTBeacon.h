@@ -248,7 +248,7 @@ extern CBCentralManager *centralManager;
 /**
  *  temperature
  *
- *    温度，范围 -40~125℃ ，连接后可用
+ *    温度，范围 -40~100℃ ，127为保留值，表明温度不可用，连接后可用
  */
 @property (nonatomic, strong)    NSNumber*    temperature;
 
@@ -259,7 +259,26 @@ extern CBCentralManager *centralManager;
  */
 @property (nonatomic, unsafe_unretained)    DevelopPublishMode    mode;
 
+/**
+ *  硬件版本
+ *
+ *    设备硬件版本，连接后可用
+ */
+@property (readonly, nonatomic)   NSString*               hardwareVersion;
 
+/**
+ *  固件版本
+ *
+ *    设备固件版本，连接后可用
+ */
+@property (readonly, nonatomic)   NSString*               firmwareVersion;
+
+/**
+ *  固件最新版本信息，
+ *
+ *    固件最新版本信息，checkFirmwareUpdateWithCompletion后可用
+ */
+@property (readonly, nonatomic)   NSString*               firmwareVersionInfo;
 
 /// @name 连接beacon相关的方法
 
@@ -405,6 +424,13 @@ extern CBCentralManager *centralManager;
  * @return void
  */
 - (void)writeBeaconValues:(NSDictionary*)values withCompletion:(BRTCompletionBlock)completion;
+
+/**
+ *  检查固件更新
+ *
+ *  @param completion 写入完成回调
+ */
+-(void)checkFirmwareUpdateWithCompletion:(BRTStringCompletionBlock)completion;
 
 /**
  *  云端更新固件
