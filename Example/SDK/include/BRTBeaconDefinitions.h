@@ -20,6 +20,8 @@
 #define B_TX @"btx"
 #define B_LED @"bled"
 #define B_MODE @"bmode"
+#define B_BATTERY_INTERVAL @"bBatteryInterval"
+#define B_TEMPERATURE_INTERVAL @"bTemperatureInterval"
 
 typedef enum : char
 {
@@ -35,7 +37,9 @@ typedef void(^BRTShortCompletionBlock)(short value, NSError* error);
 typedef void(^BRTPowerCompletionBlock)(BRTBeaconPower value, NSError* error);
 typedef void(^BRTBoolCompletionBlock)(BOOL value, NSError* error);
 typedef void(^BRTStringCompletionBlock)(NSString* value, NSError* error);
+typedef void(^BRTIntegerCompletionBlock)(NSInteger value, NSError* error);
 typedef void(^BRTConnectCompletionBlock)(BOOL connected, NSError* error);
+
 
 ////////////////////////////////////////////////////////////////////
 // Interface definition

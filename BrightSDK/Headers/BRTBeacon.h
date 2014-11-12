@@ -260,18 +260,32 @@ extern CBCentralManager *centralManager;
 @property (nonatomic, unsafe_unretained)    DevelopPublishMode    mode;
 
 /**
+ *  batteryCheckInteval
+ *
+ *    广播状态下Beacon的电量检测间隔，单位为:秒；最小值为1800秒，即每半小时自动检测电量并更新广播的数据
+ */
+@property (nonatomic, unsafe_unretained)    NSInteger    batteryCheckInteval;
+
+/**
+ *  temperatureCheckInteval
+ *
+ *    广播状态下Beacon周边温度检测间隔，单位为 秒；最小值为30秒，即每30秒自动检测电量并更新广播的数据
+ */
+@property (nonatomic, unsafe_unretained)    NSInteger    temperatureCheckInteval;
+
+/**
  *  硬件版本
  *
  *    设备硬件版本，连接后可用
  */
-@property (readonly, nonatomic)   NSString*               hardwareVersion;
+@property (strong, nonatomic)   NSString*               hardwareVersion;
 
 /**
  *  固件版本
  *
  *    设备固件版本，连接后可用
  */
-@property (readonly, nonatomic)   NSString*               firmwareVersion;
+@property (strong, nonatomic)   NSString*               firmwareVersion;
 
 /**
  *  固件最新版本信息，
@@ -412,6 +426,24 @@ extern CBCentralManager *centralManager;
  * @return void
  */
 - (void)readBeaconTemperatureWithCompletion:(BRTShortCompletionBlock)completion;
+
+/**
+ * 读取连接中的beacon设备在广播状态下自动检测 电量 的间隔时间 (要求已经连接成功)
+ *
+ * @param completion 读取间隔时间完成回调
+ *
+ * @return void
+ */
+- (void)readBatteryCheckIntevalWithCompletion:(BRTIntegerCompletionBlock)completion;
+
+/**
+ * 读取连接中的beacon设备在广播状态下自动检测 温度 的间隔时间 (要求已经连接成功)
+ *
+ * @param completion 读取间隔时间完成回调
+ *
+ * @return void
+ */
+- (void)readTemperatureCheckIntevalWithCompletion:(BRTIntegerCompletionBlock)completion;
 
 /// @name 写人beacon配置信息相关的方法
 

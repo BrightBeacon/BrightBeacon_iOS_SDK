@@ -12,10 +12,11 @@
 #import "BRTBeaconRegion.h"
 #import "BRTBeacon.h"
 
+#define iszh [[NSLocale preferredLanguages][0] rangeOfString:@"zh"].location==0
 #define BLE_SHOWTIPS YES
-#define BLE_TITLE @"需要打开蓝牙"
-#define BLE_TIPS @"使用低功耗蓝牙可以发现身边的更多信息"
-#define BLE_BUTTON @"好的"
+#define BLE_TITLE iszh?@"需要打开蓝牙":@"Please Turn on Bluetooth"
+#define BLE_TIPS iszh?@"使用低功耗蓝牙可以发现身边的更多信息":@"Using bluetooth to find beacon around"
+#define BLE_BUTTON iszh?@"好的":@"OK"
 
 CBCentralManager *centralManager;
 

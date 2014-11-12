@@ -10,16 +10,10 @@
 #import "BRTBeacon.h"
 
 //超时移除BrightBeacon时间，与硬件发射频率设置配合，默认2s未收到信号移除
-#define InvalidTime 2
+#define InvalidTime 4
 
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
-
-typedef enum : int
-{
-    RangingOptionOnBeaconChange,
-    RangingOptionOnRanged,
-} RangingOptions;
 
 typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRegion* region, NSError* error);
 typedef void(^MonitoringForRegionsCompletionBlock)(BRTBeaconRegion* region, CLRegionState state, NSError* error);
@@ -62,16 +56,25 @@ typedef void(^RequestStateForRegionsCompletionBlock)(BRTBeaconRegion* region, CL
 + (NSArray*)BRTBeacons;
 
 /**
- * 扫描BrightBeacon设备、区域(<20)监测（支持后台模式）
+ * 扫描BrightBeacon设备，uuids为NSUUID数组(留空则启用默认的UUID):IOS6.x该参数无效，IOS7以上该参数用于构造BRTBeaconRegion来实现range beacon，提高RSSI精度
  *
- * @param completion 扫描、监测回调
+ * @param completion 蓝牙扫描、区域扫描/监测回调
  *
  * @return void
  */
-+ (void) startRangingOption:(RangingOptions)option onCompletion:(RangingBrightBeaconsCompletionBlock)completion;
-+ (void) startRangingOption:(RangingOptions)option uuids:(NSArray*)uuids onCompletion:(RangingBrightBeaconsCompletionBlock)completion;
-+ (void) startMonitoringForRegions:(NSArray *)regions onCompletion:(MonitoringForRegionsCompletionBlock)completion;
-+ (void) requestStateForRegions:(NSArray *)regions onCompletion:(RequestStateForRegionsCompletionBlock)completion;
+
++ (void) startRangingWithUuids:(NSArray*)uuids onCompletion:(RangingBrightBeaconsCompletionBlock)completion NS_AVAILABLE_IOS(6_0);
+
+/**
+ * 仅支持IOS7以上，扫描BrightBeacon设备、区域(<20)监测（支持后台模式）,regions为BRTBeaconRegion数组(留空则启用默认的UUID)
+ *
+ * @param completion 蓝牙扫描、区域扫描/监测回调
+ *
+ * @return void
+ */
++ (void) startRangingBeaconsInRegions:(NSArray*)regions onCompletion:(RangingBrightBeaconsCompletionBlock)completion NS_AVAILABLE_IOS(7_0);
++ (void) startMonitoringForRegions:(NSArray *)regions onCompletion:(MonitoringForRegionsCompletionBlock)completion NS_AVAILABLE_IOS(7_0);
++ (void) requestStateForRegions:(NSArray *)regions onCompletion:(RequestStateForRegionsCompletionBlock)completion NS_AVAILABLE_IOS(7_0);
 
 /**
  * 停止扫描、监测,if(regions==nil)停止所有当前监听区域
