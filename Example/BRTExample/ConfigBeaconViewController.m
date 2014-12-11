@@ -76,7 +76,7 @@
     
     [self.view addSubview:self.beaconsTableView];
     __unsafe_unretained typeof(self) weakself = self;
-    [BRTBeaconSDK startRangingOption:RangingOptionOnBeaconChange onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
+    [BRTBeaconSDK startRangingWithUuids:@[[[NSUUID alloc] initWithUUIDString:DEFAULT_UUID]] onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
         [weakself reloadData:beacons];
     }];
     

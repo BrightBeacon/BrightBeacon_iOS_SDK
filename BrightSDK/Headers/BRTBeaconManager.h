@@ -60,6 +60,8 @@ rangingBeaconsDidFailForRegion:(BRTBeaconRegion *)region
 
 
 /**
+ * 只能在 AppDelegate 实现
+ *
  * 区域监听失败触发的回调方法，以及关联的错误信息
  *
  * @param manager Bright beacon 管理器
@@ -72,6 +74,8 @@ rangingBeaconsDidFailForRegion:(BRTBeaconRegion *)region
 monitoringDidFailForRegion:(BRTBeaconRegion *)region
            withError:(NSError *)error;
 /**
+ * 只能在 AppDelegate 实现
+ *
  * 在区域监听中，iOS设备进入beacon设备区域触发该方法
  *
  * @param manager Bright beacon 管理器
@@ -84,6 +88,8 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 
 /**
+ * 只能在 AppDelegate 实现
+ *
  * 在区域监听中，iOS设备离开beacon设备区域触发该方法
  *
  * @param manager Bright beacon 管理器
@@ -95,7 +101,9 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
        didExitRegion:(BRTBeaconRegion *)region;
 
 /**
- * 在调用requestStateForRegion:方法，当beacon区域状态变化会触发该方法
+ * 只能在 AppDelegate 实现
+ *
+ * 在调用startMonitoringForRegion:方法，当beacon区域状态变化会触发该方法
  *
  * @param manager Bright beacon 管理器
  * @param state Bright beacon 区域状态
@@ -161,9 +169,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  屏蔽范围扫描时，未知状态的设备(proximity == 0)，默认NO.
  */
 @property (nonatomic) BOOL avoidUnknownStateBeacons;
-
 @property (nonatomic, strong) BRTBeaconRegion*         virtualBeaconRegion;
-
 
 /**
  * 注册开发者appkey，申请地址：http://www.brtbeacon.com/api

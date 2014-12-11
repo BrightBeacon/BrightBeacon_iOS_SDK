@@ -16,8 +16,6 @@
 // Type and class definitions
 
 typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRegion* region, NSError* error);
-typedef void(^MonitoringForRegionsCompletionBlock)(BRTBeaconRegion* region, CLRegionState state, NSError* error);
-typedef void(^RequestStateForRegionsCompletionBlock)(BRTBeaconRegion* region, CLRegionState state, NSError* error);
 
 ////////////////////////////////////////////////////////////////////
 // Interface definition
@@ -73,8 +71,32 @@ typedef void(^RequestStateForRegionsCompletionBlock)(BRTBeaconRegion* region, CL
  * @return void
  */
 + (void) startRangingBeaconsInRegions:(NSArray*)regions onCompletion:(RangingBrightBeaconsCompletionBlock)completion NS_AVAILABLE_IOS(7_0);
-+ (void) startMonitoringForRegions:(NSArray *)regions onCompletion:(MonitoringForRegionsCompletionBlock)completion NS_AVAILABLE_IOS(7_0);
-+ (void) requestStateForRegions:(NSArray *)regions onCompletion:(RequestStateForRegionsCompletionBlock)completion NS_AVAILABLE_IOS(7_0);
+
+/**
+ * 在后台监听beacon regions
+ * 结果将自动回调到AppDelegate中
+ 
+-(void)beaconManager:(BRTBeaconManager *)manager
+monitoringDidFailForRegion:(BRTBeaconRegion *)region
+           withError:(NSError *)error;
+
+-(void)beaconManager:(BRTBeaconManager *)manager
+      didEnterRegion:(BRTBeaconRegion *)region;
+
+-(void)beaconManager:(BRTBeaconManager *)manager
+       didExitRegion:(BRTBeaconRegion *)region;
+
+-(void)beaconManager:(BRTBeaconManager *)manager
+   didDetermineState:(CLRegionState)state
+           forRegion:(BRTBeaconRegion *)region;
+
+ * @param @[region1,region2]
+ *
+ * @return void
+ */
++ (void) startMonitoringForRegions:(NSArray *)regions  NS_AVAILABLE_IOS(7_0);
+
++ (void) requestStateForRegions:(NSArray *)regions  NS_AVAILABLE_IOS(7_0);
 
 /**
  * 停止扫描、监测,if(regions==nil)停止所有当前监听区域

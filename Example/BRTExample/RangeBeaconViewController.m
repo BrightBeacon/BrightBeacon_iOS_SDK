@@ -25,8 +25,7 @@
 {
     [super viewDidAppear:animated];
     
-    [BRTBeaconSDK startRangingOption:RangingOptionOnRanged onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error)
-     {
+    [BRTBeaconSDK startRangingWithUuids:@[[[NSUUID alloc] initWithUUIDString:DEFAULT_UUID]] onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
          if (!self.adjustController) {
              self.beaconsArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(BRTBeacon* obj1, BRTBeacon* obj2){
                  return obj1.distance.floatValue>obj2.distance.floatValue?NSOrderedDescending:NSOrderedAscending;
