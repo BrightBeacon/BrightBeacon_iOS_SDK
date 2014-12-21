@@ -148,8 +148,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 @end
 
-
-
 /**
  
  BRTBeaconManager 类定义了操作、配置Bright Beacon，以及获取相关事件通知应用程序的接口。使用本类的实例来建立参数描述每个beacon设备，你也可以检索范围内所有的beacon设备。
@@ -165,14 +163,28 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 @property (nonatomic, weak) id <BRTBeaconManagerDelegate> delegate;
 
-/**
- 屏蔽范围扫描时，未知状态的设备(proximity == 0)，默认NO.
+/*
+ *  monitoredRegions
+ *
+ *  目前监测的所有区域。
  */
-@property (nonatomic) BOOL avoidUnknownStateBeacons;
-@property (nonatomic, strong) BRTBeaconRegion*         virtualBeaconRegion;
+- (NSSet*)monitoredRegions;
+
+/*
+ *  rangedRegions
+ *
+ *  目前检测到正活跃的区域
+ */
+- (NSSet*)rangedRegions;
 
 /**
- * 注册开发者appkey，申请地址：http://www.brtbeacon.com/api
+ 屏蔽范围扫描时，未知状态的设备(proximity == 0)，默认NO.
+@property (nonatomic) BOOL avoidUnknownStateBeacons;
+@property (nonatomic, strong) BRTBeaconRegion*         virtualBeaconRegion;
+ */
+
+/**
+ * 注册开发者appkey，申请地址：http://www.brtbeacon.com/developers.shtml
  *
  * @param appKey Bright beacon 开发者密钥
  *

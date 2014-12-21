@@ -9,7 +9,7 @@
 #import "BRTBeaconRegion.h"
 #import "BRTBeacon.h"
 
-//超时移除BrightBeacon时间，与硬件发射频率设置配合，默认2s未收到信号移除
+//超时移除BrightBeacon时间，与硬件发射频率设置配合，默认4s未收到信号移除
 #define InvalidTime 4
 
 ////////////////////////////////////////////////////////////////////
