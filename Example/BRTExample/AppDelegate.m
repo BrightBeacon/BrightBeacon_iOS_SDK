@@ -7,12 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "BrightSDK/BRTBeaconSDK.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [BRTBeaconManager registerApp:@"YOUR_KEY"];
     return YES;
 }
 							
@@ -42,5 +44,77 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+#pragma monitor
+- (void)sendLocalNotification:(NSString*)msg
+{
+    UILocalNotification *notice = [[UILocalNotification alloc] init];
+    notice.alertBody = msg;
+    notice.alertAction = Lang(@"Open", @"打开软件");
+    notice.soundName = UILocalNotificationDefaultSoundName;
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notice];
+}
+/**
+ * 只能在AppDelegate实现
+ *
+ * 区域监听失败触发的回调方法，以及关联的错误信息
+ *
+ * @param manager Bright beacon 管理器
+ * @param region Bright beacon 区域
+ * @param error 错误信息
+ *
+ * @return void
+ */
+-(void)beaconManager:(BRTBeaconManager *)manager
+monitoringDidFailForRegion:(BRTBeaconRegion *)region
+           withError:(NSError *)error{
+    
+}
 
+/**
+ * 只能在AppDelegate实现
+ *
+ * 在区域监听中，iOS设备进入beacon设备区域触发该方法
+ *
+ * @param manager Bright beacon 管理器
+ * @param region Bright beacon 区域
+ *
+ * @return void
+ */
+-(void)beaconManager:(BRTBeaconManager *)manager
+      didEnterRegion:(BRTBeaconRegion *)region{
+    if([[NSUserDefaults standardUserDefaults] valueForKey:@"in"])[self sendLocalNotification:Lang(@"Hello!", @"您已经进入了Beacon体验区")];
+}
+
+
+/**
+ * 只能在AppDelegate实现
+ *
+ * 在区域监听中，iOS设备离开beacon设备区域触发该方法
+ *
+ * @param manager Bright beacon 管理器
+ * @param region Bright beacon 区域
+ *
+ * @return void
+ */
+-(void)beaconManager:(BRTBeaconManager *)manager
+       didExitRegion:(BRTBeaconRegion *)region{
+    if([[NSUserDefaults standardUserDefaults] valueForKey:@"out"])[self sendLocalNotification:Lang(@"Goodbye.", @"您已经离开")];
+}
+
+/**
+ * 只能在AppDelegate实现
+ *
+ * 在调用startMonitoringForRegion:方法，当beacon区域状态变化会触发该方法
+ *
+ * @param manager Bright beacon 管理器
+ * @param state Bright beacon 区域状态
+ * @param region Bright beacon 区域
+ *
+ * @return void
+ */
+-(void)beaconManager:(BRTBeaconManager *)manager
+   didDetermineState:(CLRegionState)state
+           forRegion:(BRTBeaconRegion *)region{
+    if([[NSUserDefaults standardUserDefaults] valueForKey:@"notifyOnDisplay"])[self sendLocalNotification:Lang(@"Hello!", @"你处于监听Beacon区域,点亮屏幕收到此推送")];
+}
 @end

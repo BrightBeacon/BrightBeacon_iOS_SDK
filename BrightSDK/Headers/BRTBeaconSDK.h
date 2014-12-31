@@ -54,7 +54,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 + (NSArray*)BRTBeacons;
 
 /**
- * 扫描BrightBeacon设备，uuids为NSUUID数组(留空则启用默认的UUID):IOS6.x该参数无效，IOS7以上该参数用于构造BRTBeaconRegion来实现range beacon，提高RSSI精度
+ * 扫描BrightBeacon设备，uuids为NSUUID数组(留空则启用默认的UUID):IOS6.x该参数无效，IOS7.x该参数用于构造BRTBeaconRegion来实现range beacon，提高RSSI精度
  *
  * @param completion 蓝牙扫描、区域扫描/监测回调
  *

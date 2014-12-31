@@ -12,25 +12,6 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "BRTBeaconDefinitions.h"
 
-#define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
-#define DEFAULT_MAJOR 0
-#define DEFAULT_MINOR 0
-#define DEFAULT_MEASURED -65
-#define DEFAULT_LED 1
-#define DEFAULT_INTERVAL 400
-#define DEFAULT_TX 2
-#define DEFAULT_NAME  @"BrightBeacon"
-#define DEFAULT_MODE 0
-
-#define kNotifyConnect @"kNotifyConnect"
-#define kNotifyDisconnect @"kNotifyDisconnect"
-
-typedef enum : int
-{
-    DevelopMode=0,
-    PublishMode,
-} DevelopPublishMode;
-
 @class BRTBeacon;
 
 ////////////////////////////////////////////////////////////////////

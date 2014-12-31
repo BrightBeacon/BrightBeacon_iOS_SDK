@@ -23,11 +23,12 @@
  */
 
 #import <UIKit/UIKit.h>
-
+//#import "BRTBeacon.h"
+#import "BrightSDK/BRTBeacon.h"
 
 
 @interface ConfigBeaconViewController : UIViewController
 
-
+@property (nonatomic,strong) BRTBeacon *beacon;
 
 @end

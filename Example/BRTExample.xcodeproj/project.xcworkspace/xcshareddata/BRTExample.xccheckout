@@ -12,6 +12,8 @@
 	<dict>
 		<key>354F6BD7A201C120CD861E2C39395155A916CDFB</key>
 		<string>https://github.com/BrightBeacon/BrightBeacon_iOS_SDK.git</string>
+		<key>58b4843b-4d7a-d34e-b13b-2ec443eeb50f++8745</key>
+		<string>https://svn.brtbeacon.com/svn/BRT/IOS/BrightSDK</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Example/BRTExample.xcodeproj</string>
@@ -19,6 +21,13 @@
 	<dict>
 		<key>354F6BD7A201C120CD861E2C39395155A916CDFB</key>
 		<string>../../..</string>
+		<key>58b4843b-4d7a-d34e-b13b-2ec443eeb50f++8745</key>
+		<string>../../../../works/BRTBeacons/Beacons/svn/BrightSDK</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>58b4843b-4d7a-d34e-b13b-2ec443eeb50f++8745</key>
+		<string>https://svn.brtbeacon.com/svn/BRT</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/BrightBeacon/BrightBeacon_iOS_SDK.git</string>
@@ -35,6 +44,14 @@
 			<string>354F6BD7A201C120CD861E2C39395155A916CDFB</string>
 			<key>IDESourceControlWCCName</key>
 			<string>BrightBeacon_iOS_SDK</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>58b4843b-4d7a-d34e-b13b-2ec443eeb50f++8745</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BrightSDK</string>
 		</dict>
 	</array>
 </dict>

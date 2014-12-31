@@ -11,6 +11,8 @@
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
 
+#define SDK_VERSION 2.0.1
+
 #define B_NAME @"bname"
 #define B_UUID @"buuid"
 #define B_MAJOR @"bmajor"
@@ -22,6 +24,43 @@
 #define B_MODE @"bmode"
 #define B_BATTERY_INTERVAL @"bBatteryInterval"
 #define B_TEMPERATURE_INTERVAL @"bTemperatureInterval"
+
+
+#define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
+#define DEFAULT_MAJOR 0
+#define DEFAULT_MINOR 0
+#define DEFAULT_MEASURED -65
+#define DEFAULT_LED 1
+#define DEFAULT_INTERVAL 400
+#define DEFAULT_TX 2
+#define DEFAULT_NAME  @"BrightBeacon"
+#define DEFAULT_MODE 0
+
+#define kNotifyConnect @"kNotifyConnect"
+#define kNotifyDisconnect @"kNotifyDisconnect"
+
+typedef enum : int
+{
+    DevelopMode=0,  //开发模式
+    PublishMode,    //部署模式
+} DevelopPublishMode;
+
+typedef enum : int
+{
+    ErrorCodeNone = 0,      //正常
+    ErrorCodeUnKnown = 99,  //未知连接错误
+    ErrorCode100 = 100,     //连接错误，SDK KEY不正确
+    ErrorCode101 = 101,     //未识别的设备，无法连入
+    ErrorCode102 = 102,     //网络连接失败
+    ErrorCode103 = 103,     //未检测到电量传感器(读取传感器特征失败)
+    ErrorCode104 = 104,     //未检测到温度传感器、读取数据有误(读取传感器特征失败)
+    ErrorCode105 = 105,     //当前版本固件不支持更新
+    ErrorCode106 = 106,     //暂无版本更新，或未执行版本检测：checkFirmwareUpdateWithCompletion:
+    ErrorCode107 = 107,     //固件下载失败，请重试
+    ErrorCode108 = 108,     //固件数据有误
+    ErrorCode109 = 109,     //固件更新中断
+    ErrorCode110 = 110,     //unuse
+} ErrorCode;
 
 typedef enum : char
 {

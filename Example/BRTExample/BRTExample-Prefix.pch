@@ -13,4 +13,5 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #define Lang(en,zh) [[NSLocale preferredLanguages][0] rangeOfString:@"zh"].location==0?zh:en
 #endif

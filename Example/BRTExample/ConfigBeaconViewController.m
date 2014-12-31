@@ -25,37 +25,28 @@
 #import "ConfigBeaconViewController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
-#import "BRTBeaconSDK.h"
-
-@interface ConfigBeaconViewController () <UITableViewDelegate,UIAlertViewDelegate,BRTBeaconDelegate , UITableViewDataSource,BRTBeaconManagerDelegate>
+@interface ConfigBeaconViewController ()<UIScrollViewDelegate>
 {
     UInt16 advertisingInterval;
 }
 
-@property (weak, nonatomic) IBOutlet UIButton *defaultButton;
 - (IBAction)defaultClick:(id)sender;
-
-@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 - (IBAction)saveClick:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIView *deviceView;
 
 @property (weak, nonatomic) IBOutlet UITextField *UUIDText;
 @property (weak, nonatomic) IBOutlet UITextField *majorText;
 @property (weak, nonatomic) IBOutlet UITextField *minorText;
 @property (weak, nonatomic) IBOutlet UITextField *measuredPowerText;
-@property (weak, nonatomic) IBOutlet UISwitch *LEDSwitch;
 @property (weak, nonatomic) IBOutlet UITextField *nameText;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *TXSegment;
 @property (weak, nonatomic) IBOutlet UILabel *intervalLabel;
 @property (weak, nonatomic) IBOutlet UISlider *intervalSlider;
 @property (weak, nonatomic) IBOutlet UIStepper *intervalStepper;
 @property (weak, nonatomic) IBOutlet UILabel *batteryLabel;
-
-@property (strong, nonatomic) NSArray *beaconArray;
-@property (strong, nonatomic) UITableView *beaconsTableView;
-
-@property (strong, nonatomic) BRTBeacon *brtBeacon;
+@property (weak, nonatomic) IBOutlet UILabel *tempLabel;
+@property (weak, nonatomic) IBOutlet UILabel *modeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 - (IBAction)intervalChanged:(id)sender;
 - (IBAction)intervalStepPressed:(id)sender;
@@ -68,63 +59,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
-    self.beaconsTableView = [[UITableView alloc] initWithFrame:self.deviceView.bounds];
-    self.beaconsTableView.delegate = self;
-    self.beaconsTableView.dataSource = self;
-    
-    [self.view addSubview:self.beaconsTableView];
-    __unsafe_unretained typeof(self) weakself = self;
-    [BRTBeaconSDK startRangingWithUuids:@[[[NSUUID alloc] initWithUUIDString:DEFAULT_UUID]] onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
-        [weakself reloadData:beacons];
-    }];
-    
-    [self showDeviceDetails:false];
     if ([[[UIDevice currentDevice] systemVersion] intValue]>=7) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
-}
-- (void)reloadData:(NSArray*)beacons
-{
-    self.beaconArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(BRTBeacon* obj1, BRTBeacon* obj2){
-        return obj1.distance.floatValue>obj2.distance.floatValue?NSOrderedDescending:NSOrderedAscending;
-    }];
-    [self.beaconsTableView reloadData];
+    [self refreshValues];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     // Don't keep it going while we're not showing.
-    
     [super viewWillDisappear:animated];
-    [BRTBeaconSDK stopRangingBrightBeacons];
-    [self.brtBeacon disconnectBeacon];
-    self.brtBeacon.delegate = nil;
+    [self.beacon disconnectBeacon];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Methods
-
-- (void)showDeviceDetails:(bool) show
-{
-    self.beaconsTableView.hidden = show;
-    self.deviceView.hidden = !show;
-    self.saveButton.hidden = !show;
-    
-    if (show) {
-        [self.defaultButton setTitle:@"Default" forState:UIControlStateNormal];
-    }
-    else{
-        [self.defaultButton setTitle:@"back" forState:UIControlStateNormal];
-        
-        [[BRTBeaconSDK BRTBeaconManager] startBrightBeaconsDiscovery];
-    }
 }
 
 #pragma mark - IBAction Methods
@@ -144,23 +95,19 @@
 }
 
 - (IBAction)readBatteryButtonPressed:(id)sender{
-    [self.brtBeacon readBeaconBatteryWithCompletion:^(short value, NSError *error) {
-        self.batteryLabel.text = [NSString stringWithFormat:@"%d",self.brtBeacon.battery.unsignedShortValue];
+    [self.beacon readBeaconBatteryWithCompletion:^(short value, NSError *error) {
+        self.batteryLabel.text = [NSString stringWithFormat:@"%d%%",self.beacon.battery.unsignedShortValue];
+    }];
+    [self.beacon readBeaconTemperatureWithCompletion:^(short value, NSError *error) {
+        self.tempLabel.text = [NSString stringWithFormat:@"%d℃",self.beacon.temperature.unsignedShortValue];
     }];
 }
 
 - (IBAction)defaultClick:(id)sender {
-    if (self.saveButton.hidden) {
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
-    }
-    
-    [self.deviceView endEditing:YES];
     [self.UUIDText setText:DEFAULT_UUID];
     [self.majorText setText:[NSString stringWithFormat:@"%d", DEFAULT_MAJOR]];
     [self.minorText setText:[NSString stringWithFormat:@"%d", DEFAULT_MINOR]];
     [self.measuredPowerText setText:[NSString stringWithFormat:@"%d", DEFAULT_MEASURED]];
-    [self.LEDSwitch setOn:DEFAULT_LED];
     [self.nameText setText:DEFAULT_NAME];
     advertisingInterval = DEFAULT_INTERVAL;
     self.intervalSlider.value = advertisingInterval/50.0;
@@ -168,7 +115,7 @@
     [self.intervalLabel setText:[NSString stringWithFormat:@" %dms", (unsigned int)advertisingInterval]];
     [self.TXSegment setSelectedSegmentIndex:DEFAULT_TX];
     
-    [self.brtBeacon resetSDKKEY]; //reset SDK key to default,allow another SDK key connect
+    [self.beacon resetSDKKEY]; //reset SDK key to default,allow another SDK key connect
 }
 - (IBAction)saveClick:(id)sender {
     NSDictionary *values = @{B_UUID: self.UUIDText.text,
@@ -178,86 +125,54 @@
                              B_MEASURED:self.measuredPowerText.text,
                              B_TX:[NSString stringWithFormat:@"%d",self.TXSegment.selectedSegmentIndex],
                              B_INTERVAL:[NSString stringWithFormat:@"%d",advertisingInterval]};
-    [self.brtBeacon writeBeaconValues:values withCompletion:^(NSError *error) {
-        [self.brtBeacon disconnectBeacon];
-        [self showDeviceDetails:NO];
-    }];
-}
-
-#pragma UITableViewDelegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.beaconArray count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BRTBeacon *beacon = [self.beaconArray objectAtIndex:indexPath.row];
-    
-    NSString *identifier = beacon.macAddress;
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
-    }
-    
-    cell.detailTextLabel.numberOfLines = 0;
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",beacon.name];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"UDID:%@ MAC:%@ major:%@  minor:%@  mpower:%@ distance:%@ RSSI:%d",beacon.proximityUUID.UUIDString,beacon.macAddress,beacon.major,beacon.minor,beacon.measuredPower,beacon.distance,beacon.rssi];
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.brtBeacon = [self.beaconArray objectAtIndex:indexPath.row];
-    self.brtBeacon.delegate = self;
-    [BRTBeaconSDK stopRangingBrightBeacons];
-    
-    __unsafe_unretained typeof(self) weakself = self;
-    [self.brtBeacon connectToBeaconWithCompletion:^(BOOL connected, NSError *error) {
-        if(connected){
-            [weakself refreshValues];
+    BOOL flag = [self.nameText.text isEqualToString:self.beacon.name];
+    [self.beacon writeBeaconValues:values withCompletion:^(NSError *error) {
+        if (error) {
+            [[[UIAlertView alloc] initWithTitle:error.domain message:nil delegate:nil cancelButtonTitle:Lang(@"OK", @"确定") otherButtonTitles: nil] show];
         }else{
-            if (error.code == 2) {
-                [[[UIAlertView alloc] initWithTitle:@"提示" message:@"连接APPKEY不正确，无法连入" delegate:weakself cancelButtonTitle:@"关闭" otherButtonTitles: nil] show];
+            [self.beacon disconnectBeacon];
+            if (flag) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
             }else{
-                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"连接已断开！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [alert show];
-                [alert performSelector:@selector(dismissWithClickedButtonIndex:animated:) withObject:nil afterDelay:1];
+                [self performSelector:@selector(updatename) withObject:nil afterDelay:.3];
             }
-            NSLog(@"error:%@",error.description);
         }
     }];
-    // Save a local copy of the peripheral, so CoreBluetooth doesn't get rid of it
-    
 }
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+- (void)updatename
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.beacon connectToBeaconWithCompletion:^(BOOL connected, NSError *error) {
+        [self.beacon disconnectBeacon];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
 }
+
 - (void)refreshValues
 {
-    [self showDeviceDetails:YES];
-    self.UUIDText.text = self.brtBeacon.proximityUUID.UUIDString;
-    self.majorText.text = self.brtBeacon.major.stringValue;
-    self.minorText.text = self.brtBeacon.minor.stringValue;
-    self.measuredPowerText.text = self.brtBeacon.measuredPower.stringValue;
-    self.nameText.text = self.brtBeacon.name;
-    [self.TXSegment setSelectedSegmentIndex:self.brtBeacon.power];
+    self.UUIDText.text = self.beacon.proximityUUID.UUIDString;
+    self.majorText.text = self.beacon.major.stringValue;
+    self.minorText.text = self.beacon.minor.stringValue;
+    self.measuredPowerText.text = self.beacon.measuredPower.stringValue;
+    self.nameText.text = self.beacon.name;
+    [self.TXSegment setSelectedSegmentIndex:self.beacon.power];
     
-    advertisingInterval = self.brtBeacon.advInterval.shortValue;
+    advertisingInterval = self.beacon.advInterval.shortValue;
     [self.intervalLabel setText:[NSString stringWithFormat:@" %dms", (unsigned int)advertisingInterval]];
     self.intervalSlider.value = advertisingInterval/50.0;
     self.intervalStepper.value = advertisingInterval;
-    self.batteryLabel.text = [NSString stringWithFormat:@"%d",self.brtBeacon.battery.unsignedShortValue];
+    self.batteryLabel.text = [NSString stringWithFormat:@"%d%%",self.beacon.battery.unsignedShortValue];
+    self.tempLabel.text = [NSString stringWithFormat:@"%d℃",self.beacon.temperature.unsignedShortValue];
+    if(self.beacon.hardwareVersion)self.versionLabel.text = [NSString stringWithFormat:Lang(@"Ver:%@-%@", @"版本:%@-%@"),self.beacon.hardwareVersion,self.beacon.firmwareVersion];
 }
 - (void)dealloc
 {
     
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
 }

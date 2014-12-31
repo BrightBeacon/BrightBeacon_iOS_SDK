@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BRTBeacon.h"
+//#import "BRTBeacon.h"
+#import <BrightSDK/BRTBeacon.h>
 @interface AdjustViewController : UIViewController
 - (void)beaconAdjust:(BRTBeacon*)beacon;
 @end
