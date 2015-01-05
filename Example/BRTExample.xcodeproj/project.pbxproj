@@ -25,8 +25,9 @@
 		581F1A3518ECF2E9001C47BE /* BRTExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 581F1A3418ECF2E9001C47BE /* BRTExampleTests.m */; };
 		583F59161A53F5E200253AAF /* NotifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583F59151A53F5E200253AAF /* NotifyViewController.m */; };
 		58652A33195C07680047C92F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58652A32195C07680047C92F /* AdSupport.framework */; };
+		58B396111A540C6600A97488 /* libBrightSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B396101A540C6600A97488 /* libBrightSDK.a */; };
+		58B396151A540DC000A97488 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B396141A540DC000A97488 /* VirtualViewController.m */; };
 		58B950E71989D67F006C6FCA /* AdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B950E61989D67F006C6FCA /* AdjustViewController.m */; };
-		58EB76311A53D6F000F1FE62 /* libBrightSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EB762A1A53D5F600F1FE62 /* libBrightSDK.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,20 +37,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 581F1A0518ECF2E9001C47BE;
 			remoteInfo = BRTExample;
-		};
-		58EB76291A53D5F600F1FE62 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 58EB76251A53D5F600F1FE62 /* BrightSDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5821084018EBE3E900DB4187;
-			remoteInfo = BrightSDK;
-		};
-		58EB762E1A53D6E500F1FE62 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 58EB76251A53D5F600F1FE62 /* BrightSDK.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5821083F18EBE3E900DB4187;
-			remoteInfo = BrightSDK;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -80,9 +67,17 @@
 		583F59141A53F5E200253AAF /* NotifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyViewController.h; sourceTree = "<group>"; };
 		583F59151A53F5E200253AAF /* NotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotifyViewController.m; sourceTree = "<group>"; };
 		58652A32195C07680047C92F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		58B3960A1A540C6600A97488 /* BRTBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeacon.h; sourceTree = "<group>"; };
+		58B3960B1A540C6600A97488 /* BRTBeaconDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeaconDefinitions.h; sourceTree = "<group>"; };
+		58B3960C1A540C6600A97488 /* BRTBeaconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeaconManager.h; sourceTree = "<group>"; };
+		58B3960D1A540C6600A97488 /* BRTBeaconRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeaconRegion.h; sourceTree = "<group>"; };
+		58B3960E1A540C6600A97488 /* BRTBeaconSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeaconSDK.h; sourceTree = "<group>"; };
+		58B3960F1A540C6600A97488 /* OpenUDIDIOS7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDIDIOS7.h; sourceTree = "<group>"; };
+		58B396101A540C6600A97488 /* libBrightSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBrightSDK.a; sourceTree = "<group>"; };
+		58B396131A540DC000A97488 /* VirtualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualViewController.h; sourceTree = "<group>"; };
+		58B396141A540DC000A97488 /* VirtualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualViewController.m; sourceTree = "<group>"; };
 		58B950E51989D67F006C6FCA /* AdjustViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustViewController.h; sourceTree = "<group>"; };
 		58B950E61989D67F006C6FCA /* AdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustViewController.m; sourceTree = "<group>"; };
-		58EB76251A53D5F600F1FE62 /* BrightSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BrightSDK.xcodeproj; path = ../../../../../works/BRTBeacons/Beacons/svn/BrightSDK/BrightSDK.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58EB76311A53D6F000F1FE62 /* libBrightSDK.a in Frameworks */,
 				58652A33195C07680047C92F /* AdSupport.framework in Frameworks */,
+				58B396111A540C6600A97488 /* libBrightSDK.a in Frameworks */,
 				581F1A0C18ECF2E9001C47BE /* CoreGraphics.framework in Frameworks */,
 				581F1A0E18ECF2E9001C47BE /* UIKit.framework in Frameworks */,
 				581F1A0A18ECF2E9001C47BE /* Foundation.framework in Frameworks */,
@@ -144,7 +139,7 @@
 		581F1A0F18ECF2E9001C47BE /* BRTExample */ = {
 			isa = PBXGroup;
 			children = (
-				58EB76251A53D5F600F1FE62 /* BrightSDK.xcodeproj */,
+				58B396081A540C6600A97488 /* SDK */,
 				581F1A1818ECF2E9001C47BE /* AppDelegate.h */,
 				581F1A1918ECF2E9001C47BE /* AppDelegate.m */,
 				581F1A1B18ECF2E9001C47BE /* Main.storyboard */,
@@ -158,6 +153,8 @@
 				583F59151A53F5E200253AAF /* NotifyViewController.m */,
 				58B950E51989D67F006C6FCA /* AdjustViewController.h */,
 				58B950E61989D67F006C6FCA /* AdjustViewController.m */,
+				58B396131A540DC000A97488 /* VirtualViewController.h */,
+				58B396141A540DC000A97488 /* VirtualViewController.m */,
 				581F1A2E18ECF2E9001C47BE /* BRTExampleTests */,
 				581F1A2118ECF2E9001C47BE /* Images.xcassets */,
 				581F1A1018ECF2E9001C47BE /* Supporting Files */,
@@ -194,12 +191,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		58EB76261A53D5F600F1FE62 /* Products */ = {
+		58B396081A540C6600A97488 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				58EB762A1A53D5F600F1FE62 /* libBrightSDK.a */,
+				58B396091A540C6600A97488 /* include */,
+				58B396101A540C6600A97488 /* libBrightSDK.a */,
 			);
-			name = Products;
+			path = SDK;
+			sourceTree = SOURCE_ROOT;
+		};
+		58B396091A540C6600A97488 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				58B3960A1A540C6600A97488 /* BRTBeacon.h */,
+				58B3960B1A540C6600A97488 /* BRTBeaconDefinitions.h */,
+				58B3960C1A540C6600A97488 /* BRTBeaconManager.h */,
+				58B3960D1A540C6600A97488 /* BRTBeaconRegion.h */,
+				58B3960E1A540C6600A97488 /* BRTBeaconSDK.h */,
+				58B3960F1A540C6600A97488 /* OpenUDIDIOS7.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +227,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				58EB762F1A53D6E500F1FE62 /* PBXTargetDependency */,
 			);
 			name = BRTExample;
 			productName = BRTExample;
@@ -266,12 +276,6 @@
 			mainGroup = 581F19FD18ECF2E9001C47BE;
 			productRefGroup = 581F1A0718ECF2E9001C47BE /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 58EB76261A53D5F600F1FE62 /* Products */;
-					ProjectRef = 58EB76251A53D5F600F1FE62 /* BrightSDK.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				581F1A0518ECF2E9001C47BE /* BRTExample */,
@@ -279,16 +283,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		58EB762A1A53D5F600F1FE62 /* libBrightSDK.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libBrightSDK.a;
-			remoteRef = 58EB76291A53D5F600F1FE62 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		581F1A0418ECF2E9001C47BE /* Resources */ = {
@@ -316,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B396151A540DC000A97488 /* VirtualViewController.m in Sources */,
 				138F4EFB19345BB9004771EE /* ConfigBeaconViewController.m in Sources */,
 				581F1A2018ECF2E9001C47BE /* ViewController.m in Sources */,
 				581F1A1A18ECF2E9001C47BE /* AppDelegate.m in Sources */,
@@ -341,11 +336,6 @@
 			isa = PBXTargetDependency;
 			target = 581F1A0518ECF2E9001C47BE /* BRTExample */;
 			targetProxy = 581F1A2C18ECF2E9001C47BE /* PBXContainerItemProxy */;
-		};
-		58EB762F1A53D6E500F1FE62 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BrightSDK;
-			targetProxy = 58EB762E1A53D6E500F1FE62 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

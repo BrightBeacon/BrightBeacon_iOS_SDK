@@ -18,7 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //IOS8.0 推送必须寻求用户同意
+    //IOS8.0 推送必须询求用户同意
     if ([[[UIDevice currentDevice] systemVersion] intValue]>=8) {
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
@@ -31,7 +31,7 @@
     
     if ([[UIApplication sharedApplication] backgroundRefreshStatus] != UIBackgroundRefreshStatusAvailable)
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"您没有开启后台刷新，请在 设置->通用->应用程序后台刷新 中开启." delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"您没有开启后台刷新，关闭程序后将无法推送，请在 设置->通用->应用程序后台刷新 中开启." delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alertView show];
     }
 }
@@ -59,11 +59,12 @@
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"notifyOnDisplay"];
         }
     }
+    [[NSUserDefaults standardUserDefaults] synchronize];
     //停掉所有Region
     [BRTBeaconSDK stopMonitoringForRegions:nil];
     
     //重构当前Beacon所在Region
-    BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:self.beacon.proximityUUID identifier:@"demo"];
+    BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:self.beacon.proximityUUID identifier:UUIDMAJORMINOR];
     region.notifyOnEntry = sw_in.isOn;
     region.notifyOnExit = sw_out.isOn;
     region.notifyEntryStateOnDisplay = sw_on_display.isOn;

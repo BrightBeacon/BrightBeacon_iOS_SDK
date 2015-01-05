@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BrightSDK/BRTBeaconSDK.h"
+#import "BRTBeaconSDK.h"
 @interface NotifyViewController : UIViewController
 
 @property (nonatomic,strong) BRTBeacon *beacon;

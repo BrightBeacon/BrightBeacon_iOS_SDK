@@ -7,14 +7,16 @@
 //
 
 #import "AppDelegate.h"
-#import "BrightSDK/BRTBeaconSDK.h"
+#import "BRTBeaconSDK.h"
 
+//#define BRT_SDK_KEY 全0仅用于测试，请填写你申请的SDK KEY
+#define BRT_SDK_KEY @"00000000000000000000000000000000"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [BRTBeaconManager registerApp:@"YOUR_KEY"];
+    [BRTBeaconManager registerApp:BRT_SDK_KEY];
     return YES;
 }
 							

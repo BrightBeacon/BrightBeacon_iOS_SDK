@@ -7,8 +7,9 @@
 //
 
 #import "RangeBeaconViewController.h"
-//#import "BRTBeaconSDK.h"
-#import "BrightSDK/BRTBeaconSDK.h"
+#import "BRTBeaconSDK.h"
+
+#define showAlert(msg) [[[UIAlertView alloc] initWithTitle:Lang(@"Tips", @"提示") message:msg delegate:nil cancelButtonTitle:Lang(@"OK", @"确定") otherButtonTitles: nil] show];
 
 @interface RangeBeaconViewController ()<UIAlertViewDelegate>
 @property (nonatomic, strong) IBOutlet UITableView     *tableview;
@@ -43,7 +44,7 @@
         if (!error) {
             [weakSelf reloadData:beacons];
         }else{
-            [[[UIAlertView alloc] initWithTitle:@"提示" message:error.description delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+            showAlert(error.description);
         }
      }];
 }
@@ -110,18 +111,53 @@
 {
     __unsafe_unretained typeof(self) weakSelf = self;
     BRTBeacon *beacon = [self.beacons objectAtIndex:indexPath.row];
-    [beacon connectToBeaconWithCompletion:^(BOOL connected, NSError *error) {
-        if (connected) {
-            [weakSelf performSegueWithIdentifier:@"config" sender:beacon];
-        }else{
-            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"设备连接中断" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+    
+    switch (self.type.integerValue) {
+        case 0:
+        {
+            [beacon connectToBeaconWithCompletion:^(BOOL connected, NSError *error) {
+                if (connected) {
+                    [weakSelf performSegueWithIdentifier:@"config" sender:beacon];
+                }else{
+                    showAlert(@"设备连接中断");
+                }
+            }];
+            
         }
-    }];
+            break;
+        case 1:
+        {
+            if (beacon.proximityUUID) {
+                [self performSegueWithIdentifier:@"notify" sender:beacon];
+            }else{
+                if (!([CLLocationManager locationServicesEnabled] &&
+                      [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized)) {
+                        showAlert(@"该功能需要打开 系统设置->隐私->定位服务->BrightBeacon");
+                }else{
+                    showAlert(@"无法支持该设备，请监听该设备的UUID，或前往配置->设置该设备为默认UUID");
+                }
+            }
+        }
+            break;
+        case 2:
+        {
+            [beacon connectToBeaconWithCompletion:^(BOOL connected, NSError *error) {
+                if (connected) {
+                    [beacon disconnectBeacon];
+                    [weakSelf performSegueWithIdentifier:@"adjust" sender:beacon];
+                }else{
+                    [[[UIAlertView alloc] initWithTitle:@"提示" message:@"设备连接中断" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+                }
+            }];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"config"]) {
-        [segue.destinationViewController setValue:sender forKey:@"beacon"];
-    }
+    [segue.destinationViewController setValue:sender forKey:@"beacon"];
 }
 @end
