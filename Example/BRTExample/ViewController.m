@@ -7,12 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "BRTBeaconManager.h"
-#import "BRTBeacon.h"
 
-
-@interface ViewController ()<BRTBeaconManagerDelegate>
-
+@interface ViewController ()
 @end
 
 @implementation ViewController
