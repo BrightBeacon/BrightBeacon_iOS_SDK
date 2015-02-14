@@ -120,7 +120,7 @@
 - (IBAction)saveClick:(id)sender {
     NSDictionary *values = @{B_UUID: self.UUIDText.text,
                              B_MAJOR:self.majorText.text,
-                             B_MIOR:self.minorText.text,
+                             B_MINOR:self.minorText.text,
                              B_NAME:self.nameText.text,
                              B_MEASURED:self.measuredPowerText.text,
                              B_TX:[NSString stringWithFormat:@"%d",self.TXSegment.selectedSegmentIndex],

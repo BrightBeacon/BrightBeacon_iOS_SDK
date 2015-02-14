@@ -31,9 +31,9 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 /// @name beacon快捷扫描BrightBeacon相关的方法
 
 /**
-* 注册开发者appkey，申请地址：http://www.brtbeacon.com/developers.shtml
+* 注册开发者appKey，申请地址：http://developer.brtbeacon.com
 *
-* @param appKey Bright beacon 开发者密钥
+* @param appKey BrightBeacon开发者密钥
 *
 * @return void
 */
@@ -54,9 +54,9 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 + (NSArray*)BRTBeacons;
 
 /**
- * 扫描BrightBeacon设备，uuids为NSUUID数组(留空则启用默认的UUID):IOS6.x该参数无效，IOS7.x该参数用于构造BRTBeaconRegion来实现range beacon，提高RSSI精度
+ * 扫描BrightBeacon设备，uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描)
  *
- * @param completion 蓝牙扫描、区域扫描/监测回调
+ * @param completion 扫描Beacon回调（1秒/次）
  *
  * @return void
  */
@@ -64,38 +64,72 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 + (void) startRangingWithUuids:(NSArray*)uuids onCompletion:(RangingBrightBeaconsCompletionBlock)completion NS_AVAILABLE_IOS(6_0);
 
 /**
- * 仅支持IOS7以上，扫描BrightBeacon设备、区域(<20)监测（支持后台模式）,regions为BRTBeaconRegion数组(留空则启用默认的UUID)
+ * 仅支持IOS7以上，扫描BrightBeacon设备,regions为BRTBeaconRegion数组(留空则启用默认的UUID)
  *
- * @param completion 蓝牙扫描、区域扫描/监测回调
+ * @param completion 扫描Beacon回调（1秒/次）
  *
  * @return void
  */
 + (void) startRangingBeaconsInRegions:(NSArray*)regions onCompletion:(RangingBrightBeaconsCompletionBlock)completion NS_AVAILABLE_IOS(7_0);
 
 /**
- * 在后台监听beacon regions
- * 结果将自动回调到AppDelegate中
+ * 停止扫描BrightBeacon设备
+ *
+ * @return void
+ */
++ (void) stopRangingBrightBeacons;
+
+/**
+ * 以下是在后台监听区域的回调函数，请拷贝需要的回调到AppDelegate
+监听失败回调
+-(void)beaconManager:(BRTBeaconManager *)manager monitoringDidFailForRegion:(BRTBeaconRegion *)region withError:(NSError *)error;
+进入区域回调
+-(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region;
+离开区域回调
+-(void)beaconManager:(BRTBeaconManager *)manager didExitRegion:(BRTBeaconRegion *)region;
+锁屏区域检测、requestStateForRegions回调
+-(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
+- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error;
+
+用于修改接收后台区域监听回调类，SDK默认已经设置回调到AppDelegate，如果需要改为其他handler，此handler实体必须与AppDelegate随同启动，否则无法接收到后台beacon推送
+ *
+ * @param handler 用于接收后台区域监听回调函数的类
+ *
+ * @return void
+ */
++ (id)regionHander:(id)handler;
+
+/**
+ *  请求监听状态，IOS6始终返回nil
+ *
+ *  @param 需要请求的区域标识，uuid必须传人，major或minor按实际情况选传 示例：{uuid:...,major:@0}
+ *
+ *  @return 区域监听状态 nil为无监听 示例：{in:@YES,out:@NO,display:@YES}
+ */
++ (NSDictionary*)isMonitoring:(NSDictionary*)dict NS_AVAILABLE_IOS(6_0);
+
+/**
+ * 开启监听要求IOS7以上系统；如果需要退出后台监听需要打开 应用程序后台刷新；状态会默认回调到appDelegate中：
+ *-(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region;
  
--(void)beaconManager:(BRTBeaconManager *)manager
-monitoringDidFailForRegion:(BRTBeaconRegion *)region
-           withError:(NSError *)error;
-
--(void)beaconManager:(BRTBeaconManager *)manager
-      didEnterRegion:(BRTBeaconRegion *)region;
-
--(void)beaconManager:(BRTBeaconManager *)manager
-       didExitRegion:(BRTBeaconRegion *)region;
-
--(void)beaconManager:(BRTBeaconManager *)manager
-   didDetermineState:(CLRegionState)state
-           forRegion:(BRTBeaconRegion *)region;
-
+ *-(void)beaconManager:(BRTBeaconManager *)manager didExitRegion:(BRTBeaconRegion *)region;
+ 
+ *-(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
+ *
  * @param @[region1,region2]
  *
  * @return void
  */
 + (void) startMonitoringForRegions:(NSArray *)regions  NS_AVAILABLE_IOS(7_0);
 
+/**
+ * 立即查询是否位于指定区域；状态会回调到appDelegate中：
+ -(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
+ *
+ * @param @[region1,region2]
+ *
+ * @return void
+ */
 + (void) requestStateForRegions:(NSArray *)regions  NS_AVAILABLE_IOS(7_0);
 
 /**
@@ -103,7 +137,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  *
  * @return void
  */
-+ (void) stopRangingBrightBeacons;
 + (void) stopMonitoringForRegions:(NSArray *)regions;
 
 /**

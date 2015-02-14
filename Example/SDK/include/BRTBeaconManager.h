@@ -13,7 +13,7 @@
 #import "BRTBeacon.h"
 
 #define iszh [[NSLocale preferredLanguages][0] rangeOfString:@"zh"].location==0
-#define BLE_SHOWTIPS YES
+#define BLE_SHOWTIPS NO
 #define BLE_TITLE iszh?@"需要打开蓝牙":@"Please Turn on Bluetooth"
 #define BLE_TIPS iszh?@"使用低功耗蓝牙可以发现身边的更多信息":@"Using bluetooth to find beacon around"
 #define BLE_BUTTON iszh?@"好的":@"OK"
@@ -208,7 +208,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 /**
  * 开始监测区域Start monitoring for particular region.
- * 改功能在后台也能够工作.
+ * 该功能在后台也能够工作.
  * 只要你进入或者离开区域，都会回调: beaconManager:didEnterRegtion:
  * 或 beaconManager:didExitRegion:
  *
@@ -254,6 +254,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  * @param major beacon设备major值
  * @param minor beacon设备minor值
  * @param identifier 唯一的区域标识
+ * @param power 测量功率（1米处的RSSI值）
  *
  * @return void
  */
@@ -262,6 +263,12 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
                                    minor:(CLBeaconMinorValue)minor
                               identifier:(NSString*)identifier
                                    power:(NSNumber *)power;
+/**
+ * 是否正在模拟beacon广播
+ *
+ * @return void
+ */
+-(BOOL)isAdvertising;
 
 /**
  * 停止模拟beacon广播

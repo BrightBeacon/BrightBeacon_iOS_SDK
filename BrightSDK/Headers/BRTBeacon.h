@@ -469,7 +469,7 @@ extern CBCentralManager *centralManager;
 
 /**
  * 设置此Beacon处于开发者模式（DevelopMode）还是发布模式（PublishMode）
- * 如果Beacon处于开发者模式，则可以用32个0的SDK KEY进行任意链接， 如果Beacon处于发布模式，则需要对应配置过Beacon的SDK KEY 才能再一次进行连接，确保Beacon部署安全
+ * 如果Beacon处于开发者模式，则可以用32个0的APP KEY进行任意链接， 如果Beacon处于发布模式，则需要对应配置过Beacon的APP KEY 才能再一次进行连接，确保Beacon部署安全
  * @return void
  */
 - (void)writeBeaconMode:(DevelopPublishMode)mode withCompletion:(BRTCompletionBlock)completion;

@@ -11,19 +11,19 @@
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
 
-#define SDK_VERSION 2.0.1
+#define SDK_VERSION @"3.0.0"
 
-#define B_NAME @"bname"
-#define B_UUID @"buuid"
-#define B_MAJOR @"bmajor"
-#define B_MIOR @"bmior"
-#define B_MEASURED @"bmeasured"
-#define B_INTERVAL @"binterval"
-#define B_TX @"btx"
-#define B_LED @"bled"
-#define B_MODE @"bmode"
-#define B_BATTERY_INTERVAL @"bBatteryInterval"
-#define B_TEMPERATURE_INTERVAL @"bTemperatureInterval"
+#define B_NAME @"name"
+#define B_UUID @"uuid"
+#define B_MAJOR @"major"
+#define B_MINOR @"minor"
+#define B_MEASURED @"mPower"
+#define B_INTERVAL @"txInterval"
+#define B_TX @"txPower"
+#define B_LED @"ledState"
+#define B_MODE @"pMode"
+#define B_BATTERY_INTERVAL @"batteryInterval"
+#define B_TEMPERATURE_INTERVAL @"temperatureInterval"
 
 
 #define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
@@ -47,9 +47,35 @@ typedef enum : int
 
 typedef enum : int
 {
+    regionMonitorStateIn=0,
+    regionMonitorStateInAndOut,
+    regionMonitorStateInAndOutAndDisplay
+} regionMonitorState;
+/*
+ kCLErrorLocationUnknown  = 0,         // location is currently unknown, but CL will keep trying
+ kCLErrorDenied,                       // Access to location or ranging has been denied by the user
+ kCLErrorNetwork,                      // general, network-related error
+ kCLErrorHeadingFailure,               // heading could not be determined
+ kCLErrorRegionMonitoringDenied,       // Location region monitoring has been denied by the user
+ kCLErrorRegionMonitoringFailure,      // A registered region cannot be monitored
+ kCLErrorRegionMonitoringSetupDelayed, // CL could not immediately initialize region monitoring
+ kCLErrorRegionMonitoringResponseDelayed, // While events for this fence will be delivered, delivery will not occur immediately
+ kCLErrorGeocodeFoundNoResult,         // A geocode request yielded no result
+ kCLErrorGeocodeFoundPartialResult,    // A geocode request yielded a partial result
+ kCLErrorGeocodeCanceled,              // A geocode request was cancelled
+ kCLErrorDeferredFailed,               // Deferred mode failed
+ kCLErrorDeferredNotUpdatingLocation,  // Deferred mode failed because location updates disabled or paused
+ kCLErrorDeferredAccuracyTooLow,       // Deferred mode not supported for the requested accuracy
+ kCLErrorDeferredDistanceFiltered,     // Deferred mode does not support distance filters
+ kCLErrorDeferredCanceled,             // Deferred mode request canceled a previous request
+	kCLErrorRangingUnavailable,           // Ranging cannot be performed
+	kCLErrorRangingFailure,               // General ranging failure
+ */
+typedef enum : int
+{
     ErrorCodeNone = 0,      //正常
     ErrorCodeUnKnown = 99,  //未知连接错误
-    ErrorCode100 = 100,     //连接错误，SDK KEY不正确
+    ErrorCode100 = 100,     //连接错误，APP KEY不正确
     ErrorCode101 = 101,     //未识别的设备，无法连入
     ErrorCode102 = 102,     //网络连接失败
     ErrorCode103 = 103,     //未检测到电量传感器(读取传感器特征失败)
