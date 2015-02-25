@@ -54,8 +54,8 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 + (NSArray*)BRTBeacons;
 
 /**
- * 扫描BrightBeacon设备，uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描)
- *
+ * 扫描BrightBeacon设备，uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造区域BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描)
+ * @param uuids uuid数组
  * @param completion 扫描Beacon回调（1秒/次）
  *
  * @return void
@@ -64,8 +64,8 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 + (void) startRangingWithUuids:(NSArray*)uuids onCompletion:(RangingBrightBeaconsCompletionBlock)completion NS_AVAILABLE_IOS(6_0);
 
 /**
- * 仅支持IOS7以上，扫描BrightBeacon设备,regions为BRTBeaconRegion数组(留空则启用默认的UUID)
- *
+ * 仅支持IOS7以上，感知区域中BrightBeacon设备,regions为BRTBeaconRegion数组(留空则启用默认的UUID)
+ * @param regions 区域数组
  * @param completion 扫描Beacon回调（1秒/次）
  *
  * @return void
@@ -102,7 +102,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 /**
  *  请求监听状态，IOS6始终返回nil
  *
- *  @param 需要请求的区域标识，uuid必须传人，major或minor按实际情况选传 示例：{uuid:...,major:@0}
+ *  @param dict 需要请求的区域标识，uuid必须传人，major或minor按实际情况选传 示例：{uuid:...,major:@0}
  *
  *  @return 区域监听状态 nil为无监听 示例：{in:@YES,out:@NO,display:@YES}
  */
@@ -116,7 +116,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  
  *-(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
  *
- * @param @[region1,region2]
+ * @param regions @[region1,region2]
  *
  * @return void
  */
@@ -126,7 +126,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  * 立即查询是否位于指定区域；状态会回调到appDelegate中：
  -(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
  *
- * @param @[region1,region2]
+ * @param regions @[region1,region2]
  *
  * @return void
  */

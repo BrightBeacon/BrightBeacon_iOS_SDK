@@ -448,12 +448,13 @@ extern CBCentralManager *centralManager;
 /**
  *  云端更新固件
  *
- *  @param fwPathString
+ *  @param progress 更新进度0~100
+ *  @param completion 写入完成回调
  */
 -(void)updateBeaconFirmwareWithProgress:(BRTShortCompletionBlock)progress andCompletion:(BRTCompletionBlock)completion;
 
 /**
- * 重置beacon设备默认值，该操作要求已经成功执行 [BRTBeaconManager registerApp:YOUR_KEY];
+ * 重置beacon设备默认值，该操作要求已经成功执行 {@link registerApp:};
  *
  *
  * @return void

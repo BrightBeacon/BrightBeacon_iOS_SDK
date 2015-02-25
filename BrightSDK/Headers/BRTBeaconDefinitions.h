@@ -11,7 +11,7 @@
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
 
-#define SDK_VERSION @"3.0.0"
+#define SDK_VERSION @"3.0.1"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"

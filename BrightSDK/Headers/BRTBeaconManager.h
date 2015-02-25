@@ -170,18 +170,13 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  */
 - (NSSet*)monitoredRegions;
 
-/*
+/**
  *  rangedRegions
  *
  *  目前检测到正活跃的区域
+ * @return NSSet
  */
 - (NSSet*)rangedRegions;
-
-/**
- 屏蔽范围扫描时，未知状态的设备(proximity == 0)，默认NO.
-@property (nonatomic) BOOL avoidUnknownStateBeacons;
-@property (nonatomic, strong) BRTBeaconRegion*         virtualBeaconRegion;
- */
 
 /**
  * 注册开发者appkey，申请地址：http://www.brtbeacon.com/developers.shtml
