@@ -1,0 +1,1053 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>BRTBeaconSDK Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">BrightSDK </a></h1>
+				<a id="developerHome" href="../index.html">智石科技</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">BRTBeaconSDK Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/BRTBeaconManager">&nbsp;&nbsp;&nbsp;&nbsp;+ BRTBeaconManager</option>
+	
+	<option value="//api/name/BRTBeacons">&nbsp;&nbsp;&nbsp;&nbsp;+ BRTBeacons</option>
+	
+	<option value="//api/name/isMonitoring:">&nbsp;&nbsp;&nbsp;&nbsp;+ isMonitoring:</option>
+	
+	<option value="//api/name/regionHander:">&nbsp;&nbsp;&nbsp;&nbsp;+ regionHander:</option>
+	
+	<option value="//api/name/registerApp:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerApp:</option>
+	
+	<option value="//api/name/requestStateForRegions:">&nbsp;&nbsp;&nbsp;&nbsp;+ requestStateForRegions:</option>
+	
+	<option value="//api/name/rssiToDistance:">&nbsp;&nbsp;&nbsp;&nbsp;+ rssiToDistance:</option>
+	
+	<option value="//api/name/startMonitoringForRegions:">&nbsp;&nbsp;&nbsp;&nbsp;+ startMonitoringForRegions:</option>
+	
+	<option value="//api/name/startRangingBeaconsInRegions:onCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;+ startRangingBeaconsInRegions:onCompletion:</option>
+	
+	<option value="//api/name/startRangingWithUuids:onCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;+ startRangingWithUuids:onCompletion:</option>
+	
+	<option value="//api/name/stopMonitoringForRegions:">&nbsp;&nbsp;&nbsp;&nbsp;+ stopMonitoringForRegions:</option>
+	
+	<option value="//api/name/stopRangingBrightBeacons">&nbsp;&nbsp;&nbsp;&nbsp;+ stopRangingBrightBeacons</option>
+	
+	
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_beacon快捷扫描BrightBeacon相关的方法">beacon快捷扫描BrightBeacon相关的方法</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/BRTBeaconManager">BRTBeaconManager</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/BRTBeacons">BRTBeacons</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isMonitoring:">isMonitoring:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/regionHander:">regionHander:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerApp:">registerApp:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestStateForRegions:">requestStateForRegions:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rssiToDistance:">rssiToDistance:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startMonitoringForRegions:">startMonitoringForRegions:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startRangingBeaconsInRegions:onCompletion:">startRangingBeaconsInRegions:onCompletion:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startRangingWithUuids:onCompletion:">startRangingWithUuids:onCompletion:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stopMonitoringForRegions:">stopMonitoringForRegions:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stopRangingBrightBeacons">stopRangingBrightBeacons</a></span></li>
+	
+</ul></li>
+
+
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="BRTBeaconSDK Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">BRTBeaconSDK Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">BRTBeaconSDK.h<br />BRTBeaconSDK.m</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>BRTBeaconSDK类定义了快捷操作BrightBeacon方法.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="beacon快捷扫描BrightBeacon相关的方法" name="task_beacon快捷扫描BrightBeacon相关的方法"></a>
+						
+<h3 class="subsubtitle task-title">beacon快捷扫描BrightBeacon相关的方法</h3>
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerApp:">+&nbsp;registerApp:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/BRTBeaconManager">+&nbsp;BRTBeaconManager</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/BRTBeacons">+&nbsp;BRTBeacons</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startRangingWithUuids:onCompletion:">+&nbsp;startRangingWithUuids:onCompletion:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startRangingBeaconsInRegions:onCompletion:">+&nbsp;startRangingBeaconsInRegions:onCompletion:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stopRangingBrightBeacons">+&nbsp;stopRangingBrightBeacons</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/regionHander:">+&nbsp;regionHander:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isMonitoring:">+&nbsp;isMonitoring:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startMonitoringForRegions:">+&nbsp;startMonitoringForRegions:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestStateForRegions:">+&nbsp;requestStateForRegions:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stopMonitoringForRegions:">+&nbsp;stopMonitoringForRegions:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rssiToDistance:">+&nbsp;rssiToDistance:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/BRTBeaconManager" title="BRTBeaconManager"></a>
+	<h3 class="subsubtitle method-title">BRTBeaconManager</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>BrightBeacon管理类，控制Beacon扫描、蓝牙扫描、区域检测、本地消息提醒</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (BRTBeaconManager *)BRTBeaconManager</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a></p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>BrightBeacon管理类，控制Beacon扫描、蓝牙扫描、区域检测、本地消息提醒</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/BRTBeacons" title="BRTBeacons"></a>
+	<h3 class="subsubtitle method-title">BRTBeacons</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>BrightBeacon设备列表，设备的距离会及时更新</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)BRTBeacons</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>NSArray</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>BrightBeacon设备列表，设备的距离会及时更新</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isMonitoring:" title="isMonitoring:"></a>
+	<h3 class="subsubtitle method-title">isMonitoring:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>请求监听状态，IOS6始终返回nil</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSDictionary *)isMonitoring:(NSDictionary *)<em>dict</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dict</em></dt>
+			<dd><p>需要请求的区域标识，uuid必须传人，major或minor按实际情况选传 示例：{uuid:&hellip;,major:@0}</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>区域监听状态 nil为无监听 示例：{in:@YES,out:@NO,display:@YES}</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>请求监听状态，IOS6始终返回nil</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/regionHander:" title="regionHander:"></a>
+	<h3 class="subsubtitle method-title">regionHander:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>用于修改接收后台区域监听回调类，SDK默认已经设置回调到AppDelegate，如果需要改为其他handler，此handler实体必须与AppDelegate随同启动，否则无法接收到后台beacon推送</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (id)regionHander:(id)<em>handler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>handler</em></dt>
+			<dd><p>用于接收后台区域监听回调函数的类，传入nil用作返回当前使用的<a href="#//api/name/handler">handler</a></p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="#//api/name/handler">handler</a> 返回当前使用的handler，默认返回AppDelegate</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>用于修改接收后台区域监听回调类，SDK默认已经设置回调到AppDelegate，如果需要改为其他handler，此handler实体必须与AppDelegate随同启动，否则无法接收到后台beacon推送</p>
+
+<p>以下是在后台监听区域的回调函数，请拷贝需要的回调到AppDelegate或对应的handler类
+<br/>监听失败回调
+<br/>-(void)beaconManager:(<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> <em>)manager monitoringDidFailForRegion:(<a href="../Classes/BRTBeaconRegion.html">BRTBeaconRegion</a> </em>)region withError:(NSError <em>)error;
+<br/>进入区域回调
+<br/>-(void)beaconManager:(<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> </em>)manager didEnterRegion:(<a href="../Classes/BRTBeaconRegion.html">BRTBeaconRegion</a> <em>)region;
+<br/>离开区域回调
+<br/>-(void)beaconManager:(<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> </em>)manager didExitRegion:(<a href="../Classes/BRTBeaconRegion.html">BRTBeaconRegion</a> <em>)region;
+<br/>锁屏区域检测、requestStateForRegions回调
+<br/>-(void)beaconManager:(<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> </em>)manager didDetermineState:(CLRegionState)state forRegion:(<a href="../Classes/BRTBeaconRegion.html">BRTBeaconRegion</a> <em>)region;
+<br/>- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager </em>)peripheral error:(NSError *)error;</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerApp:" title="registerApp:"></a>
+	<h3 class="subsubtitle method-title">registerApp:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>注册开发者appKey，申请地址：<a href="http://developer.brtbeacon.com">http://developer.brtbeacon.com</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)registerApp:(NSString *)<em>appKey</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appKey</em></dt>
+			<dd><p>BrightBeacon开发者密钥</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>void</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>注册开发者appKey，申请地址：<a href="http://developer.brtbeacon.com">http://developer.brtbeacon.com</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestStateForRegions:" title="requestStateForRegions:"></a>
+	<h3 class="subsubtitle method-title">requestStateForRegions:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>立即查询是否位于指定区域；状态会回调到appDelegate中：</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)requestStateForRegions:(NSArray *)<em>regions</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>regions</em></dt>
+			<dd><p>@[region1,region2]</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>void</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>立即查询是否位于指定区域；状态会回调到appDelegate中：</p>
+
+<p>-(void)beaconManager:(<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> <em>)manager didDetermineState:(CLRegionState)state forRegion:(<a href="../Classes/BRTBeaconRegion.html">BRTBeaconRegion</a> </em>)region;</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rssiToDistance:" title="rssiToDistance:"></a>
+	<h3 class="subsubtitle method-title">rssiToDistance:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>rssi 转换成 距离（米）</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (float)rssiToDistance:(BRTBeacon *)<em>beacon</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>beacon</em></dt>
+			<dd><p>beacon设备，需要使用measured power值</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>float 距离（米）</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>rssi 转换成 距离（米）</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startMonitoringForRegions:" title="startMonitoringForRegions:"></a>
+	<h3 class="subsubtitle method-title">startMonitoringForRegions:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>开启监听要求IOS7以上系统；如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新；</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)startMonitoringForRegions:(NSArray *)<em>regions</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>regions</em></dt>
+			<dd><p>@[region1,region2]</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>void</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>开启监听要求IOS7以上系统；如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新；</p>
+
+<p>状态会默认回调到appDelegate中(或自定义的handler中{@link regionHandler:})：
+<br/>-(void)beaconManager:(<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> <em>)manager didEnterRegion:(<a href="../Classes/BRTBeaconRegion.html">BRTBeaconRegion</a> </em>)region;</p>
+
+<p><br/>-(void)beaconManager:(<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> <em>)manager didExitRegion:(<a href="../Classes/BRTBeaconRegion.html">BRTBeaconRegion</a> </em>)region;</p>
+
+<p><br/>-(void)beaconManager:(<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> <em>)manager didDetermineState:(CLRegionState)state forRegion:(<a href="../Classes/BRTBeaconRegion.html">BRTBeaconRegion</a> </em>)region;</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startRangingBeaconsInRegions:onCompletion:" title="startRangingBeaconsInRegions:onCompletion:"></a>
+	<h3 class="subsubtitle method-title">startRangingBeaconsInRegions:onCompletion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>仅支持IOS7以上，感知区域中BrightBeacon设备,regions为BRTBeaconRegion数组(留空则启用默认的UUID)</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)startRangingBeaconsInRegions:(NSArray *)<em>regions</em> onCompletion:(RangingBrightBeaconsCompletionBlock)<em>completion</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>regions</em></dt>
+			<dd><p>区域数组</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completion</em></dt>
+			<dd><p>扫描Beacon回调（1秒/次）</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>void</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>仅支持IOS7以上，感知区域中BrightBeacon设备,regions为BRTBeaconRegion数组(留空则启用默认的UUID)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startRangingWithUuids:onCompletion:" title="startRangingWithUuids:onCompletion:"></a>
+	<h3 class="subsubtitle method-title">startRangingWithUuids:onCompletion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>扫描BrightBeacon设备，uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造区域BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描)</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)startRangingWithUuids:(NSArray *)<em>uuids</em> onCompletion:(RangingBrightBeaconsCompletionBlock)<em>completion</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>uuids</em></dt>
+			<dd><p>uuid数组</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completion</em></dt>
+			<dd><p>扫描Beacon回调（1秒/次）</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>void</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>扫描BrightBeacon设备，uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造区域BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stopMonitoringForRegions:" title="stopMonitoringForRegions:"></a>
+	<h3 class="subsubtitle method-title">stopMonitoringForRegions:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>停止扫描、监测,if(regions==nil)停止所有当前监听区域</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)stopMonitoringForRegions:(NSArray *)<em>regions</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>regions</em></dt>
+			<dd><p>@[region1,region2]</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>void</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>停止扫描、监测,if(regions==nil)停止所有当前监听区域</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stopRangingBrightBeacons" title="stopRangingBrightBeacons"></a>
+	<h3 class="subsubtitle method-title">stopRangingBrightBeacons</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>停止扫描BrightBeacon设备</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)stopRangingBrightBeacons</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>void</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>停止扫描BrightBeacon设备</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+                    
+                    
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-02-26)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
