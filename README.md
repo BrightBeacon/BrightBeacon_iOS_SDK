@@ -2,66 +2,151 @@ iOS-SDK
 =======
 
 ##BrightSDK
-### Introduction
+### 概述
 
-Bright SDK plays with Apple iBeacon technology, using Bright hardware beacons as well as Bright Virtual Beacon iOS Application. To find out more about it read API section on our website, please. You can review SDK documentation and check our Community Portal to get answers for most common questions related to our Hardware and Software.
+智石开发包（BrightSDK）符合苹果的iBeacon技术，提供了扫描或管理Beacon设备或模拟iBeacon设备的API。你可以访问[智石官网（http://www.brtbeacon.com）](http://www.brtbeacon.com)了解更多信息，也可以查阅SDK文档或前往我们的[开发者社区（http://bbs.brtbeacon.com）](http://bbs.brtbeacon.com)交流和找到我们软硬件相关问题。
 
-Support Bluetooth4.0 (above iOS 6.0).
+智石开发包需要手持设备支持蓝牙4.0及其以上，并IOS6.0及其以上系统。
 
-## How to install
-### From CocoaPods
-Remember to update your local repo
+
+##如何集成（任选其一）
+###一、使用CocoaPods集成
+添加以下代码到您Pod项目的Podfile文件：
+
 ```
-pod repo update
-```
-Add the following line to your Podfile:
-
 	pod 'BrightSDK'
+```
+在Podfile文件目录运行命令：
+(PS：请事先更新你本地的CocoaPods库：pod repo update)
 
-
-Then run the following command in the same directory as your Podfile:
-
+```
 	pod update
-	
-### Normal way
-Alternatively, you can install manually. Follow steps described below:
+```
 
-1. Copy BrightSDK directory (containing libBrightSDK.a and Headers) into your project directory.
+###二、使用常规集成
+使用如下步骤手动集成：
 
-2. Open your project settings and go to Build Phase tab. In the Link library with binaries section click +. In the popup window click add another at the bottom and select libBrightSDK.a library file.
+1、复制BrightSDK目录（包含 libBrightSDK.a 和 Headers）到你的项目目录
 
-3. In addition BrightSDK requires following native iOS frameworks:
+2、打开你的project setting->build phase,在Link library with binaries点击+，在弹出框里边选择libBrightSDK.a
 
-    ```
+3、注意BrightSDK需要以下本地IOS库：
+
+```
 	CoreBluetooth.framework
 	CoreLocation.framework
 	SystemConfiguration.framework
-    ```
-
-4. Go to Build Settings section of project settings and search for Header Search Paths. Add line containing "$(SRCROOT)/../BrightSDK/Headers".
-
-Congratulations! You are done.
-## How to use
-###Scan BrightBeacons
 ```
-    [BRTBeaconSDK startRangingOption:RangingOptionOnRanged uuids:nil onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
-        if (!error) {
-        	//beacons: all brigthbeacons in all regions
-        	//region: current region
-        	//error: error info
+4、前往 project settings 的 build settings，搜索Header Search Paths. 添加"$(SRCROOT)/../BrightSDK/Headers".
+
+恭喜，集成完毕.
+
+##如何调用
+`1、注册APPKEY`<br/>
+
+- 登录BrightSDK的官方网站添加应用并获取 APPKEY。如果尚未注册，[请点击这里注册并创建应用 APPKEY](http://developer.brtbeacon.com)
+- 初始化BrightSDK
+
+打开*AppDelegate.m(*代表你的工程名字)  导入文件头BRTBeaconManager.h
+
+```
+#import "BRTBeaconManager.h"
+```
+在- (BOOL)application: didFinishLaunchingWithOptions:方法中调用registerApp方法来初始化SDK
+
+```
+[BRTBeaconManager registerApp:YOUR_APPKEY];
+```
+`2、常见的API调用`<br/>
+
+ - 扫描范围内所有BrightBeacon设备
+ 
+ ```
+//支持IOS6以上
+ 扫描BrightBeacon设备，uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造区域BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描)
+ uuids:
+	NSUUID数组，筛选需要的uuid设备
+[BRTBeaconSDK startRangingWithUuids:uuids onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
+}];
+//
+//仅支持IOS7以上，感知区域中BrightBeacon设备,regions为BRTBeaconRegion数组(留空则启用默认的UUID)
+[BRTBeaconSDK startRangingBeaconsInRegions:regions onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
+}];
+ ```
+ 
+ - 监听区域方法
+ 
+ ```
+ * 以下是在后台运行、完全退出程序监听区域的回调函数，请拷贝需要的回调到AppDelegate
+监听失败回调
+-(void)beaconManager:(BRTBeaconManager *)manager monitoringDidFailForRegion:(BRTBeaconRegion *)region withError:(NSError *)error{}
+进入区域回调
+-(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region{
+	if(region.notifyOnEntry){
+		//to do
+	}
+}
+离开区域回调
+-(void)beaconManager:(BRTBeaconManager *)manager didExitRegion:(BRTBeaconRegion *)region{
+	if(region.notifyOnExit){
+		//to do
+	}
+}
+屏幕点亮区域检测、requestStateForRegions回调
+-(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region{
+	if(region.notifyEntryStateOnDisplay){
+		//to do
+	}else if(region.notifyOnEntry){
+		//to do
+	}else if(region.notifyOnExit){
+		//to do
+	}
+}
+```
+- 启动监听区域
+
+```
+ region：需要监听的区域，支持后台监听（<=20）
+ 　
+     BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:BRT_PROXIMITY_UUID identifier:kUUID];
+    region.notifyOnEntry = YES;
+    region.notifyOnExit = YES;
+    region.notifyEntryStateOnDisplay = YES;
+    [BRTBeaconSDK startMonitoringForRegions:@[region]];
+ ```
+ 
+ - 请求指定区域状态
+ 
+ ```
+     [BRTBeaconSDK requestStateForRegions:@[region]];
+ ```
+ - 连接Bright Beacon
+ 
+ ```
+ 	//连接前务必已经使用对应的APPKEY，否则会连接失败
+ 	//连接设备
+     [beacon connectToBeaconWithCompletion:^(BOOL connected, NSError *error) {
+        if(connected){
+        	//连接成功
         }
     }];
-    //uuid limit
-    [BRTBeaconSDK startRangingOption:RangingOptionOnRanged uuids:[[[NSUUID alloc] initWithUUIDString:@"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"]] onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
-        if (!error) {
-        	//beacons: all brigthbeacons in all regions
-        	//region: current region
-        	//error: error info
-        }
+    //写入数据
+        NSDictionary *values = @{B_UUID: <VALUE>,
+                             B_MAJOR:<VALUE>,
+                             B_MINOR:<VALUE>,
+                             B_NAME:<VALUE>,
+                             B_MEASURED:<VALUE>,
+                             B_TX:<VALUE>,
+                             B_MODE:<VALUE>,
+                             B_INTERVAL:<VALUE>};
+    [beacon writeBeaconValues:values withCompletion:^(NSError *error) {
+    	if(!error){
+    		//写人成功
+    	}
     }];
-    
-```
-## Docs
-* [Current Documentation](http://brtbeacon.com/developers_ios.html)
-* [API Documentation](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)
-* [BBS for BrightBeacon](http://bbs.brtbeacon.com)
+ ```
+
+## 相关文档或网站
+* [集成文档](http://www.brtbeacon.com/home/document_ios.shtml)
+* [API文档](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)
+* [开发者社区](http://bbs.brtbeacon.com)
