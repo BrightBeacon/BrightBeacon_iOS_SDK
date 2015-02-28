@@ -79,23 +79,24 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  */
 + (void) stopRangingBrightBeacons;
 
-/**
- * 以下是在后台监听区域的回调函数，请拷贝需要的回调到AppDelegate
-监听失败回调
--(void)beaconManager:(BRTBeaconManager *)manager monitoringDidFailForRegion:(BRTBeaconRegion *)region withError:(NSError *)error;
-进入区域回调
--(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region;
-离开区域回调
--(void)beaconManager:(BRTBeaconManager *)manager didExitRegion:(BRTBeaconRegion *)region;
-锁屏区域检测、requestStateForRegions回调
--(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
-- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error;
-
-用于修改接收后台区域监听回调类，SDK默认已经设置回调到AppDelegate，如果需要改为其他handler，此handler实体必须与AppDelegate随同启动，否则无法接收到后台beacon推送
+/** 
  *
- * @param handler 用于接收后台区域监听回调函数的类
+ *用于修改接收后台区域监听回调类，SDK默认已经设置回调到AppDelegate，如果需要改为其他handler，此handler实体必须与AppDelegate随同启动，否则无法接收到后台beacon推送
  *
- * @return void
+ * 以下是在后台监听区域的回调函数，请拷贝需要的回调到AppDelegate或对应的handler类
+ *<br/>监听失败回调
+ *<br/>-(void)beaconManager:(BRTBeaconManager *)manager monitoringDidFailForRegion:(BRTBeaconRegion *)region withError:(NSError *)error;
+ *<br/>进入区域回调
+ *<br/>-(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region;
+ *<br/>离开区域回调
+ *<br/>-(void)beaconManager:(BRTBeaconManager *)manager didExitRegion:(BRTBeaconRegion *)region;
+ *<br/>锁屏区域检测、requestStateForRegions回调
+ *<br/>-(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
+ *<br/>- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error;
+ *
+ * @param handler 用于接收后台区域监听回调函数的类，传入nil用作返回当前使用的handler
+ *
+ * @return handler 返回当前使用的handler，默认返回AppDelegate
  */
 + (id)regionHander:(id)handler;
 
@@ -109,12 +110,14 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 + (NSDictionary*)isMonitoring:(NSDictionary*)dict NS_AVAILABLE_IOS(6_0);
 
 /**
- * 开启监听要求IOS7以上系统；如果需要退出后台监听需要打开 应用程序后台刷新；状态会默认回调到appDelegate中：
- *-(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region;
- 
- *-(void)beaconManager:(BRTBeaconManager *)manager didExitRegion:(BRTBeaconRegion *)region;
- 
- *-(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
+ * 开启监听要求IOS7以上系统；如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新；
+ *
+ * 状态会默认回调到appDelegate中(或自定义的handler中{@link regionHandler:})：
+ *<br/>-(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region;
+ *
+ *<br/>-(void)beaconManager:(BRTBeaconManager *)manager didExitRegion:(BRTBeaconRegion *)region;
+ *
+ *<br/>-(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
  *
  * @param regions @[region1,region2]
  *
@@ -124,7 +127,8 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 
 /**
  * 立即查询是否位于指定区域；状态会回调到appDelegate中：
- -(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
+ *
+ *-(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
  *
  * @param regions @[region1,region2]
  *
@@ -135,12 +139,16 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 /**
  * 停止扫描、监测,if(regions==nil)停止所有当前监听区域
  *
+ * @param regions @[region1,region2]
+ *
  * @return void
  */
 + (void) stopMonitoringForRegions:(NSArray *)regions;
 
 /**
  * rssi 转换成 距离（米）
+ *
+ * @param beacon beacon设备，需要使用measured power值
  *
  * @return float 距离（米）
  */

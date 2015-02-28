@@ -11,7 +11,7 @@
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
 
-#define SDK_VERSION @"3.0.1"
+#define SDK_VERSION @"3.0.2"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
@@ -31,7 +31,7 @@
 #define DEFAULT_MINOR 0
 #define DEFAULT_MEASURED -65
 #define DEFAULT_LED 1
-#define DEFAULT_INTERVAL 400
+#define DEFAULT_INTERVAL 800
 #define DEFAULT_TX 2
 #define DEFAULT_NAME  @"BrightBeacon"
 #define DEFAULT_MODE 0
