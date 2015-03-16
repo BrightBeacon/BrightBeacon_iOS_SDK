@@ -4,7 +4,7 @@ iOS-SDK
 ##BrightSDK
 ### 概述
 
-智石开发包（BrightSDK）符合苹果的iBeacon技术，提供了扫描或管理Beacon设备或模拟iBeacon设备的API。你可以访问[智石官网（http://www.brtbeacon.com）](http://www.brtbeacon.com)了解更多信息，也可以查阅SDK文档或前往我们的[开发者社区（http://bbs.brtbeacon.com）](http://bbs.brtbeacon.com)交流和找到我们软硬件相关问题。
+智石开发包（BrightSDK）符合苹果的iBeacon技术，提供了扫描或管理Beacon设备或模拟iBeacon设备的API。你可以访问[智石官网（http://www.brtbeacon.com）](http://www.brtbeacon.com)了解更多信息，也可以查阅[SDK文档](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)或前往我们的[开发者社区（http://bbs.brtbeacon.com）](http://bbs.brtbeacon.com)交流和找到我们软硬件相关问题。
 
 智石开发包需要手持设备支持蓝牙4.0及其以上，并IOS6.0及其以上系统。
 
@@ -39,7 +39,7 @@ iOS-SDK
 ```
 4、前往 project settings 的 build settings，搜索Header Search Paths. 添加"$(SRCROOT)/../BrightSDK/Headers".
 
-恭喜，集成完毕.
+恭喜，集成完毕，或查看[更多集成相关内容](http://www.brtbeacon.com/home/document_ios.shtml).
 
 ##如何调用
 `1、注册APPKEY`<br/>
@@ -47,15 +47,16 @@ iOS-SDK
 - 登录BrightSDK的官方网站添加应用并获取 APPKEY。如果尚未注册，[请点击这里注册并创建应用 APPKEY](http://developer.brtbeacon.com)
 - 初始化BrightSDK
 
-打开*AppDelegate.m(*代表你的工程名字)  导入文件头BRTBeaconManager.h
+打开*AppDelegate.m(*代表你的工程名字)  导入文件头BRTBeaconSDK.h
 
 ```
-#import "BRTBeaconManager.h"
+#import "BRTBeaconSDK.h"
 ```
 在- (BOOL)application: didFinishLaunchingWithOptions:方法中调用registerApp方法来初始化SDK
 
 ```
-[BRTBeaconManager registerApp:YOUR_APPKEY];
+[BRTBeaconSDK registerApp:YOUR_APPKEY];
+[BRTBeaconSDK registerApp:(NSString *)appKey onCompletion:(BRTCompletionBlock)completion];
 ```
 `2、常见的API调用`<br/>
 

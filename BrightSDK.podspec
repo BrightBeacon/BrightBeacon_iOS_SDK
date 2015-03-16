@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name         = "BrightSDK"
-  s.version      = "2.0.1"
+  s.version      = "3.0.4"
   s.summary      = "iOS library for Bright iBeacon devices"
   s.homepage     = "http://www.brtbeacon.com"
   s.author       = { "BrightBeacon" => "o2owlkj@163.com" }
   s.platform     = :ios 
-  s.source       = { :git => "https://github.com/BrightBeacon/BrightBeacon_iOS_SDK.git", :tag => "2.0.1" }
+  s.source       = { :git => "https://github.com/BrightBeacon/BrightBeacon_iOS_SDK.git", :tag => "3.0.4" }
   s.source_files =  'BrightSDK/**/*.h'
   s.preserve_paths = 'BrightSDK/libBrightSDK.a'
   s.vendored_libraries = 'BrightSDK/libBrightSDK.a'

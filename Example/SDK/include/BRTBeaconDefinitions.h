@@ -10,8 +10,20 @@
 #import <Foundation/Foundation.h>
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
-
-#define SDK_VERSION @"3.0.2"
+/**
+ * 更新日志
+ *
+ *  3.0.4 修复第一次启动无法成功开启扫描
+ * 
+ *  3.0.3 提供IOS8定位权限选择、蓝牙一直扫描
+ *
+ *  3.0.2 新增isBrightBeacon属性
+ *
+ *
+ *  3.0.0 注释完善
+ *
+ */
+#define SDK_VERSION @"3.0.4"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
@@ -39,6 +51,14 @@
 #define kNotifyConnect @"kNotifyConnect"
 #define kNotifyDisconnect @"kNotifyDisconnect"
 
+/**
+ *  IOS8以上新增获取定位权限、状态，请在Info.plist配置获取时提示用户内容Key：NSLocationAlwaysUsageDescription和NSLocationWhenInUseUsageDescription
+ *
+ *  1、Always:允许后台定位，可以支持后台区域推送，网络数据传输等
+ *  2、WhenInUse:只允许运行时定位，不支持后台区域感知
+ *  使用[CLLocationManager authorizationStatus]获取定位状态
+ */
+#define isLocationAlways NO
 typedef enum : int
 {
     DevelopMode=0,  //开发模式
@@ -47,36 +67,20 @@ typedef enum : int
 
 typedef enum : int
 {
-    regionMonitorStateIn=0,
-    regionMonitorStateInAndOut,
-    regionMonitorStateInAndOutAndDisplay
-} regionMonitorState;
-/*
- kCLErrorLocationUnknown  = 0,         // location is currently unknown, but CL will keep trying
- kCLErrorDenied,                       // Access to location or ranging has been denied by the user
- kCLErrorNetwork,                      // general, network-related error
- kCLErrorHeadingFailure,               // heading could not be determined
- kCLErrorRegionMonitoringDenied,       // Location region monitoring has been denied by the user
- kCLErrorRegionMonitoringFailure,      // A registered region cannot be monitored
- kCLErrorRegionMonitoringSetupDelayed, // CL could not immediately initialize region monitoring
- kCLErrorRegionMonitoringResponseDelayed, // While events for this fence will be delivered, delivery will not occur immediately
- kCLErrorGeocodeFoundNoResult,         // A geocode request yielded no result
- kCLErrorGeocodeFoundPartialResult,    // A geocode request yielded a partial result
- kCLErrorGeocodeCanceled,              // A geocode request was cancelled
- kCLErrorDeferredFailed,               // Deferred mode failed
- kCLErrorDeferredNotUpdatingLocation,  // Deferred mode failed because location updates disabled or paused
- kCLErrorDeferredAccuracyTooLow,       // Deferred mode not supported for the requested accuracy
- kCLErrorDeferredDistanceFiltered,     // Deferred mode does not support distance filters
- kCLErrorDeferredCanceled,             // Deferred mode request canceled a previous request
-	kCLErrorRangingUnavailable,           // Ranging cannot be performed
-	kCLErrorRangingFailure,               // General ranging failure
- */
-typedef enum : int
-{
-    ErrorCodeNone = 0,      //正常
-    ErrorCodeUnKnown = 99,  //未知连接错误
-    ErrorCode100 = 100,     //连接错误，APP KEY不正确
-    ErrorCode101 = 101,     //未识别的设备，无法连入
+    ErrorCodeUnKnown = 0,  //未知错误
+    CBErrorCode1 = 1,     //参数无效
+    CBErrorCode2 = 2,     //指定属性无效
+    CBErrorCode3 = 3,     //设备未连入
+    CBErrorCode4 = 4,     //设备空间资源耗尽
+    CBErrorCode5 = 5,     //操作被取消
+    CBErrorCode6 = 6,     //连接超时
+    CBErrorCode7 = 7,     //设备未连接
+    CBErrorCode8 = 8,     //指定的UUID不允许
+    CBErrorCode9 = 9,     //设备正在广播
+    CBErrorCode10 = 10,     //设备连接失败
+    
+    ErrorCode100 = 100,     //APP KEY不正确
+    ErrorCode101 = 101,     //未识别的设备(未检测到peripheral或非BrightBeacon设备)
     ErrorCode102 = 102,     //网络连接失败
     ErrorCode103 = 103,     //未检测到电量传感器(读取传感器特征失败)
     ErrorCode104 = 104,     //未检测到温度传感器、读取数据有误(读取传感器特征失败)

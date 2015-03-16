@@ -16,7 +16,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [BRTBeaconManager registerApp:BRT_SDK_KEY];
+    [BRTBeaconSDK registerApp:BRT_SDK_KEY onCompletion:^(NSError *error) {
+        
+    }];
     return YES;
 }
 							

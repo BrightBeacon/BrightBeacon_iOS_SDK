@@ -33,11 +33,21 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 /**
 * 注册开发者appKey，申请地址：http://developer.brtbeacon.com
 *
-* @param appKey BrightBeacon开发者密钥
+* @param appKey BrightBeacon AppKey
 *
 * @return void
 */
 + (void)registerApp:(NSString *)appKey;
+
+/**
+ * 注册并网络验证开发者appKey，申请地址：http://developer.brtbeacon.com
+ *
+ * @param appKey BrightBeacon AppKey
+ * @param completion 验证appKey有效性状态
+ *
+ * @return void
+ */
++ (void)registerApp:(NSString *)appKey onCompletion:(BRTCompletionBlock)completion;
 
 /**
 * BrightBeacon管理类，控制Beacon扫描、蓝牙扫描、区域检测、本地消息提醒
@@ -47,11 +57,18 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 + (BRTBeaconManager*) BRTBeaconManager;
 
 /**
- * BrightBeacon设备列表，设备的距离会及时更新
+ * BrightBeacon设备数组，设备的距离会及时更新
  *
  * @return NSArray
  */
 + (NSArray*)BRTBeacons;
+
+/**
+ * BrightBeacon设备集合，设备的距离会及时更新，以mac为key，如无mac以（Major+Minor）为key
+ *
+ * @return NSDictionary
+ */
++ (NSDictionary*)BRTBeaconsDictionary;
 
 /**
  * 扫描BrightBeacon设备，uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造区域BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描)
@@ -110,7 +127,8 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 + (NSDictionary*)isMonitoring:(NSDictionary*)dict NS_AVAILABLE_IOS(6_0);
 
 /**
- * 开启监听要求IOS7以上系统；如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新；
+ * 开启监听要求IOS7以上系统；
+ * 如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新,IOS8另需请求用户最高权限[CLLocationManager authorizationStatus]==4
  *
  * 状态会默认回调到appDelegate中(或自定义的handler中{@link regionHandler:})：
  *<br/>-(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region;
@@ -153,4 +171,5 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  * @return float 距离（米）
  */
 + (float)rssiToDistance:(BRTBeacon*)beacon;
+
 @end

@@ -79,8 +79,8 @@ extern CBCentralManager *centralManager;
 @property (nonatomic, unsafe_unretained)     id <BRTBeaconDelegate>  delegate;
 
 /////////////////////////////////////////////////////
-// 蓝牙设备也可以通过下面的方法识别到
-// startBrightBeaconsDiscoveryForRegion:
+//
+//
 
 /**
  *  invalidTime
@@ -94,7 +94,7 @@ extern CBCentralManager *centralManager;
  *  macAddress
  *
  *  Discussion:
- *    beacon设备的物理地址.建议使用该值作为Beacon标识
+ *    beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBeacon设备该值可能为空
  */
 @property (nonatomic, strong)   NSString*               macAddress;
 
@@ -109,7 +109,7 @@ extern CBCentralManager *centralManager;
 /**
  *  proximityUUID
  *
- *    beacon设备临近区域的UUID.
+ *    beacon设备的UUID，可以用作区域标识
  *
  */
 @property (nonatomic, strong)   NSUUID*                 proximityUUID;
@@ -117,15 +117,17 @@ extern CBCentralManager *centralManager;
 /**
  *  major
  *
- *    区域关联的主要属性值. 如果未设定该值，默认是0.
+ *    设备的主要属性值，默认值是0。可以用作区域标识
  *
+ * Discussion:
+ * 注意该值在用于区域标识，0和nil不等价：0是监测区域中对应UUID的设备下Major为0的设备，nil则表示不使用该值
  */
 @property (nonatomic, strong)   NSNumber*               major;
 
 /**
  *  minor
  *
- *    区域关联的次要属性值. 如果未设定该值，默认是0.
+ *    设备的次要属性值，默认值是0。可以用作区域标识，类同Major
  *
  */
 @property (nonatomic, strong)   NSNumber*               minor;
@@ -144,7 +146,7 @@ extern CBCentralManager *centralManager;
 /*
  *  accuracy
  *
- *   该值代表了米级的精度，值越小表明位置越精准，负值则表示无效
+ *   该值单位‘米’，值越小表明位置越近，负值无效，仅作参考距离
  *
  */
 @property (nonatomic) CLLocationAccuracy accuracy;
@@ -152,7 +154,7 @@ extern CBCentralManager *centralManager;
 /**
  *  distance
  *
- *    根据接收信号强度指示（rssi）和测量功率（measured power：距离一米的rssi值）计算出的beacon设备到手机的距离.
+ *    根据接收信号强度指示（rssi）和测量功率（measured power：距离一米的rssi值）估算出的beacon设备到手机的距离.
  *
  */
 @property (nonatomic, strong)   NSNumber*               distance;
@@ -160,7 +162,7 @@ extern CBCentralManager *centralManager;
 /**
  *  proximity
  *
- *    该值代表着一般意义上的相对距离远近，可以通过它快速确定beacon设备距离用户是在附近或是很远.
+ *    该值代表相对距离远近，可以通过它快速确定beacon设备距离用户是在附近或是很远.
  */
 @property (nonatomic)           CLProximity             proximity;
 
@@ -174,7 +176,7 @@ extern CBCentralManager *centralManager;
 /**
  *  region
  *
- *    该值是设备所在region.
+ *    该值是设备所在region，仅IOS7+支持
  */
 @property (nonatomic, strong)   CLBeaconRegion*               region;
 
@@ -185,11 +187,12 @@ extern CBCentralManager *centralManager;
  */
 @property (nonatomic, strong)   CBPeripheral*           peripheral;
 
-/////////////////////////////////////////////////////
-// 通过蓝牙连接，读取的属性
-
-/// @name 连接之后属性可用
-
+/**
+ *  isBrightBeacon
+ *
+ *    是否是BrightBeacon
+ */
+@property (nonatomic, unsafe_unretained)    BOOL    isBrightBeacon;
 
 /**
  *  isConnected
@@ -197,6 +200,24 @@ extern CBCentralManager *centralManager;
  *    标示连接状态.
  */
 @property (nonatomic, readonly)   BOOL                  isConnected;
+/**
+ *  battery
+ *
+ *    battery电量，范围 0~100，通过工作电压估算值，连接后读取值为工作电压
+ */
+@property (nonatomic, strong)    NSNumber*    battery;
+
+/**
+ *  temperature
+ *
+ *    温度，范围 -40~100℃ ，127为保留值
+ */
+@property (nonatomic, strong)    NSNumber*    temperature;
+/////////////////////////////////////////////////////
+// 通过蓝牙连接，读取的属性
+
+/// @name 连接之后属性可用
+
 
 /**
  *  power
@@ -219,19 +240,7 @@ extern CBCentralManager *centralManager;
  */
 @property (nonatomic, unsafe_unretained)   BOOL          ledState;
 
-/**
- *  battery
- *
- *    battery电量，范围 0~100 ，连接后可用
- */
-@property (nonatomic, strong)    NSNumber*    battery;
 
-/**
- *  temperature
- *
- *    温度，范围 -40~100℃ ，127为保留值，表明温度不可用，连接后可用
- */
-@property (nonatomic, strong)    NSNumber*    temperature;
 
 /**
  *  mode
