@@ -52,7 +52,11 @@
 	
 	<option value="//api/name/rangedRegions">&nbsp;&nbsp;&nbsp;&nbsp;- rangedRegions</option>
 	
+	<option value="//api/name/requestAlwaysAuthorization">&nbsp;&nbsp;&nbsp;&nbsp;- requestAlwaysAuthorization</option>
+	
 	<option value="//api/name/requestStateForRegion:">&nbsp;&nbsp;&nbsp;&nbsp;- requestStateForRegion:</option>
+	
+	<option value="//api/name/requestWhenInUseAuthorization">&nbsp;&nbsp;&nbsp;&nbsp;- requestWhenInUseAuthorization</option>
 	
 	<option value="//api/name/startAdvertisingWithProximityUUID:major:minor:identifier:power:">&nbsp;&nbsp;&nbsp;&nbsp;- startAdvertisingWithProximityUUID:major:minor:identifier:power:</option>
 	
@@ -114,7 +118,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rangedRegions">rangedRegions</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestAlwaysAuthorization">requestAlwaysAuthorization</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestStateForRegion:">requestStateForRegion:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestWhenInUseAuthorization">requestWhenInUseAuthorization</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startAdvertisingWithProximityUUID:major:minor:identifier:power:">startAdvertisingWithProximityUUID:major:minor:identifier:power:</a></span></li>
 	
@@ -172,13 +180,13 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>BRTBeaconManager 类定义了操作、配置Bright Beacon，以及获取相关事件通知应用程序的接口。使用本类的实例来建立参数描述每个beacon设备，你也可以检索范围内所有的beacon设备。</p>
+						<p>BRTBeaconManager 类定义了操作Beacon、配置Bright Beacon，以及获取相关事件通知应用程序的接口。使用本类的实例来建立参数描述每个Beacon设备，你也可以检索范围内所有的beacon设备。</p>
 
 <p>一个管理器提供支持以下位置相关的活动:</p>
 
 <ul>
 <li>监测不同感兴趣的区域和生成定位事件当用户进入或离开这些区域(在后台模式)。</li>
-<li>提供范围附近的beacon设备和它的距离。</li>
+<li>提供范围附近的Beacon设备和它的距离。</li>
 </ul>
 
 					</div>
@@ -292,6 +300,18 @@
 	</span>
 	
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestAlwaysAuthorization">&ndash;&nbsp;requestAlwaysAuthorization</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestWhenInUseAuthorization">&ndash;&nbsp;requestWhenInUseAuthorization</a></code>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -314,7 +334,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>注册开发者appkey，申请地址：<a href="http://www.brtbeacon.com/developers.shtml">http://www.brtbeacon.com/developers.shtml</a></p>
+		<p>注册开发者appkey，申请地址：<a href="http://developer.brtbeacon.com">http://developer.brtbeacon.com</a></p>
 	</div>		
 	
     
@@ -328,7 +348,7 @@
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>appKey</em></dt>
-			<dd><p>Bright beacon 开发者密钥</p></dd>
+			<dd><p>bright beacon 开发者密钥</p></dd>
 		</dl>
 		
 	</div>
@@ -346,7 +366,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>注册开发者appkey，申请地址：<a href="http://www.brtbeacon.com/developers.shtml">http://www.brtbeacon.com/developers.shtml</a></p>
+		<p>注册开发者appkey，申请地址：<a href="http://developer.brtbeacon.com">http://developer.brtbeacon.com</a></p>
 	</div>
 	
 	
@@ -466,6 +486,47 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/requestAlwaysAuthorization" title="requestAlwaysAuthorization"></a>
+	<h3 class="subsubtitle method-title">requestAlwaysAuthorization</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>获取定位权限：允许后台定位，可以支持后台区域推送，网络数据传输等</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)requestAlwaysAuthorization</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>获取定位权限：允许后台定位，可以支持后台区域推送，网络数据传输等</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/requestStateForRegion:" title="requestStateForRegion:"></a>
 	<h3 class="subsubtitle method-title">requestStateForRegion:</h3>
 	
@@ -522,13 +583,54 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/requestWhenInUseAuthorization" title="requestWhenInUseAuthorization"></a>
+	<h3 class="subsubtitle method-title">requestWhenInUseAuthorization</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>获取定位权限：只允许APP运行期间定位，不支持后台区域感知</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)requestWhenInUseAuthorization</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>获取定位权限：只允许APP运行期间定位，不支持后台区域感知</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/startAdvertisingWithProximityUUID:major:minor:identifier:power:" title="startAdvertisingWithProximityUUID:major:minor:identifier:power:"></a>
 	<h3 class="subsubtitle method-title">startAdvertisingWithProximityUUID:major:minor:identifier:power:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>设备模拟成 Bright beacon.</p>
+		<p>设备模拟成 iBeacon.可以使用检测状态[[BRTBeaconSDK BRTBeaconManager] isAdvertising]</p>
 	</div>		
 	
     
@@ -580,7 +682,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>设备模拟成 Bright beacon.</p>
+		<p>设备模拟成 iBeacon.可以使用检测状态[[BRTBeaconSDK BRTBeaconManager] isAdvertising]</p>
 	</div>
 	
 	
@@ -669,7 +771,7 @@ framework. 该方法用于扫描不是iBeacons一样广播数据的蓝牙设备.
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>region</em></dt>
-			<dd><p>Bright beacon 区域</p></dd>
+			<dd><p>bright beacon 区域</p></dd>
 		</dl>
 		
 	</div>
@@ -731,7 +833,7 @@ framework. 该方法用于扫描不是iBeacons一样广播数据的蓝牙设备.
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>region</em></dt>
-			<dd><p>Bright beacon 区域</p></dd>
+			<dd><p>bright beacon 区域</p></dd>
 		</dl>
 		
 	</div>
@@ -988,7 +1090,7 @@ framework. 该方法用于扫描不是iBeacons一样广播数据的蓝牙设备.
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-02-26)</span><br />
+						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-03-16)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

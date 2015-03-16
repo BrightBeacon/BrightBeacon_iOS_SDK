@@ -55,6 +55,8 @@
 	
 	<option value="//api/name/invalidTime">&nbsp;&nbsp;&nbsp;&nbsp;invalidTime</option>
 	
+	<option value="//api/name/isBrightBeacon">&nbsp;&nbsp;&nbsp;&nbsp;isBrightBeacon</option>
+	
 	<option value="//api/name/isConnected">&nbsp;&nbsp;&nbsp;&nbsp;isConnected</option>
 	
 	<option value="//api/name/ledState">&nbsp;&nbsp;&nbsp;&nbsp;ledState</option>
@@ -185,6 +187,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hardwareVersion">hardwareVersion</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/invalidTime">invalidTime</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBrightBeacon">isBrightBeacon</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isConnected">isConnected</a></span></li>
 	
@@ -402,6 +406,30 @@
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isBrightBeacon">&nbsp;&nbsp;isBrightBeacon</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isConnected">&nbsp;&nbsp;isConnected</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/battery">&nbsp;&nbsp;battery</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/temperature">&nbsp;&nbsp;temperature</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
 </li>
 						</ul>
 						
@@ -411,12 +439,6 @@
 
 						<ul class="task-list">
 							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/isConnected">&nbsp;&nbsp;isConnected</a></code>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/power">&nbsp;&nbsp;power</a></code>
 	</span>
@@ -431,18 +453,6 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/ledState">&nbsp;&nbsp;ledState</a></code>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/battery">&nbsp;&nbsp;battery</a></code>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/temperature">&nbsp;&nbsp;temperature</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -720,7 +730,7 @@
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>battery</p>
 
-<p>battery电量，范围 0~100 ，连接后可用</p>
+<p>battery电量，范围 0~100，通过工作电压估算值，连接后读取值为工作电压</p>
 	</div>
 	
 	
@@ -806,7 +816,7 @@
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>distance</p>
 
-<p>根据接收信号强度指示（rssi）和测量功率（measured power：距离一米的rssi值）计算出的beacon设备到手机的距离.</p>
+<p>根据接收信号强度指示（rssi）和测量功率（measured power：距离一米的rssi值）估算出的beacon设备到手机的距离.</p>
 	</div>
 	
 	
@@ -997,6 +1007,49 @@ beacon设备上一次出现的时间戳，一般用于维护是设备生存周�
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/isBrightBeacon" title="isBrightBeacon"></a>
+	<h3 class="subsubtitle method-title">isBrightBeacon</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>isBrightBeacon</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) BOOL isBrightBeacon</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>isBrightBeacon</p>
+
+<p>是否是BrightBeacon</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/isConnected" title="isConnected"></a>
 	<h3 class="subsubtitle method-title">isConnected</h3>
 	
@@ -1109,7 +1162,7 @@ beacon设备上一次出现的时间戳，一般用于维护是设备生存周�
 		<p>macAddress</p>
 
 <p>Discussion:
-beacon设备的物理地址.建议使用该值作为Beacon标识</p>
+beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBeacon设备该值可能为空</p>
 	</div>
 	
 	
@@ -1152,7 +1205,10 @@ beacon设备的物理地址.建议使用该值作为Beacon标识</p>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>major</p>
 
-<p>区域关联的主要属性值. 如果未设定该值，默认是0.</p>
+<p>设备的主要属性值，默认值是0。可以用作区域标识</p>
+
+<p>Discussion:
+注意该值在用于区域标识，0和nil不等价：0是监测区域中对应UUID的设备下Major为0的设备，nil则表示不使用该值</p>
 	</div>
 	
 	
@@ -1238,7 +1294,7 @@ beacon设备的物理地址.建议使用该值作为Beacon标识</p>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>minor</p>
 
-<p>区域关联的次要属性值. 如果未设定该值，默认是0.</p>
+<p>设备的次要属性值，默认值是0。可以用作区域标识，类同Major</p>
 	</div>
 	
 	
@@ -1453,7 +1509,7 @@ beacon设备的物理地址.建议使用该值作为Beacon标识</p>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>proximity</p>
 
-<p>该值代表着一般意义上的相对距离远近，可以通过它快速确定beacon设备距离用户是在附近或是很远.</p>
+<p>该值代表相对距离远近，可以通过它快速确定beacon设备距离用户是在附近或是很远.</p>
 	</div>
 	
 	
@@ -1496,7 +1552,7 @@ beacon设备的物理地址.建议使用该值作为Beacon标识</p>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>proximityUUID</p>
 
-<p>beacon设备临近区域的UUID.</p>
+<p>beacon设备的UUID，可以用作区域标识</p>
 	</div>
 	
 	
@@ -1539,7 +1595,7 @@ beacon设备的物理地址.建议使用该值作为Beacon标识</p>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>region</p>
 
-<p>该值是设备所在region.</p>
+<p>该值是设备所在region，仅IOS7+支持</p>
 	</div>
 	
 	
@@ -1626,7 +1682,7 @@ beacon设备的物理地址.建议使用该值作为Beacon标识</p>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>temperature</p>
 
-<p>温度，范围 -40~100℃ ，127为保留值，表明温度不可用，连接后可用</p>
+<p>温度，范围 -40~100℃ ，127为保留值</p>
 	</div>
 	
 	
@@ -2914,7 +2970,7 @@ Major, Minor, Power and Advertising interval.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-02-26)</span><br />
+						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-03-16)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						
