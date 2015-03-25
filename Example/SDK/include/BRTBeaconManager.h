@@ -277,18 +277,17 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 
 /**
- * 开始beacon设备扫描，基于CoreBluetooth
- * framework. 该方法用于扫描不是iBeacons一样广播数据的蓝牙设备.
+ * 开始蓝牙扫描，基于CoreBluetooth
+ * framework. 该方法用于扫描所有蓝牙设备.
  *
  *
  * @return void
  */
 -(void)startBrightBeaconsDiscovery;
-- (void)startBrightBeaconsDiscoveryAllowDuplicatesKey;
 
 
 /**
- * 停止基于 CoreBluetooth 的beacon扫描.
+ * 停止蓝牙扫描.
  *
  * @return void
  */

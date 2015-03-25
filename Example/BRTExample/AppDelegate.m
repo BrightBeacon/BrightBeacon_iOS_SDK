@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "BRTBeaconSDK.h"
 
-//#define BRT_SDK_KEY 全0仅用于测试，请填写你申请的SDK KEY
+//#define BRT_SDK_KEY 全0仅用于测试，请填写你申请的APP KEY
 #define BRT_SDK_KEY @"00000000000000000000000000000000"
 @implementation AppDelegate
 

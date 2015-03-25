@@ -7,7 +7,12 @@ iOS-SDK
 智石开发包（BrightSDK）符合苹果的iBeacon技术，提供了扫描或管理Beacon设备或模拟iBeacon设备的API。你可以访问[智石官网（http://www.brtbeacon.com）](http://www.brtbeacon.com)了解更多信息，也可以查阅[SDK文档](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)或前往我们的[开发者社区（http://bbs.brtbeacon.com）](http://bbs.brtbeacon.com)交流和找到我们软硬件相关问题。
 
 智石开发包需要手持设备支持蓝牙4.0及其以上，并IOS6.0及其以上系统。
-
+附：支持的IOS设备列表
+iphone4s以上、
+itouch5以上、
+iPad3以上、
+iPad mini均可以
+详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
 
 ##如何集成（任选其一）
 ###一、使用CocoaPods集成
@@ -17,29 +22,45 @@ iOS-SDK
 	pod 'BrightSDK'
 ```
 在Podfile文件目录运行命令：
-(PS：请事先更新你本地的CocoaPods库：pod repo update)
+(PS：请事先更新你本地的CocoaPods库：pod repo update，并pod install)
 
 ```
 	pod update
 ```
 
 ###二、使用常规集成
+
 使用如下步骤手动集成：
+- 登录BrightSDK的[开发者网站](http://developer.brtbeacon.com)下载并解压最新版本的SDK。如果您还尚未下载SDK，请 [点击这里下载](http://developer.brtbeacon.com/index/documents.shtml) 或者前往 [http://developer.brtbeacon.com/index/documents.shtml](http://developer.brtbeacon.com/index/documents.shtml) 。解压后如下图<br/>
+![Resize icon][1]<br/>
+[1]: https://i.nfil.es/mz5ZGG.png "下载"
+- 将BrightSDK的框架目录导入到您的工程中
+将下载的SDK文件解压，拖动里面的BrightSDK文件夹到工程中，而不是下载的整个文件，这点请注意，如下图<br/>
+![Resize icon][2]<br/>
+[2]: http://i.nfil.es/53nveH.png "导入"
 
-1、复制BrightSDK目录（包含 libBrightSDK.a 和 Headers）到你的项目目录
+<br/>拖到工程中后，弹出以下对话框，勾选"Copy items into destination group's folder(if needed)"，并点击“Finish“按钮, 如图<br/>
+![Resize icon][3]<br/>
+[3]: http://i.nfil.es/RlqsnP.png "复制"
 
-2、打开你的project setting->build phase,在Link library with binaries点击+，在弹出框里边选择libBrightSDK.a
+<br/>注意：请务必在上述步骤中选择“Create groups for any added folders”单选按钮组。如果你选择“Create folder references for any added folders”，一个蓝色的文件夹引用将被添加到项目并且将无法找到它的资源。
+最终效果图：<br/>
+![Resize icon][4]<br/>
+[4]: http://i.nfil.es/y78Mqm.png "效果图"
 
-3、注意BrightSDK需要以下本地IOS库：
+
+
+- 注意：
+
+1、BrightSDK可能需要以下本地IOS库：
 
 ```
 	CoreBluetooth.framework
 	CoreLocation.framework
-	SystemConfiguration.framework
 ```
-4、前往 project settings 的 build settings，搜索Header Search Paths. 添加"$(SRCROOT)/../BrightSDK/Headers".
 
-恭喜，集成完毕，或查看[更多集成相关内容](http://www.brtbeacon.com/home/document_ios.shtml).
+2、如果出现头文件无法找到，前往 project settings 的 build settings，搜索Header Search Paths. 添加"$(SRCROOT)/../BrightSDK/Headers".
+
 
 ##如何调用
 `1、注册APPKEY`<br/>
@@ -151,3 +172,4 @@ iOS-SDK
 * [集成文档](http://www.brtbeacon.com/home/document_ios.shtml)
 * [API文档](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)
 * [开发者社区](http://bbs.brtbeacon.com)
+* [智石官网](http://www.brtbeacon.com)

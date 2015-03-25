@@ -13,17 +13,20 @@
 /**
  * 更新日志
  *
+ *  3.0.6 修复Range的RSSI被扫描覆盖！
+ *
+ *  3.0.5 修复records温度、电量为nil崩溃
+ *
  *  3.0.4 修复第一次启动无法成功开启扫描
  * 
  *  3.0.3 提供IOS8定位权限选择、蓝牙一直扫描
  *
  *  3.0.2 新增isBrightBeacon属性
  *
- *
  *  3.0.0 注释完善
  *
  */
-#define SDK_VERSION @"3.0.4"
+#define SDK_VERSION @"3.0.6"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
@@ -77,7 +80,7 @@ typedef enum : int
     CBErrorCode7 = 7,     //设备未连接
     CBErrorCode8 = 8,     //指定的UUID不允许
     CBErrorCode9 = 9,     //设备正在广播
-    CBErrorCode10 = 10,     //设备连接失败
+    CBErrorCode10 = 10,     //设备连接失败(信号中断等)
     
     ErrorCode100 = 100,     //APP KEY不正确
     ErrorCode101 = 101,     //未识别的设备(未检测到peripheral或非BrightBeacon设备)
