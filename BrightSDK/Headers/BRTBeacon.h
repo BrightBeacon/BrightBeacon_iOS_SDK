@@ -264,6 +264,13 @@ extern CBCentralManager *centralManager;
 @property (nonatomic, unsafe_unretained)    NSInteger    temperatureCheckInteval;
 
 /**
+ *  temperatureCheckInteval
+ *
+ *    广播状态下Beacon周边光强检测间隔，单位为 秒；最小值为1秒，即每1秒自动检测光强并更新广播的数据
+ */
+@property (nonatomic, unsafe_unretained)    NSInteger    lightCheckInteval;
+
+/**
  *  硬件版本
  *
  *    设备硬件版本，连接后可用
