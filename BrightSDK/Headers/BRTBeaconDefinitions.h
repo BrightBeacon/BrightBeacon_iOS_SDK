@@ -13,6 +13,12 @@
 /**
  * 更新日志
  *
+ *  3.0.9 光感休眠等
+ *
+ *  3.0.8 for Api Cloud
+ *
+ *  3.0.7 光感、间隔、大端
+ *
  *  3.0.6 修复Range的RSSI被扫描覆盖！
  *
  *  3.0.5 修复records温度、电量为nil崩溃
@@ -26,7 +32,7 @@
  *  3.0.0 注释完善
  *
  */
-#define SDK_VERSION @"3.0.6"
+#define SDK_VERSION @"3.0.9"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
@@ -35,19 +41,24 @@
 #define B_MEASURED @"mPower"
 #define B_INTERVAL @"txInterval"
 #define B_TX @"txPower"
-#define B_LED @"ledState"
 #define B_MODE @"pMode"
 #define B_BATTERY_INTERVAL @"batteryInterval"
 #define B_TEMPERATURE_INTERVAL @"temperatureInterval"
+#define B_LIGHT_INTERVAL @"lightInterval"
+#define B_LIGHT_SLEEP @"lightSleep"
 
 
 #define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
 #define DEFAULT_MAJOR 0
 #define DEFAULT_MINOR 0
 #define DEFAULT_MEASURED -65
-#define DEFAULT_LED 1
+//#define DEFAULT_LED 1
 #define DEFAULT_INTERVAL 800
+#define DEFAULT_BCHECK_INTERVAL 3600
+#define DEFAULT_TCHECK_INTERVAL 600
+#define DEFAULT_LCHECK_INTERVAL 3
 #define DEFAULT_TX 2
+#define DEFAULT_TX_PLUS 7
 #define DEFAULT_NAME  @"BrightBeacon"
 #define DEFAULT_MODE 0
 
@@ -95,18 +106,10 @@ typedef enum : int
     ErrorCode110 = 110,     //unuse
 } ErrorCode;
 
-typedef enum : char
-{
-    BRTBeaconPowerLevelMinus23 = 0,
-    BRTBeaconPowerLevelMinus6 = 1,
-    BRTBeaconPowerLevelDefault = 2,
-    BRTBeaconPowerLevelPlus4 = 3,
-} BRTBeaconPower;
-
 typedef void(^BRTCompletionBlock)(NSError* error);
 typedef void(^BRTUnsignedShortCompletionBlock)(unsigned short value, NSError* error);
 typedef void(^BRTShortCompletionBlock)(short value, NSError* error);
-typedef void(^BRTPowerCompletionBlock)(BRTBeaconPower value, NSError* error);
+typedef void(^BRTPowerCompletionBlock)(NSInteger value, NSError* error);
 typedef void(^BRTBoolCompletionBlock)(BOOL value, NSError* error);
 typedef void(^BRTStringCompletionBlock)(NSString* value, NSError* error);
 typedef void(^BRTIntegerCompletionBlock)(NSInteger value, NSError* error);

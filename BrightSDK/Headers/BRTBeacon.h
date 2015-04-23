@@ -223,8 +223,10 @@ extern CBCentralManager *centralManager;
  *  power
  *
  *    以分贝计的发射功率，连接后可用
+ *  TI芯片：0：-23dBm 1：-6dBm 2：0dBm 3：+4dBm
+ *  Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 6：-4dBm 7：0dBm 8：+4dBm
  */
-@property (nonatomic, unsafe_unretained)   BRTBeaconPower           power;
+@property (nonatomic, unsafe_unretained)   NSInteger           power;
 
 /**
  *  advInterval
@@ -234,11 +236,11 @@ extern CBCentralManager *centralManager;
 @property (nonatomic, strong)   NSNumber*               advInterval;
 
 /**
- *  ledState
+ *  light
  *
- *    led灯状态，连接后可用
+ *    光感，连接后可用
  */
-@property (nonatomic, unsafe_unretained)   BOOL          ledState;
+@property (nonatomic, unsafe_unretained)   NSInteger          light;
 
 
 
@@ -269,6 +271,13 @@ extern CBCentralManager *centralManager;
  *    广播状态下Beacon周边光强检测间隔，单位为 秒；最小值为1秒，即每1秒自动检测光强并更新广播的数据
  */
 @property (nonatomic, unsafe_unretained)    NSInteger    lightCheckInteval;
+
+/**
+ * lightSleep
+ *
+ *  开启光感休眠，当环境变得完全黑暗，Beacon设备会自动降低发射频率，来提高使用寿命
+ */
+@property (nonatomic, unsafe_unretained)    BOOL    lightSleep;
 
 /**
  *  硬件版本

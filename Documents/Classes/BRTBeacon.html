@@ -59,7 +59,11 @@
 	
 	<option value="//api/name/isConnected">&nbsp;&nbsp;&nbsp;&nbsp;isConnected</option>
 	
-	<option value="//api/name/ledState">&nbsp;&nbsp;&nbsp;&nbsp;ledState</option>
+	<option value="//api/name/light">&nbsp;&nbsp;&nbsp;&nbsp;light</option>
+	
+	<option value="//api/name/lightCheckInteval">&nbsp;&nbsp;&nbsp;&nbsp;lightCheckInteval</option>
+	
+	<option value="//api/name/lightSleep">&nbsp;&nbsp;&nbsp;&nbsp;lightSleep</option>
 	
 	<option value="//api/name/macAddress">&nbsp;&nbsp;&nbsp;&nbsp;macAddress</option>
 	
@@ -192,7 +196,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isConnected">isConnected</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ledState">ledState</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/light">light</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lightCheckInteval">lightCheckInteval</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lightSleep">lightSleep</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/macAddress">macAddress</a></span></li>
 	
@@ -452,7 +460,7 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/ledState">&nbsp;&nbsp;ledState</a></code>
+		<code><a href="#//api/name/light">&nbsp;&nbsp;light</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -471,6 +479,18 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/temperatureCheckInteval">&nbsp;&nbsp;temperatureCheckInteval</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/lightCheckInteval">&nbsp;&nbsp;lightCheckInteval</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/lightSleep">&nbsp;&nbsp;lightSleep</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1093,18 +1113,18 @@ beacon设备上一次出现的时间戳，一般用于维护是设备生存周�
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/ledState" title="ledState"></a>
-	<h3 class="subsubtitle method-title">ledState</h3>
+	<a name="//api/name/light" title="light"></a>
+	<h3 class="subsubtitle method-title">light</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>ledState</p>
+		<p>light</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) BOOL ledState</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) NSInteger light</code></div>
 
     
 	
@@ -1116,9 +1136,95 @@ beacon设备上一次出现的时间戳，一般用于维护是设备生存周�
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>ledState</p>
+		<p>light</p>
 
-<p>led灯状态，连接后可用</p>
+<p>光感，连接后可用</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/lightCheckInteval" title="lightCheckInteval"></a>
+	<h3 class="subsubtitle method-title">lightCheckInteval</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="#//api/name/temperatureCheckInteval">temperatureCheckInteval</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) NSInteger lightCheckInteval</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p><a href="#//api/name/temperatureCheckInteval">temperatureCheckInteval</a></p>
+
+<p>广播状态下Beacon周边光强检测间隔，单位为 秒；最小值为1秒，即每1秒自动检测光强并更新广播的数据</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/lightSleep" title="lightSleep"></a>
+	<h3 class="subsubtitle method-title">lightSleep</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>lightSleep</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) BOOL lightSleep</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>lightSleep</p>
+
+<p>开启光感休眠，当环境变得完全黑暗，Beacon设备会自动降低发射频率，来提高使用寿命</p>
 	</div>
 	
 	
@@ -1452,7 +1558,7 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) BRTBeaconPower power</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) NSInteger power</code></div>
 
     
 	
@@ -1466,7 +1572,9 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>power</p>
 
-<p>以分贝计的发射功率，连接后可用</p>
+<p>以分贝计的发射功率，连接后可用
+TI芯片：0：-23dBm 1：-6dBm 2：0dBm 3：+4dBm
+Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 6：-4dBm 7：0dBm 8：+4dBm</p>
 	</div>
 	
 	
@@ -2970,7 +3078,7 @@ Major, Minor, Power and Advertising interval.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-03-16)</span><br />
+						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-04-23)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						
