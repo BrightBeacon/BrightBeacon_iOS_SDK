@@ -39,7 +39,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *minorText;
 @property (weak, nonatomic) IBOutlet UITextField *measuredPowerText;
 @property (weak, nonatomic) IBOutlet UITextField *nameText;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *TXSegment;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *TXSegment,*TXPlusSegment;
 @property (weak, nonatomic) IBOutlet UILabel *intervalLabel;
 @property (weak, nonatomic) IBOutlet UISlider *intervalSlider;
 @property (weak, nonatomic) IBOutlet UIStepper *intervalStepper;
@@ -94,15 +94,6 @@
     [self.intervalLabel setText:[NSString stringWithFormat:@" %dms", (unsigned int)advertisingInterval]];
 }
 
-- (IBAction)readBatteryButtonPressed:(id)sender{
-    [self.beacon readBeaconBatteryWithCompletion:^(short value, NSError *error) {
-        self.batteryLabel.text = [NSString stringWithFormat:@"%d%%",self.beacon.battery.unsignedShortValue];
-    }];
-    [self.beacon readBeaconTemperatureWithCompletion:^(short value, NSError *error) {
-        self.tempLabel.text = [NSString stringWithFormat:@"%d℃",self.beacon.temperature.unsignedShortValue];
-    }];
-}
-
 - (IBAction)defaultClick:(id)sender {
     [self.UUIDText setText:DEFAULT_UUID];
     [self.majorText setText:[NSString stringWithFormat:@"%d", DEFAULT_MAJOR]];
@@ -113,7 +104,12 @@
     self.intervalSlider.value = advertisingInterval/50.0;
     self.intervalStepper.value = advertisingInterval;
     [self.intervalLabel setText:[NSString stringWithFormat:@" %dms", (unsigned int)advertisingInterval]];
-    [self.TXSegment setSelectedSegmentIndex:DEFAULT_TX];
+    
+    if ([self.beacon isSupport:BrtSupportsCC254x]) {
+        [self.TXSegment setSelectedSegmentIndex:DEFAULT_TX];
+    }else{
+        [self.TXPlusSegment setSelectedSegmentIndex:DEFAULT_TX_PLUS];
+    }
     
     [self.beacon resetSDKKEY]; //reset SDK key to default,allow another SDK key connect
 }
@@ -123,7 +119,7 @@
                              B_MINOR:self.minorText.text,
                              B_NAME:self.nameText.text,
                              B_MEASURED:self.measuredPowerText.text,
-                             B_TX:[NSString stringWithFormat:@"%d",self.TXSegment.selectedSegmentIndex],
+                             B_TX:[NSString stringWithFormat:@"%d",[self.beacon isSupport:BrtSupportsCC254x]?self.TXSegment.selectedSegmentIndex:self.TXPlusSegment.selectedSegmentIndex],
                              B_INTERVAL:[NSString stringWithFormat:@"%d",advertisingInterval]};
     BOOL flag = [self.nameText.text isEqualToString:self.beacon.name];
     [self.beacon writeBeaconValues:values withCompletion:^(NSError *error) {
@@ -131,7 +127,7 @@
             [[[UIAlertView alloc] initWithTitle:error.domain message:nil delegate:nil cancelButtonTitle:Lang(@"OK", @"确定") otherButtonTitles: nil] show];
         }else{
             [self.beacon disconnectBeacon];
-            if (flag) {
+            if (flag||[self.beacon isSupport:BrtSupportsUpdateName]) {
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }else{
                 [self performSelector:@selector(updatename) withObject:nil afterDelay:.3];
@@ -154,7 +150,11 @@
     self.minorText.text = self.beacon.minor.stringValue;
     self.measuredPowerText.text = self.beacon.measuredPower.stringValue;
     self.nameText.text = self.beacon.name;
-    [self.TXSegment setSelectedSegmentIndex:self.beacon.power];
+    if ([self.beacon isSupport:BrtSupportsCC254x]) {
+        [self.TXSegment setSelectedSegmentIndex:self.beacon.power];
+    }else{
+        [self.TXPlusSegment setSelectedSegmentIndex:self.beacon.power];
+    }
     
     advertisingInterval = self.beacon.advInterval.shortValue;
     [self.intervalLabel setText:[NSString stringWithFormat:@" %dms", (unsigned int)advertisingInterval]];
@@ -162,7 +162,9 @@
     self.intervalStepper.value = advertisingInterval;
     self.batteryLabel.text = [NSString stringWithFormat:@"%d%%",self.beacon.battery.unsignedShortValue];
     self.tempLabel.text = [NSString stringWithFormat:@"%d℃",self.beacon.temperature.unsignedShortValue];
-    if(self.beacon.hardwareVersion)self.versionLabel.text = [NSString stringWithFormat:Lang(@"Ver:%@-%@", @"版本:%@-%@"),self.beacon.hardwareVersion,self.beacon.firmwareVersion];
+    [self.beacon readBeaconFirmwareVersionWithCompletion:^(NSString *value, NSError *error) {
+        self.versionLabel.text = value;
+    }];
 }
 - (void)dealloc
 {

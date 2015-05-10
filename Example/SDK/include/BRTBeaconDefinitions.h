@@ -13,6 +13,10 @@
 /**
  * 更新日志
  *
+ *  3.2.0 新增防丢器，干啥扫描和Range合并，提高性能
+ *
+ *  3.1.0 修复光感休眠bug,批量部署错误，连接15s超时
+ *
  *  3.0.9 光感休眠等
  *
  *  3.0.8 for Api Cloud
@@ -32,13 +36,14 @@
  *  3.0.0 注释完善
  *
  */
-#define SDK_VERSION @"3.0.9"
+#define SDK_VERSION @"3.2.0"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
 #define B_MAJOR @"major"
 #define B_MINOR @"minor"
 #define B_MEASURED @"mPower"
+#define B_MPOWER @"mPower"
 #define B_INTERVAL @"txInterval"
 #define B_TX @"txPower"
 #define B_MODE @"pMode"
@@ -46,8 +51,16 @@
 #define B_TEMPERATURE_INTERVAL @"temperatureInterval"
 #define B_LIGHT_INTERVAL @"lightInterval"
 #define B_LIGHT_SLEEP @"lightSleep"
+//Anti
+#define B_AutoSleep @"autoSleep"
+#define B_InRange @"InRange"
+#define B_AutoAlarm @"AutoAlarm"
+#define B_ActiveFind @"ActiveFind"
+#define B_ButtonAlarm @"ButtonAlarm"
+#define B_AutoAlarmTimeOut @"autoalarmtimeout"
 
 
+#define DEFAULT_KEY @"00000000000000000000000000000000"   //32-0
 #define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
 #define DEFAULT_MAJOR 0
 #define DEFAULT_MINOR 0
@@ -56,15 +69,18 @@
 #define DEFAULT_INTERVAL 800
 #define DEFAULT_BCHECK_INTERVAL 3600
 #define DEFAULT_TCHECK_INTERVAL 600
-#define DEFAULT_LCHECK_INTERVAL 3
+#define DEFAULT_LCHECK_INTERVAL 5000
 #define DEFAULT_TX 2
 #define DEFAULT_TX_PLUS 7
 #define DEFAULT_NAME  @"BrightBeacon"
 #define DEFAULT_MODE 0
+#define DEFAULT_LIGHT_SLEEP 0
 
 #define kNotifyConnect @"kNotifyConnect"
 #define kNotifyDisconnect @"kNotifyDisconnect"
 
+#define I2N(x) [NSNumber numberWithInteger:x]
+#define I2S(x) [NSString stringWithFormat:@"%ld",(long)x]
 /**
  *  IOS8以上新增获取定位权限、状态，请在Info.plist配置获取时提示用户内容Key：NSLocationAlwaysUsageDescription和NSLocationWhenInUseUsageDescription
  *
@@ -73,6 +89,17 @@
  *  使用[CLLocationManager authorizationStatus]获取定位状态
  */
 #define isLocationAlways NO
+
+typedef NS_OPTIONS(NSUInteger, BrtSupports) {
+    BrtSupportsCC254x       = 1 << 0,
+    BrtSupportsNordic       = 1 << 1,
+    BrtSupportsLight        = 1 << 2,
+    BrtSupports3Interval    = 1 << 3,
+    BrtSupportsAntiLose    = 1 << 4,
+    BrtSupports16Key    = 1 << 5,
+    BrtSupportsUpdateName    = 1 << 6,
+};
+
 typedef enum : int
 {
     DevelopMode=0,  //开发模式
@@ -81,14 +108,14 @@ typedef enum : int
 
 typedef enum : int
 {
-    ErrorCodeUnKnown = 0,  //未知错误
+    ErrorCodeUnKnown = 0,  //未知错误（发起连接失败、蓝牙信道拥塞）
     CBErrorCode1 = 1,     //参数无效
     CBErrorCode2 = 2,     //指定属性无效
     CBErrorCode3 = 3,     //设备未连入
     CBErrorCode4 = 4,     //设备空间资源耗尽
     CBErrorCode5 = 5,     //操作被取消
     CBErrorCode6 = 6,     //连接超时
-    CBErrorCode7 = 7,     //设备未连接
+    CBErrorCode7 = 7,     //设备被断开（系统错误、AppKey不正确）
     CBErrorCode8 = 8,     //指定的UUID不允许
     CBErrorCode9 = 9,     //设备正在广播
     CBErrorCode10 = 10,     //设备连接失败(信号中断等)
@@ -113,7 +140,9 @@ typedef void(^BRTPowerCompletionBlock)(NSInteger value, NSError* error);
 typedef void(^BRTBoolCompletionBlock)(BOOL value, NSError* error);
 typedef void(^BRTStringCompletionBlock)(NSString* value, NSError* error);
 typedef void(^BRTIntegerCompletionBlock)(NSInteger value, NSError* error);
-typedef void(^BRTConnectCompletionBlock)(BOOL connected, NSError* error);
+typedef void(^BRTConnectCompletionBlock)(BOOL complete, NSError* error);
+
+typedef void (^BRTDataCompletionBlock)(id data,NSError *error);
 
 
 ////////////////////////////////////////////////////////////////////

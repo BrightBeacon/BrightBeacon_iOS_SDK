@@ -20,7 +20,7 @@
 
 /**
  
- BRTBeaconDelegate 定义了 beacon 连接相关的委托方法，beacon 的连接是一个异步操作，因此你只需要实现例如beaconDidDisconnectWith:相关方法，它们会被自动回调.
+ BRTBeaconDelegate 定义了 beacon 连接相关的委托方法，beacon 的连接是一个异步操作，因此你只需要实现例如beaconDidDisconnect:相关方法，它们会被自动回调.
  
  */
 
@@ -129,6 +129,8 @@ extern CBCentralManager *centralManager;
  *
  *    设备的次要属性值，默认值是0。可以用作区域标识，类同Major
  *
+ * Discussion:
+ * 注意该值在用于区域标识，0和nil不等价：0是监测区域中对应UUID的设备下Minor为0的设备，nil则表示不使用该值
  */
 @property (nonatomic, strong)   NSNumber*               minor;
 
@@ -169,14 +171,14 @@ extern CBCentralManager *centralManager;
 /**
  *  measuredPower
  *
- *    该值是1米处的rssi值，用于设备校准.
+ *    该值是1米处的rssi值，用于设备距离估算.
  */
 @property (nonatomic, strong)   NSNumber*               measuredPower;
 
 /**
  *  region
  *
- *    该值是设备所在region，仅IOS7+支持
+ *    该值是设备所在区域region，仅IOS7+支持
  */
 @property (nonatomic, strong)   CLBeaconRegion*               region;
 
@@ -203,14 +205,14 @@ extern CBCentralManager *centralManager;
 /**
  *  battery
  *
- *    battery电量，范围 0~100，通过工作电压估算值，连接后读取值为工作电压
+ *    battery电量，范围 0~100，通过实时工作电压估算值，连接后读取值为工作电压估算值，较广播时略偏低
  */
 @property (nonatomic, strong)    NSNumber*    battery;
 
 /**
  *  temperature
  *
- *    温度，范围 -40~100℃ ，127为保留值
+ *    温度，范围 -40~100℃ ，127为无效值
  */
 @property (nonatomic, strong)    NSNumber*    temperature;
 /////////////////////////////////////////////////////
@@ -222,7 +224,7 @@ extern CBCentralManager *centralManager;
 /**
  *  power
  *
- *    以分贝计的发射功率，连接后可用
+ *  以分贝计的发射功率，连接后可用
  *  TI芯片：0：-23dBm 1：-6dBm 2：0dBm 3：+4dBm
  *  Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 6：-4dBm 7：0dBm 8：+4dBm
  */
@@ -238,11 +240,9 @@ extern CBCentralManager *centralManager;
 /**
  *  light
  *
- *    光感，连接后可用
+ *    光感强度
  */
 @property (nonatomic, unsafe_unretained)   NSInteger          light;
-
-
 
 /**
  *  mode
@@ -254,21 +254,21 @@ extern CBCentralManager *centralManager;
 /**
  *  batteryCheckInteval
  *
- *    广播状态下Beacon的电量检测间隔，单位为:秒；最小值为1800秒，即每半小时自动检测电量并更新广播的数据
+ *    广播状态下Beacon的电量检测间隔，单位为：秒；范围：1800秒~43200秒（12小时），即每隔指定秒自动检测电量并更新广播的数据
  */
 @property (nonatomic, unsafe_unretained)    NSInteger    batteryCheckInteval;
 
 /**
  *  temperatureCheckInteval
  *
- *    广播状态下Beacon周边温度检测间隔，单位为 秒；最小值为30秒，即每30秒自动检测电量并更新广播的数据
+ *    广播状态下Beacon周边温度检测间隔，单位为：秒；范围：10秒~43200秒（12小时），即每隔指定秒自动检测电量并更新广播的数据
  */
 @property (nonatomic, unsafe_unretained)    NSInteger    temperatureCheckInteval;
 
 /**
- *  temperatureCheckInteval
+ *  lightCheckInteval
  *
- *    广播状态下Beacon周边光强检测间隔，单位为 秒；最小值为1秒，即每1秒自动检测光强并更新广播的数据
+ *    广播状态下Beacon周边光强检测间隔，单位为：毫秒；范围：1000毫秒~10,000毫秒，即每隔指定毫秒自动检测光强并更新广播的数据
  */
 @property (nonatomic, unsafe_unretained)    NSInteger    lightCheckInteval;
 
@@ -296,12 +296,22 @@ extern CBCentralManager *centralManager;
 /**
  *  固件最新版本信息，
  *
- *    固件最新版本信息，checkFirmwareUpdateWithCompletion后可用
+ *    固件最新版本信息，{@link checkFirmwareUpdateWithCompletion:}后可用
  */
 @property (readonly, nonatomic)   NSString*               firmwareVersionInfo;
 
 /// @name 连接beacon相关的方法
 
+/**
+ * 当前版本支持状态（位标示）
+ *
+ * TI芯片 Nordic 光感支持 自动检测 防丢支持 加密模式
+ * -----+------+-------+-------+------+-------
+ *   1      1      1       1       1      1
+ */
+@property (nonatomic,assign) NSInteger supportOption;
+
+- (BOOL)isSupport:(BrtSupports)option;
 
 /**
  * 蓝牙连接到beacon设备
@@ -319,137 +329,6 @@ extern CBCentralManager *centralManager;
  * @return void
  */
 -(void)disconnectBeacon;
-
-
-/// @name 读取beacon配置信息相关的方法
-
-
-/**
- * 读取连接中的beacon设备名 (要求已经连接成功)
- *
- * @param completion 读取设备名完成回调
- *
- * @return void
- */
-- (void)readBeaconNameWithCompletion:(BRTStringCompletionBlock)completion;
-
-/**
- * 读取连接中的beacon设备临近的UUID值 (要求已经连接成功)
- *
- * @param completion 读取ProximityUUID值回调
- *
- * @return void
- */
-- (void)readBeaconProximityUUIDWithCompletion:(BRTStringCompletionBlock)completion;
-
-/**
- * 读取连接中的beacon设备的major值 (要求已经连接成功)
- *
- * @param completion 读取major值完成回调
- *
- * @return void
- */
-- (void)readBeaconMajorWithCompletion:(BRTUnsignedShortCompletionBlock)completion;
-
-/**
- * 读取连接中的beacon设备的minor值 (要求已经连接成功)
- *
- * @param completion 读取minor值完成回调
- *
- * @return void
- */
-- (void)readBeaconMinorWithCompletion:(BRTUnsignedShortCompletionBlock)completion;
-
-/**
- * 读取连接中的beacon设备的发射间隔 (要求已经连接成功)
- *
- * @param completion 读取发射间隔值完成回调
- *
- * @return void
- */
-- (void)readBeaconAdvIntervalWithCompletion:(BRTUnsignedShortCompletionBlock)completion;
-
-
-/**
- * 读取连接中的beacon设备的发射功率 (要求已经连接成功)
- *
- * @param completion 读取发射功率值完成回调
- *
- * @return beacon功率的float值
- */
-- (void)readBeaconPowerWithCompletion:(BRTPowerCompletionBlock)completion;
-
-/**
- * 读取连接中的beacon设备的led灯状态 (要求已经连接成功)
- *
- * @param completion 读取led灯状态完成回调
- *
- * @return void
- */
-- (void)readBeaconLedStateWithCompletion:(BRTBoolCompletionBlock)completion;
-
-/**
- * 读取连接中的beacon设备的测量功率 (要求已经连接成功)
- *
- * @param completion 读取测量功率值完成回调
- *
- * @return void
- */
-- (void)readBeaconMeasuredPowerWithCompletion:(BRTShortCompletionBlock)completion;
-
-/**
- * 读取连接中的beacon设备的电量 (要求已经连接成功)
- *
- * @param completion 读取当前电量完成回调
- *
- * @return void
- */
-- (void)readBeaconBatteryWithCompletion:(BRTShortCompletionBlock)completion;
-
-/**
- * 读取连接中的beacon设备的固件版本 (要求已经连接成功)
- *
- * @param completion 读取固件版本信息完成回调
- *
- * @return void
- */
-- (void)readBeaconFirmwareVersionWithCompletion:(BRTStringCompletionBlock)completion;
-
-/**
- * 读取连接中的beacon设备的硬件版本 (要求已经连接成功)
- *
- * @param completion 读取硬件版本信息完成回调
- *
- * @return void
- */
-- (void)readBeaconHardwareVersionWithCompletion:(BRTStringCompletionBlock)completion;
-
-/**
- * 读取连接中的beacon设备的温度信息 (要求已经连接成功)
- *
- * @param completion 读取温度信息完成回调
- *
- * @return void
- */
-- (void)readBeaconTemperatureWithCompletion:(BRTShortCompletionBlock)completion;
-
-/**
- * 读取连接中的beacon设备在广播状态下自动检测 电量 的间隔时间 (要求已经连接成功)
- *
- * @param completion 读取间隔时间完成回调
- *
- * @return void
- */
-- (void)readBatteryCheckIntevalWithCompletion:(BRTIntegerCompletionBlock)completion;
-
-/**
- * 读取连接中的beacon设备在广播状态下自动检测 温度 的间隔时间 (要求已经连接成功)
- *
- * @param completion 读取间隔时间完成回调
- *
- * @return void
- */
-- (void)readTemperatureCheckIntevalWithCompletion:(BRTIntegerCompletionBlock)completion;
 
 /// @name 写人beacon配置信息相关的方法
 
@@ -479,6 +358,13 @@ extern CBCentralManager *centralManager;
 -(void)updateBeaconFirmwareWithProgress:(BRTShortCompletionBlock)progress andCompletion:(BRTCompletionBlock)completion;
 
 /**
+ *  读取设备版本信息
+ *
+ *  @param completion 读取完成回调
+ */
+- (void)readBeaconFirmwareVersionWithCompletion:(BRTStringCompletionBlock)completion;
+
+/**
  * 重置beacon设备默认值，该操作要求已经成功执行 {@link registerApp:};
  *
  *
@@ -487,7 +373,7 @@ extern CBCentralManager *centralManager;
 -(void)resetBeaconToDefault;
 
 /**
- * 重置beacon设备默认KEY，该操作可以解除设备开发者绑定，让beacon设备可以重新被连接设定新的YOUR_KEY，该操作要求已经成功执行[BRTBeaconManager registerApp:YOUR_KEY];
+ * 重置beacon设备默认KEY，该操作可以解除设备开发者绑定，让beacon设备可以重新被连接设定新的APP_KEY，该操作要求已经成功执行[BRTBeaconManager registerApp:APP_KEY];
  *
  * @return void
  */
@@ -495,16 +381,65 @@ extern CBCentralManager *centralManager;
 
 /**
  * 设置此Beacon处于开发者模式（DevelopMode）还是发布模式（PublishMode）
- * 如果Beacon处于开发者模式，则可以用32个0的APP KEY进行任意链接， 如果Beacon处于发布模式，则需要对应配置过Beacon的APP KEY 才能再一次进行连接，确保Beacon部署安全
+ *
+ * 如果Beacon处于开发者模式，则可以用任意的APP KEY进行连接， 如果Beacon处于发布模式，则需要对应配置过Beacon的APP KEY 才能再一次进行连接，确保Beacon部署安全
  * @param mode 0、开发模式 1、部署模式
  * @param completion 写入完成回调
  * @return void
  */
 - (void)writeBeaconMode:(DevelopPublishMode)mode withCompletion:(BRTCompletionBlock)completion;
 
+//防丢器专用
+
+/**
+  * 自动休眠
+  */
+@property (nonatomic,assign) BOOL isAutoSleep;
+
+/**
+ *  是否在范围内
+ */
+@property (nonatomic,assign) BOOL isInRange;
+
+/**
+ * 自动报警（可以每隔N秒写入一次B_InRange来停止自动蜂鸣）
+ */
+@property (nonatomic,assign) BOOL isAutoAlarm;
+
+/**
+ * 自动报警超时（默认超时5秒）
+ */
+@property (nonatomic,assign) NSInteger autoAlarmTimeOut;
+
+/**
+ * 主动寻找，写人该值设备立即蜂鸣
+ */
+@property (nonatomic,assign) BOOL isActiveFind;
+
+/**
+ * 按钮报警，按钮报警状态
+ */
+@property (nonatomic,assign) BOOL isButtonAlarm;
+
+/// @name 防丢器读取beacon配置信息相关的方法
+
+/**
+ * 防丢器专用，按钮报警，按钮报警状态
+ */
+- (void)readALButtonAlarmCompletion:(BRTBoolCompletionBlock)completion;
+
+/**
+ * 防丢器专用，读取所有iBeacon参数
+ */
+- (void)readALIBeaconCompletion:(BRTConnectCompletionBlock)completion;
+
+/**
+ * 防丢器专用，读取固件版本数据
+ */
+- (void)readALDFUCompletion:(BRTStringCompletionBlock)completion;
 
 
-
-@property (nonatomic,assign) NSInteger rssis;
-@property (nonatomic,assign) NSInteger count;
+@property (nonatomic, assign)    NSInteger    rssis;
+@property (nonatomic, assign)    NSInteger    count;
+@property (nonatomic, assign)    BOOL    rssiByLocation;
 @end

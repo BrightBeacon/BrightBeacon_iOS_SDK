@@ -160,7 +160,13 @@ iPad mini均可以
                              B_MEASURED:<VALUE>,
                              B_TX:<VALUE>,
                              B_MODE:<VALUE>,
-                             B_INTERVAL:<VALUE>};
+                             B_INTERVAL:<VALUE>
+                             B_INTERVAL:<VALUE>,
+                             B_BATTERY_INTERVAL:<VALUE>,
+                             B_TEMPERATURE_INTERVAL:<VALUE>,
+                             B_LIGHT_INTERVAL:<VALUE>,
+                             B_MODE:<VALUE>,
+                             B_LIGHT_SLEEP:<VALUE>};
     [beacon writeBeaconValues:values withCompletion:^(NSError *error) {
     	if(!error){
     		//写人成功
