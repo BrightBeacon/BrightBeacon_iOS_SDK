@@ -41,6 +41,8 @@
 	
 	<option value="//api/name/advInterval">&nbsp;&nbsp;&nbsp;&nbsp;advInterval</option>
 	
+	<option value="//api/name/autoAlarmTimeOut">&nbsp;&nbsp;&nbsp;&nbsp;autoAlarmTimeOut</option>
+	
 	<option value="//api/name/battery">&nbsp;&nbsp;&nbsp;&nbsp;battery</option>
 	
 	<option value="//api/name/batteryCheckInteval">&nbsp;&nbsp;&nbsp;&nbsp;batteryCheckInteval</option>
@@ -55,11 +57,25 @@
 	
 	<option value="//api/name/invalidTime">&nbsp;&nbsp;&nbsp;&nbsp;invalidTime</option>
 	
+	<option value="//api/name/isActiveFind">&nbsp;&nbsp;&nbsp;&nbsp;isActiveFind</option>
+	
+	<option value="//api/name/isAutoAlarm">&nbsp;&nbsp;&nbsp;&nbsp;isAutoAlarm</option>
+	
+	<option value="//api/name/isAutoSleep">&nbsp;&nbsp;&nbsp;&nbsp;isAutoSleep</option>
+	
 	<option value="//api/name/isBrightBeacon">&nbsp;&nbsp;&nbsp;&nbsp;isBrightBeacon</option>
+	
+	<option value="//api/name/isButtonAlarm">&nbsp;&nbsp;&nbsp;&nbsp;isButtonAlarm</option>
 	
 	<option value="//api/name/isConnected">&nbsp;&nbsp;&nbsp;&nbsp;isConnected</option>
 	
-	<option value="//api/name/ledState">&nbsp;&nbsp;&nbsp;&nbsp;ledState</option>
+	<option value="//api/name/isInRange">&nbsp;&nbsp;&nbsp;&nbsp;isInRange</option>
+	
+	<option value="//api/name/light">&nbsp;&nbsp;&nbsp;&nbsp;light</option>
+	
+	<option value="//api/name/lightCheckInteval">&nbsp;&nbsp;&nbsp;&nbsp;lightCheckInteval</option>
+	
+	<option value="//api/name/lightSleep">&nbsp;&nbsp;&nbsp;&nbsp;lightSleep</option>
 	
 	<option value="//api/name/macAddress">&nbsp;&nbsp;&nbsp;&nbsp;macAddress</option>
 	
@@ -85,6 +101,8 @@
 	
 	<option value="//api/name/rssi">&nbsp;&nbsp;&nbsp;&nbsp;rssi</option>
 	
+	<option value="//api/name/supportOption">&nbsp;&nbsp;&nbsp;&nbsp;supportOption</option>
+	
 	<option value="//api/name/temperature">&nbsp;&nbsp;&nbsp;&nbsp;temperature</option>
 	
 	<option value="//api/name/temperatureCheckInteval">&nbsp;&nbsp;&nbsp;&nbsp;temperatureCheckInteval</option>
@@ -102,33 +120,13 @@
 	
 	<option value="//api/name/disconnectBeacon">&nbsp;&nbsp;&nbsp;&nbsp;- disconnectBeacon</option>
 	
-	<option value="//api/name/readBatteryCheckIntevalWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBatteryCheckIntevalWithCompletion:</option>
+	<option value="//api/name/readALButtonAlarmCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readALButtonAlarmCompletion:</option>
 	
-	<option value="//api/name/readBeaconAdvIntervalWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconAdvIntervalWithCompletion:</option>
+	<option value="//api/name/readALDFUCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readALDFUCompletion:</option>
 	
-	<option value="//api/name/readBeaconBatteryWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconBatteryWithCompletion:</option>
+	<option value="//api/name/readALIBeaconCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readALIBeaconCompletion:</option>
 	
 	<option value="//api/name/readBeaconFirmwareVersionWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconFirmwareVersionWithCompletion:</option>
-	
-	<option value="//api/name/readBeaconHardwareVersionWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconHardwareVersionWithCompletion:</option>
-	
-	<option value="//api/name/readBeaconLedStateWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconLedStateWithCompletion:</option>
-	
-	<option value="//api/name/readBeaconMajorWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconMajorWithCompletion:</option>
-	
-	<option value="//api/name/readBeaconMeasuredPowerWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconMeasuredPowerWithCompletion:</option>
-	
-	<option value="//api/name/readBeaconMinorWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconMinorWithCompletion:</option>
-	
-	<option value="//api/name/readBeaconNameWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconNameWithCompletion:</option>
-	
-	<option value="//api/name/readBeaconPowerWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconPowerWithCompletion:</option>
-	
-	<option value="//api/name/readBeaconProximityUUIDWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconProximityUUIDWithCompletion:</option>
-	
-	<option value="//api/name/readBeaconTemperatureWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconTemperatureWithCompletion:</option>
-	
-	<option value="//api/name/readTemperatureCheckIntevalWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readTemperatureCheckIntevalWithCompletion:</option>
 	
 	<option value="//api/name/resetBeaconToDefault">&nbsp;&nbsp;&nbsp;&nbsp;- resetBeaconToDefault</option>
 	
@@ -160,9 +158,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_连接beacon相关的方法">连接beacon相关的方法</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_读取beacon配置信息相关的方法">读取beacon配置信息相关的方法</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_写人beacon配置信息相关的方法">写人beacon配置信息相关的方法</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_防丢器读取beacon配置信息相关的方法">防丢器读取beacon配置信息相关的方法</a></span></li>
 	
 </ul></li>
 
@@ -173,6 +171,8 @@
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/advInterval">advInterval</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/autoAlarmTimeOut">autoAlarmTimeOut</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/battery">battery</a></span></li>
 	
@@ -188,11 +188,25 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/invalidTime">invalidTime</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isActiveFind">isActiveFind</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAutoAlarm">isAutoAlarm</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAutoSleep">isAutoSleep</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBrightBeacon">isBrightBeacon</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isButtonAlarm">isButtonAlarm</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isConnected">isConnected</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ledState">ledState</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isInRange">isInRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/light">light</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lightCheckInteval">lightCheckInteval</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lightSleep">lightSleep</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/macAddress">macAddress</a></span></li>
 	
@@ -218,6 +232,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rssi">rssi</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/supportOption">supportOption</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/temperature">temperature</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/temperatureCheckInteval">temperatureCheckInteval</a></span></li>
@@ -236,33 +252,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/disconnectBeacon">disconnectBeacon</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBatteryCheckIntevalWithCompletion:">readBatteryCheckIntevalWithCompletion:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readALButtonAlarmCompletion:">readALButtonAlarmCompletion:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconAdvIntervalWithCompletion:">readBeaconAdvIntervalWithCompletion:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readALDFUCompletion:">readALDFUCompletion:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconBatteryWithCompletion:">readBeaconBatteryWithCompletion:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readALIBeaconCompletion:">readALIBeaconCompletion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconFirmwareVersionWithCompletion:">readBeaconFirmwareVersionWithCompletion:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconHardwareVersionWithCompletion:">readBeaconHardwareVersionWithCompletion:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconLedStateWithCompletion:">readBeaconLedStateWithCompletion:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconMajorWithCompletion:">readBeaconMajorWithCompletion:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconMeasuredPowerWithCompletion:">readBeaconMeasuredPowerWithCompletion:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconMinorWithCompletion:">readBeaconMinorWithCompletion:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconNameWithCompletion:">readBeaconNameWithCompletion:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconPowerWithCompletion:">readBeaconPowerWithCompletion:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconProximityUUIDWithCompletion:">readBeaconProximityUUIDWithCompletion:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconTemperatureWithCompletion:">readBeaconTemperatureWithCompletion:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readTemperatureCheckIntevalWithCompletion:">readTemperatureCheckIntevalWithCompletion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resetBeaconToDefault">resetBeaconToDefault</a></span></li>
 	
@@ -317,8 +313,6 @@
 						<p>BRTBeacon类代表了一个在该区域监听中遇到的beacon设备. 你不需要直接实例化这个类. BRTBeaconManager在扫描到beacon设备时会回调相应delegate的方法传人BRTBeacon.你可以通过BRTBeacon里的信息来识别不同的设备.</p>
 
 <p>BRTBeacon类既包含了苹果CLBeacon类的基本方法，同时也新增了一些扩展方法，它能连接到beacon设备读取和写人一些特征（characteristics）.</p>
-
-<p>TYPEDEFS</p>
 					</div>
 					
 					
@@ -452,7 +446,7 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/ledState">&nbsp;&nbsp;ledState</a></code>
+		<code><a href="#//api/name/light">&nbsp;&nbsp;light</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -471,6 +465,18 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/temperatureCheckInteval">&nbsp;&nbsp;temperatureCheckInteval</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/lightCheckInteval">&nbsp;&nbsp;lightCheckInteval</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/lightSleep">&nbsp;&nbsp;lightSleep</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -502,6 +508,12 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/supportOption">&nbsp;&nbsp;supportOption</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/connectToBeacon">&ndash;&nbsp;connectToBeacon</a></code>
 	</span>
 	
@@ -509,98 +521,6 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/disconnectBeacon">&ndash;&nbsp;disconnectBeacon</a></code>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-						
-						<a title="读取beacon配置信息相关的方法" name="task_读取beacon配置信息相关的方法"></a>
-						<h3 class="subsubtitle task-title">读取beacon配置信息相关的方法</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBeaconNameWithCompletion:">&ndash;&nbsp;readBeaconNameWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBeaconProximityUUIDWithCompletion:">&ndash;&nbsp;readBeaconProximityUUIDWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBeaconMajorWithCompletion:">&ndash;&nbsp;readBeaconMajorWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBeaconMinorWithCompletion:">&ndash;&nbsp;readBeaconMinorWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBeaconAdvIntervalWithCompletion:">&ndash;&nbsp;readBeaconAdvIntervalWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBeaconPowerWithCompletion:">&ndash;&nbsp;readBeaconPowerWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBeaconLedStateWithCompletion:">&ndash;&nbsp;readBeaconLedStateWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBeaconMeasuredPowerWithCompletion:">&ndash;&nbsp;readBeaconMeasuredPowerWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBeaconBatteryWithCompletion:">&ndash;&nbsp;readBeaconBatteryWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBeaconFirmwareVersionWithCompletion:">&ndash;&nbsp;readBeaconFirmwareVersionWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBeaconHardwareVersionWithCompletion:">&ndash;&nbsp;readBeaconHardwareVersionWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBeaconTemperatureWithCompletion:">&ndash;&nbsp;readBeaconTemperatureWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readBatteryCheckIntevalWithCompletion:">&ndash;&nbsp;readBatteryCheckIntevalWithCompletion:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/readTemperatureCheckIntevalWithCompletion:">&ndash;&nbsp;readTemperatureCheckIntevalWithCompletion:</a></code>
 	</span>
 	
 	
@@ -632,6 +552,12 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/readBeaconFirmwareVersionWithCompletion:">&ndash;&nbsp;readBeaconFirmwareVersionWithCompletion:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/resetBeaconToDefault">&ndash;&nbsp;resetBeaconToDefault</a></code>
 	</span>
 	
@@ -645,6 +571,68 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/writeBeaconMode:withCompletion:">&ndash;&nbsp;writeBeaconMode:withCompletion:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isAutoSleep">&nbsp;&nbsp;isAutoSleep</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isInRange">&nbsp;&nbsp;isInRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isAutoAlarm">&nbsp;&nbsp;isAutoAlarm</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/autoAlarmTimeOut">&nbsp;&nbsp;autoAlarmTimeOut</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isActiveFind">&nbsp;&nbsp;isActiveFind</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isButtonAlarm">&nbsp;&nbsp;isButtonAlarm</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="防丢器读取beacon配置信息相关的方法" name="task_防丢器读取beacon配置信息相关的方法"></a>
+						<h3 class="subsubtitle task-title">防丢器读取beacon配置信息相关的方法</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/readALButtonAlarmCompletion:">&ndash;&nbsp;readALButtonAlarmCompletion:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/readALIBeaconCompletion:">&ndash;&nbsp;readALIBeaconCompletion:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/readALDFUCompletion:">&ndash;&nbsp;readALDFUCompletion:</a></code>
 	</span>
 	
 	
@@ -705,6 +693,47 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/autoAlarmTimeOut" title="autoAlarmTimeOut"></a>
+	<h3 class="subsubtitle method-title">autoAlarmTimeOut</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>自动报警超时（默认超时5秒）</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger autoAlarmTimeOut</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>自动报警超时（默认超时5秒）</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/battery" title="battery"></a>
 	<h3 class="subsubtitle method-title">battery</h3>
 	
@@ -730,7 +759,7 @@
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>battery</p>
 
-<p>battery电量，范围 0~100，通过工作电压估算值，连接后读取值为工作电压</p>
+<p>battery电量，范围 0~100，通过实时工作电压估算值，连接后读取值为工作电压估算值，较广播时略偏低</p>
 	</div>
 	
 	
@@ -773,7 +802,7 @@
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>batteryCheckInteval</p>
 
-<p>广播状态下Beacon的电量检测间隔，单位为:秒；最小值为1800秒，即每半小时自动检测电量并更新广播的数据</p>
+<p>广播状态下Beacon的电量检测间隔，单位为：秒；范围：1800秒~43200秒（12小时），即每隔指定秒自动检测电量并更新广播的数据</p>
 	</div>
 	
 	
@@ -902,7 +931,7 @@
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>固件最新版本信息，</p>
 
-<p>固件最新版本信息，checkFirmwareUpdateWithCompletion后可用</p>
+<p>固件最新版本信息，{@link checkFirmwareUpdateWithCompletion:}后可用</p>
 	</div>
 	
 	
@@ -1007,6 +1036,129 @@ beacon设备上一次出现的时间戳，一般用于维护是设备生存周�
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/isActiveFind" title="isActiveFind"></a>
+	<h3 class="subsubtitle method-title">isActiveFind</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>主动寻找，写人该值设备立即蜂鸣</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isActiveFind</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>主动寻找，写人该值设备立即蜂鸣</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isAutoAlarm" title="isAutoAlarm"></a>
+	<h3 class="subsubtitle method-title">isAutoAlarm</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>自动报警（可以每隔N秒写入一次B_InRange来停止自动蜂鸣）</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isAutoAlarm</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>自动报警（可以每隔N秒写入一次B_InRange来停止自动蜂鸣）</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isAutoSleep" title="isAutoSleep"></a>
+	<h3 class="subsubtitle method-title">isAutoSleep</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>自动休眠</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isAutoSleep</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>自动休眠</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/isBrightBeacon" title="isBrightBeacon"></a>
 	<h3 class="subsubtitle method-title">isBrightBeacon</h3>
 	
@@ -1033,6 +1185,47 @@ beacon设备上一次出现的时间戳，一般用于维护是设备生存周�
 		<p>isBrightBeacon</p>
 
 <p>是否是BrightBeacon</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isButtonAlarm" title="isButtonAlarm"></a>
+	<h3 class="subsubtitle method-title">isButtonAlarm</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>按钮报警，按钮报警状态</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isButtonAlarm</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>按钮报警，按钮报警状态</p>
 	</div>
 	
 	
@@ -1093,18 +1286,18 @@ beacon设备上一次出现的时间戳，一般用于维护是设备生存周�
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/ledState" title="ledState"></a>
-	<h3 class="subsubtitle method-title">ledState</h3>
+	<a name="//api/name/isInRange" title="isInRange"></a>
+	<h3 class="subsubtitle method-title">isInRange</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>ledState</p>
+		<p>是否在范围内</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) BOOL ledState</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isInRange</code></div>
 
     
 	
@@ -1116,9 +1309,136 @@ beacon设备上一次出现的时间戳，一般用于维护是设备生存周�
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>ledState</p>
+		<p>是否在范围内</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/light" title="light"></a>
+	<h3 class="subsubtitle method-title">light</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>light</p>
+	</div>		
+	
+    
 
-<p>led灯状态，连接后可用</p>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) NSInteger light</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>light</p>
+
+<p>光感强度</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/lightCheckInteval" title="lightCheckInteval"></a>
+	<h3 class="subsubtitle method-title">lightCheckInteval</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>lightCheckInteval</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) NSInteger lightCheckInteval</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>lightCheckInteval</p>
+
+<p>广播状态下Beacon周边光强检测间隔，单位为：毫秒；范围：1000毫秒~10,000毫秒，即每隔指定毫秒自动检测光强并更新广播的数据</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/lightSleep" title="lightSleep"></a>
+	<h3 class="subsubtitle method-title">lightSleep</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>lightSleep</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) BOOL lightSleep</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>lightSleep</p>
+
+<p>开启光感休眠，当环境变得完全黑暗，Beacon设备会自动降低发射频率，来提高使用寿命</p>
 	</div>
 	
 	
@@ -1251,7 +1571,7 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>measuredPower</p>
 
-<p>该值是1米处的rssi值，用于设备校准.</p>
+<p>该值是1米处的rssi值，用于设备距离估算.</p>
 	</div>
 	
 	
@@ -1295,6 +1615,9 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 		<p>minor</p>
 
 <p>设备的次要属性值，默认值是0。可以用作区域标识，类同Major</p>
+
+<p>Discussion:
+注意该值在用于区域标识，0和nil不等价：0是监测区域中对应UUID的设备下Minor为0的设备，nil则表示不使用该值</p>
 	</div>
 	
 	
@@ -1452,7 +1775,7 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) BRTBeaconPower power</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) NSInteger power</code></div>
 
     
 	
@@ -1466,7 +1789,9 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>power</p>
 
-<p>以分贝计的发射功率，连接后可用</p>
+<p>以分贝计的发射功率，连接后可用
+TI芯片：0：-23dBm 1：-6dBm 2：0dBm 3：+4dBm
+Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 6：-4dBm 7：0dBm 8：+4dBm</p>
 	</div>
 	
 	
@@ -1595,7 +1920,7 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>region</p>
 
-<p>该值是设备所在region，仅IOS7+支持</p>
+<p>该值是设备所在区域region，仅IOS7+支持</p>
 	</div>
 	
 	
@@ -1657,6 +1982,51 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/supportOption" title="supportOption"></a>
+	<h3 class="subsubtitle method-title">supportOption</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>当前版本支持状态（位标示）</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger supportOption</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>当前版本支持状态（位标示）</p>
+
+<p>TI芯片 Nordic 光感支持 自动检测 防丢支持 加密模式
+&mdash;&ndash;+&mdash;&mdash;+&mdash;&mdash;-+&mdash;&mdash;-+&mdash;&mdash;+&mdash;&mdash;-
+1      1      1       1       1      1</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/temperature" title="temperature"></a>
 	<h3 class="subsubtitle method-title">temperature</h3>
 	
@@ -1682,7 +2052,7 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>temperature</p>
 
-<p>温度，范围 -40~100℃ ，127为保留值</p>
+<p>温度，范围 -40~100℃ ，127为无效值</p>
 	</div>
 	
 	
@@ -1725,7 +2095,7 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>temperatureCheckInteval</p>
 
-<p>广播状态下Beacon周边温度检测间隔，单位为 秒；最小值为30秒，即每30秒自动检测电量并更新广播的数据</p>
+<p>广播状态下Beacon周边温度检测间隔，单位为：秒；范围：10秒~43200秒（12小时），即每隔指定秒自动检测电量并更新广播的数据</p>
 	</div>
 	
 	
@@ -1900,37 +2270,22 @@ Major, Minor, Power and Advertising interval.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/readBatteryCheckIntevalWithCompletion:" title="readBatteryCheckIntevalWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readBatteryCheckIntevalWithCompletion:</h3>
+	<a name="//api/name/readALButtonAlarmCompletion:" title="readALButtonAlarmCompletion:"></a>
+	<h3 class="subsubtitle method-title">readALButtonAlarmCompletion:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备在广播状态下自动检测 电量 的间隔时间 (要求已经连接成功)</p>
+		<p>防丢器专用，按钮报警，按钮报警状态</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)readBatteryCheckIntevalWithCompletion:(BRTIntegerCompletionBlock)<em>completion</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)readALButtonAlarmCompletion:(BRTBoolCompletionBlock)<em>completion</em></code></div>
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取间隔时间完成回调</p></dd>
-		</dl>
-		
-	</div>
 	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
 	
 	
 	
@@ -1938,7 +2293,7 @@ Major, Minor, Power and Advertising interval.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备在广播状态下自动检测 电量 的间隔时间 (要求已经连接成功)</p>
+		<p>防丢器专用，按钮报警，按钮报警状态</p>
 	</div>
 	
 	
@@ -1956,37 +2311,22 @@ Major, Minor, Power and Advertising interval.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/readBeaconAdvIntervalWithCompletion:" title="readBeaconAdvIntervalWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readBeaconAdvIntervalWithCompletion:</h3>
+	<a name="//api/name/readALDFUCompletion:" title="readALDFUCompletion:"></a>
+	<h3 class="subsubtitle method-title">readALDFUCompletion:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备的发射间隔 (要求已经连接成功)</p>
+		<p>防丢器专用，读取固件版本数据</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)readBeaconAdvIntervalWithCompletion:(BRTUnsignedShortCompletionBlock)<em>completion</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)readALDFUCompletion:(BRTStringCompletionBlock)<em>completion</em></code></div>
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取发射间隔值完成回调</p></dd>
-		</dl>
-		
-	</div>
 	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
 	
 	
 	
@@ -1994,7 +2334,7 @@ Major, Minor, Power and Advertising interval.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备的发射间隔 (要求已经连接成功)</p>
+		<p>防丢器专用，读取固件版本数据</p>
 	</div>
 	
 	
@@ -2012,37 +2352,22 @@ Major, Minor, Power and Advertising interval.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/readBeaconBatteryWithCompletion:" title="readBeaconBatteryWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readBeaconBatteryWithCompletion:</h3>
+	<a name="//api/name/readALIBeaconCompletion:" title="readALIBeaconCompletion:"></a>
+	<h3 class="subsubtitle method-title">readALIBeaconCompletion:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备的电量 (要求已经连接成功)</p>
+		<p>防丢器专用，读取所有iBeacon参数</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)readBeaconBatteryWithCompletion:(BRTShortCompletionBlock)<em>completion</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)readALIBeaconCompletion:(BRTConnectCompletionBlock)<em>completion</em></code></div>
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取当前电量完成回调</p></dd>
-		</dl>
-		
-	</div>
 	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
 	
 	
 	
@@ -2050,7 +2375,7 @@ Major, Minor, Power and Advertising interval.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备的电量 (要求已经连接成功)</p>
+		<p>防丢器专用，读取所有iBeacon参数</p>
 	</div>
 	
 	
@@ -2074,7 +2399,7 @@ Major, Minor, Power and Advertising interval.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备的固件版本 (要求已经连接成功)</p>
+		<p>读取设备版本信息</p>
 	</div>		
 	
     
@@ -2088,17 +2413,12 @@ Major, Minor, Power and Advertising interval.</p>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completion</em></dt>
-			<dd><p>读取固件版本信息完成回调</p></dd>
+			<dd><p>读取完成回调</p></dd>
 		</dl>
 		
 	</div>
 	
 	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
 	
 	
 	
@@ -2106,567 +2426,7 @@ Major, Minor, Power and Advertising interval.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备的固件版本 (要求已经连接成功)</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/readBeaconHardwareVersionWithCompletion:" title="readBeaconHardwareVersionWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readBeaconHardwareVersionWithCompletion:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备的硬件版本 (要求已经连接成功)</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)readBeaconHardwareVersionWithCompletion:(BRTStringCompletionBlock)<em>completion</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取硬件版本信息完成回调</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备的硬件版本 (要求已经连接成功)</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/readBeaconLedStateWithCompletion:" title="readBeaconLedStateWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readBeaconLedStateWithCompletion:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备的led灯状态 (要求已经连接成功)</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)readBeaconLedStateWithCompletion:(BRTBoolCompletionBlock)<em>completion</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取led灯状态完成回调</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备的led灯状态 (要求已经连接成功)</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/readBeaconMajorWithCompletion:" title="readBeaconMajorWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readBeaconMajorWithCompletion:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备的major值 (要求已经连接成功)</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)readBeaconMajorWithCompletion:(BRTUnsignedShortCompletionBlock)<em>completion</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取major值完成回调</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备的major值 (要求已经连接成功)</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/readBeaconMeasuredPowerWithCompletion:" title="readBeaconMeasuredPowerWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readBeaconMeasuredPowerWithCompletion:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备的测量功率 (要求已经连接成功)</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)readBeaconMeasuredPowerWithCompletion:(BRTShortCompletionBlock)<em>completion</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取测量功率值完成回调</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备的测量功率 (要求已经连接成功)</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/readBeaconMinorWithCompletion:" title="readBeaconMinorWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readBeaconMinorWithCompletion:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备的minor值 (要求已经连接成功)</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)readBeaconMinorWithCompletion:(BRTUnsignedShortCompletionBlock)<em>completion</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取minor值完成回调</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备的minor值 (要求已经连接成功)</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/readBeaconNameWithCompletion:" title="readBeaconNameWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readBeaconNameWithCompletion:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备名 (要求已经连接成功)</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)readBeaconNameWithCompletion:(BRTStringCompletionBlock)<em>completion</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取设备名完成回调</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备名 (要求已经连接成功)</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/readBeaconPowerWithCompletion:" title="readBeaconPowerWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readBeaconPowerWithCompletion:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备的发射功率 (要求已经连接成功)</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)readBeaconPowerWithCompletion:(BRTPowerCompletionBlock)<em>completion</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取发射功率值完成回调</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>beacon功率的float值</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备的发射功率 (要求已经连接成功)</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/readBeaconProximityUUIDWithCompletion:" title="readBeaconProximityUUIDWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readBeaconProximityUUIDWithCompletion:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备临近的UUID值 (要求已经连接成功)</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)readBeaconProximityUUIDWithCompletion:(BRTStringCompletionBlock)<em>completion</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取ProximityUUID值回调</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备临近的UUID值 (要求已经连接成功)</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/readBeaconTemperatureWithCompletion:" title="readBeaconTemperatureWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readBeaconTemperatureWithCompletion:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备的温度信息 (要求已经连接成功)</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)readBeaconTemperatureWithCompletion:(BRTShortCompletionBlock)<em>completion</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取温度信息完成回调</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备的温度信息 (要求已经连接成功)</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/readTemperatureCheckIntevalWithCompletion:" title="readTemperatureCheckIntevalWithCompletion:"></a>
-	<h3 class="subsubtitle method-title">readTemperatureCheckIntevalWithCompletion:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>读取连接中的beacon设备在广播状态下自动检测 温度 的间隔时间 (要求已经连接成功)</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)readTemperatureCheckIntevalWithCompletion:(BRTIntegerCompletionBlock)<em>completion</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>读取间隔时间完成回调</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>读取连接中的beacon设备在广播状态下自动检测 温度 的间隔时间 (要求已经连接成功)</p>
+		<p>读取设备版本信息</p>
 	</div>
 	
 	
@@ -2736,7 +2496,7 @@ Major, Minor, Power and Advertising interval.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>重置beacon设备默认KEY，该操作可以解除设备开发者绑定，让beacon设备可以重新被连接设定新的YOUR_KEY，该操作要求已经成功执行[<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> registerApp:YOUR_KEY];</p>
+		<p>重置beacon设备默认KEY，该操作可以解除设备开发者绑定，让beacon设备可以重新被连接设定新的APP_KEY，该操作要求已经成功执行[<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> registerApp:APP_KEY];</p>
 	</div>		
 	
     
@@ -2758,7 +2518,7 @@ Major, Minor, Power and Advertising interval.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>重置beacon设备默认KEY，该操作可以解除设备开发者绑定，让beacon设备可以重新被连接设定新的YOUR_KEY，该操作要求已经成功执行[<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> registerApp:YOUR_KEY];</p>
+		<p>重置beacon设备默认KEY，该操作可以解除设备开发者绑定，让beacon设备可以重新被连接设定新的APP_KEY，该操作要求已经成功执行[<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> registerApp:APP_KEY];</p>
 	</div>
 	
 	
@@ -2838,8 +2598,7 @@ Major, Minor, Power and Advertising interval.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>设置此Beacon处于开发者模式（DevelopMode）还是发布模式（PublishMode）
-如果Beacon处于开发者模式，则可以用32个0的APP KEY进行任意链接， 如果Beacon处于发布模式，则需要对应配置过Beacon的APP KEY 才能再一次进行连接，确保Beacon部署安全</p>
+		<p>设置此Beacon处于开发者模式（DevelopMode）还是发布模式（PublishMode）</p>
 	</div>		
 	
     
@@ -2876,8 +2635,9 @@ Major, Minor, Power and Advertising interval.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>设置此Beacon处于开发者模式（DevelopMode）还是发布模式（PublishMode）
-如果Beacon处于开发者模式，则可以用32个0的APP KEY进行任意链接， 如果Beacon处于发布模式，则需要对应配置过Beacon的APP KEY 才能再一次进行连接，确保Beacon部署安全</p>
+		<p>设置此Beacon处于开发者模式（DevelopMode）还是发布模式（PublishMode）</p>
+
+<p>如果Beacon处于开发者模式，则可以用任意的APP KEY进行连接， 如果Beacon处于发布模式，则需要对应配置过Beacon的APP KEY 才能再一次进行连接，确保Beacon部署安全</p>
 	</div>
 	
 	
@@ -2970,7 +2730,7 @@ Major, Minor, Power and Advertising interval.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-03-16)</span><br />
+						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-05-10)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						
