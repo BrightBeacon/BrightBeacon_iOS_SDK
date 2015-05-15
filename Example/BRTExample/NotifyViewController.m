@@ -63,7 +63,7 @@
     //停掉所有Region
     [BRTBeaconSDK stopMonitoringForRegions:nil];
     
-    //重构当前Beacon所在Region
+    //重构当前Beacon所在Region
     BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:self.beacon.proximityUUID identifier:UUIDMAJORMINOR];
     region.notifyOnEntry = sw_in.isOn;
     region.notifyOnExit = sw_out.isOn;

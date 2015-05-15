@@ -13,6 +13,8 @@
 /**
  * 更新日志
  *
+ *  3.2.1 防丢器新版
+ *
  *  3.2.0 新增防丢器，干啥扫描和Range合并，提高性能
  *
  *  3.1.0 修复光感休眠bug,批量部署错误，连接15s超时
@@ -36,7 +38,7 @@
  *  3.0.0 注释完善
  *
  */
-#define SDK_VERSION @"3.2.0"
+#define SDK_VERSION @"3.2.1"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
@@ -52,7 +54,7 @@
 #define B_LIGHT_INTERVAL @"lightInterval"
 #define B_LIGHT_SLEEP @"lightSleep"
 //Anti
-#define B_AutoSleep @"autoSleep"
+#define B_Reserved @"Reserved"
 #define B_InRange @"InRange"
 #define B_AutoAlarm @"AutoAlarm"
 #define B_ActiveFind @"ActiveFind"

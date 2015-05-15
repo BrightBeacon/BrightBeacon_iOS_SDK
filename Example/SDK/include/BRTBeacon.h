@@ -36,16 +36,7 @@
  *
  * @return void
  */
-- (void)beaconConnectionDidFail:(BRTBeacon*)beacon withError:(NSError*)error;
-
-/**
- * beacon连接成功回调该方法
- *
- * @param beacon 关联的beacon实体
- *
- * @return void
- */
-- (void)beaconConnectionDidSucceeded:(BRTBeacon*)beacon;
+- (void)beaconConnection:(BRTBeacon*)beacon withError:(NSError*)error;
 
 /**
  * beacon与设备已经断开连接回调该方法
@@ -365,6 +356,12 @@ extern CBCentralManager *centralManager;
 - (void)readBeaconFirmwareVersionWithCompletion:(BRTStringCompletionBlock)completion;
 
 /**
+ *  读取设备变动信息：温度、电量、光感(若有)
+ *
+ *  @param completion 读取完成回调
+ */
+- (void)readBeaconChangesWithCompletion:(BRTDataCompletionBlock)completion;
+/**
  * 重置beacon设备默认值，该操作要求已经成功执行 {@link registerApp:};
  *
  *
@@ -392,11 +389,6 @@ extern CBCentralManager *centralManager;
 //防丢器专用
 
 /**
-  * 自动休眠
-  */
-@property (nonatomic,assign) BOOL isAutoSleep;
-
-/**
  *  是否在范围内
  */
 @property (nonatomic,assign) BOOL isInRange;
@@ -420,6 +412,13 @@ extern CBCentralManager *centralManager;
  * 按钮报警，按钮报警状态
  */
 @property (nonatomic,assign) BOOL isButtonAlarm;
+
+/**
+ *  自定义
+ *
+ *    自定义
+ */
+@property (strong, nonatomic)   NSString*   reserved;
 
 /// @name 防丢器读取beacon配置信息相关的方法
 
