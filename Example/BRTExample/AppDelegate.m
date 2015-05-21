@@ -48,6 +48,11 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    //此处用于获取本地消息通知
+//    [[[UIAlertView alloc] initWithTitle:notification.alertTitle message:notification.alertBody delegate:nil cancelButtonTitle:notification.alertAction otherButtonTitles: nil] show];
+}
 #pragma monitor
 - (void)sendLocalNotification:(NSString*)msg
 {
@@ -55,6 +60,7 @@
     notice.alertBody = msg;
     notice.alertAction = Lang(@"Open", @"打开软件");
     notice.soundName = UILocalNotificationDefaultSoundName;
+    notice.userInfo = @{@"msg":@"whatever you want"};
     [[UIApplication sharedApplication] presentLocalNotificationNow:notice];
 }
 /**
@@ -86,7 +92,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  */
 -(void)beaconManager:(BRTBeaconManager *)manager
       didEnterRegion:(BRTBeaconRegion *)region{
-    if([[NSUserDefaults standardUserDefaults] valueForKey:@"in"])[self sendLocalNotification:Lang(@"Hello!", @"您已经进入了Beacon体验区")];
+    if(region.notifyOnEntry)[self sendLocalNotification:Lang(@"Hello!", @"您已经进入了Beacon体验区")];
 }
 
 
@@ -102,7 +108,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  */
 -(void)beaconManager:(BRTBeaconManager *)manager
        didExitRegion:(BRTBeaconRegion *)region{
-    if([[NSUserDefaults standardUserDefaults] valueForKey:@"out"])[self sendLocalNotification:Lang(@"Goodbye.", @"您已经离开")];
+    if(region.notifyOnExit)[self sendLocalNotification:Lang(@"Goodbye.", @"您已经离开")];
 }
 
 /**
@@ -119,6 +125,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 -(void)beaconManager:(BRTBeaconManager *)manager
    didDetermineState:(CLRegionState)state
            forRegion:(BRTBeaconRegion *)region{
-    if([[NSUserDefaults standardUserDefaults] valueForKey:@"notifyOnDisplay"])[self sendLocalNotification:Lang(@"Hello!", @"你处于监听Beacon区域,点亮屏幕收到此推送")];
+    if(region.notifyEntryStateOnDisplay)[self sendLocalNotification:Lang(@"Hello!", @"你处于监听Beacon区域,点亮屏幕收到此推送")];
 }
 @end

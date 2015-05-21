@@ -131,7 +131,7 @@
                 [self performSegueWithIdentifier:@"notify" sender:beacon];
             }else{
                 if (!([CLLocationManager locationServicesEnabled] &&
-                      [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized)) {
+                      [CLLocationManager authorizationStatus] >= 3)) {
                         showAlert(@"该功能需要打开 系统设置->隐私->定位服务->BrightBeacon");
                 }else{
                     showAlert(@"无法支持该设备，请监听该设备的UUID，或前往配置->设置该设备为默认UUID");

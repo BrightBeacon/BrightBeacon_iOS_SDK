@@ -18,16 +18,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //IOS8.0 推送必须询求用户同意
-    if ([[[UIDevice currentDevice] systemVersion] intValue]>=8) {
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    }
-    NSString *UUIDMAJORMINOR = [NSString stringWithFormat:@"%@%@%@",self.beacon.proximityUUID.UUIDString,self.beacon.major,self.beacon.minor];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [sw_in setOn:[[defaults valueForKey:@"in"] isEqualToString:UUIDMAJORMINOR]];
-    [sw_out setOn:[[defaults valueForKey:@"out"] isEqualToString:UUIDMAJORMINOR]];
-    [sw_on_display setOn:[[defaults valueForKey:@"notifyOnDisplay"] isEqualToString:UUIDMAJORMINOR]];
+    NSDictionary *regionState = [BRTBeaconSDK isMonitoring:@{@"uuid":self.beacon.proximityUUID.UUIDString,@"major":self.beacon.major,@"minor":self.beacon.minor}];
+    [sw_in setOn:[regionState valueForKey:@"in"]];
+    [sw_out setOn:[regionState valueForKey:@"out"]];
+    [sw_on_display setOn:[regionState valueForKey:@"display"]];
     
     if ([[UIApplication sharedApplication] backgroundRefreshStatus] != UIBackgroundRefreshStatusAvailable)
     {
@@ -39,32 +33,14 @@
 
 - (IBAction)swValueChanged:(id)sender
 {
-    NSString *UUIDMAJORMINOR = [NSString stringWithFormat:@"%@%@%@",self.beacon.proximityUUID.UUIDString,self.beacon.major,self.beacon.minor];
-    if (sender == sw_in) {
-        if (sw_in.isOn) {
-            [[NSUserDefaults standardUserDefaults] setValue:UUIDMAJORMINOR forKey:@"in"];
-        }else{
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"in"];
-        }
-    }else if(sender == sw_out){
-        if (sw_out.isOn) {
-            [[NSUserDefaults standardUserDefaults] setValue:UUIDMAJORMINOR forKey:@"out"];
-        }else{
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"out"];
-        }
-    }else if(sender == sw_on_display){
-        if (sw_on_display.isOn) {
-            [[NSUserDefaults standardUserDefaults] setValue:UUIDMAJORMINOR forKey:@"notifyOnDisplay"];
-        }else{
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"notifyOnDisplay"];
-        }
+    //IOS8.0 推送必须询求用户同意
+    if ([[[UIDevice currentDevice] systemVersion] intValue]>=8) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     }
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    //停掉所有Region
-    [BRTBeaconSDK stopMonitoringForRegions:nil];
     
-    //重构当前Beacon所在Region
-    BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:self.beacon.proximityUUID identifier:UUIDMAJORMINOR];
+    //重构当前Beacon所在Region,如果your_region_id一致会覆盖之前的Region
+    BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:self.beacon.proximityUUID identifier:@"your_region_id"];
     region.notifyOnEntry = sw_in.isOn;
     region.notifyOnExit = sw_out.isOn;
     region.notifyEntryStateOnDisplay = sw_on_display.isOn;
@@ -73,6 +49,14 @@
     }else{
         [BRTBeaconSDK startMonitoringForRegions:@[region]];
     }
+}
+//用于停止所有的r
+- (IBAction)stopAllButtonClicked:(id)sender{
+    //获取所有的区域
+    NSSet *regions = [[BRTBeaconSDK BRTBeaconManager] monitoredRegions];
+
+    //停掉所有Region
+    [BRTBeaconSDK stopMonitoringForRegions:regions];
 }
 - (void)dealloc
 {
