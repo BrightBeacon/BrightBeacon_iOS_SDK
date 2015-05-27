@@ -32,15 +32,6 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 /// @name beacon快捷扫描BrightBeacon相关的方法
 
 /**
-* 注册开发者appKey，申请地址：http://developer.brtbeacon.com
-*
-* @param appKey BrightBeacon AppKey
-*
-* @return void
-*/
-+ (void)registerApp:(NSString *)appKey;
-
-/**
  * 注册并网络验证开发者appKey，申请地址：http://developer.brtbeacon.com
  *
  * @param appKey BrightBeacon AppKey

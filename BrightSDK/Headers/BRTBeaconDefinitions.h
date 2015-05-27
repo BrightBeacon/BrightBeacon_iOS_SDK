@@ -13,32 +13,36 @@
 /**
  * 更新日志
  *
+ *  3.2.3 兼容新版本固件
+ *
+ *  3.2.2 修复17位key连接失败
+ *
  *  3.2.1 防丢器新版
  *
- *  3.2.0 新增防丢器，干啥扫描和Range合并，提高性能
+ *  3.2.0 新增防丢器，扫描和Range合并，提高性能
  *
- *  3.1.0 修复光感休眠bug,批量部署错误，连接15s超时
+ *  3.1.0 修复光感休眠bug，批量部署错误，连接15s超时
  *
  *  3.0.9 光感休眠等
  *
- *  3.0.8 for Api Cloud
+ *  3.0.8 for Api Cloud支持
  *
- *  3.0.7 光感、间隔、大端
+ *  3.0.7 光感、间隔、最新固件大小端问题
  *
- *  3.0.6 修复Range的RSSI被扫描覆盖！
+ *  3.0.6 修复Range的RSSI
  *
- *  3.0.5 修复records温度、电量为nil崩溃
+ *  3.0.5 修复records温度、电量为nil错误
  *
  *  3.0.4 修复第一次启动无法成功开启扫描
  * 
  *  3.0.3 提供IOS8定位权限选择、蓝牙一直扫描
  *
- *  3.0.2 新增isBrightBeacon属性
+ *  3.0.2 新增Beacon属性
  *
  *  3.0.0 注释完善
  *
  */
-#define SDK_VERSION @"3.2.1"
+#define SDK_VERSION @"3.2.3"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
@@ -60,7 +64,10 @@
 #define B_ActiveFind @"ActiveFind"
 #define B_ButtonAlarm @"ButtonAlarm"
 #define B_AutoAlarmTimeOut @"autoalarmtimeout"
-
+//Ali
+#define B_Ali_Switch @"AliSw"
+#define B_AliUUID_Switch @"useAliUUIDSw"
+#define B_AliUUID @"AliUUID"
 
 #define DEFAULT_KEY @"00000000000000000000000000000000"   //32-0
 #define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
@@ -70,7 +77,7 @@
 //#define DEFAULT_LED 1
 #define DEFAULT_INTERVAL 800
 #define DEFAULT_BCHECK_INTERVAL 3600
-#define DEFAULT_TCHECK_INTERVAL 600
+#define DEFAULT_TCHECK_INTERVAL 3600
 #define DEFAULT_LCHECK_INTERVAL 5000
 #define DEFAULT_TX 2
 #define DEFAULT_TX_PLUS 7
@@ -100,6 +107,7 @@ typedef NS_OPTIONS(NSUInteger, BrtSupports) {
     BrtSupportsAntiLose    = 1 << 4,
     BrtSupports16Key    = 1 << 5,
     BrtSupportsUpdateName    = 1 << 6,
+    BrtSupportsAli    = 1 << 7
 };
 
 typedef enum : int

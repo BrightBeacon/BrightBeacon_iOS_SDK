@@ -36,16 +36,7 @@
  *
  * @return void
  */
-- (void)beaconConnectionDidFail:(BRTBeacon*)beacon withError:(NSError*)error;
-
-/**
- * beacon连接成功回调该方法
- *
- * @param beacon 关联的beacon实体
- *
- * @return void
- */
-- (void)beaconConnectionDidSucceeded:(BRTBeacon*)beacon;
+- (void)beaconConnection:(BRTBeacon*)beacon withError:(NSError*)error;
 
 /**
  * beacon与设备已经断开连接回调该方法
@@ -365,6 +356,12 @@ extern CBCentralManager *centralManager;
 - (void)readBeaconFirmwareVersionWithCompletion:(BRTStringCompletionBlock)completion;
 
 /**
+ *  读取设备变动信息：温度、电量、光感(若有)
+ *
+ *  @param completion 读取完成回调
+ */
+- (void)readBeaconChangesWithCompletion:(BRTDataCompletionBlock)completion;
+/**
  * 重置beacon设备默认值，该操作要求已经成功执行 {@link registerApp:};
  *
  *
@@ -388,6 +385,19 @@ extern CBCentralManager *centralManager;
  * @return void
  */
 - (void)writeBeaconMode:(DevelopPublishMode)mode withCompletion:(BRTCompletionBlock)completion;
+
+//阿里Beacon专用
+
+
+/**
+ *  是否只启阿里模式
+ */
+@property (nonatomic,assign) BOOL isAliMode;
+
+/**
+ *  是否只启阿里UUID，阿里UUID同步
+ */
+@property (nonatomic,assign) BOOL isAliUUID;
 
 //防丢器专用
 

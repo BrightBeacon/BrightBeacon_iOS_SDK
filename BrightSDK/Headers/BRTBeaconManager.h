@@ -178,15 +178,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  */
 - (NSSet*)rangedRegions;
 
-/**
- * 注册开发者appkey，申请地址：http://developer.brtbeacon.com
- *
- * @param appKey bright beacon 开发者密钥
- *
- * @return void
- */
-+ (void)registerApp:(NSString *)appKey;
-
 /// @name CoreLocation based iBeacon monitoring and ranging methods
 
 /**
