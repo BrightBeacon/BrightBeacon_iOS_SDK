@@ -65,8 +65,6 @@
 
 @interface BRTBeacon : NSObject <CBPeripheralDelegate>
 
-extern CBCentralManager *centralManager;
-
 @property (nonatomic, unsafe_unretained)     id <BRTBeaconDelegate>  delegate;
 
 /////////////////////////////////////////////////////

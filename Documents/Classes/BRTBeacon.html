@@ -59,9 +59,11 @@
 	
 	<option value="//api/name/isActiveFind">&nbsp;&nbsp;&nbsp;&nbsp;isActiveFind</option>
 	
-	<option value="//api/name/isAutoAlarm">&nbsp;&nbsp;&nbsp;&nbsp;isAutoAlarm</option>
+	<option value="//api/name/isAliMode">&nbsp;&nbsp;&nbsp;&nbsp;isAliMode</option>
 	
-	<option value="//api/name/isAutoSleep">&nbsp;&nbsp;&nbsp;&nbsp;isAutoSleep</option>
+	<option value="//api/name/isAliUUID">&nbsp;&nbsp;&nbsp;&nbsp;isAliUUID</option>
+	
+	<option value="//api/name/isAutoAlarm">&nbsp;&nbsp;&nbsp;&nbsp;isAutoAlarm</option>
 	
 	<option value="//api/name/isBrightBeacon">&nbsp;&nbsp;&nbsp;&nbsp;isBrightBeacon</option>
 	
@@ -99,6 +101,8 @@
 	
 	<option value="//api/name/region">&nbsp;&nbsp;&nbsp;&nbsp;region</option>
 	
+	<option value="//api/name/reserved">&nbsp;&nbsp;&nbsp;&nbsp;reserved</option>
+	
 	<option value="//api/name/rssi">&nbsp;&nbsp;&nbsp;&nbsp;rssi</option>
 	
 	<option value="//api/name/supportOption">&nbsp;&nbsp;&nbsp;&nbsp;supportOption</option>
@@ -120,11 +124,15 @@
 	
 	<option value="//api/name/disconnectBeacon">&nbsp;&nbsp;&nbsp;&nbsp;- disconnectBeacon</option>
 	
+	<option value="//api/name/isSupport:">&nbsp;&nbsp;&nbsp;&nbsp;- isSupport:</option>
+	
 	<option value="//api/name/readALButtonAlarmCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readALButtonAlarmCompletion:</option>
 	
 	<option value="//api/name/readALDFUCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readALDFUCompletion:</option>
 	
 	<option value="//api/name/readALIBeaconCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readALIBeaconCompletion:</option>
+	
+	<option value="//api/name/readBeaconChangesWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconChangesWithCompletion:</option>
 	
 	<option value="//api/name/readBeaconFirmwareVersionWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconFirmwareVersionWithCompletion:</option>
 	
@@ -190,9 +198,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isActiveFind">isActiveFind</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAutoAlarm">isAutoAlarm</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAliMode">isAliMode</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAutoSleep">isAutoSleep</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAliUUID">isAliUUID</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAutoAlarm">isAutoAlarm</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBrightBeacon">isBrightBeacon</a></span></li>
 	
@@ -230,6 +240,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/region">region</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/reserved">reserved</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rssi">rssi</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/supportOption">supportOption</a></span></li>
@@ -252,11 +264,15 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/disconnectBeacon">disconnectBeacon</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isSupport:">isSupport:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readALButtonAlarmCompletion:">readALButtonAlarmCompletion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readALDFUCompletion:">readALDFUCompletion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readALIBeaconCompletion:">readALIBeaconCompletion:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconChangesWithCompletion:">readBeaconChangesWithCompletion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconFirmwareVersionWithCompletion:">readBeaconFirmwareVersionWithCompletion:</a></span></li>
 	
@@ -514,6 +530,12 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/isSupport:">&ndash;&nbsp;isSupport:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/connectToBeacon">&ndash;&nbsp;connectToBeacon</a></code>
 	</span>
 	
@@ -558,6 +580,12 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/readBeaconChangesWithCompletion:">&ndash;&nbsp;readBeaconChangesWithCompletion:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/resetBeaconToDefault">&ndash;&nbsp;resetBeaconToDefault</a></code>
 	</span>
 	
@@ -576,7 +604,13 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/isAutoSleep">&nbsp;&nbsp;isAutoSleep</a></code>
+		<code><a href="#//api/name/isAliMode">&nbsp;&nbsp;isAliMode</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isAliUUID">&nbsp;&nbsp;isAliUUID</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -607,6 +641,12 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isButtonAlarm">&nbsp;&nbsp;isButtonAlarm</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/reserved">&nbsp;&nbsp;reserved</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1077,6 +1117,88 @@ beacon设备上一次出现的时间戳，一般用于维护是设备生存周�
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/isAliMode" title="isAliMode"></a>
+	<h3 class="subsubtitle method-title">isAliMode</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>是否只启阿里模式</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isAliMode</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>是否只启阿里模式</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isAliUUID" title="isAliUUID"></a>
+	<h3 class="subsubtitle method-title">isAliUUID</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>是否只启阿里UUID，阿里UUID同步</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isAliUUID</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>是否只启阿里UUID，阿里UUID同步</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/isAutoAlarm" title="isAutoAlarm"></a>
 	<h3 class="subsubtitle method-title">isAutoAlarm</h3>
 	
@@ -1101,47 +1223,6 @@ beacon设备上一次出现的时间戳，一般用于维护是设备生存周�
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>自动报警（可以每隔N秒写入一次B_InRange来停止自动蜂鸣）</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/isAutoSleep" title="isAutoSleep"></a>
-	<h3 class="subsubtitle method-title">isAutoSleep</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>自动休眠</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isAutoSleep</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>自动休眠</p>
 	</div>
 	
 	
@@ -1938,6 +2019,49 @@ Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/reserved" title="reserved"></a>
+	<h3 class="subsubtitle method-title">reserved</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>自定义</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSString *reserved</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>自定义</p>
+
+<p>自定义</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/rssi" title="rssi"></a>
 	<h3 class="subsubtitle method-title">rssi</h3>
 	
@@ -2270,6 +2394,49 @@ Major, Minor, Power and Advertising interval.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/isSupport:" title="isSupport:"></a>
+	<h3 class="subsubtitle method-title">isSupport:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>//////////// 0.tag   1.base1 2.base2 3.plus    4.cb未定义 5.xb 0306.antiLose 其他品牌x-1.Sensoro x-2.四月
+//////////// 0000     0101     0102  0303~0304 0401      0305 0306          F100               F200</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isSupport:(BrtSupports)<em>option</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>//////////// 0.tag   1.base1 2.base2 3.plus    4.cb未定义 5.xb 0306.antiLose 其他品牌x-1.Sensoro x-2.四月
+//////////// 0000     0101     0102  0303~0304 0401      0305 0306          F100               F200</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/readALButtonAlarmCompletion:" title="readALButtonAlarmCompletion:"></a>
 	<h3 class="subsubtitle method-title">readALButtonAlarmCompletion:</h3>
 	
@@ -2376,6 +2543,57 @@ Major, Minor, Power and Advertising interval.</p>
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>防丢器专用，读取所有iBeacon参数</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/readBeaconChangesWithCompletion:" title="readBeaconChangesWithCompletion:"></a>
+	<h3 class="subsubtitle method-title">readBeaconChangesWithCompletion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>读取设备变动信息：温度、电量、光感(若有)</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)readBeaconChangesWithCompletion:(BRTDataCompletionBlock)<em>completion</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completion</em></dt>
+			<dd><p>读取完成回调</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>读取设备变动信息：温度、电量、光感(若有)</p>
 	</div>
 	
 	
@@ -2730,7 +2948,7 @@ Major, Minor, Power and Advertising interval.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-05-10)</span><br />
+						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-06-05)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

@@ -13,6 +13,8 @@
 /**
  * 更新日志
  *
+ *  3.2.4 解决部分无法编译
+ *
  *  3.2.3 兼容新版本固件
  *
  *  3.2.2 修复17位key连接失败
@@ -67,7 +69,7 @@
 //Ali
 #define B_Ali_Switch @"AliSw"
 #define B_AliUUID_Switch @"useAliUUIDSw"
-#define B_AliUUID @"AliUUID"
+#define B_AliUUID @"Reserved"
 
 #define DEFAULT_KEY @"00000000000000000000000000000000"   //32-0
 #define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
@@ -100,14 +102,14 @@
 #define isLocationAlways NO
 
 typedef NS_OPTIONS(NSUInteger, BrtSupports) {
-    BrtSupportsCC254x       = 1 << 0,
-    BrtSupportsNordic       = 1 << 1,
-    BrtSupportsLight        = 1 << 2,
-    BrtSupports3Interval    = 1 << 3,
-    BrtSupportsAntiLose    = 1 << 4,
-    BrtSupports16Key    = 1 << 5,
-    BrtSupportsUpdateName    = 1 << 6,
-    BrtSupportsAli    = 1 << 7
+    BrtSupportsCC254x                   = 1 << 0,
+    BrtSupportsNordic                   = 1 << 1,
+    BrtSupportsLight                    = 1 << 2,
+    BrtSupportsCombineCharacteristic    = 1 << 3,
+    BrtSupportsAntiLose                 = 1 << 4,
+    BrtSupports16Key                    = 1 << 5,
+    BrtSupportsUpdateName               = 1 << 6,
+    BrtSupportsAli                      = 1 << 7//新版本判断含CCx和Nordic：0100
 };
 
 typedef enum : int
@@ -133,8 +135,8 @@ typedef enum : int
     ErrorCode100 = 100,     //APP KEY不正确
     ErrorCode101 = 101,     //未识别的设备(未检测到peripheral或非BrightBeacon设备)
     ErrorCode102 = 102,     //网络连接失败
-    ErrorCode103 = 103,     //未检测到电量传感器(读取传感器特征失败)
-    ErrorCode104 = 104,     //未检测到温度传感器、读取数据有误(读取传感器特征失败)
+    ErrorCode103 = 103,     //未检测到传感器(读取传感器特征失败)
+    ErrorCode104 = 104,     //未检测到传感器、读取数据有误(读取传感器特征失败)
     ErrorCode105 = 105,     //当前版本固件不支持更新
     ErrorCode106 = 106,     //暂无版本更新，或未执行版本检测：checkFirmwareUpdateWithCompletion:
     ErrorCode107 = 107,     //固件下载失败，请重试

@@ -9,16 +9,16 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "BRTBeaconRegion.h"
-#import "BRTBeacon.h"
+#import <CoreBluetooth/CoreBluetooth.h>
+
+@class BRTBeaconRegion;
+@class BRTBeacon;
 
 #define iszh [[NSLocale preferredLanguages][0] rangeOfString:@"zh"].location==0
 #define BLE_SHOWTIPS NO
 #define BLE_TITLE iszh?@"需要打开蓝牙":@"Please Turn on Bluetooth"
 #define BLE_TIPS iszh?@"使用低功耗蓝牙可以发现身边的更多信息":@"Using bluetooth to find beacon around"
 #define BLE_BUTTON iszh?@"好的":@"OK"
-
-CBCentralManager *centralManager;
 
 @class BRTBeaconManager;
 
@@ -163,6 +163,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 @property (nonatomic, weak) id <BRTBeaconManagerDelegate> delegate;
 
+@property (nonatomic,strong) CBCentralManager *centralManager;
 /*
  *  monitoredRegions
  *
