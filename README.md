@@ -76,7 +76,6 @@ iPad mini均可以
 在- (BOOL)application: didFinishLaunchingWithOptions:方法中调用registerApp方法来初始化SDK
 
 ```
-[BRTBeaconSDK registerApp:YOUR_APPKEY];
 [BRTBeaconSDK registerApp:(NSString *)appKey onCompletion:(BRTCompletionBlock)completion];
 ```
 `2、常见的API调用`<br/>

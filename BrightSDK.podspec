@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BrightSDK"
-  s.version      = "3.2.6"
+  s.version      = "3.2.7"
   s.summary      = "iOS library for Bright iBeacon devices"
   s.homepage     = "http://www.brtbeacon.com"
   s.author       = { "BrightBeacon" => "o2owlkj@163.com" }
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.preserve_paths = 'BrightSDK/libBrightSDK.a'
   s.vendored_libraries = 'BrightSDK/libBrightSDK.a'
   s.ios.deployment_target = '6.0'
-  s.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'CoreLocation'
+  s.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'CoreLocation', 'CoreBluetooth'
   s.requires_arc = true
   s.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/BrightSDK"',
                    'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/BrightSDK/Headers"' }
