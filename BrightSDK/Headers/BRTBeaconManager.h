@@ -15,10 +15,9 @@
 @class BRTBeacon;
 
 #define iszh [[NSLocale preferredLanguages][0] rangeOfString:@"zh"].location==0
-#define BLE_SHOWTIPS NO
-#define BLE_TITLE iszh?@"需要打开蓝牙":@"Please Turn on Bluetooth"
-#define BLE_TIPS iszh?@"使用低功耗蓝牙可以发现身边的更多信息":@"Using bluetooth to find beacon around"
-#define BLE_BUTTON iszh?@"好的":@"OK"
+#define LOC_SHOWTIPS YES
+#define LOC_TITLE iszh?@"需要定位":@"Location Need"
+#define LOC_TIPS iszh?@"感知iBeacon设备，获取区域推送，需要定位权限“使用期间”或“始终”":@"In order to be notified about ibeacons near you, please open this app's settings and set location access to 'Always' Or 'WhenInUse'."
 
 @class BRTBeaconManager;
 
