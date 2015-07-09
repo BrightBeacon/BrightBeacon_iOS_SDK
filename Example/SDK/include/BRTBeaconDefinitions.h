@@ -13,6 +13,10 @@
 /**
  * 更新日志
  *
+ *  3.2.8 兼容新版固件
+ *
+ *  3.2.7 更新cocoaPods
+ *
  *  3.2.6 替换使用CBUUID类别方法产生的undefined selector
  *
  *  3.2.5 修复ios7.0.x配置
@@ -48,7 +52,7 @@
  *  3.0.0 注释完善
  *
  */
-#define SDK_VERSION @"3.2.6"
+#define SDK_VERSION @"3.2.8"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
