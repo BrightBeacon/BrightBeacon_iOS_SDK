@@ -384,16 +384,16 @@
  */
 - (void)writeBeaconMode:(DevelopPublishMode)mode withCompletion:(BRTCompletionBlock)completion;
 
-//阿里Beacon专用
+//轮播Beacon专用
 
 
 /**
- *  是否只启阿里模式
+ *  是否只启轮播模式
  */
 @property (nonatomic,assign) BOOL isAliMode;
 
 /**
- *  是否只启阿里UUID，阿里UUID同步
+ *  是否只启轮播UUID
  */
 @property (nonatomic,assign) BOOL isAliUUID;
 

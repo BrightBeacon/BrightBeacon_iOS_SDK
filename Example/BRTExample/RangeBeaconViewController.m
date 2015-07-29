@@ -44,6 +44,7 @@
         if (!error) {
             [weakSelf reloadData:beacons];
         }else{
+            //检查蓝牙是否打开
             showAlert(error.description);
         }
      }];

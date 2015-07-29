@@ -13,6 +13,10 @@
 /**
  * 更新日志
  *
+ *  3.3.0 修正设备出现重复数据
+ *
+ *  3.2.9 设备名修改立即生效
+ *
  *  3.2.8 兼容新版固件
  *
  *  3.2.7 更新cocoaPods
@@ -52,7 +56,7 @@
  *  3.0.0 注释完善
  *
  */
-#define SDK_VERSION @"3.2.8"
+#define SDK_VERSION @"3.3.0"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
@@ -117,7 +121,8 @@ typedef NS_OPTIONS(NSUInteger, BrtSupports) {
     BrtSupportsAntiLose                 = 1 << 4,
     BrtSupports16Key                    = 1 << 5,
     BrtSupportsUpdateName               = 1 << 6,
-    BrtSupportsAli                      = 1 << 7//新版本判断含CCx和Nordic：0100
+    BrtSupportsAli                      = 1 << 7,
+    BrtSupportsEddystone                = 1 << 8
 };
 
 typedef enum : int
