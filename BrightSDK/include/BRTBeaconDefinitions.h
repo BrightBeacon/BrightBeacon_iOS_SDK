@@ -13,6 +13,8 @@
 /**
  * 更新日志
  *
+ *  3.3.1 修正区域回调中默认指向AppDelegate为自定义[BRTBeaconSDK regionHander:nil]
+ *
  *  3.3.0 修正设备出现重复数据
  *
  *  3.2.9 设备名修改立即生效
@@ -56,7 +58,7 @@
  *  3.0.0 注释完善
  *
  */
-#define SDK_VERSION @"3.3.0"
+#define SDK_VERSION @"3.3.1"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"

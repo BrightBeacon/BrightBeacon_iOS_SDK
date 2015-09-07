@@ -100,11 +100,11 @@
     lbl = (UILabel*)[cell viewWithTag:104];
     lbl.text = [NSString stringWithFormat:@"%@", beacon.macAddress];
     lbl = (UILabel*)[cell viewWithTag:105];
-    lbl.text = [NSString stringWithFormat:@"%.2f", beacon.accuracy<0.00001?beacon.distance.floatValue:beacon.accuracy];
+    lbl.text = [NSString stringWithFormat:@"%.2f", beacon.distance.floatValue];
     lbl = (UILabel*)[cell viewWithTag:106];
-    lbl.text = [NSString stringWithFormat:@"%@%%", beacon.battery];
+    lbl.text = [NSString stringWithFormat:@"%@%%", beacon.battery?:@"-"];
     lbl = (UILabel*)[cell viewWithTag:107];
-    lbl.text = [NSString stringWithFormat:@"%@℃", beacon.temperature];
+    lbl.text = [NSString stringWithFormat:@"%@℃", beacon.temperature?:@"-"];
     
     return cell;
 }

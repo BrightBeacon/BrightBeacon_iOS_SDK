@@ -6,7 +6,7 @@ iOS-SDK
 
 智石开发包（BrightSDK）符合苹果的iBeacon技术，提供了扫描或管理Beacon设备或模拟iBeacon设备的API。你可以访问[智石官网（http://www.brtbeacon.com）](http://www.brtbeacon.com)了解更多信息，也可以查阅[SDK文档](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)或前往我们的[开发者社区（http://bbs.brtbeacon.com）](http://bbs.brtbeacon.com)交流和找到我们软硬件相关问题。
 
-智石开发包需要手持设备支持蓝牙4.0及其以上，并IOS6.0及其以上系统。
+智石开发包需要手持设备硬件支持蓝牙4.0及其以上，并要求系统版本IOS6.0及其以上。
 附：支持的IOS设备列表
 iphone4s以上、
 itouch5以上、

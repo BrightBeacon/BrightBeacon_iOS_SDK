@@ -32,7 +32,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 /// @name beacon快捷扫描BrightBeacon相关的方法
 
 /**
- * 注册并网络验证开发者appKey，申请地址：http://developer.brtbeacon.com
+ * 注册并验证开发者appKey，申请地址：http://developer.brtbeacon.com
  *
  * @param appKey BrightBeacon AppKey
  * @param completion 验证appKey有效性状态
@@ -103,14 +103,14 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  *<br/>-(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
  *<br/>- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error;
  *
- * @param handler 用于接收后台区域监听回调函数的类，传入nil用作返回当前使用的handler
+ * @param handler 用于接收后台区域监听回调函数的类。传入的handler类用作接收回调（该类务必随程序的启动即初始化，否则无法接收到回调）；若传人值为nil会返回当前使用的handler（默认为AppDelegate）
  *
- * @return handler 返回当前使用的handler，默认返回AppDelegate
+ * @return handler 返回当前使用的handler，若从未设置，默认返回AppDelegate
  */
 + (id)regionHander:(id)handler;
 
 /**
- *  请求监听状态，IOS6始终返回nil
+ *  请求监听状态，仅支持IOS7以上，IOS6始终返回nil
  *
  *  @param dict 需要请求的区域标识，uuid必须传人，major或minor按实际情况选传 示例：{uuid:...,major:@0}
  *
@@ -119,8 +119,11 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 + (NSDictionary*)isMonitoring:(NSDictionary*)dict NS_AVAILABLE_IOS(6_0);
 
 /**
- * 开启监听要求IOS7以上系统；
- * 如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新,IOS8另需请求用户最高权限[CLLocationManager authorizationStatus]==4
+ * 开启区域监听要求IOS7以上系统；
+ * 如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新；
+ * IOS8另需请求允许后台定位，requestAlwaysAuthorization
+ * 检查状态：[CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorizedAlways.
+ * 注：SDK默认只请求运行时定位，可以通过BRTBeaconDefinitions.h中isLocationAlways=YES来配置
  *
  * 状态会默认回调到appDelegate中(或自定义的handler中{@link regionHandler:})：
  *<br/>-(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region;

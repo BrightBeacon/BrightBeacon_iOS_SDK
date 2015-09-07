@@ -23,17 +23,20 @@
     [sw_out setOn:[regionState valueForKey:@"out"]];
     [sw_on_display setOn:[regionState valueForKey:@"display"]];
     
-    if ([[UIApplication sharedApplication] backgroundRefreshStatus] != UIBackgroundRefreshStatusAvailable)
-    {
+    if (!self.beacon.proximityUUID) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"请在startRangingWithUuids:传人该设备的UUID" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alertView show];
+    }else if ([[UIApplication sharedApplication] backgroundRefreshStatus] != UIBackgroundRefreshStatusAvailable)
+        {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"您没有开启后台刷新，关闭程序后将无法推送，请在 设置->通用->应用程序后台刷新 中开启." delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alertView show];
-    }
+        }
 }
 
 
 - (IBAction)swValueChanged:(id)sender
 {
-    //IOS8.0 推送必须询求用户同意
+    //IOS8.0 推送必须询求用户同意，来触发通知（按你程序所需）
     if ([[[UIDevice currentDevice] systemVersion] intValue]>=8) {
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
@@ -50,7 +53,7 @@
         [BRTBeaconSDK startMonitoringForRegions:@[region]];
     }
 }
-//用于停止所有的r
+//用于停止所有的通知
 - (IBAction)stopAllButtonClicked:(id)sender{
     //获取所有的区域
     NSSet *regions = [[BRTBeaconSDK BRTBeaconManager] monitoredRegions];
