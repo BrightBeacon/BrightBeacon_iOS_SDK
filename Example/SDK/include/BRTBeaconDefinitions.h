@@ -13,6 +13,10 @@
 /**
  * 更新日志
  *
+ *  3.3.3 支持Google的eddystone
+ *
+ *  3.3.2 IOS9适配
+ *
  *  3.3.1 修正区域回调中默认指向AppDelegate为自定义[BRTBeaconSDK regionHander:nil]
  *
  *  3.3.0 修正设备出现重复数据
@@ -58,7 +62,7 @@
  *  3.0.0 注释完善
  *
  */
-#define SDK_VERSION @"3.3.1"
+#define SDK_VERSION @"3.3.3"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
@@ -80,10 +84,13 @@
 #define B_ActiveFind @"ActiveFind"
 #define B_ButtonAlarm @"ButtonAlarm"
 #define B_AutoAlarmTimeOut @"autoalarmtimeout"
-//Ali
+//轮播模式
 #define B_Ali_Switch @"AliSw"
-#define B_AliUUID_Switch @"useAliUUIDSw"
+#define B_AliUUID_Switch @"AliUUIDsw"
 #define B_AliUUID @"Reserved"
+//Eddystone  （0304-9新增）
+#define B_BroadcastMode @"BroadcastMode"
+#define B_EddystoneURL @"Reserved"
 
 #define DEFAULT_KEY @"00000000000000000000000000000000"   //32-0
 #define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
@@ -104,8 +111,15 @@
 #define kNotifyConnect @"kNotifyConnect"
 #define kNotifyDisconnect @"kNotifyDisconnect"
 
-#define I2N(x) [NSNumber numberWithInteger:x]
-#define I2S(x) [NSString stringWithFormat:@"%ld",(long)x]
+#ifndef I2N
+#define I2N(x) [NSNumber numberWithInt:x]
+#define F2N(x) [NSNumber numberWithFloat:x]
+#define L2N(x) [NSNumber numberWithInteger:x]
+
+#define I2S(x) [I2N(x) stringValue]
+#define F2S(x) [F2N(x) stringValue]
+#define L2S(x) [L2N(x) stringValue]
+#endif
 /**
  *  IOS8以上新增获取定位权限、状态，请在Info.plist配置获取时提示用户内容Key：NSLocationAlwaysUsageDescription和NSLocationWhenInUseUsageDescription
  *
@@ -124,7 +138,7 @@ typedef NS_OPTIONS(NSUInteger, BrtSupports) {
     BrtSupports16Key                    = 1 << 5,
     BrtSupportsUpdateName               = 1 << 6,
     BrtSupportsAli                      = 1 << 7,
-    BrtSupportsEddystone                = 1 << 8
+    BrtSupportsEddystone                = 1 << 7
 };
 
 typedef enum : int
@@ -132,6 +146,17 @@ typedef enum : int
     DevelopMode=0,  //开发模式
     PublishMode,    //部署模式
 } DevelopPublishMode;
+
+typedef enum : int
+{
+    Broadcast_iBeacon_Only=0,       //只广播iBeacon        0   0   0
+    Broadcast_iBeacon=0,            //只广播iBeacon        0   0   1
+    Broadcast_eddystone_Uid_Only=2,   //只广播Uid            0   1   0
+    Broadcast_eddystone_Url_Only=3,   //只广播Url            0   1   1
+    Broadcast_iBeacon_eddystone_Uid=4,//广播iBeacon 和Uid    1   0   0
+    Broadcast_iBeacon_eddystone_Url=5,//广播iBeacon 和Url    1   0   1
+    Broadcast_eddystone_Url_Uid=6,    //广播Url 和Uid        1   1   x
+} BroadcastMode;
 
 typedef enum : int
 {

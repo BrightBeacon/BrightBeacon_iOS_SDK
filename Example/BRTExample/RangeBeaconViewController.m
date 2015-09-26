@@ -41,6 +41,7 @@
 {
     __unsafe_unretained typeof(self) weakSelf = self;
     [BRTBeaconSDK startRangingWithUuids:@[[[NSUUID alloc] initWithUUIDString:DEFAULT_UUID]] onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
+        
         if (!error) {
             [weakSelf reloadData:beacons];
         }else{
@@ -85,7 +86,6 @@
     }else{
         iv.image = [UIImage imageNamed:@"rssi_0"];
     }
-    
     [[cell viewWithTag:98] setHidden:!beacon.mode];
     [[cell viewWithTag:99] setHidden:!beacon.proximityUUID];
     UILabel *lbl = (UILabel*)[cell viewWithTag:100];

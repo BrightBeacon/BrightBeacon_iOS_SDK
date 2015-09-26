@@ -289,6 +289,35 @@
  */
 @property (readonly, nonatomic)   NSString*               firmwareVersionInfo;
 
+/**
+ *  Eddystone的Uid
+ */
+@property (nonatomic,strong)  NSString *eddystone_Uid;
+
+/**
+ *  Eddystone的Url
+ */
+@property (nonatomic,strong)  NSString *eddystone_Url;
+
+/**
+ *  转换Url为eddystone模式NSData
+ *  参考：https://github.com/google/eddystone/tree/master/eddystone-url
+ *
+ *  @param url 例(http://www.brtbeacon.com)->()
+ *
+ *  @return NSData
+ */
+- (NSData*)eddystone_Url_From:(NSString*)url;
+
+/**
+ *  将eddystone模式下的Url字符串转换为普通url
+ *
+ *  @param eddystoneUrl eddystone-URL字符串
+ *
+ *  @return NSString
+ */
+- (NSString*)eddystone_Url_To:(NSString*)eddystoneUrl;
+
 /// @name 连接beacon相关的方法
 
 /**
@@ -385,17 +414,27 @@
 - (void)writeBeaconMode:(DevelopPublishMode)mode withCompletion:(BRTCompletionBlock)completion;
 
 //轮播Beacon专用
-
+//0.只广播iBeacon,               bit[2]=0,bit[3]=0,
+//1.仅广播Eddystone(UID),        bit[2]=0,bit[3]=1,bit[4]=0
+//2.仅广播Eddystone(URL),        bit[2]=0,bit[3]=1,bit[4]=1
+//3.轮播iBeacon和Eddystone(UID), bit[2]=1,bit[3]=0,bit[4]=0
+//4.轮播iBeacon和Eddystone(URL), bit[2]=1,bit[3]=0,bit[4]=1
+//5,轮播Eddystone(UID/URL),      bit[2]=1,bit[3]=1
 
 /**
- *  是否只启轮播模式
+ *  阿里模式
  */
 @property (nonatomic,assign) BOOL isAliMode;
 
 /**
- *  是否只启轮播UUID
+ *  开启阿里UUID
  */
 @property (nonatomic,assign) BOOL isAliUUID;
+
+/**
+ *  广播模式选择（1、iBeacon 2、eddystone-Uid 3、eddystone-Url）
+ */
+@property (nonatomic,assign) BroadcastMode broadcastMode;
 
 //防丢器专用
 

@@ -48,6 +48,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *modeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
+@property (weak, nonatomic) IBOutlet UITextField *tf_eddystone_url;
+@property (nonatomic,strong) IBOutlet UIButton *btn_mode;
+
 - (IBAction)intervalChanged:(id)sender;
 - (IBAction)intervalStepPressed:(id)sender;
 - (IBAction)readBatteryButtonPressed:(id)sender;
@@ -62,6 +65,8 @@
     if ([[[UIDevice currentDevice] systemVersion] intValue]>=7) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+
+//    [self.tf_eddystone_url setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self refreshValues];
 }
 
@@ -110,17 +115,24 @@
     }else{
         [self.TXPlusSegment setSelectedSegmentIndex:DEFAULT_TX_PLUS];
     }
-    
+    self.btn_mode.tag = 0;
+    [self.btn_mode setTitle:@"iBeacon" forState:UIControlStateNormal];
     [self.beacon resetSDKKEY]; //reset SDK key to default,allow another SDK key connect
 }
 - (IBAction)saveClick:(id)sender {
-    NSDictionary *values = @{B_UUID: self.UUIDText.text,
+    NSMutableDictionary *values =[NSMutableDictionary dictionaryWithDictionary:@{B_UUID: self.UUIDText.text,
                              B_MAJOR:self.majorText.text,
                              B_MINOR:self.minorText.text,
                              B_NAME:self.nameText.text,
                              B_MEASURED:self.measuredPowerText.text,
-                             B_TX:[NSString stringWithFormat:@"%d",[self.beacon isSupport:BrtSupportsCC254x]?self.TXSegment.selectedSegmentIndex:self.TXPlusSegment.selectedSegmentIndex],
-                             B_INTERVAL:[NSString stringWithFormat:@"%d",advertisingInterval]};
+                             B_TX:[NSString stringWithFormat:@"%d",[self.beacon isSupport:BrtSupportsCC254x]?self.TXSegment.selectedSegmentIndex:self.TXPlusSegment.selectedSegmentIndex+1],
+                             B_INTERVAL:[NSString stringWithFormat:@"%d",advertisingInterval]}];
+    if ([self.beacon isSupport:BrtSupportsAli]) {
+        [values setValue:[NSString stringWithFormat:@"%d",self.btn_mode.tag] forKey:B_BroadcastMode];
+        NSString *macRegex = @"[a-zA-z]+://[^\\s]*";
+        NSPredicate *macTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", macRegex];
+        if([macTest evaluateWithObject:self.tf_eddystone_url.text])[values setValue:self.tf_eddystone_url.text forKey:B_EddystoneURL];
+    }
     BOOL flag = [self.nameText.text isEqualToString:self.beacon.name];
     [self.beacon writeBeaconValues:values withCompletion:^(NSError *error) {
         if (error) {
@@ -165,6 +177,35 @@
     [self.beacon readBeaconFirmwareVersionWithCompletion:^(NSString *value, NSError *error) {
         self.versionLabel.text = value;
     }];
+
+    if ([self.beacon isSupport:BrtSupportsEddystone]) {
+        //        [self.sw_Ali setOn:self.brtBeacon.isAliMode];
+        //        [self.sw_AliUUID setOn:self.brtBeacon.isAliUUID];
+        switch (self.beacon.broadcastMode) {
+            case Broadcast_iBeacon_Only:
+                [self.btn_mode setTitle:@"iBeacon" forState:UIControlStateNormal];
+                break;
+            case Broadcast_iBeacon_eddystone_Url:
+                [self.btn_mode setTitle:@"iBeacon+eddystoneURL" forState:UIControlStateNormal];
+                break;
+            case Broadcast_iBeacon_eddystone_Uid:
+                [self.btn_mode setTitle:@"iBeacon+eddystoneUID" forState:UIControlStateNormal];
+                break;
+            case Broadcast_eddystone_Url_Only:
+                [self.btn_mode setTitle:@"eddystoneURL" forState:UIControlStateNormal];
+                break;
+            case Broadcast_eddystone_Url_Uid:
+                [self.btn_mode setTitle:@"eddystoneUID+URL" forState:UIControlStateNormal];
+                break;
+            case Broadcast_eddystone_Uid_Only:
+                [self.btn_mode setTitle:@"eddystoneUID" forState:UIControlStateNormal];
+                break;
+                
+            default:
+                break;
+        }
+        self.tf_eddystone_url.text = self.beacon.eddystone_Url;
+    }
 }
 - (void)dealloc
 {
@@ -177,5 +218,15 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
+}
+- (IBAction)eddy2ibeaconButtonClicked:(id)sender {
+    [[[UIActionSheet alloc] initWithTitle:Lang(@"Select", @"选择广播模式") delegate:self cancelButtonTitle:Lang(@"Cancel", @"取消") destructiveButtonTitle:nil otherButtonTitles:@"iBeacon",@"iBeacon+EddystoneUrl",@"iBeacon+EddystoneUid", @"EddystoneUrl",@"EddystoneUid",Lang(@"EddystoneUid+Url", @"EddystoneUid+Url"), nil] showInView:self.view];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+        if (actionSheet.cancelButtonIndex!=buttonIndex) {
+            [self.btn_mode setTitle:[actionSheet buttonTitleAtIndex:buttonIndex] forState:UIControlStateNormal];
+            self.btn_mode.tag = [@[@"0",@"5",@"4",@"3",@"2",@"6"][buttonIndex] integerValue];
+        }
 }
 @end

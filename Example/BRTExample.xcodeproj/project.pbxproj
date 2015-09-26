@@ -24,7 +24,6 @@
 		581F1A3318ECF2E9001C47BE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 581F1A3118ECF2E9001C47BE /* InfoPlist.strings */; };
 		581F1A3518ECF2E9001C47BE /* BRTExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 581F1A3418ECF2E9001C47BE /* BRTExampleTests.m */; };
 		583F59161A53F5E200253AAF /* NotifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583F59151A53F5E200253AAF /* NotifyViewController.m */; };
-		58652A33195C07680047C92F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58652A32195C07680047C92F /* AdSupport.framework */; };
 		58B396111A540C6600A97488 /* libBrightSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B396101A540C6600A97488 /* libBrightSDK.a */; };
 		58B396151A540DC000A97488 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B396141A540DC000A97488 /* VirtualViewController.m */; };
 		58B950E71989D67F006C6FCA /* AdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B950E61989D67F006C6FCA /* AdjustViewController.m */; };
@@ -85,7 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58652A33195C07680047C92F /* AdSupport.framework in Frameworks */,
 				58B396111A540C6600A97488 /* libBrightSDK.a in Frameworks */,
 				581F1A0C18ECF2E9001C47BE /* CoreGraphics.framework in Frameworks */,
 				581F1A0E18ECF2E9001C47BE /* UIKit.framework in Frameworks */,
@@ -457,7 +455,7 @@
 					"$(PROJECT_DIR)/SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "dcec58a8-a163-40af-90ad-214c5eb20818";
+				PROVISIONING_PROFILE = "29580c38-c990-4ff5-b3f6-1e6c9323f768";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -468,7 +466,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tao He (AWM3R3VMHX)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BRTExample/BRTExample-Prefix.pch";
 				INFOPLIST_FILE = "BRTExample/BRTExample-Info.plist";
@@ -479,7 +477,7 @@
 					"$(PROJECT_DIR)/SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "dcec58a8-a163-40af-90ad-214c5eb20818";
+				PROVISIONING_PROFILE = "29580c38-c990-4ff5-b3f6-1e6c9323f768";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
