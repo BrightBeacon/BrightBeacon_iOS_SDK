@@ -51,8 +51,6 @@
 	
 	<option value="//api/name/regionHander:">&nbsp;&nbsp;&nbsp;&nbsp;+ regionHander:</option>
 	
-	<option value="//api/name/registerApp:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerApp:</option>
-	
 	<option value="//api/name/registerApp:onCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerApp:onCompletion:</option>
 	
 	<option value="//api/name/requestStateForRegions:">&nbsp;&nbsp;&nbsp;&nbsp;+ requestStateForRegions:</option>
@@ -108,8 +106,6 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isMonitoring:">isMonitoring:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/regionHander:">regionHander:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerApp:">registerApp:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerApp:onCompletion:">registerApp:onCompletion:</a></span></li>
 	
@@ -183,12 +179,6 @@
 <h3 class="subsubtitle task-title">beacon快捷扫描BrightBeacon相关的方法</h3>
 						<ul class="task-list">
 							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/registerApp:">+&nbsp;registerApp:</a></code>
-	</span>
-	
-	
-</li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/registerApp:onCompletion:">+&nbsp;registerApp:onCompletion:</a></code>
 	</span>
@@ -426,7 +416,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>请求监听状态，IOS6始终返回nil</p>
+		<p>请求监听状态，仅支持IOS7以上，IOS6始终返回nil</p>
 	</div>		
 	
     
@@ -458,7 +448,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>请求监听状态，IOS6始终返回nil</p>
+		<p>请求监听状态，仅支持IOS7以上，IOS6始终返回nil</p>
 	</div>
 	
 	
@@ -496,7 +486,7 @@
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>handler</em></dt>
-			<dd><p>用于接收后台区域监听回调函数的类，传入nil用作返回当前使用的<a href="#//api/name/handler">handler</a></p></dd>
+			<dd><p>用于接收后台区域监听回调函数的类。传入的handler类用作接收回调（该类务必随程序的启动即初始化，否则无法接收到回调）；若传人值为nil会返回当前使用的handler（默认为AppDelegate）</p></dd>
 		</dl>
 		
 	</div>
@@ -505,7 +495,7 @@
 	
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><a href="#//api/name/handler">handler</a> 返回当前使用的handler，默认返回AppDelegate</p>
+		<p><a href="#//api/name/handler">handler</a> 返回当前使用的handler，若从未设置，默认返回AppDelegate</p>
 	</div>
 	
 	
@@ -543,69 +533,13 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/registerApp:" title="registerApp:"></a>
-	<h3 class="subsubtitle method-title">registerApp:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>注册开发者appKey，申请地址：<a href="http://developer.brtbeacon.com">http://developer.brtbeacon.com</a></p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (void)registerApp:(NSString *)<em>appKey</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>appKey</em></dt>
-			<dd><p>BrightBeacon AppKey</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>注册开发者appKey，申请地址：<a href="http://developer.brtbeacon.com">http://developer.brtbeacon.com</a></p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/registerApp:onCompletion:" title="registerApp:onCompletion:"></a>
 	<h3 class="subsubtitle method-title">registerApp:onCompletion:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>注册并网络验证开发者appKey，申请地址：<a href="http://developer.brtbeacon.com">http://developer.brtbeacon.com</a></p>
+		<p>注册并验证开发者appKey，申请地址：<a href="http://developer.brtbeacon.com">http://developer.brtbeacon.com</a></p>
 	</div>		
 	
     
@@ -642,7 +576,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>注册并网络验证开发者appKey，申请地址：<a href="http://developer.brtbeacon.com">http://developer.brtbeacon.com</a></p>
+		<p>注册并验证开发者appKey，申请地址：<a href="http://developer.brtbeacon.com">http://developer.brtbeacon.com</a></p>
 	</div>
 	
 	
@@ -780,8 +714,11 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>开启监听要求IOS7以上系统；
-如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新,IOS8另需请求用户最高权限[CLLocationManager authorizationStatus]==4</p>
+		<p>开启区域监听要求IOS7以上系统；
+如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新；
+IOS8另需请求允许后台定位，requestAlwaysAuthorization
+检查状态：[CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorizedAlways.
+注：SDK默认只请求运行时定位，可以通过<a href="../Classes/BRTBeaconDefinitions.html">BRTBeaconDefinitions</a>.h中isLocationAlways=YES来配置</p>
 	</div>		
 	
     
@@ -813,8 +750,11 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>开启监听要求IOS7以上系统；
-如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新,IOS8另需请求用户最高权限[CLLocationManager authorizationStatus]==4</p>
+		<p>开启区域监听要求IOS7以上系统；
+如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新；
+IOS8另需请求允许后台定位，requestAlwaysAuthorization
+检查状态：[CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorizedAlways.
+注：SDK默认只请求运行时定位，可以通过<a href="../Classes/BRTBeaconDefinitions.html">BRTBeaconDefinitions</a>.h中isLocationAlways=YES来配置</p>
 
 <p>状态会默认回调到appDelegate中(或自定义的handler中{@link regionHandler:})：
 <br/>-(void)beaconManager:(<a href="../Classes/BRTBeaconManager.html">BRTBeaconManager</a> <em>)manager didEnterRegion:(<a href="../Classes/BRTBeaconRegion.html">BRTBeaconRegion</a> </em>)region;</p>
@@ -1079,7 +1019,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-05-10)</span><br />
+						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-09-26)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						
