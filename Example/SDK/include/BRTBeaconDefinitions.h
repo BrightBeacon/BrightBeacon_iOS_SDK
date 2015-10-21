@@ -13,9 +13,9 @@
 /**
  * 更新日志
  *
- *  3.3.3 支持Google的eddystone
+ *  3.3.3 支持Google的eddystone，修复ios6.0.x
  *
- *  3.3.2 IOS9适配
+ *  3.3.2 IOS9适配：主要修复030x无法连接配置
  *
  *  3.3.1 修正区域回调中默认指向AppDelegate为自定义[BRTBeaconSDK regionHander:nil]
  *
