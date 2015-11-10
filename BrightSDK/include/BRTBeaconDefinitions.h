@@ -13,7 +13,7 @@
 /**
  * 更新日志
  *
- *  3.3.3 支持Google的eddystone，修复ios6.0.x
+ *  3.3.3 支持Google的eddystone,修复ios6.0.x
  *
  *  3.3.2 IOS9适配：主要修复030x无法连接配置
  *
