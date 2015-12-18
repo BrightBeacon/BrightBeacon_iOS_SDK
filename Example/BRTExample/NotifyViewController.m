@@ -42,7 +42,7 @@
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     }
     
-    //重构当前Beacon所在Region,如果your_region_id一致会覆盖之前的Region
+    //重构当前Beacon所在Region,如果your_region_id一致会覆盖之前的Region,另region监听个数<=20个
     BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:self.beacon.proximityUUID identifier:@"your_region_id"];
     region.notifyOnEntry = sw_in.isOn;
     region.notifyOnExit = sw_out.isOn;

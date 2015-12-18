@@ -18,7 +18,7 @@
     NSLog(@"%@",[[BRTBeaconSDK BRTBeaconManager] monitoredRegions]);
     // Override point for customization after application launch.
     [BRTBeaconSDK registerApp:BRT_SDK_KEY onCompletion:^(NSError *error) {
-        
+        NSLog(@"%@",error.description);
     }];
     return YES;
 }

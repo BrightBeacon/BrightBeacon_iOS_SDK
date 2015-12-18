@@ -353,7 +353,7 @@
 /**
  * 写入设备信息
  *
- * @param values 设备信息
+ * @param values 设备信息(参见)
  * @param completion 写入完成回调
  *
  * @return void
@@ -422,6 +422,28 @@
 //5,轮播Eddystone(UID/URL),      bit[2]=1,bit[3]=1
 
 /**
+ *  广播模式选择（1、iBeacon 2、eddystone-Uid 3、eddystone-Url）
+ */
+@property (nonatomic,assign) BroadcastMode broadcastMode;
+
+/**
+ *  0401、0402串口数据
+ */
+@property (nonatomic,copy) NSString *serialData;
+
+/**
+  * 用户自定义广播数据 4byte范围（0x00000000~0xFFFFFFFF）
+  */
+@property (nonatomic,strong) NSString *userData;
+
+/**
+ * 广播跳频模式，默认3种切换：2402、2426、2480MHz
+ */
+@property (nonatomic,assign) BOOL isOff2402;
+@property (nonatomic,assign) BOOL isOff2426;
+@property (nonatomic,assign) BOOL isOff2480;
+
+/**
  *  阿里模式
  */
 @property (nonatomic,assign) BOOL isAliMode;
@@ -431,10 +453,6 @@
  */
 @property (nonatomic,assign) BOOL isAliUUID;
 
-/**
- *  广播模式选择（1、iBeacon 2、eddystone-Uid 3、eddystone-Url）
- */
-@property (nonatomic,assign) BroadcastMode broadcastMode;
 
 //防丢器专用
 
@@ -464,9 +482,8 @@
 @property (nonatomic,assign) BOOL isButtonAlarm;
 
 /**
- *  自定义
+ *  ali模式下UUID；eddystone模式下url
  *
- *    自定义
  */
 @property (strong, nonatomic)   NSString*   reserved;
 
@@ -478,7 +495,7 @@
 - (void)readALButtonAlarmCompletion:(BRTBoolCompletionBlock)completion;
 
 /**
- * 防丢器专用，读取所有iBeacon参数
+ * 新设备专用，读取所有iBeacon参数
  */
 - (void)readALIBeaconCompletion:(BRTConnectCompletionBlock)completion;
 

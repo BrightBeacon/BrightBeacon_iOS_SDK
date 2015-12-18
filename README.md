@@ -130,9 +130,9 @@ iPad mini均可以
  region：需要监听的区域，支持后台监听（<=20）
  　
      BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:BRT_PROXIMITY_UUID identifier:kUUID];
-    region.notifyOnEntry = YES;
-    region.notifyOnExit = YES;
-    region.notifyEntryStateOnDisplay = YES;
+    region.notifyOnEntry = YES;//监听进入区域
+    region.notifyOnExit = YES;//监听离开区域
+    region.notifyEntryStateOnDisplay = YES;//锁屏唤醒时监听
     [BRTBeaconSDK startMonitoringForRegions:@[region]];
  ```
  

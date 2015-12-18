@@ -13,6 +13,8 @@
 /**
  * 更新日志
  *
+ *  3.3.4 新增自定义广播数据段、定频固件0313、CB系列040x固件支持
+ *
  *  3.3.3 支持Google的eddystone,修复ios6.0.x
  *
  *  3.3.2 IOS9适配：主要修复030x无法连接配置
@@ -62,7 +64,7 @@
  *  3.0.0 注释完善
  *
  */
-#define SDK_VERSION @"3.3.3"
+#define SDK_VERSION @"3.3.4"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
@@ -84,13 +86,27 @@
 #define B_ActiveFind @"ActiveFind"
 #define B_ButtonAlarm @"ButtonAlarm"
 #define B_AutoAlarmTimeOut @"autoalarmtimeout"
-//轮播模式
+
+//阿里轮播模式
 #define B_Ali_Switch @"AliSw"
 #define B_AliUUID_Switch @"AliUUIDsw"
 #define B_AliUUID @"Reserved"
+
 //Eddystone  （0304-9新增）
 #define B_BroadcastMode @"BroadcastMode"
 #define B_EddystoneURL @"Reserved"
+
+//新增用户自定义4byte广播数据（>030x-10,031x-4,040x）
+#define B_UserData @"userData"
+
+//040x版本串口数据
+#define B_SerialData @"serialData"
+
+//0313 注：至少保持一个广播频点，如果设置全部关闭，默认2402
+#define B_Off2402 @"off2402"
+#define B_Off2426 @"off2426"
+#define B_Off2480 @"off2480"
+
 
 #define DEFAULT_KEY @"00000000000000000000000000000000"   //32-0
 #define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
@@ -137,8 +153,11 @@ typedef NS_OPTIONS(NSUInteger, BrtSupports) {
     BrtSupportsAntiLose                 = 1 << 4,
     BrtSupports16Key                    = 1 << 5,
     BrtSupportsUpdateName               = 1 << 6,
-    BrtSupportsAli                      = 1 << 7,
-    BrtSupportsEddystone                = 1 << 7
+    BrtSupportsAli                      = 1 << 7,//已替换为eddystone
+    BrtSupportsEddystone                = 1 << 7,
+    BrtSupportsSerialData               = 1 << 8,
+    BrtSupportsAdvRFOff                 = 1 << 9,
+    BrtSupportsUserData                 = 1 << 10
 };
 
 typedef enum : int
@@ -149,8 +168,7 @@ typedef enum : int
 
 typedef enum : int
 {
-    Broadcast_iBeacon_Only=0,       //只广播iBeacon        0   0   0
-    Broadcast_iBeacon=0,            //只广播iBeacon        0   0   1
+    Broadcast_iBeacon_Only=0,       //只广播iBeacon        0   0   x
     Broadcast_eddystone_Uid_Only=2,   //只广播Uid            0   1   0
     Broadcast_eddystone_Url_Only=3,   //只广播Url            0   1   1
     Broadcast_iBeacon_eddystone_Uid=4,//广播iBeacon 和Uid    1   0   0
