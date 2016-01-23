@@ -13,58 +13,17 @@
 /**
  * 更新日志
  *
+ *  3.3.6 修复部分设备名乱码
+ *
+ *  3.3.5 新增位置反馈
+ *
  *  3.3.4 新增自定义广播数据段、定频固件0313、CB系列040x固件支持
  *
  *  3.3.3 支持Google的eddystone,修复ios6.0.x
  *
  *  3.3.2 IOS9适配：主要修复030x无法连接配置
- *
- *  3.3.1 修正区域回调中默认指向AppDelegate为自定义[BRTBeaconSDK regionHander:nil]
- *
- *  3.3.0 修正设备出现重复数据
- *
- *  3.2.9 设备名修改立即生效
- *
- *  3.2.8 兼容新版固件
- *
- *  3.2.7 更新cocoaPods
- *
- *  3.2.6 替换使用CBUUID类别方法产生的undefined selector
- *
- *  3.2.5 修复ios7.0.x配置
- *
- *  3.2.4 解决部分无法编译
- *
- *  3.2.3 兼容新版本固件
- *
- *  3.2.2 修复17位key连接失败
- *
- *  3.2.1 防丢器新版
- *
- *  3.2.0 新增防丢器，扫描和Range合并，提高性能
- *
- *  3.1.0 修复光感休眠，批量部署错误，新增连接15s超时
- *
- *  3.0.9 光感休眠等
- *
- *  3.0.8 for Api Cloud支持
- *
- *  3.0.7 光感、间隔、最新固件大小端问题
- *
- *  3.0.6 修复Range的RSSI
- *
- *  3.0.5 修复records温度、电量为nil错误
- *
- *  3.0.4 修复第一次启动无法成功开启扫描
- * 
- *  3.0.3 提供IOS8定位权限选择、蓝牙一直扫描
- *
- *  3.0.2 新增Beacon属性
- *
- *  3.0.0 注释完善
- *
  */
-#define SDK_VERSION @"3.3.4"
+#define SDK_VERSION @"3.3.6"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
@@ -107,19 +66,33 @@
 #define B_Off2426 @"off2426"
 #define B_Off2480 @"off2480"
 
+//0320
+#define B_RWData @"RWData"
+
 
 #define DEFAULT_KEY @"00000000000000000000000000000000"   //32-0
 #define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
 #define DEFAULT_MAJOR 0
 #define DEFAULT_MINOR 0
 #define DEFAULT_MEASURED -65
-//#define DEFAULT_LED 1
+//间隔(ms)
 #define DEFAULT_INTERVAL 800
 #define DEFAULT_BCHECK_INTERVAL 3600
 #define DEFAULT_TCHECK_INTERVAL 3600
-#define DEFAULT_LCHECK_INTERVAL 5000
+#define DEFAULT_LCHECK_INTERVAL 0
+
+/*发送功率(dbm)
+ * TI芯片 -23      -6      0       +4
+ * -----+------+-------+-------+------
+ *         0       1      2       3
+ *
+ * Nordic  -30    -20     -16    -12    -8      -4       0     +4
+ * -----+-------+-------+------+-----+------+-------+-------+------
+ *          1      2       3      4      5       6       7      8
+ */
 #define DEFAULT_TX 2
 #define DEFAULT_TX_PLUS 7
+
 #define DEFAULT_NAME  @"BrightBeacon"
 #define DEFAULT_MODE 0
 #define DEFAULT_LIGHT_SLEEP 0
@@ -146,18 +119,18 @@
 #define isLocationAlways NO
 
 typedef NS_OPTIONS(NSUInteger, BrtSupports) {
-    BrtSupportsCC254x                   = 1 << 0,
-    BrtSupportsNordic                   = 1 << 1,
-    BrtSupportsLight                    = 1 << 2,
-    BrtSupportsCombineCharacteristic    = 1 << 3,
-    BrtSupportsAntiLose                 = 1 << 4,
-    BrtSupports16Key                    = 1 << 5,
-    BrtSupportsUpdateName               = 1 << 6,
-    BrtSupportsAli                      = 1 << 7,//已替换为eddystone
-    BrtSupportsEddystone                = 1 << 7,
-    BrtSupportsSerialData               = 1 << 8,
-    BrtSupportsAdvRFOff                 = 1 << 9,
-    BrtSupportsUserData                 = 1 << 10
+    BrtSupportsCC254x                   = 1 << 0,//TI系列
+    BrtSupportsNordic                   = 1 << 1,//Nordic系列
+    BrtSupportsLight                    = 1 << 2,//光感支持
+    BrtSupportsCombineCharacteristic    = 1 << 3,//组合特征
+    BrtSupportsAntiLose                 = 1 << 4,//已废弃，防丢器
+    BrtSupports16Key                    = 1 << 5,//加密模式
+    BrtSupportsUpdateName               = 1 << 6,//设备名轮播
+    BrtSupportsAli                      = 1 << 7,//已废弃，替换为eddystone
+    BrtSupportsEddystone                = 1 << 7,//Google Eddystone协议
+    BrtSupportsSerialData               = 1 << 8,//串口数据收发
+    BrtSupportsAdvRFOff                 = 1 << 9,//广播频点配置
+    BrtSupportsUserData                 = 1 << 10//广播自定义数据
 };
 
 typedef enum : int

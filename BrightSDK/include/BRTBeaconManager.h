@@ -163,6 +163,10 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 @property (nonatomic, weak) id <BRTBeaconManagerDelegate> delegate;
 
 @property (nonatomic,strong) CBCentralManager *centralManager;
+
+
+@property (nonatomic,assign) CLLocationCoordinate2D userCoordinate;
+@property (nonatomic,strong) CLPlacemark *userPlacemark;
 /*
  *  monitoredRegions
  *
@@ -293,5 +297,17 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  *  获取定位权限：只允许APP运行期间定位，不支持后台区域感知
  */
 - (void)requestWhenInUseAuthorization;
+
+/**
+ *  获取用户位置信息
+ *
+ *  @param location  当前位置信息
+ *  @param placemark 反转之后的地址信息
+ *  @param error     错误信息
+ */
+typedef void(^locBlock)(CLLocation *location, CLPlacemark *placemark, NSError *error);
+- (void)startUpdateLocations:(locBlock)block;
+- (void)stopUpdatingLocation;
+
 @end
 

@@ -122,7 +122,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  * 开启区域监听要求IOS7以上系统；
  * 如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新；
  * IOS8另需请求允许后台定位，requestAlwaysAuthorization
- * 检查状态：[CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorizedAlways.
+ * 检查状态：CLLocationManager.authorizationStatus==kCLAuthorizationStatusAuthorizedAlways.
  * 注：SDK默认只请求运行时定位，可以通过BRTBeaconDefinitions.h中isLocationAlways=YES来配置
  *
  * 状态会默认回调到appDelegate中(或自定义的handler中{@link regionHandler:})：

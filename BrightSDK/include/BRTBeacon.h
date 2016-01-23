@@ -329,6 +329,9 @@
  */
 @property (nonatomic,assign) NSInteger supportOption;
 
+/**
+* 检测beacon设备是否支持某些属性
+*/
 - (BOOL)isSupport:(BrtSupports)option;
 
 /**
@@ -349,6 +352,14 @@
 -(void)disconnectBeacon;
 
 /// @name 写人beacon配置信息相关的方法
+
+/**
+ *  写入ControlBeacon数据
+ *
+ *  @param values     B_RWData
+ *  @param completion 硬件返回数据
+ */
+- (void)writeCBeacon:(NSDictionary *)values withCompletion:(BRTDataCompletionBlock)completion;
 
 /**
  * 写入设备信息
@@ -388,9 +399,9 @@
  *  @param completion 读取完成回调
  */
 - (void)readBeaconChangesWithCompletion:(BRTDataCompletionBlock)completion;
+
 /**
  * 重置beacon设备默认值，该操作要求已经成功执行 {@link registerApp:};
- *
  *
  * @return void
  */
@@ -413,21 +424,24 @@
  */
 - (void)writeBeaconMode:(DevelopPublishMode)mode withCompletion:(BRTCompletionBlock)completion;
 
-//轮播Beacon专用
-//0.只广播iBeacon,               bit[2]=0,bit[3]=0,
-//1.仅广播Eddystone(UID),        bit[2]=0,bit[3]=1,bit[4]=0
-//2.仅广播Eddystone(URL),        bit[2]=0,bit[3]=1,bit[4]=1
-//3.轮播iBeacon和Eddystone(UID), bit[2]=1,bit[3]=0,bit[4]=0
-//4.轮播iBeacon和Eddystone(URL), bit[2]=1,bit[3]=0,bit[4]=1
-//5,轮播Eddystone(UID/URL),      bit[2]=1,bit[3]=1
 
 /**
  *  广播模式选择（1、iBeacon 2、eddystone-Uid 3、eddystone-Url）
+ *
+ * 轮播Beacon专用
+ * 0.只广播iBeacon,               bit[2]=0,bit[3]=0,
+ * 1.仅广播Eddystone(UID),        bit[2]=0,bit[3]=1,bit[4]=0
+ * 2.仅广播Eddystone(URL),        bit[2]=0,bit[3]=1,bit[4]=1
+ * 3.轮播iBeacon和Eddystone(UID), bit[2]=1,bit[3]=0,bit[4]=0
+ * 4.轮播iBeacon和Eddystone(URL), bit[2]=1,bit[3]=0,bit[4]=1
+ * 5,轮播Eddystone(UID/URL),      bit[2]=1,bit[3]=1
  */
 @property (nonatomic,assign) BroadcastMode broadcastMode;
 
 /**
- *  0401、0402串口数据
+ *  040x串口数据收发
+ *
+ *  该值会在串口数据变化时，自动更新。
  */
 @property (nonatomic,copy) NSString *serialData;
 
@@ -443,69 +457,52 @@
 @property (nonatomic,assign) BOOL isOff2426;
 @property (nonatomic,assign) BOOL isOff2480;
 
-/**
- *  阿里模式
- */
-@property (nonatomic,assign) BOOL isAliMode;
 
 /**
- *  开启阿里UUID
- */
-@property (nonatomic,assign) BOOL isAliUUID;
-
-
-//防丢器专用
-
-/**
- *  是否在范围内
- */
-@property (nonatomic,assign) BOOL isInRange;
-
-/**
- * 自动报警（可以每隔N秒写入一次B_InRange来停止自动蜂鸣）
- */
-@property (nonatomic,assign) BOOL isAutoAlarm;
-
-/**
- * 自动报警超时（默认超时5秒）
- */
-@property (nonatomic,assign) NSInteger autoAlarmTimeOut;
-
-/**
- * 主动寻找，写人该值设备立即蜂鸣
- */
-@property (nonatomic,assign) BOOL isActiveFind;
-
-/**
- * 按钮报警，按钮报警状态
- */
-@property (nonatomic,assign) BOOL isButtonAlarm;
-
-/**
- *  ali模式下UUID；eddystone模式下url
- *
+ *  eddystone模式的url
  */
 @property (strong, nonatomic)   NSString*   reserved;
-
-/// @name 防丢器读取beacon配置信息相关的方法
-
-/**
- * 防丢器专用，按钮报警，按钮报警状态
- */
-- (void)readALButtonAlarmCompletion:(BRTBoolCompletionBlock)completion;
-
-/**
- * 新设备专用，读取所有iBeacon参数
- */
-- (void)readALIBeaconCompletion:(BRTConnectCompletionBlock)completion;
-
-/**
- * 防丢器专用，读取固件版本数据
- */
-- (void)readALDFUCompletion:(BRTStringCompletionBlock)completion;
 
 
 @property (nonatomic, assign)    NSInteger    rssis;
 @property (nonatomic, assign)    NSInteger    count;
 @property (nonatomic, assign)    BOOL    rssiByLocation;
+
+
+/**
+ *  阿里模式，已废弃，不建议使用
+ */
+@property (nonatomic,assign) BOOL isAliMode;
+
+/**
+ *  开启阿里UUID，已废弃，不建议使用
+ */
+@property (nonatomic,assign) BOOL isAliUUID;
+
+
+/**
+ *  是否在范围内，已废弃，不建议使用
+ */
+@property (nonatomic,assign) BOOL isInRange;
+
+/**
+ * 自动报警（可以每隔N秒写入一次B_InRange来停止自动蜂鸣），已废弃，不建议使用
+ */
+@property (nonatomic,assign) BOOL isAutoAlarm;
+
+/**
+ * 自动报警超时（默认超时5秒），已废弃，不建议使用
+ */
+@property (nonatomic,assign) NSInteger autoAlarmTimeOut;
+
+/**
+ * 主动寻找，写人该值设备立即蜂鸣，已废弃，不建议使用
+ */
+@property (nonatomic,assign) BOOL isActiveFind;
+
+/**
+ * 按钮报警，按钮报警状态，已废弃，不建议使用
+ */
+@property (nonatomic,assign) BOOL isButtonAlarm;
+
 @end
