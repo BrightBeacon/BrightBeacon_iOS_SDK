@@ -105,7 +105,7 @@
 - (void)writeMpower:(NSInteger)mpower
 {
     __unsafe_unretained typeof(self) weakself = self;
-    [self.beacon writeBeaconValues:@{B_MEASURED: [NSNumber numberWithInteger:mpower]} withCompletion:^(NSError *error) {
+    [self.beacon writeBeaconValues:@{B_MEASURED: [NSNumber numberWithInteger:mpower]} withCompletion:^(BOOL complete,NSError *error) {
         if (error) {
             [[[UIAlertView alloc] initWithTitle:error.domain message:nil delegate:self cancelButtonTitle:Lang(@"Cancel", @"取消") otherButtonTitles:Lang(@"Retry", @"重试"), nil] show];
         }else{

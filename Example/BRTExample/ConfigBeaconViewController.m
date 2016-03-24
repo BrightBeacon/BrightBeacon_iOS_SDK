@@ -53,7 +53,6 @@
 
 - (IBAction)intervalChanged:(id)sender;
 - (IBAction)intervalStepPressed:(id)sender;
-- (IBAction)readBatteryButtonPressed:(id)sender;
 
 @end
 
@@ -67,7 +66,9 @@
     }
 
 //    [self.tf_eddystone_url setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
-    [self refreshValues];
+    [self.beacon readBeaconValuesCompletion:^(id data, NSError *error) {
+        [self refreshValues];
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -134,7 +135,7 @@
         if([macTest evaluateWithObject:self.tf_eddystone_url.text])[values setValue:self.tf_eddystone_url.text forKey:B_EddystoneURL];
     }
     BOOL flag = [self.nameText.text isEqualToString:self.beacon.name];
-    [self.beacon writeBeaconValues:values withCompletion:^(NSError *error) {
+    [self.beacon writeBeaconValues:values withCompletion:^(BOOL complete, NSError *error) {
         if (error) {
             [[[UIAlertView alloc] initWithTitle:error.domain message:nil delegate:nil cancelButtonTitle:Lang(@"OK", @"确定") otherButtonTitles: nil] show];
         }else{

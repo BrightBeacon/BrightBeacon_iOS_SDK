@@ -19,14 +19,62 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BRTExample/ConfigBeaconViewController.m"
-            timestampString = "464933600.03224"
+            filePath = "BRTExample/RangeBeaconViewController.m"
+            timestampString = "480510101.650692"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "-saveClick:"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BRTExample/RangeBeaconViewController.m"
+            timestampString = "480510104.058307"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[RangeBeaconViewController tableView:didSelectRowAtIndexPath:]"
+                  moduleName = "BRTExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomasho/Documents/git/IOS-CODE/BrightBeacon_iOS_SDK/Example/BRTExample/RangeBeaconViewController.m"
+                  timestampString = "480510104.068457"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "1868">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__63-[RangeBeaconViewController tableView:didSelectRowAtIndexPath:]_block_invoke164"
+                  moduleName = "BRTExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomasho/Documents/git/IOS-CODE/BrightBeacon_iOS_SDK/Example/BRTExample/RangeBeaconViewController.m"
+                  timestampString = "480510104.068724"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
