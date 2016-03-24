@@ -48,6 +48,17 @@
  */
 - (void)beaconDidDisconnect:(BRTBeacon*)beacon withError:(NSError*)error;
 
+/**
+ * beacon 050x读写参数回调
+ *
+ * @param beacon 关联的beacon实体
+ * @param data 返回数据信息
+ * @param error 返回错误信息
+ *
+ * @return void
+ */
+- (void)beacon:(BRTBeacon *)beacon didUpdateValue:(NSData *)value error:(NSError *)error;
+
 @end
 
 
@@ -227,6 +238,13 @@
 @property (nonatomic, strong)   NSNumber*               advInterval;
 
 /**
+ *  broadcastInterval
+ *
+ *    广播切换间隔，用于iBeacon、eddystone等广播切换间隔，值范围100ms~1200ms,连接后可用
+ */
+@property (nonatomic, strong)   NSNumber*               broadcastInterval;
+
+/**
  *  light
  *
  *    光感强度
@@ -330,8 +348,8 @@
 @property (nonatomic,assign) NSInteger supportOption;
 
 /**
-* 检测beacon设备是否支持某些属性
-*/
+ * 检测beacon设备是否支持某些属性
+ */
 - (BOOL)isSupport:(BrtSupports)option;
 
 /**
@@ -342,7 +360,7 @@
  * @return void
  */
 -(void)connectToBeacon;
--(void)connectToBeaconWithCompletion:(BRTConnectCompletionBlock)completion;
+-(void)connectToBeaconWithCompletion:(BRTCompletionBlock)completion;
 
 /**
  * 断开蓝牙连接
@@ -354,12 +372,33 @@
 /// @name 写人beacon配置信息相关的方法
 
 /**
- *  写入ControlBeacon数据
+ *  可扩展Beacon数据传输（仅支持050x版本设备）
+ *  适用单消息发送，发送完毕completion立即清空
  *
- *  @param values     B_RWData
- *  @param completion 硬件返回数据
+ *  发送消息ID:
+ *  0x00~0x3F：Beacon配置保留如下：
+ *      00重启 01版本 02温度电量 03写key 04读UUID 05写UUID 06读MM 07写MM 08读MPower 09写MPower
+ *      0A读功率 0B写功率 0C读模式 0D写模式 0E读名称 0F写名称 10读频率 11写频率 12读温度电量间隔 13写温电间隔 14读自定义广播
+ *      15写自定义广播 16读eddystoneUrl 17写eddystoneUrl 18开始/停止固件升级数据 19写入固件升级数据 20~3F保留
+ *
+ *  0x40~0xFF：配合硬件SDK自定义传输使用
+ *
+ *  @param data     消息ID(1字节)+数据长度(1字节)+消息数据(0~18字节)
+ *  示例：
+ *  读取UUID：0x0104
+ *  写入UUID：0x0205E2C56DB5DFFB48D2B060D0F5A71096E0
+ *  @param completion 硬件返回数据：data 消息ID(1字节)+数据长度(1字节)+返回消息数据(0~18字节)
  */
-- (void)writeCBeacon:(NSDictionary *)values withCompletion:(BRTDataCompletionBlock)completion;
+- (void)sendBeaconValue:(NSData *)value withCompletion:(BRTDataCompletionBlock)completion;
+
+/**
+ *  可扩展Beacon数据传输（仅支持050x版本设备）
+ *  适用批量发送,delegate依次返回所有消息回复
+ *
+ *  @param values 消息ID(1字节)+数据长度(1字节)+消息数据(0~18字节)
+ *  @param delegate 同self.delegate
+ */
+- (void)sendBeaconValue:(NSArray *)values withDelegate:(id<BRTBeaconDelegate>)delegate;
 
 /**
  * 写入设备信息
@@ -376,7 +415,7 @@
  *
  *  @param completion 写入完成回调
  */
--(void)checkFirmwareUpdateWithCompletion:(BRTStringCompletionBlock)completion;
+-(void)checkFirmwareUpdateWithCompletion:(BRTDataCompletionBlock)completion;
 
 /**
  *  云端更新固件
@@ -384,14 +423,20 @@
  *  @param progress 更新进度0~100
  *  @param completion 写入完成回调
  */
--(void)updateBeaconFirmwareWithProgress:(BRTShortCompletionBlock)progress andCompletion:(BRTCompletionBlock)completion;
+-(void)updateBeaconFirmwareWithProgress:(BRTDataCompletionBlock)progress andCompletion:(BRTCompletionBlock)completion;
 
+/**
+ *  读取设备所有信息（为了加快连入速率，连接不在默认执行该操作，请连接成功后自行调用获取参数）
+ *
+ *  @param completion 返回当前beacon对象和错误信息。
+ */
+- (void)readBeaconValuesCompletion:(BRTDataCompletionBlock)completion;
 /**
  *  读取设备版本信息
  *
  *  @param completion 读取完成回调
  */
-- (void)readBeaconFirmwareVersionWithCompletion:(BRTStringCompletionBlock)completion;
+- (void)readBeaconFirmwareVersionWithCompletion:(BRTDataCompletionBlock)completion;
 
 /**
  *  读取设备变动信息：温度、电量、光感(若有)
@@ -446,8 +491,8 @@
 @property (nonatomic,copy) NSString *serialData;
 
 /**
-  * 用户自定义广播数据 4byte范围（0x00000000~0xFFFFFFFF）
-  */
+ * 用户自定义广播数据 4byte范围（0x00000000~0xFFFFFFFF）
+ */
 @property (nonatomic,strong) NSString *userData;
 
 /**

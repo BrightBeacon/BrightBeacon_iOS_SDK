@@ -306,7 +306,15 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  *  @param error     错误信息
  */
 typedef void(^locBlock)(CLLocation *location, CLPlacemark *placemark, NSError *error);
+/**
+ *  开始获取用户GPS
+ *
+ *  @param block GPS
+ */
 - (void)startUpdateLocations:(locBlock)block;
+/**
+ *  停止获取定位
+ */
 - (void)stopUpdatingLocation;
 
 @end

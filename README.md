@@ -84,7 +84,7 @@ iPad mini均可以
  
  ```
 //支持IOS6以上
- 扫描BrightBeacon设备，uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造区域BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描)
+ 扫描BrightBeacon设备，uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造区域BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描，且无法扫描获取到设备UUID，可以通过连接读取)
  uuids:
 	NSUUID数组，筛选需要的uuid设备
 [BRTBeaconSDK startRangingWithUuids:uuids onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
@@ -140,39 +140,6 @@ iPad mini均可以
  
  ```
      [BRTBeaconSDK requestStateForRegions:@[region]];
- ```
- - 连接Bright Beacon
- 
- ```
- 	//连接前务必已经使用对应的APPKEY，否则会连接失败
- 	//连接设备
-     [beacon connectToBeaconWithCompletion:^(BOOL connected, NSError *error) {
-        if(connected){
-        	//连接成功
-        }
-    }];
-    //写入数据
-        NSDictionary *values = @{B_UUID: <VALUE>,
-                             B_MAJOR:<VALUE>,
-                             B_MINOR:<VALUE>,
-                             B_NAME:<VALUE>,
-                             B_MEASURED:<VALUE>,
-                             B_TX:<VALUE>,
-                             B_MODE:<VALUE>,
-                             B_INTERVAL:<VALUE>
-                             B_INTERVAL:<VALUE>,
-                             B_BATTERY_INTERVAL:<VALUE>,
-                             B_TEMPERATURE_INTERVAL:<VALUE>,
-                             B_LIGHT_INTERVAL:<VALUE>,
-                             B_MODE:<VALUE>,
-                             B_BroadcastMode:<VALUE>,
-                             B_EddystoneURL：<VALUE>,
-                             B_LIGHT_SLEEP:<VALUE>};
-    [beacon writeBeaconValues:values withCompletion:^(NSError *error) {
-    	if(!error){
-    		//写人成功
-    	}
-    }];
  ```
 
 ## 相关文档或网站

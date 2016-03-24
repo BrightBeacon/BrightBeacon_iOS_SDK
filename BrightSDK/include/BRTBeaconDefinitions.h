@@ -13,6 +13,8 @@
 /**
  * 更新日志
  *
+ *  3.3.7 支持固件050x
+ *
  *  3.3.6 修复部分设备名乱码
  *
  *  3.3.5 新增位置反馈
@@ -23,7 +25,7 @@
  *
  *  3.3.2 IOS9适配：主要修复030x无法连接配置
  */
-#define SDK_VERSION @"3.3.6"
+#define SDK_VERSION @"3.3.7"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
@@ -66,10 +68,10 @@
 #define B_Off2426 @"off2426"
 #define B_Off2480 @"off2480"
 
-//0320
-#define B_RWData @"RWData"
+//050x版本广播切换间隔
+#define B_BROADCAT_INTERVAL @"broadcatInterval"
 
-
+//恢复默认参数
 #define DEFAULT_KEY @"00000000000000000000000000000000"   //32-0
 #define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
 #define DEFAULT_MAJOR 0
@@ -81,17 +83,16 @@
 #define DEFAULT_TCHECK_INTERVAL 3600
 #define DEFAULT_LCHECK_INTERVAL 0
 
-/*发送功率(dbm)
- * TI芯片 -23      -6      0       +4
- * -----+------+-------+-------+------
- *         0       1      2       3
- *
+/*
+ * 发送功率(dbm)
+ * TI芯片   -23    -6      0       +4
  * Nordic  -30    -20     -16    -12    -8      -4       0     +4
- * -----+-------+-------+------+-----+------+-------+-------+------
- *          1      2       3      4      5       6       7      8
+ *
  */
-#define DEFAULT_TX 2
-#define DEFAULT_TX_PLUS 7
+
+#define DEFAULT_TX  2
+#define DEFAULT_TX_PLUS  7
+#define DEFAULT_TX_EX  0
 
 #define DEFAULT_NAME  @"BrightBeacon"
 #define DEFAULT_MODE 0
@@ -116,7 +117,7 @@
  *  2、WhenInUse:只允许运行时定位，不支持后台区域感知
  *  使用[CLLocationManager authorizationStatus]获取定位状态
  */
-#define isLocationAlways NO
+#define isLocationAlways YES
 
 typedef NS_OPTIONS(NSUInteger, BrtSupports) {
     BrtSupportsCC254x                   = 1 << 0,//TI系列
@@ -127,10 +128,11 @@ typedef NS_OPTIONS(NSUInteger, BrtSupports) {
     BrtSupports16Key                    = 1 << 5,//加密模式
     BrtSupportsUpdateName               = 1 << 6,//设备名轮播
     BrtSupportsAli                      = 1 << 7,//已废弃，替换为eddystone
-    BrtSupportsEddystone                = 1 << 7,//Google Eddystone协议
+    BrtSupportsEddystone                = BrtSupportsAli,//Google Eddystone协议
     BrtSupportsSerialData               = 1 << 8,//串口数据收发
     BrtSupportsAdvRFOff                 = 1 << 9,//广播频点配置
-    BrtSupportsUserData                 = 1 << 10//广播自定义数据
+    BrtSupportsUserData                 = 1 << 10,//广播自定义数据
+    BrtSupportsExtension                = 1 << 11//自定义扩展
 };
 
 typedef enum : int
@@ -176,15 +178,7 @@ typedef enum : int
     ErrorCode110 = 110,     //unuse
 } ErrorCode;
 
-typedef void(^BRTCompletionBlock)(NSError* error);
-typedef void(^BRTUnsignedShortCompletionBlock)(unsigned short value, NSError* error);
-typedef void(^BRTShortCompletionBlock)(short value, NSError* error);
-typedef void(^BRTPowerCompletionBlock)(NSInteger value, NSError* error);
-typedef void(^BRTBoolCompletionBlock)(BOOL value, NSError* error);
-typedef void(^BRTStringCompletionBlock)(NSString* value, NSError* error);
-typedef void(^BRTIntegerCompletionBlock)(NSInteger value, NSError* error);
-typedef void(^BRTConnectCompletionBlock)(BOOL complete, NSError* error);
-
+typedef void(^BRTCompletionBlock)(BOOL complete, NSError* error);
 typedef void (^BRTDataCompletionBlock)(id data,NSError *error);
 
 
