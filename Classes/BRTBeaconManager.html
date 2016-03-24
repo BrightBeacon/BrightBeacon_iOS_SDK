@@ -61,6 +61,8 @@
 	
 	<option value="//api/name/startRangingBeaconsInRegion:">&nbsp;&nbsp;&nbsp;&nbsp;- startRangingBeaconsInRegion:</option>
 	
+	<option value="//api/name/startUpdateLocations:">&nbsp;&nbsp;&nbsp;&nbsp;- startUpdateLocations:</option>
+	
 	<option value="//api/name/stopAdvertising">&nbsp;&nbsp;&nbsp;&nbsp;- stopAdvertising</option>
 	
 	<option value="//api/name/stopBrightBeaconDiscovery">&nbsp;&nbsp;&nbsp;&nbsp;- stopBrightBeaconDiscovery</option>
@@ -68,6 +70,8 @@
 	<option value="//api/name/stopMonitoringForRegion:">&nbsp;&nbsp;&nbsp;&nbsp;- stopMonitoringForRegion:</option>
 	
 	<option value="//api/name/stopRangingBeaconsInRegion:">&nbsp;&nbsp;&nbsp;&nbsp;- stopRangingBeaconsInRegion:</option>
+	
+	<option value="//api/name/stopUpdatingLocation">&nbsp;&nbsp;&nbsp;&nbsp;- stopUpdatingLocation</option>
 	
 	
 	
@@ -121,6 +125,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startRangingBeaconsInRegion:">startRangingBeaconsInRegion:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startUpdateLocations:">startUpdateLocations:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stopAdvertising">stopAdvertising</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stopBrightBeaconDiscovery">stopBrightBeaconDiscovery</a></span></li>
@@ -128,6 +134,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stopMonitoringForRegion:">stopMonitoringForRegion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stopRangingBeaconsInRegion:">stopRangingBeaconsInRegion:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stopUpdatingLocation">stopUpdatingLocation</a></span></li>
 	
 </ul></li>
 
@@ -292,6 +300,18 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/requestWhenInUseAuthorization">&ndash;&nbsp;requestWhenInUseAuthorization</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startUpdateLocations:">&ndash;&nbsp;startUpdateLocations:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stopUpdatingLocation">&ndash;&nbsp;stopUpdatingLocation</a></code>
 	</span>
 	
 	
@@ -793,6 +813,57 @@ framework. 该方法用于扫描所有蓝牙设备.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/startUpdateLocations:" title="startUpdateLocations:"></a>
+	<h3 class="subsubtitle method-title">startUpdateLocations:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>开始获取用户GPS</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)startUpdateLocations:(locBlock)<em>block</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>GPS</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>开始获取用户GPS</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/stopAdvertising" title="stopAdvertising"></a>
 	<h3 class="subsubtitle method-title">stopAdvertising</h3>
 	
@@ -996,6 +1067,47 @@ framework. 该方法用于扫描所有蓝牙设备.</p>
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/stopUpdatingLocation" title="stopUpdatingLocation"></a>
+	<h3 class="subsubtitle method-title">stopUpdatingLocation</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>停止获取定位</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)stopUpdatingLocation</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>停止获取定位</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -1011,7 +1123,7 @@ framework. 该方法用于扫描所有蓝牙设备.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-12-18)</span><br />
+						<p><span class="copyright">&copy; 2016 智石科技. All rights reserved. (Last updated: 2016-03-24)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

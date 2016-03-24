@@ -47,6 +47,8 @@
 	
 	<option value="//api/name/batteryCheckInteval">&nbsp;&nbsp;&nbsp;&nbsp;batteryCheckInteval</option>
 	
+	<option value="//api/name/broadcastInterval">&nbsp;&nbsp;&nbsp;&nbsp;broadcastInterval</option>
+	
 	<option value="//api/name/broadcastMode">&nbsp;&nbsp;&nbsp;&nbsp;broadcastMode</option>
 	
 	<option value="//api/name/distance">&nbsp;&nbsp;&nbsp;&nbsp;distance</option>
@@ -146,9 +148,15 @@
 	
 	<option value="//api/name/readBeaconFirmwareVersionWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconFirmwareVersionWithCompletion:</option>
 	
+	<option value="//api/name/readBeaconValuesCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readBeaconValuesCompletion:</option>
+	
 	<option value="//api/name/resetBeaconToDefault">&nbsp;&nbsp;&nbsp;&nbsp;- resetBeaconToDefault</option>
 	
 	<option value="//api/name/resetSDKKEY">&nbsp;&nbsp;&nbsp;&nbsp;- resetSDKKEY</option>
+	
+	<option value="//api/name/sendBeaconValue:withCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- sendBeaconValue:withCompletion:</option>
+	
+	<option value="//api/name/sendBeaconValue:withDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- sendBeaconValue:withDelegate:</option>
 	
 	<option value="//api/name/updateBeaconFirmwareWithProgress:andCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- updateBeaconFirmwareWithProgress:andCompletion:</option>
 	
@@ -193,6 +201,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/battery">battery</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/batteryCheckInteval">batteryCheckInteval</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/broadcastInterval">broadcastInterval</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/broadcastMode">broadcastMode</a></span></li>
 	
@@ -294,9 +304,15 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconFirmwareVersionWithCompletion:">readBeaconFirmwareVersionWithCompletion:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/readBeaconValuesCompletion:">readBeaconValuesCompletion:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resetBeaconToDefault">resetBeaconToDefault</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resetSDKKEY">resetSDKKEY</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendBeaconValue:withCompletion:">sendBeaconValue:withCompletion:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendBeaconValue:withDelegate:">sendBeaconValue:withDelegate:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateBeaconFirmwareWithProgress:andCompletion:">updateBeaconFirmwareWithProgress:andCompletion:</a></span></li>
 	
@@ -480,6 +496,12 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/broadcastInterval">&nbsp;&nbsp;broadcastInterval</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/light">&nbsp;&nbsp;light</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -598,6 +620,18 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/sendBeaconValue:withCompletion:">&ndash;&nbsp;sendBeaconValue:withCompletion:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendBeaconValue:withDelegate:">&ndash;&nbsp;sendBeaconValue:withDelegate:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/writeBeaconValues:withCompletion:">&ndash;&nbsp;writeBeaconValues:withCompletion:</a></code>
 	</span>
 	
@@ -611,6 +645,12 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/updateBeaconFirmwareWithProgress:andCompletion:">&ndash;&nbsp;updateBeaconFirmwareWithProgress:andCompletion:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/readBeaconValuesCompletion:">&ndash;&nbsp;readBeaconValuesCompletion:</a></code>
 	</span>
 	
 	
@@ -883,6 +923,49 @@
 		<p>batteryCheckInteval</p>
 
 <p>广播状态下Beacon的电量检测间隔，单位为：秒；范围：1800秒~43200秒（12小时），即每隔指定秒自动检测电量并更新广播的数据</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/broadcastInterval" title="broadcastInterval"></a>
+	<h3 class="subsubtitle method-title">broadcastInterval</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>broadcastInterval</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSNumber *broadcastInterval</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>broadcastInterval</p>
+
+<p>广播切换间隔，用于iBeacon、eddystone等广播切换间隔，值范围100ms~1200ms,连接后可用</p>
 	</div>
 	
 	
@@ -2552,7 +2635,7 @@ Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)checkFirmwareUpdateWithCompletion:(BRTStringCompletionBlock)<em>completion</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)checkFirmwareUpdateWithCompletion:(BRTDataCompletionBlock)<em>completion</em></code></div>
 
     
 	
@@ -2905,7 +2988,7 @@ Major, Minor, Power and Advertising interval.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)readBeaconFirmwareVersionWithCompletion:(BRTStringCompletionBlock)<em>completion</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)readBeaconFirmwareVersionWithCompletion:(BRTDataCompletionBlock)<em>completion</em></code></div>
 
     
 	
@@ -2928,6 +3011,57 @@ Major, Minor, Power and Advertising interval.</p>
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>读取设备版本信息</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/readBeaconValuesCompletion:" title="readBeaconValuesCompletion:"></a>
+	<h3 class="subsubtitle method-title">readBeaconValuesCompletion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>读取设备所有信息（为了加快连入速率，连接不在默认执行该操作，请连接成功后自行调用获取参数）</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)readBeaconValuesCompletion:(BRTDataCompletionBlock)<em>completion</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completion</em></dt>
+			<dd><p>返回当前beacon对象和错误信息。</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>读取设备所有信息（为了加快连入速率，连接不在默认执行该操作，请连接成功后自行调用获取参数）</p>
 	</div>
 	
 	
@@ -3037,6 +3171,133 @@ Major, Minor, Power and Advertising interval.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/sendBeaconValue:withCompletion:" title="sendBeaconValue:withCompletion:"></a>
+	<h3 class="subsubtitle method-title">sendBeaconValue:withCompletion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>可扩展Beacon数据传输（仅支持050x版本设备）
+适用单消息发送，发送完毕completion立即清空</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)sendBeaconValue:(NSData *)<em>value</em> withCompletion:(BRTDataCompletionBlock)<em>completion</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completion</em></dt>
+			<dd><p>硬件返回数据：data 消息ID(1字节)+数据长度(1字节)+返回消息数据(0~18字节)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>消息ID(1字节)+数据长度(1字节)+消息数据(0~18字节)
+示例：
+读取UUID：0x0104
+写入UUID：0x0205E2C56DB5DFFB48D2B060D0F5A71096E0</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>可扩展Beacon数据传输（仅支持050x版本设备）
+适用单消息发送，发送完毕completion立即清空</p>
+
+<p>发送消息ID:
+0x00~0x3F：Beacon配置保留如下：
+00重启 01版本 02温度电量 03写key 04读UUID 05写UUID 06读MM 07写MM 08读MPower 09写MPower
+0A读功率 0B写功率 0C读模式 0D写模式 0E读名称 0F写名称 10读频率 11写频率 12读温度电量间隔 13写温电间隔 14读自定义广播
+15写自定义广播 16读eddystoneUrl 17写eddystoneUrl 18开始/停止固件升级数据 19写入固件升级数据 20~3F保留</p>
+
+<p>0x40~0xFF：配合硬件SDK自定义传输使用</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendBeaconValue:withDelegate:" title="sendBeaconValue:withDelegate:"></a>
+	<h3 class="subsubtitle method-title">sendBeaconValue:withDelegate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>可扩展Beacon数据传输（仅支持050x版本设备）
+适用批量发送,delegate依次返回所有消息回复</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)sendBeaconValue:(NSArray *)<em>values</em> withDelegate:(id&lt;BRTBeaconDelegate&gt;)<em>delegate</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>values</em></dt>
+			<dd><p>消息ID(1字节)+数据长度(1字节)+消息数据(0~18字节)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>delegate</em></dt>
+			<dd><p>同self.delegate</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>可扩展Beacon数据传输（仅支持050x版本设备）
+适用批量发送,delegate依次返回所有消息回复</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/updateBeaconFirmwareWithProgress:andCompletion:" title="updateBeaconFirmwareWithProgress:andCompletion:"></a>
 	<h3 class="subsubtitle method-title">updateBeaconFirmwareWithProgress:andCompletion:</h3>
 	
@@ -3048,7 +3309,7 @@ Major, Minor, Power and Advertising interval.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)updateBeaconFirmwareWithProgress:(BRTShortCompletionBlock)<em>progress</em> andCompletion:(BRTCompletionBlock)<em>completion</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)updateBeaconFirmwareWithProgress:(BRTDataCompletionBlock)<em>progress</em> andCompletion:(BRTCompletionBlock)<em>completion</em></code></div>
 
     
 	
@@ -3231,7 +3492,7 @@ Major, Minor, Power and Advertising interval.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2015 智石科技. All rights reserved. (Last updated: 2015-12-18)</span><br />
+						<p><span class="copyright">&copy; 2016 智石科技. All rights reserved. (Last updated: 2016-03-24)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						
