@@ -88,7 +88,7 @@
  *  Discussion:
  *    beacon设备上一次出现的时间戳，一般用于维护是设备生存周期，例如5s内未再次收到该设备信号，就移除该beacon设备.
  */
-@property (nonatomic, unsafe_unretained) NSInteger invalidTime;
+@property (nonatomic, assign) NSTimeInterval invalidTime;
 
 /**
  *  macAddress
@@ -383,7 +383,7 @@
  *
  *  0x40~0xFF：配合硬件SDK自定义传输使用
  *
- *  @param data     消息ID(1字节)+数据长度(1字节)+消息数据(0~18字节)
+ *  @param value     消息ID(1字节)+数据长度(1字节)+消息数据(0~18字节)
  *  示例：
  *  读取UUID：0x0104
  *  写入UUID：0x0205E2C56DB5DFFB48D2B060D0F5A71096E0

@@ -13,6 +13,8 @@
 /**
  * 更新日志
  *
+ *  3.3.8 修复0401固件升级
+ *
  *  3.3.7 支持固件050x
  *
  *  3.3.6 修复部分设备名乱码
@@ -25,7 +27,7 @@
  *
  *  3.3.2 IOS9适配：主要修复030x无法连接配置
  */
-#define SDK_VERSION @"3.3.7"
+#define SDK_VERSION @"3.3.8"
 
 #define B_NAME @"name"
 #define B_UUID @"uuid"
@@ -87,7 +89,6 @@
  * 发送功率(dbm)
  * TI芯片   -23    -6      0       +4
  * Nordic  -30    -20     -16    -12    -8      -4       0     +4
- *
  */
 
 #define DEFAULT_TX  2

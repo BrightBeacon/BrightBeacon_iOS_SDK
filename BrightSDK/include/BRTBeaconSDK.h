@@ -11,7 +11,7 @@
 
 //超时移除Beacon时间，与硬件发射频率设置配合，默认4s未收到信号移除；
 //未使用定位或IOS6以下扫描到的设备，间隔会自动*2，防止Beacon频繁误移。
-#define InvalidTime 4
+#define InvalidTime 4.0
 
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
@@ -28,6 +28,11 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  */
 
 @interface BRTBeaconSDK : NSObject
+
+/**
+ *  单例
+ */
++ (BRTBeaconSDK*) Share;
 
 /// @name beacon快捷扫描BrightBeacon相关的方法
 
