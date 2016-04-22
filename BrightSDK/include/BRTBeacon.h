@@ -215,6 +215,63 @@
  *    温度，范围 -40~100℃ ，127为无效值
  */
 @property (nonatomic, strong)    NSNumber*    temperature;
+
+/**
+ *  light
+ *
+ *    光感强度
+ */
+@property (nonatomic, unsafe_unretained)   NSInteger          light;
+
+/**
+ *  mode
+ *
+ *    Beacon模式，开发模式，部署模式
+ */
+@property (nonatomic, unsafe_unretained)    DevelopPublishMode    mode;
+
+/**
+ *  硬件版本
+ *
+ *    设备硬件版本
+ */
+@property (strong, nonatomic)   NSString*               hardwareVersion;
+
+/**
+ *  固件版本
+ *
+ *    设备固件版本
+ */
+@property (strong, nonatomic)   NSString*               firmwareVersion;
+
+/**
+ * 当前版本支持状态（位标示,参见BrtSupports）
+ *
+ * TI芯片 Nordic 光感支持 自动检测 防丢支持 加密模式
+ * <br/>-----+------+-------+-------+------+-------
+ * <br/>  1      1      1       1       1      1
+ */
+@property (nonatomic,assign) NSInteger supportOption;
+
+/**
+ *  广播模式选择（1、iBeacon 2、eddystone-Uid 3、eddystone-Url）
+ *
+ * 轮播Beacon专用
+ * <br/>0.只广播iBeacon,               bit[2]=0,bit[3]=0,
+ * <br/>1.仅广播Eddystone(UID),        bit[2]=0,bit[3]=1,bit[4]=0
+ * <br/>2.仅广播Eddystone(URL),        bit[2]=0,bit[3]=1,bit[4]=1
+ * <br/>3.轮播iBeacon和Eddystone(UID), bit[2]=1,bit[3]=0,bit[4]=0
+ * <br/>4.轮播iBeacon和Eddystone(URL), bit[2]=1,bit[3]=0,bit[4]=1
+ * <br/>5,轮播Eddystone(UID/URL),      bit[2]=1,bit[3]=1
+ */
+@property (nonatomic,assign) BroadcastMode broadcastMode;
+
+
+/**
+ * 用户自定义广播数据 4byte范围（0x00000000~0xFFFFFFFF）
+ */
+@property (nonatomic,strong) NSString *userData;
+
 /////////////////////////////////////////////////////
 // 通过蓝牙连接，读取的属性
 
@@ -245,20 +302,6 @@
 @property (nonatomic, strong)   NSNumber*               broadcastInterval;
 
 /**
- *  light
- *
- *    光感强度
- */
-@property (nonatomic, unsafe_unretained)   NSInteger          light;
-
-/**
- *  mode
- *
- *    Beacon模式，开发模式，部署模式，连接后可用
- */
-@property (nonatomic, unsafe_unretained)    DevelopPublishMode    mode;
-
-/**
  *  batteryCheckInteval
  *
  *    广播状态下Beacon的电量检测间隔，单位为：秒；范围：1800秒~43200秒（12小时），即每隔指定秒自动检测电量并更新广播的数据
@@ -287,20 +330,6 @@
 @property (nonatomic, unsafe_unretained)    BOOL    lightSleep;
 
 /**
- *  硬件版本
- *
- *    设备硬件版本，连接后可用
- */
-@property (strong, nonatomic)   NSString*               hardwareVersion;
-
-/**
- *  固件版本
- *
- *    设备固件版本，连接后可用
- */
-@property (strong, nonatomic)   NSString*               firmwareVersion;
-
-/**
  *  固件最新版本信息，
  *
  *    固件最新版本信息，{@link checkFirmwareUpdateWithCompletion:}后可用
@@ -316,6 +345,26 @@
  *  Eddystone的Url
  */
 @property (nonatomic,strong)  NSString *eddystone_Url;
+
+
+/**
+ *  040x串口数据收发
+ *
+ *  该值会在串口数据变化时，自动更新。
+ */
+@property (nonatomic,copy) NSString *serialData;
+/**
+ * 广播跳频模式，默认3种切换：2402、2426、2480MHz
+ */
+@property (nonatomic,assign) BOOL isOff2402;
+@property (nonatomic,assign) BOOL isOff2426;
+@property (nonatomic,assign) BOOL isOff2480;
+
+
+/**
+ *  支持eddystone模式的设备，该属性等同eddystone_url
+ */
+@property (strong, nonatomic)   NSString*   reserved;
 
 /**
  *  转换Url为eddystone模式NSData
@@ -338,14 +387,6 @@
 
 /// @name 连接beacon相关的方法
 
-/**
- * 当前版本支持状态（位标示）
- *
- * TI芯片 Nordic 光感支持 自动检测 防丢支持 加密模式
- * -----+------+-------+-------+------+-------
- *   1      1      1       1       1      1
- */
-@property (nonatomic,assign) NSInteger supportOption;
 
 /**
  * 检测beacon设备是否支持某些属性
@@ -385,7 +426,7 @@
  *
  *  @param value     消息ID(1字节)+数据长度(1字节)+消息数据(0~18字节)
  *  示例：
- *  读取UUID：0x0104
+ *  读取UUID：0x0102
  *  写入UUID：0x0205E2C56DB5DFFB48D2B060D0F5A71096E0
  *  @param completion 硬件返回数据：data 消息ID(1字节)+数据长度(1字节)+返回消息数据(0~18字节)
  */
@@ -470,49 +511,15 @@
 - (void)writeBeaconMode:(DevelopPublishMode)mode withCompletion:(BRTCompletionBlock)completion;
 
 
-/**
- *  广播模式选择（1、iBeacon 2、eddystone-Uid 3、eddystone-Url）
- *
- * 轮播Beacon专用
- * 0.只广播iBeacon,               bit[2]=0,bit[3]=0,
- * 1.仅广播Eddystone(UID),        bit[2]=0,bit[3]=1,bit[4]=0
- * 2.仅广播Eddystone(URL),        bit[2]=0,bit[3]=1,bit[4]=1
- * 3.轮播iBeacon和Eddystone(UID), bit[2]=1,bit[3]=0,bit[4]=0
- * 4.轮播iBeacon和Eddystone(URL), bit[2]=1,bit[3]=0,bit[4]=1
- * 5,轮播Eddystone(UID/URL),      bit[2]=1,bit[3]=1
- */
-@property (nonatomic,assign) BroadcastMode broadcastMode;
-
-/**
- *  040x串口数据收发
- *
- *  该值会在串口数据变化时，自动更新。
- */
-@property (nonatomic,copy) NSString *serialData;
-
-/**
- * 用户自定义广播数据 4byte范围（0x00000000~0xFFFFFFFF）
- */
-@property (nonatomic,strong) NSString *userData;
-
-/**
- * 广播跳频模式，默认3种切换：2402、2426、2480MHz
- */
-@property (nonatomic,assign) BOOL isOff2402;
-@property (nonatomic,assign) BOOL isOff2426;
-@property (nonatomic,assign) BOOL isOff2480;
-
-
-/**
- *  eddystone模式的url
- */
-@property (strong, nonatomic)   NSString*   reserved;
-
-
 @property (nonatomic, assign)    NSInteger    rssis;
 @property (nonatomic, assign)    NSInteger    count;
 @property (nonatomic, assign)    BOOL    rssiByLocation;
 
+
+/////////////////////////////////////////////////////
+// 废弃的属性
+
+/// @name 属性已废弃，不建议使用
 
 /**
  *  阿里模式，已废弃，不建议使用
