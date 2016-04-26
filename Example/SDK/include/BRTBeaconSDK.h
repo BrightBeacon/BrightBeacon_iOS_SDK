@@ -106,11 +106,12 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  *<br/>-(void)beaconManager:(BRTBeaconManager *)manager didExitRegion:(BRTBeaconRegion *)region;
  *<br/>锁屏区域检测、requestStateForRegions回调
  *<br/>-(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region;
+ *<br/>模拟iBeacon回调
  *<br/>- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error;
  *
  * @param handler 用于接收后台区域监听回调函数的类。传入的handler类用作接收回调（该类务必随程序的启动即初始化，否则无法接收到回调）；若传人值为nil会返回当前使用的handler（默认为AppDelegate）
  *
- * @return handler 返回当前使用的handler，若从未设置，默认返回AppDelegate
+ * @return handler 返回当前使用的handler
  */
 + (id)regionHander:(id)handler;
 
@@ -128,7 +129,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  * 如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新；
  * IOS8另需请求允许后台定位，requestAlwaysAuthorization
  * 检查状态：CLLocationManager.authorizationStatus==kCLAuthorizationStatusAuthorizedAlways.
- * 注：SDK默认只请求运行时定位，可以通过BRTBeaconDefinitions.h中isLocationAlways=YES来配置
+ * 注：SDK默认只请求一直定位，可以通过BRTBeaconDefinitions.h中isLocationAlways来配置
  *
  * 状态会默认回调到appDelegate中(或自定义的handler中{@link regionHandler:})：
  *<br/>-(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region;
