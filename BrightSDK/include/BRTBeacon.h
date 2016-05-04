@@ -266,6 +266,18 @@
  */
 @property (nonatomic,assign) BroadcastMode broadcastMode;
 
+/**
+ * 050x广播标识位数据 2byte（16bit）
+ *
+ * 标志位  
+ *  15  14  13  频点(2480、2426、2402)
+ *  12 ~ 4  未使用
+ *  3  2  1     广播模式:参考broadcastMode
+ *  0           部署模式/开发模式
+ *
+ *  V0501锁7~4位:激活,反锁,把手,开关
+ */
+@property (nonatomic,assign) uint16_t flag;
 
 /**
  * 用户自定义广播数据 4byte范围（0x00000000~0xFFFFFFFF）

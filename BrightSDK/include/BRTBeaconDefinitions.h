@@ -13,6 +13,8 @@
 /**
  * 更新日志
  *
+ *  3.4.1 优化连接立即配置
+ *
  *  3.4.0 优化扫描大量设备出现异常
  *
  *  3.3.9 修正050x配置参数
@@ -31,8 +33,9 @@
  *
  *  3.3.2 IOS9适配：主要修复030x无法连接配置
  */
-#define SDK_VERSION @"3.4.0"
+#define SDK_VERSION @"3.4.1"
 
+//////可用的配置参数列表
 #define B_NAME @"name"
 #define B_UUID @"uuid"
 #define B_MAJOR @"major"
@@ -77,7 +80,8 @@
 //050x版本广播切换间隔
 #define B_BROADCAT_INTERVAL @"broadcatInterval"
 
-//恢复默认参数
+
+/////恢复默认参数
 #define DEFAULT_KEY @"00000000000000000000000000000000"   //32-0
 #define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
 #define DEFAULT_MAJOR 0
