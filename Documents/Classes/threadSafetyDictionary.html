@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>BRTBeaconDelegate Protocol Reference</title>
+		<title>threadSafetyDictionary Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
@@ -16,7 +16,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">BRTBeaconDelegate Protocol Reference</h1>
+				<h1 class="hideInXcode">threadSafetyDictionary Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -25,8 +25,6 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
-	
-	<option value="overview">Overview</option>
 	
 	
 	
@@ -43,11 +41,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/beacon:didUpdateValue:error:">&nbsp;&nbsp;&nbsp;&nbsp;- beacon:didUpdateValue:error:</option>
-	
-	<option value="//api/name/beaconConnection:withError:">&nbsp;&nbsp;&nbsp;&nbsp;- beaconConnection:withError:</option>
-	
-	<option value="//api/name/beaconDidDisconnect:withError:">&nbsp;&nbsp;&nbsp;&nbsp;- beaconDidDisconnect:withError:</option>
+	<option value="//api/name/allValues">&nbsp;&nbsp;&nbsp;&nbsp;- allValues</option>
 	
 	
 	
@@ -58,8 +52,6 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
-<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
-
 
 
 
@@ -77,11 +69,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/beacon:didUpdateValue:error:">beacon:didUpdateValue:error:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/beaconConnection:withError:">beaconConnection:withError:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/beaconDidDisconnect:withError:">beaconDidDisconnect:withError:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allValues">allValues</a></span></li>
 	
 </ul></li>
 
@@ -90,7 +78,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="BRTBeaconDelegate Protocol Reference" name="top"></a>
+				<a title="threadSafetyDictionary Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -99,31 +87,23 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">BRTBeaconDelegate Protocol Reference</h1>
+						<h1 class="title title-header">threadSafetyDictionary Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Conforms to</td>
+	<td class="specification-title">Inherits from</td>
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">BRTBeacon.h</td>
+	<td class="specification-value">threadSafetyDictionary.h<br />threadSafetyDictionary.m</td>
 </tr>
 						</tbody></table></div>
 					
                     
                     
-					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>BRTBeaconDelegate 定义了 beacon 连接相关的委托方法，beacon 的连接是一个异步操作，因此你只需要实现例如beaconDidDisconnect:相关方法，它们会被自动回调.</p>
-					</div>
-					
-					
 					
 					
 					
@@ -138,19 +118,7 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/beaconConnection:withError:">&ndash;&nbsp;beaconConnection:withError:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/beaconDidDisconnect:withError:">&ndash;&nbsp;beaconDidDisconnect:withError:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/beacon:didUpdateValue:error:">&ndash;&nbsp;beacon:didUpdateValue:error:</a></code>
+		<code><a href="#//api/name/allValues">&ndash;&nbsp;allValues</a></code>
 	</span>
 	
 	
@@ -172,46 +140,26 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/beacon:didUpdateValue:error:" title="beacon:didUpdateValue:error:"></a>
-	<h3 class="subsubtitle method-title">beacon:didUpdateValue:error:</h3>
+	<a name="//api/name/allValues" title="allValues"></a>
+	<h3 class="subsubtitle method-title">allValues</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>beacon 050x读写参数回调</p>
+		<p>由于beacons和records 都会使用该类，两者不是同一个self，so，必须选择一个公用互斥变量<a href="../Classes/BRTBeaconSDK.html#//api/name/Share">[BRTBeaconSDK Share]</a></p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)beacon:(BRTBeacon *)<em>beacon</em> didUpdateValue:(NSData *)<em>value</em> error:(NSError *)<em>error</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (NSArray *)allValues</code></div>
 
     
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>beacon</em></dt>
-			<dd><p>关联的beacon实体</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>error</em></dt>
-			<dd><p>返回错误信息</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>data</em></dt>
-			<dd><p>返回数据信息</p></dd>
-		</dl>
-		
-	</div>
 	
 	
 	
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
+		<p>&lt;#return value description#></p>
 	</div>
 	
 	
@@ -220,7 +168,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>beacon 050x读写参数回调</p>
+		<p>由于beacons和records 都会使用该类，两者不是同一个self，so，必须选择一个公用互斥变量<a href="../Classes/BRTBeaconSDK.html#//api/name/Share">[BRTBeaconSDK Share]</a></p>
 	</div>
 	
 	
@@ -231,129 +179,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/beaconConnection:withError:" title="beaconConnection:withError:"></a>
-	<h3 class="subsubtitle method-title">beaconConnection:withError:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>beacon连接产生错误回调该方法.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)beaconConnection:(BRTBeacon *)<em>beacon</em> withError:(NSError *)<em>error</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>beacon</em></dt>
-			<dd><p>关联的beacon实体</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>error</em></dt>
-			<dd><p>错误的描述信息</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>beacon连接产生错误回调该方法.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/beaconDidDisconnect:withError:" title="beaconDidDisconnect:withError:"></a>
-	<h3 class="subsubtitle method-title">beaconDidDisconnect:withError:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>beacon与设备已经断开连接回调该方法</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)beaconDidDisconnect:(BRTBeacon *)<em>beacon</em> withError:(NSError *)<em>error</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>beacon</em></dt>
-			<dd><p>关联的beacon实体</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>error</em></dt>
-			<dd><p>错误的描述信息</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>beacon与设备已经断开连接回调该方法</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">BRTBeacon.h</code><br />
+		<code class="declared-in-ref">threadSafetyDictionary.m</code><br />
 	</div>				
 	
 	

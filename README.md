@@ -14,6 +14,19 @@ iPad3以上、
 iPad mini均可以
 详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
 
+##更新日志
+ *  3.4.2 修复部分连接问题 (2016.5.17)
+ *  3.4.1 新增beacon.flag标识位
+ *  3.4.0 优化扫描大量设备出现异常
+ *  3.3.9 修正050x配置参数
+ *  3.3.8 修复030x连接即配置参数异常，修复0401固件升级
+ *  3.3.7 连接优化，支持固件050x
+ *  3.3.6 修复部分设备名乱码
+ *  3.3.5 新增位置反馈
+ *  3.3.4 新增自定义广播数据段、定频固件0313、CB系列040x固件支持
+ *  3.3.3 支持Google的eddystone,修复ios6.0.x
+ *  3.3.2 IOS9适配：主要修复030x无法连接配置
+
 ##如何集成（任选其一）
 ###一、使用CocoaPods集成
 添加以下代码到您Pod项目的Podfile文件：
