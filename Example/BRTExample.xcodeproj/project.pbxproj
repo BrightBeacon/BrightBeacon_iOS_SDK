@@ -455,7 +455,7 @@
 					"$(PROJECT_DIR)/SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "09c05ea9-0d1b-4eb6-b121-3d7189d90834";
+				PROVISIONING_PROFILE = "115d0f31-ac30-4b5e-8eee-84561b7bda1d";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -477,7 +477,7 @@
 					"$(PROJECT_DIR)/SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "09c05ea9-0d1b-4eb6-b121-3d7189d90834";
+				PROVISIONING_PROFILE = "115d0f31-ac30-4b5e-8eee-84561b7bda1d";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

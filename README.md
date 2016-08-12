@@ -15,6 +15,8 @@ iPad mini均可以
 详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
 
 ##更新日志
+ *  3.4.4 增加单独iBeacon扫描(2016.8.12)
+ *  3.4.3 优化扫描
  *  3.4.2 修复部分连接问题 (2016.5.17)
  *  3.4.1 新增beacon.flag标识位
  *  3.4.0 优化扫描大量设备出现异常
@@ -96,15 +98,17 @@ iPad mini均可以
  - 扫描范围内所有BrightBeacon设备
  
  ```
-//支持IOS6以上
- 扫描BrightBeacon设备，uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造区域BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描，且无法扫描获取到设备UUID，可以通过连接读取)
- uuids:
-	NSUUID数组，筛选需要的uuid设备
-[BRTBeaconSDK startRangingWithUuids:uuids onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
+1、IOS7以上，iOS原生iBeacon扫描（可以扫描到标准iBeacon的参数proximityUUID、Major、Minor、proximity、accuracy、rssi），效率更高，建议使用该方法。
+//
+regions为BRTBeaconRegion数组(留空则默认的E2C56DB5-DFFB-48D2-B060-D0F5A71096E0)
+[BRTBeaconSDK startRangingBeaconsInRegions:regions onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
 }];
 //
-//仅支持IOS7以上，感知区域中BrightBeacon设备,regions为BRTBeaconRegion数组(留空则启用默认的UUID)
-[BRTBeaconSDK startRangingBeaconsInRegions:regions onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
+2、IOS6以上，蓝牙设备扫描融合（在第1点基础上，增加了允许连接配置、获取额外的参数如mac地址等功能），建议需要用于设备连接配置或特殊参数要求者使用。
+uuids为NSUUID数组（即设备配置的proximityUUID），IOS7以上用来前台、后台扫描iBeacon设备(注：留空或iBeacon的proximityUUID参数不在此数组，则是启用蓝牙扫描，无法获取到设备proximityUUID，也无法后台扫描)
+ uuids:
+	NSUUID数组，（即设备配置的proximityUUID）
+[BRTBeaconSDK startRangingWithUuids:uuids onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
 }];
  ```
  
@@ -142,7 +146,7 @@ iPad mini均可以
 ```
  region：需要监听的区域，支持后台监听（<=20）
  　
-     BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:BRT_PROXIMITY_UUID identifier:kUUID];
+     BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" identifier:@"区域唯一标识符"];
     region.notifyOnEntry = YES;//监听进入区域
     region.notifyOnExit = YES;//监听离开区域
     region.notifyEntryStateOnDisplay = YES;//锁屏唤醒时监听

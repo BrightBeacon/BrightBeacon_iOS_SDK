@@ -13,6 +13,10 @@
 /**
  * 更新日志
  *
+ *  3.4.4 增加单独iBeacon扫描
+ *
+ *  3.4.3 优化批量扫描
+ *
  *  3.4.2 修复部分连接问题
  *
  *  3.4.1 新增beacon.flag标识位
@@ -35,7 +39,7 @@
  *
  *  3.3.2 IOS9适配：主要修复030x无法连接配置
  */
-#define SDK_VERSION @"3.4.2"
+#define SDK_VERSION @"3.4.4"
 
 //////可用的配置参数列表
 #define B_NAME @"name"
@@ -103,6 +107,7 @@
 
 #define DEFAULT_TX  2
 #define DEFAULT_TX_PLUS  7
+//针对BrtSupportsExtension设备，请直接使用功率数值。
 #define DEFAULT_TX_EX  0
 
 #define DEFAULT_NAME  @"BrightBeacon"

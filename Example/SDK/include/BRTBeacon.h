@@ -76,7 +76,7 @@
 
 @interface BRTBeacon : NSObject <CBPeripheralDelegate>
 
-@property (nonatomic, unsafe_unretained)     id <BRTBeaconDelegate>  delegate;
+@property (nonatomic, weak)     id <BRTBeaconDelegate>  delegate;
 
 /////////////////////////////////////////////////////
 //
@@ -194,7 +194,7 @@
  *
  *    是否是BrightBeacon
  */
-@property (nonatomic, unsafe_unretained)    BOOL    isBrightBeacon;
+@property (nonatomic, assign)    BOOL    isBrightBeacon;
 
 /**
  *  isConnected
@@ -221,14 +221,14 @@
  *
  *    光感强度
  */
-@property (nonatomic, unsafe_unretained)   NSInteger          light;
+@property (nonatomic, assign)   NSInteger          light;
 
 /**
  *  mode
  *
  *    Beacon模式，开发模式，部署模式
  */
-@property (nonatomic, unsafe_unretained)    DevelopPublishMode    mode;
+@property (nonatomic, assign)    DevelopPublishMode    mode;
 
 /**
  *  硬件版本
@@ -297,7 +297,7 @@
  *  TI芯片：0：-23dBm 1：-6dBm 2：0dBm 3：+4dBm
  *  Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 6：-4dBm 7：0dBm 8：+4dBm
  */
-@property (nonatomic, unsafe_unretained)   NSInteger           power;
+@property (nonatomic, assign)   NSInteger           power;
 
 /**
  *  advInterval
@@ -318,28 +318,28 @@
  *
  *    广播状态下Beacon的电量检测间隔，单位为：秒；范围：1800秒~43200秒（12小时），即每隔指定秒自动检测电量并更新广播的数据
  */
-@property (nonatomic, unsafe_unretained)    NSInteger    batteryCheckInteval;
+@property (nonatomic, assign)    NSInteger    batteryCheckInteval;
 
 /**
  *  temperatureCheckInteval
  *
  *    广播状态下Beacon周边温度检测间隔，单位为：秒；范围：10秒~43200秒（12小时），即每隔指定秒自动检测电量并更新广播的数据
  */
-@property (nonatomic, unsafe_unretained)    NSInteger    temperatureCheckInteval;
+@property (nonatomic, assign)    NSInteger    temperatureCheckInteval;
 
 /**
  *  lightCheckInteval
  *
  *    广播状态下Beacon周边光强检测间隔，单位为：毫秒；范围：1000毫秒~10,000毫秒，即每隔指定毫秒自动检测光强并更新广播的数据
  */
-@property (nonatomic, unsafe_unretained)    NSInteger    lightCheckInteval;
+@property (nonatomic, assign)    NSInteger    lightCheckInteval;
 
 /**
  * lightSleep
  *
  *  开启光感休眠，当环境变得完全黑暗，Beacon设备会自动降低发射频率，来提高使用寿命
  */
-@property (nonatomic, unsafe_unretained)    BOOL    lightSleep;
+@property (nonatomic, assign)    BOOL    lightSleep;
 
 /**
  *  固件最新版本信息，
@@ -436,10 +436,10 @@
  *
  *  0x40~0xFF：配合硬件SDK自定义传输使用
  *
- *  @param value     消息ID(1字节)+数据长度(1字节)+消息数据(0~18字节)
+ *  @param value     消息ID(1字节)+有效数据长度(1字节)+数据(0~18字节)
  *  示例：
- *  读取UUID：0x0102
- *  写入UUID：0x0205E2C56DB5DFFB48D2B060D0F5A71096E0
+ *  读取UUID：0x0402
+ *  写入UUID：0x0512E2C56DB5DFFB48D2B060D0F5A71096E0
  *  @param completion 硬件返回数据：data 消息ID(1字节)+数据长度(1字节)+返回消息数据(0~18字节)
  */
 - (void)sendBeaconValue:(NSData *)value withCompletion:(BRTDataCompletionBlock)completion;
@@ -456,7 +456,7 @@
 /**
  * 写入设备信息
  *
- * @param values 设备信息(参见)
+ * @param values 设备信息(参见:可用的配置参数列表)
  * @param completion 写入完成回调
  *
  * @return void

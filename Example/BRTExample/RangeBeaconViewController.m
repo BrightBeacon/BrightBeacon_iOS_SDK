@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(startButtonClicked:)];
     [self startButtonClicked:nil];
     self.tableview.tableFooterView = [UIView new];
@@ -40,15 +40,26 @@
 - (IBAction)startButtonClicked:(id)sender
 {
     __unsafe_unretained typeof(self) weakSelf = self;
+    //扫描BrihtBeacon额外蓝牙信息。支持连接配置。（含UUID检测iBeacon信息）
     [BRTBeaconSDK startRangingWithUuids:@[[[NSUUID alloc] initWithUUIDString:DEFAULT_UUID]] onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
-        
         if (!error) {
             [weakSelf reloadData:beacons];
         }else{
             //检查蓝牙是否打开
             showAlert(error.description);
         }
+    }];
+    /*
+     通过UUID检测iBeacon信息，用于感应iBeacon使用。更效率。
+     [BRTBeaconSDK startRangingBeaconsInRegions:@[[[NSUUID alloc] initWithUUIDString:DEFAULT_UUID]] onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
+     if (!error) {
+     [weakSelf reloadData:beacons];
+     }else{
+     //检查蓝牙是否打开
+     showAlert(error.description);
+     }
      }];
+     */
 }
 - (void)reloadData:(NSArray*)beacons
 {
@@ -133,7 +144,7 @@
             }else{
                 if (!([CLLocationManager locationServicesEnabled] &&
                       [CLLocationManager authorizationStatus] >= 3)) {
-                        showAlert(@"该功能需要打开 系统设置->隐私->定位服务->BrightBeacon");
+                    showAlert(@"该功能需要打开 系统设置->隐私->定位服务->BrightBeacon");
                 }else{
                     showAlert(@"无法支持该设备，请监听该设备的UUID，或前往配置->设置该设备为默认UUID");
                 }

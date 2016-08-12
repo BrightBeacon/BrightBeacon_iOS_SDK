@@ -68,7 +68,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 + (NSDictionary*)BRTBeaconsDictionary;
 
 /**
- * 扫描BrightBeacon设备，uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造区域BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描)
+ * 扫描BrightBeacon设备（支持蓝牙连接，扫描BrightBeacon额外参数），uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造区域BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描)
  * @param uuids uuid数组
  * @param completion 扫描Beacon回调（1秒/次）
  *
@@ -78,7 +78,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 + (void) startRangingWithUuids:(NSArray*)uuids onCompletion:(RangingBrightBeaconsCompletionBlock)completion NS_AVAILABLE_IOS(6_0);
 
 /**
- * 仅支持IOS7以上，感知区域中BrightBeacon设备,regions为BRTBeaconRegion数组(留空则启用默认的UUID)
+ * 扫描iBeacon设备（不支持连接，能获取iBeacon协议参数），IOS7以上，感知区域中iBeacon设备,regions为BRTBeaconRegion数组(留空则启用默认的UUID)
  * @param regions 区域数组
  * @param completion 扫描Beacon回调（1秒/次）
  *

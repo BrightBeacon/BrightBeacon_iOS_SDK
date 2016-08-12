@@ -22,7 +22,7 @@
     }];
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -52,7 +52,7 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     //此处用于获取本地消息通知
-//    [[[UIAlertView alloc] initWithTitle:notification.alertTitle message:notification.alertBody delegate:nil cancelButtonTitle:notification.alertAction otherButtonTitles: nil] show];
+    //    [[[UIAlertView alloc] initWithTitle:notification.alertTitle message:notification.alertBody delegate:nil cancelButtonTitle:notification.alertAction otherButtonTitles: nil] show];
 }
 #pragma monitor
 - (void)sendLocalNotification:(NSString*)msg
@@ -127,5 +127,10 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
    didDetermineState:(CLRegionState)state
            forRegion:(BRTBeaconRegion *)region{
     if(region.notifyEntryStateOnDisplay)[self sendLocalNotification:Lang(@"Hello!", @"你处于监听Beacon区域,点亮屏幕收到此推送")];
+}
+
+//模拟iBeacon回调
+- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error {
+    
 }
 @end
