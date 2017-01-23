@@ -13,9 +13,11 @@
 /**
  * 更新日志
  *
+ *  3.4.5 优化扫描
+ *
  *  3.4.4 增加单独iBeacon扫描
  *
- *  3.4.3 优化批量扫描
+ *  3.4.3 优化扫描
  *
  *  3.4.2 修复部分连接问题
  *
@@ -39,7 +41,7 @@
  *
  *  3.3.2 IOS9适配：主要修复030x无法连接配置
  */
-#define SDK_VERSION @"3.4.4"
+#define SDK_VERSION @"3.4.5"
 
 //////可用的配置参数列表
 #define B_NAME @"name"
@@ -102,7 +104,7 @@
 /*
  * 发送功率(dbm)
  * TI芯片   -23    -6      0       +4
- * Nordic  -30    -20     -16    -12    -8      -4       0     +4
+ * Nordic  -40    -30    -20     -16    -12    -8      -4       0     +4
  */
 
 #define DEFAULT_TX  2
@@ -148,7 +150,8 @@ typedef NS_OPTIONS(NSUInteger, BrtSupports) {
     BrtSupportsSerialData               = 1 << 8,//串口数据收发
     BrtSupportsAdvRFOff                 = 1 << 9,//广播频点配置
     BrtSupportsUserData                 = 1 << 10,//广播自定义数据
-    BrtSupportsExtension                = 1 << 11//自定义扩展
+    BrtSupportsExtension                = 1 << 11,//自定义扩展
+    BrtSupportsEncrypt                  = 1 << 12//广播加密
 };
 
 typedef enum : int

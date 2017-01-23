@@ -8,10 +8,14 @@
 #import "BRTBeaconManager.h"
 #import "BRTBeaconRegion.h"
 #import "BRTBeacon.h"
+#import "BRTTools.h"
 
-//超时移除Beacon时间，与硬件发射频率设置配合，默认4s未收到信号移除；
+//超时移除Beacon时间，与硬件发射频率设置配合，默认8s未收到信号移除；
 //未使用定位或IOS6以下扫描到的设备，间隔会自动*2，防止Beacon频繁误移。
-#define InvalidTime 4.0
+#define InvalidTime 8.0
+
+//调节扫描返回调用频率，仅内部定时处理，蓝牙扫描本身无法设置间隔
+#define ScanResTime 1.0
 
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
@@ -126,7 +130,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 
 /**
  * 开启区域监听要求IOS7以上系统；
- * 如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新；
+ * 如果需要程序退出后持续监听，需要提醒用户打开位置权限->始终；
  * IOS8另需请求允许后台定位，requestAlwaysAuthorization
  * 检查状态：CLLocationManager.authorizationStatus==kCLAuthorizationStatusAuthorizedAlways.
  * 注：SDK默认只请求一直定位，可以通过BRTBeaconDefinitions.h中isLocationAlways来配置

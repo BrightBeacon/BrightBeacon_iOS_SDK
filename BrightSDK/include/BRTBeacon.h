@@ -205,7 +205,7 @@
 /**
  *  battery
  *
- *    battery电量，范围 0~100，通过实时工作电压估算值，连接后读取值为工作电压估算值，较广播时略偏低
+ *    battery电量，范围 0~100，通过实时工作电压估算值；连接时功耗变化，较广播时略偏低
  */
 @property (nonatomic, strong)    NSNumber*    battery;
 
@@ -247,9 +247,6 @@
 /**
  * 当前版本支持状态（位标示,参见BrtSupports）
  *
- * TI芯片 Nordic 光感支持 自动检测 防丢支持 加密模式
- * <br/>-----+------+-------+-------+------+-------
- * <br/>  1      1      1       1       1      1
  */
 @property (nonatomic,assign) NSInteger supportOption;
 
@@ -270,10 +267,10 @@
  * 050x广播标识位数据 2byte（16bit）
  *
  * 标志位  
- *  15  14  13  频点(2480、2426、2402)
- *  12 ~ 4  未使用
- *  3  2  1     广播模式:参考broadcastMode
- *  0           部署模式/开发模式
+ *  15  14  13  广播频点(同isOff2480、isOff2426、isOff2402)
+ *  12 ~ 4      未使用
+ *  3  2  1     广播模式 (同broadcastMode)
+ *  0           部署模式/开发模式（同mode）
  *
  *  V0501锁7~4位:激活,反锁,把手,开关
  */
@@ -311,7 +308,7 @@
  *
  *    广播切换间隔，用于iBeacon、eddystone等广播切换间隔，值范围100ms~1200ms,连接后可用
  */
-@property (nonatomic, strong)   NSNumber*               broadcastInterval;
+@property (nonatomic, strong)   NSNumber*    broadcastInterval;
 
 /**
  *  batteryCheckInteval
@@ -346,7 +343,7 @@
  *
  *    固件最新版本信息，{@link checkFirmwareUpdateWithCompletion:}后可用
  */
-@property (readonly, nonatomic)   NSString*               firmwareVersionInfo;
+@property (readonly, nonatomic)   NSString* firmwareVersionInfo;
 
 /**
  *  Eddystone的Uid
@@ -526,47 +523,5 @@
 @property (nonatomic, assign)    NSInteger    rssis;
 @property (nonatomic, assign)    NSInteger    count;
 @property (nonatomic, assign)    BOOL    rssiByLocation;
-
-
-/////////////////////////////////////////////////////
-// 废弃的属性
-
-/// @name 属性已废弃，不建议使用
-
-/**
- *  阿里模式，已废弃，不建议使用
- */
-@property (nonatomic,assign) BOOL isAliMode;
-
-/**
- *  开启阿里UUID，已废弃，不建议使用
- */
-@property (nonatomic,assign) BOOL isAliUUID;
-
-
-/**
- *  是否在范围内，已废弃，不建议使用
- */
-@property (nonatomic,assign) BOOL isInRange;
-
-/**
- * 自动报警（可以每隔N秒写入一次B_InRange来停止自动蜂鸣），已废弃，不建议使用
- */
-@property (nonatomic,assign) BOOL isAutoAlarm;
-
-/**
- * 自动报警超时（默认超时5秒），已废弃，不建议使用
- */
-@property (nonatomic,assign) NSInteger autoAlarmTimeOut;
-
-/**
- * 主动寻找，写人该值设备立即蜂鸣，已废弃，不建议使用
- */
-@property (nonatomic,assign) BOOL isActiveFind;
-
-/**
- * 按钮报警，按钮报警状态，已废弃，不建议使用
- */
-@property (nonatomic,assign) BOOL isButtonAlarm;
 
 @end

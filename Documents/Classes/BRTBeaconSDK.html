@@ -74,7 +74,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/PostData:forUrl:local:">&nbsp;&nbsp;&nbsp;&nbsp;- PostData:forUrl:local:</option>
+	<option value="//api/name/dealloc">&nbsp;&nbsp;&nbsp;&nbsp;- dealloc</option>
 	
 	
 	
@@ -138,7 +138,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/PostData:forUrl:local:">PostData:forUrl:local:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dealloc">dealloc</a></span></li>
 	
 </ul></li>
 
@@ -295,7 +295,7 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/PostData:forUrl:local:">&ndash;&nbsp;PostData:forUrl:local:</a></code>
+		<code><a href="#//api/name/dealloc">&ndash;&nbsp;dealloc</a></code>
 	</span>
 	
 	
@@ -800,7 +800,7 @@
 	
 	<div class="method-subsection brief-description">
 		<p>开启区域监听要求IOS7以上系统；
-如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新；
+如果需要程序退出后持续监听，需要提醒用户打开位置权限->始终；
 IOS8另需请求允许后台定位，requestAlwaysAuthorization
 检查状态：CLLocationManager.authorizationStatus==kCLAuthorizationStatusAuthorizedAlways.
 注：SDK默认只请求一直定位，可以通过<a href="../Classes/BRTBeaconDefinitions.html">BRTBeaconDefinitions</a>.h中isLocationAlways来配置</p>
@@ -836,7 +836,7 @@ IOS8另需请求允许后台定位，requestAlwaysAuthorization
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>开启区域监听要求IOS7以上系统；
-如果需要程序退出后持续监听，需要提醒用户打开->应用程序后台刷新；
+如果需要程序退出后持续监听，需要提醒用户打开位置权限->始终；
 IOS8另需请求允许后台定位，requestAlwaysAuthorization
 检查状态：CLLocationManager.authorizationStatus==kCLAuthorizationStatusAuthorizedAlways.
 注：SDK默认只请求一直定位，可以通过<a href="../Classes/BRTBeaconDefinitions.html">BRTBeaconDefinitions</a>.h中isLocationAlways来配置</p>
@@ -1096,40 +1096,56 @@ IOS8另需请求允许后台定位，requestAlwaysAuthorization
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/PostData:forUrl:local:" title="PostData:forUrl:local:"></a>
-	<h3 class="subsubtitle method-title">PostData:forUrl:local:</h3>
+	<a name="//api/name/dealloc" title="dealloc"></a>
+	<h3 class="subsubtitle method-title">dealloc</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>提交感应记录到后台</p>
+		<ul>
+<li>提交感应记录到后台
+*</li>
+<li>@param array     感应数组</li>
+<li>@param urlString 连接地址</li>
+<li><p>@param local     是否提交本地数据
+*
+-(void)PostData:(NSArray<em>)array forUrl:(NSString</em>)urlString local:(BOOL)local
+{
+ isupdating = YES;
+ if (!array.count) {
+     isupdating = NO;
+     return;
+ }
+ NSString <em>deviceUUID = <a href="../Classes/OpenUDIDIOS7.html#//api/name/value">[OpenUDIDIOS7 value]</a>?:@&ldquo;error&rdquo;;
+ NSMutableDictionary </em>mdict = [NSMutableDictionary dictionaryWithDictionary:@{@&ldquo;phoneDevice&rdquo;: deviceUUID,@&ldquo;list&rdquo;:array}];</p>
+
+<p> NSData<em> postData =[self toJSON:mdict];
+ NSString </em>postLength = [NSString stringWithFormat:@&ldquo;%lu&rdquo;, (unsigned long)[postData length]];</p>
+
+<p> NSURL *baseUrl = [NSURL URLWithString: urlString];</p>
+
+<p> NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:baseUrl
+                                                                cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                            timeoutInterval:20.0f];</p>
+
+<p> [urlRequest setHTTPMethod: @&ldquo;POST&rdquo;];
+ [urlRequest setURL:baseUrl];
+ [urlRequest setValue: postLength forHTTPHeaderField:@&ldquo;Content-Length&rdquo;];
+ [urlRequest setValue: @&ldquo;application/json&rdquo; forHTTPHeaderField:@&ldquo;Content-Type&rdquo;];
+ [urlRequest setHTTPBody: postData];</p>
+
+<p> NSOperationQueue <em>backgroundQueue =[[NSOperationQueue alloc] init];
+ [NSURLConnection sendAsynchronousRequest:urlRequest queue:backgroundQueue completionHandler:^(NSURLResponse </em>response, NSData <em>data, NSError </em>connectionError) {
+     NSDictionary *rlt = data?[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:NULL]: nil;</p></li>
+</ul>
+
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)PostData:(NSArray *)<em>array</em> forUrl:(NSString *)<em>urlString</em> local:(BOOL)<em>local</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)dealloc</code></div>
 
     
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>array</em></dt>
-			<dd><p>感应数组</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>urlString</em></dt>
-			<dd><p>连接地址</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>local</em></dt>
-			<dd><p>是否提交本地数据</p></dd>
-		</dl>
-		
-	</div>
 	
 	
 	
@@ -1139,7 +1155,222 @@ IOS8另需请求允许后台定位，requestAlwaysAuthorization
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>提交感应记录到后台</p>
+		<ul>
+<li>提交感应记录到后台
+*</li>
+<li>@param array     感应数组</li>
+<li>@param urlString 连接地址</li>
+<li><p>@param local     是否提交本地数据
+*
+-(void)PostData:(NSArray<em>)array forUrl:(NSString</em>)urlString local:(BOOL)local
+{
+ isupdating = YES;
+ if (!array.count) {
+     isupdating = NO;
+     return;
+ }
+ NSString <em>deviceUUID = <a href="../Classes/OpenUDIDIOS7.html#//api/name/value">[OpenUDIDIOS7 value]</a>?:@&ldquo;error&rdquo;;
+ NSMutableDictionary </em>mdict = [NSMutableDictionary dictionaryWithDictionary:@{@&ldquo;phoneDevice&rdquo;: deviceUUID,@&ldquo;list&rdquo;:array}];</p>
+
+<p> NSData<em> postData =[self toJSON:mdict];
+ NSString </em>postLength = [NSString stringWithFormat:@&ldquo;%lu&rdquo;, (unsigned long)[postData length]];</p>
+
+<p> NSURL *baseUrl = [NSURL URLWithString: urlString];</p>
+
+<p> NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:baseUrl
+                                                                cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                            timeoutInterval:20.0f];</p>
+
+<p> [urlRequest setHTTPMethod: @&ldquo;POST&rdquo;];
+ [urlRequest setURL:baseUrl];
+ [urlRequest setValue: postLength forHTTPHeaderField:@&ldquo;Content-Length&rdquo;];
+ [urlRequest setValue: @&ldquo;application/json&rdquo; forHTTPHeaderField:@&ldquo;Content-Type&rdquo;];
+ [urlRequest setHTTPBody: postData];</p>
+
+<p> NSOperationQueue <em>backgroundQueue =[[NSOperationQueue alloc] init];
+ [NSURLConnection sendAsynchronousRequest:urlRequest queue:backgroundQueue completionHandler:^(NSURLResponse </em>response, NSData <em>data, NSError </em>connectionError) {
+     NSDictionary *rlt = data?[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:NULL]:nil;</p>
+
+<pre><code> if ([[rlt valueForKey:@"code"] integerValue]!=200) {
+     //提交失败了；只有非本地的才需要保存到本地。
+     if (!local) {
+         NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/faileds.archive"];
+         NSArray *faileds = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+         NSMutableArray *marray = [NSMutableArray arrayWithArray:faileds];
+         [marray addObject:array];
+         [NSKeyedArchiver archiveRootObject:marray toFile:path];
+     }
+     //to do if fail then restart app ,submit again
+ }else{
+     //本地提交成功，移除本地数据
+     if (local) {
+         NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/faileds.archive"];
+         [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+         path = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/records.archive"];
+         [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+     }
+ }
+ isupdating = NO;
+</code></pre>
+
+<p> }];
+}</p></li>
+<li><p>(void)updateRecords:(<a href="../Classes/BRTBeacon.html">BRTBeacon</a>*)brt
+{
+  if (!self.recordslist) {
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveToDisk) name:@&ldquo;UIApplicationDidEnterBackgroundNotification&rdquo; object:nil];
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postToServer) name:@&ldquo;UIApplicationDidBecomeActiveNotification&rdquo; object:nil];
+      if(!isupdating)[self postToServer];
+      self.recordslist = [[threadSafetyDictionary alloc] init];
+  }
+  if (!isupdating) {
+      isupdating  = YES;
+      NSTimeInterval time = [[NSDate date] timeIntervalSince1970];</p>
+
+<pre><code>  NSString *lat = [[NSUserDefaults standardUserDefaults] valueForKey:@"lat"];
+  NSString *lng = [[NSUserDefaults standardUserDefaults] valueForKey:@"lng"];
+  NSString *addr = [[NSUserDefaults standardUserDefaults] valueForKey:@"addr"];
+  lat = lat?lat:@"";
+  lng = lng?lng:@"";
+  addr = addr.length?addr:@"";
+      NSString *mac = brt.macAddress;
+      if(brt.isBrightBeacon&amp;&amp;mac){//屏蔽未识别的设备
+          records *rc = [self.recordslist valueForKey:mac];
+          if (!rc) {
+              rc = [[records alloc] init];
+              [self.recordslist setObject:rc forKey:mac];
+              rc.macAddr = brt.macAddress;
+              rc.startTime = time;
+              rc.endTime = rc.startTime;
+              rc.useTime = 0;
+              rc.distances = [NSString stringWithFormat:@"%d",[brt.distance intValue]];
+              rc.electricity = brt.battery?:@-1;
+              rc.temperature = brt.temperature?:@-1;
+              rc.lat = lat;
+              rc.lng  = lng;
+              rc.addr = addr;
+          }else{
+              if (time - rc.endTime &lt; 1) {
+                  //间隔太短1s内，同一个设备忽略
+                  isupdating = NO;
+                  return;
+              }
+              rc.electricity = brt.battery?:@-1;
+              rc.temperature = brt.temperature?:@-1;
+              rc.lat = lat;
+              rc.lng  = lng;
+              rc.addr = addr;
+              rc.endTime = time;
+              NSString *distance = [NSString stringWithFormat:@"%d",[brt.distance intValue]];
+              NSString *dis = rc.distances;
+              NSString *last = dis.lastPathComponent;
+              if ([last isEqualToString:distance]) {
+                  //处理第一次相同
+                  rc.distances = [dis stringByAppendingString:@"*2"];
+              }else if([last hasPrefix:[distance stringByAppendingString:@"*"]]){
+                  //处理第2~n次相同
+                  NSString *count = [last stringByReplacingOccurrencesOfString:[distance stringByAppendingString:@"*"] withString:@""];
+                  dis = [dis stringByDeletingLastPathComponent];
+                  rc.distances = [dis stringByAppendingPathComponent:[NSString stringWithFormat:@"%@*%d",distance,count.intValue+1]];
+                  //                            rc.distances = [rc.distances stringByAppendingFormat:@"%d",[count intValue]+1];
+              }else{
+                  //处理不同
+                  rc.distances = [NSString stringWithFormat:@"%@/%@",dis,distance];
+              }
+          }
+      }
+  if((NSInteger)time%30==0)[self checkUpdate:nil];
+  else isupdating = NO;
+</code></pre>
+
+<p>  }
+}</p></li>
+</ul>
+
+
+<p>//检查是否满足上传
+- (void)checkUpdate:(NSDictionary*)dict
+{
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];</p>
+
+<pre><code>NSMutableArray *marray = [NSMutableArray array];
+NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+[formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+
+NSString *sdkPlatform = @"1";
+NSString *sdkVersion = SDK_VERSION;
+
+if (dict) {
+    for (NSString *key in dict.allKeys) {
+        records *rc = [dict valueForKey:key];
+        [marray addObject:@{@"temperature":rc.temperature?:@"",@"electricity":rc.electricity?:@"",@"lat":rc.lat?:@"",@"lng":rc.lng?:@"",@"addr":rc.addr?:@"",@"sdkVersion":sdkVersion,@"sdkPlatform":sdkPlatform,@"macAddr": [rc.macAddr stringByReplacingOccurrencesOfString:@":" withString:@""]?:@"",@"startTime":[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:rc.startTime]]?:@"",@"endTime":[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:rc.endTime]]?:@"",@"useTime":[NSNumber numberWithInteger:rc.endTime-rc.startTime],@"distances":[rc.distances stringByReplacingOccurrencesOfString:@"/" withString:@","]?:@""}];
+    }
+    if (marray.count)[self PostData:marray forUrl:kbatchInsert local:NO];
+    else isupdating = NO;
+}else{
+    NSMutableArray *keys = [NSMutableArray array];
+    [self.recordslist enumerate:^(NSString *mac) {
+        records *rc = [self.recordslist valueForKey:mac];
+        if (time - rc.endTime &gt; 600 || time - rc.startTime &gt; 3600 ||rc.distances.length &gt; 4500) {
+            [keys addObject:mac];
+            [marray addObject:@{@"temperature":rc.temperature?:@"",
+                                @"electricity":rc.electricity?:@"",
+                                @"lat":rc.lat?:@"",
+                                @"lng":rc.lng?:@"",
+                                @"addr":rc.addr?:@"",
+                                @"sdkVersion":sdkVersion,
+                                @"sdkPlatform":sdkPlatform,@"macAddr": [rc.macAddr stringByReplacingOccurrencesOfString:@":" withString:@""]?:@"",
+                                @"startTime":[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:rc.startTime]]?:@"",
+                                @"endTime":[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:rc.endTime]]?:@"",
+                                @"useTime":[NSNumber numberWithInteger:rc.endTime-rc.startTime],
+                                @"distances":[rc.distances stringByReplacingOccurrencesOfString:@"/" withString:@","]?:@""}];
+        }
+    }];
+    if (keys.count) {
+        [self.recordslist removeObjectsForKeys:keys];
+        [self PostData:marray forUrl:kbatchInsert local:NO];
+    }else{
+        isupdating  = NO;
+    }
+}
+</code></pre>
+
+<p>}
+- (void)saveToDisk
+{
+    NSString <em>path = [NSHomeDirectory() stringByAppendingPathComponent:@&ldquo;tmp/records.archive&rdquo;];
+    if (self.recordslist.count&amp;&amp;[NSKeyedArchiver archiveRootObject:self.recordslist.dictinary toFile:path]) {
+    }
+    [self.recordslist removeAllObjects];
+}
+- (void)postToServer
+{
+    if (isupdating) {
+        return;
+    }
+    isupdating = YES;
+    NSString </em>path = [NSHomeDirectory() stringByAppendingPathComponent:@&ldquo;tmp/faileds.archive&rdquo;];
+    NSArray *faileds = [NSKeyedUnarchiver unarchiveObjectWithFile:path];</p>
+
+<pre><code>NSMutableArray *marray = [NSMutableArray arrayWithArray:faileds];
+path = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/records.archive"];
+NSDictionary *dict = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+
+NSString *sdkPlatform = @"1";
+NSString *sdkVersion = SDK_VERSION;
+
+if (dict) {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    for (NSString *key in dict.allKeys) {
+        records *rc = [dict valueForKey:key];
+        [marray addObject:@{@"temperature":rc.temperature,@"electricity":rc.electricity,@"lat":rc.lat,@"lng":rc.lng,@"addr":rc.addr,@"sdkVersion":sdkVersion,@"sdkPlatform":sdkPlatform,@"macAddr": [rc.macAddr stringByReplacingOccurrencesOfString:@":" withString:@""],@"startTime":[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:rc.startTime]],@"endTime":[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:rc.endTime]],@"useTime":[NSNumber numberWithInteger:rc.endTime-rc.startTime],@"distances":[rc.distances stringByReplacingOccurrencesOfString:@"/" withString:@","]}];
+    }
+}
+[self PostData:marray forUrl:kbatchInsert local:YES];
+</code></pre>
+
+<p>}</p>
 	</div>
 	
 	
@@ -1171,7 +1402,7 @@ IOS8另需请求允许后台定位，requestAlwaysAuthorization
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2016 智石科技. All rights reserved. (Last updated: 2016-08-12)</span><br />
+						<p><span class="copyright">&copy; 2017 智石科技. All rights reserved. (Last updated: 2017-01-23)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

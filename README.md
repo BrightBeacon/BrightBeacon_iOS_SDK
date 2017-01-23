@@ -15,6 +15,7 @@ iPad mini均可以
 详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
 
 ##更新日志
+ *  3.4.5 移除设备上报(2017.1.23)
  *  3.4.4 增加单独iBeacon扫描(2016.8.12)
  *  3.4.3 优化扫描
  *  3.4.2 修复部分连接问题 (2016.5.17)
@@ -105,7 +106,7 @@ regions为BRTBeaconRegion数组(留空则默认的E2C56DB5-DFFB-48D2-B060-D0F5A7
 }];
 //
 2、IOS6以上，蓝牙设备扫描融合（在第1点基础上，增加了允许连接配置、获取额外的参数如mac地址等功能），建议需要用于设备连接配置或特殊参数要求者使用。
-uuids为NSUUID数组（即设备配置的proximityUUID），IOS7以上用来前台、后台扫描iBeacon设备(注：留空或iBeacon的proximityUUID参数不在此数组，则是启用蓝牙扫描，无法获取到设备proximityUUID，也无法后台扫描)
+uuids为NSUUID数组（即设备配置的proximityUUID），IOS7以上用来扫描iBeacon设备(注：留空或iBeacon的proximityUUID参数不在此数组，则是启用蓝牙扫描，无法获取到设备proximityUUID，也无法后台扫描)
  uuids:
 	NSUUID数组，（即设备配置的proximityUUID）
 [BRTBeaconSDK startRangingWithUuids:uuids onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){

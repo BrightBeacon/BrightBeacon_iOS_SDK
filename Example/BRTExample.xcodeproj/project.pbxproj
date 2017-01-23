@@ -259,7 +259,8 @@
 				ORGANIZATIONNAME = thomasho;
 				TargetAttributes = {
 					581F1A0518ECF2E9001C47BE = {
-						DevelopmentTeam = L2S5E9QH3S;
+						DevelopmentTeam = 7H8TZJP3LL;
+						ProvisioningStyle = Automatic;
 					};
 					581F1A2618ECF2E9001C47BE = {
 						TestTargetID = 581F1A0518ECF2E9001C47BE;
@@ -444,7 +445,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tao He (AWM3R3VMHX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7H8TZJP3LL;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BRTExample/BRTExample-Prefix.pch";
 				INFOPLIST_FILE = "BRTExample/BRTExample-Info.plist";
@@ -454,8 +456,10 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/SDK",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bbb.developer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "115d0f31-ac30-4b5e-8eee-84561b7bda1d";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -466,7 +470,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tao He (AWM3R3VMHX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7H8TZJP3LL;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BRTExample/BRTExample-Prefix.pch";
 				INFOPLIST_FILE = "BRTExample/BRTExample-Info.plist";
@@ -476,8 +481,9 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/SDK",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bbb.developer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "115d0f31-ac30-4b5e-8eee-84561b7bda1d";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

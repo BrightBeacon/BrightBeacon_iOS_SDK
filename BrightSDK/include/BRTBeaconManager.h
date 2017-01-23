@@ -238,7 +238,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 /// @name 转换设备为 iBeacon
 
 /**
- * 设备模拟成 iBeacon.可以使用检测状态[[BRTBeaconSDK BRTBeaconManager] isAdvertising]
+ * 设备模拟成 iBeacon.使用此方法必须保持程序一直在前台运行。可以使用检测状态[[BRTBeaconSDK BRTBeaconManager] isAdvertising]
  *
  * @param proximityUUID beacon设备UUID值
  * @param major beacon设备major值
