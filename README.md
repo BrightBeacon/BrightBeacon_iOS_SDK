@@ -15,7 +15,7 @@ iPad mini均可以
 详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
 
 ##更新日志
- *  3.4.5 移除设备上报(2017.1.23)
+ *  3.4.5 优化扫描(2017.1.23)
  *  3.4.4 增加单独iBeacon扫描(2016.8.12)
  *  3.4.3 优化扫描
  *  3.4.2 修复部分连接问题 (2016.5.17)
