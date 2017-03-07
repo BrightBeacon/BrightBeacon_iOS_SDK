@@ -34,7 +34,6 @@
  * @param beacon 关联的beacon实体
  * @param error 错误的描述信息
  *
- * @return void
  */
 - (void)beaconConnection:(BRTBeacon*)beacon withError:(NSError*)error;
 
@@ -44,7 +43,6 @@
  * @param beacon 关联的beacon实体
  * @param error 错误的描述信息
  *
- * @return void
  */
 - (void)beaconDidDisconnect:(BRTBeacon*)beacon withError:(NSError*)error;
 
@@ -55,7 +53,6 @@
  * @param data 返回数据信息
  * @param error 返回错误信息
  *
- * @return void
  */
 - (void)beacon:(BRTBeacon *)beacon didUpdateValue:(NSData *)value error:(NSError *)error;
 
@@ -407,7 +404,6 @@
  * 只能连接之后才可以修改
  * Major, Minor, Power and Advertising interval.
  *
- * @return void
  */
 -(void)connectToBeacon;
 -(void)connectToBeaconWithCompletion:(BRTCompletionBlock)completion;
@@ -415,7 +411,6 @@
 /**
  * 断开蓝牙连接
  *
- * @return void
  */
 -(void)disconnectBeacon;
 
@@ -456,7 +451,6 @@
  * @param values 设备信息(参见:可用的配置参数列表)
  * @param completion 写入完成回调
  *
- * @return void
  */
 - (void)writeBeaconValues:(NSDictionary*)values withCompletion:(BRTCompletionBlock)completion;
 
@@ -498,14 +492,12 @@
 /**
  * 重置beacon设备默认值，该操作要求已经成功执行 {@link registerApp:};
  *
- * @return void
  */
 -(void)resetBeaconToDefault;
 
 /**
  * 重置beacon设备默认KEY，该操作可以解除设备开发者绑定，让beacon设备可以重新被连接设定新的APP_KEY，该操作要求已经成功执行[BRTBeaconManager registerApp:APP_KEY];
  *
- * @return void
  */
 - (void)resetSDKKEY;
 
@@ -515,7 +507,6 @@
  * 如果Beacon处于开发者模式，则可以用任意的APP KEY进行连接， 如果Beacon处于部署模式，则需要对应配置过Beacon的APP KEY 才能再一次进行连接，确保Beacon部署安全
  * @param mode 0、开发模式 1、部署模式
  * @param completion 写入完成回调
- * @return void
  */
 - (void)writeBeaconMode:(DevelopPublishMode)mode withCompletion:(BRTCompletionBlock)completion;
 

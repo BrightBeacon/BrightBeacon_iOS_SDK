@@ -18,7 +18,6 @@
 
 //小端模式(little-endian)
 + (int32_t)data2Integer:(NSData *)data;
-+ (uint32_t)data2UInteger:(NSData *)data;
 + (NSData *)integer2data:(int32_t )value;
 + (NSData *)uinteger2data:(uint32_t )value;
 

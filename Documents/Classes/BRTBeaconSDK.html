@@ -59,6 +59,10 @@
 	
 	<option value="//api/name/rssiToDistance:">&nbsp;&nbsp;&nbsp;&nbsp;+ rssiToDistance:</option>
 	
+	<option value="//api/name/setInvalidTime:">&nbsp;&nbsp;&nbsp;&nbsp;+ setInvalidTime:</option>
+	
+	<option value="//api/name/setScaneResponseTime:">&nbsp;&nbsp;&nbsp;&nbsp;+ setScaneResponseTime:</option>
+	
 	<option value="//api/name/startMonitoringForRegions:">&nbsp;&nbsp;&nbsp;&nbsp;+ startMonitoringForRegions:</option>
 	
 	<option value="//api/name/startRangingBeaconsInRegions:onCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;+ startRangingBeaconsInRegions:onCompletion:</option>
@@ -122,6 +126,10 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rssiToDistance:">rssiToDistance:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setInvalidTime:">setInvalidTime:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setScaneResponseTime:">setScaneResponseTime:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startMonitoringForRegions:">startMonitoringForRegions:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startRangingBeaconsInRegions:onCompletion:">startRangingBeaconsInRegions:onCompletion:</a></span></li>
@@ -177,7 +185,16 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>BRTBeaconSDK类定义了快捷操作BrightBeacon方法.</p>
+						<ul>
+<li>BRTBeaconSDK类定义了快捷操作BrightBeacon方法.
+*</li>
+<li>IOS8以上新增获取定位权限、状态，请在Info.plist配置获取时提示用户内容Key：NSLocationAlwaysUsageDescription或NSLocationWhenInUseUsageDescription
+*</li>
+<li>1、Always:允许后台定位，可以支持后台区域推送等</li>
+<li>2、WhenInUse:只允许运行时定位，不支持后台区域感知</li>
+<li>使用[CLLocationManager authorizationStatus]获取定位状态</li>
+</ul>
+
 					</div>
 					
 					
@@ -210,6 +227,18 @@
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/registerApp:onCompletion:">+&nbsp;registerApp:onCompletion:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setInvalidTime:">+&nbsp;setInvalidTime:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setScaneResponseTime:">+&nbsp;setScaneResponseTime:</a></code>
 	</span>
 	
 	
@@ -556,7 +585,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>用于修改接收后台区域监听回调类，SDK默认已经设置回调到AppDelegate，如果需要改为其他handler，此handler实体必须与AppDelegate随同启动，否则无法接收到后台beacon推送</p>
+		<p>用于初始化接收后台区域监听回调类，此函数以及handler实体类都必须是与AppDelegate随同启动，否则无法接收到后台beacon推送</p>
 	</div>		
 	
     
@@ -588,7 +617,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>用于修改接收后台区域监听回调类，SDK默认已经设置回调到AppDelegate，如果需要改为其他handler，此handler实体必须与AppDelegate随同启动，否则无法接收到后台beacon推送</p>
+		<p>用于初始化接收后台区域监听回调类，此函数以及handler实体类都必须是与AppDelegate随同启动，否则无法接收到后台beacon推送</p>
 
 <p>以下是在后台监听区域的回调函数，请拷贝需要的回调到AppDelegate或对应的handler类
 <br/>监听失败回调
@@ -650,11 +679,6 @@
 	
 	
 	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
 	
 	
 	
@@ -705,11 +729,6 @@
 	</div>
 	
 	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
 	
 	
 	
@@ -793,6 +812,110 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/setInvalidTime:" title="setInvalidTime:"></a>
+	<h3 class="subsubtitle method-title">setInvalidTime:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>设置超时移除Beacon时间，与硬件发射频率设置配合，默认3s未收到信号移除；
+未开启定位时，间隔会延迟，防止Beacon频繁误移。</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)setInvalidTime:(NSTimeInterval)<em>invalidTime</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>invalidTime</em></dt>
+			<dd><p>beacon信号丢失移除间隔</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>设置超时移除Beacon时间，与硬件发射频率设置配合，默认3s未收到信号移除；
+未开启定位时，间隔会延迟，防止Beacon频繁误移。</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setScaneResponseTime:" title="setScaneResponseTime:"></a>
+	<h3 class="subsubtitle method-title">setScaneResponseTime:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>调节扫描返回调用频率，仅内部定时处理，蓝牙扫描本身无法设置间隔，默认1s</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)setScaneResponseTime:(NSTimeInterval)<em>scanResponseTime</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>scanResponseTime</em></dt>
+			<dd><p>block回调间隔</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>调节扫描返回调用频率，仅内部定时处理，蓝牙扫描本身无法设置间隔，默认1s</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">BRTBeaconSDK.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/startMonitoringForRegions:" title="startMonitoringForRegions:"></a>
 	<h3 class="subsubtitle method-title">startMonitoringForRegions:</h3>
 	
@@ -800,7 +923,7 @@
 	
 	<div class="method-subsection brief-description">
 		<p>开启区域监听要求IOS7以上系统；
-如果需要程序退出后持续监听，需要提醒用户打开位置权限->始终；
+如果需要程序退出后持续监听，需要提醒用户打开位置权限->始终；并需在AppDelegate启动时调用{@link regionHandler:}
 IOS8另需请求允许后台定位，requestAlwaysAuthorization
 检查状态：CLLocationManager.authorizationStatus==kCLAuthorizationStatusAuthorizedAlways.
 注：SDK默认只请求一直定位，可以通过<a href="../Classes/BRTBeaconDefinitions.html">BRTBeaconDefinitions</a>.h中isLocationAlways来配置</p>
@@ -824,11 +947,6 @@ IOS8另需请求允许后台定位，requestAlwaysAuthorization
 	
 	
 	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
 	
 	
 	
@@ -836,7 +954,7 @@ IOS8另需请求允许后台定位，requestAlwaysAuthorization
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>开启区域监听要求IOS7以上系统；
-如果需要程序退出后持续监听，需要提醒用户打开位置权限->始终；
+如果需要程序退出后持续监听，需要提醒用户打开位置权限->始终；并需在AppDelegate启动时调用{@link regionHandler:}
 IOS8另需请求允许后台定位，requestAlwaysAuthorization
 检查状态：CLLocationManager.authorizationStatus==kCLAuthorizationStatusAuthorizedAlways.
 注：SDK默认只请求一直定位，可以通过<a href="../Classes/BRTBeaconDefinitions.html">BRTBeaconDefinitions</a>.h中isLocationAlways来配置</p>
@@ -896,11 +1014,6 @@ IOS8另需请求允许后台定位，requestAlwaysAuthorization
 	
 	
 	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
 	
 	
 	
@@ -957,11 +1070,6 @@ IOS8另需请求允许后台定位，requestAlwaysAuthorization
 	
 	
 	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
 	
 	
 	
@@ -1013,11 +1121,6 @@ IOS8另需请求允许后台定位，requestAlwaysAuthorization
 	
 	
 	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
-	
 	
 	
 	
@@ -1058,11 +1161,6 @@ IOS8另需请求允许后台定位，requestAlwaysAuthorization
     
 	
 	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>void</p>
-	</div>
 	
 	
 	
@@ -1402,7 +1500,7 @@ if (dict) {
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2017 智石科技. All rights reserved. (Last updated: 2017-01-23)</span><br />
+						<p><span class="copyright">&copy; 2017 智石科技. All rights reserved. (Last updated: 2017-03-07)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

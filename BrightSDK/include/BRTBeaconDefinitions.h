@@ -13,35 +13,10 @@
 /**
  * 更新日志
  *
- *  3.4.5 优化扫描
+ *  3.4.7 优化区域监听(regionHander)
  *
- *  3.4.4 增加单独iBeacon扫描
- *
- *  3.4.3 优化扫描
- *
- *  3.4.2 修复部分连接问题
- *
- *  3.4.1 新增beacon.flag标识位
- *
- *  3.4.0 优化扫描大量设备出现异常
- *
- *  3.3.9 修正050x配置参数
- *
- *  3.3.8 修复030x连接即配置参数异常，修复0401固件升级
- *
- *  3.3.7 连接优化，支持固件050x
- *
- *  3.3.6 修复部分设备名乱码
- *
- *  3.3.5 新增位置反馈
- *
- *  3.3.4 新增自定义广播数据段、定频固件0313、CB系列040x固件支持
- *
- *  3.3.3 支持Google的eddystone,修复ios6.0.x
- *
- *  3.3.2 IOS9适配：主要修复030x无法连接配置
  */
-#define SDK_VERSION @"3.4.5"
+#define SDK_VERSION @"3.4.7"
 
 //////可用的配置参数列表
 #define B_NAME @"name"
@@ -128,14 +103,6 @@
 #define F2S(x) [F2N(x) stringValue]
 #define L2S(x) [L2N(x) stringValue]
 #endif
-/**
- *  IOS8以上新增获取定位权限、状态，请在Info.plist配置获取时提示用户内容Key：NSLocationAlwaysUsageDescription和NSLocationWhenInUseUsageDescription
- *
- *  1、Always:允许后台定位，可以支持后台区域推送，网络数据传输等
- *  2、WhenInUse:只允许运行时定位，不支持后台区域感知
- *  使用[CLLocationManager authorizationStatus]获取定位状态
- */
-#define isLocationAlways YES
 
 typedef NS_OPTIONS(NSUInteger, BrtSupports) {
     BrtSupportsCC254x                   = 1 << 0,//TI系列
@@ -154,13 +121,13 @@ typedef NS_OPTIONS(NSUInteger, BrtSupports) {
     BrtSupportsEncrypt                  = 1 << 12//广播加密
 };
 
-typedef enum : int
+typedef NS_ENUM(NSInteger,DevelopPublishMode)
 {
     DevelopMode=0,  //开发模式
     PublishMode,    //部署模式
-} DevelopPublishMode;
+};
 
-typedef enum : int
+typedef NS_ENUM(NSInteger,BroadcastMode)
 {
     Broadcast_iBeacon_Only=0,       //只广播iBeacon        0   0   x
     Broadcast_eddystone_Uid_Only=2,   //只广播Uid            0   1   0
@@ -168,9 +135,9 @@ typedef enum : int
     Broadcast_iBeacon_eddystone_Uid=4,//广播iBeacon 和Uid    1   0   0
     Broadcast_iBeacon_eddystone_Url=5,//广播iBeacon 和Url    1   0   1
     Broadcast_eddystone_Url_Uid=6,    //广播Url 和Uid        1   1   x
-} BroadcastMode;
+};
 
-typedef enum : int
+typedef NS_ENUM(NSInteger,ErrorCode)
 {
     ErrorCodeUnKnown = 0,  //未知错误（发起连接失败、蓝牙信道拥塞）
     CBErrorCode1 = 1,     //参数无效
@@ -195,7 +162,7 @@ typedef enum : int
     ErrorCode108 = 108,     //固件数据有误
     ErrorCode109 = 109,     //固件更新中断
     ErrorCode110 = 110,     //unuse
-} ErrorCode;
+} ;
 
 typedef void(^BRTCompletionBlock)(BOOL complete, NSError* error);
 typedef void (^BRTDataCompletionBlock)(id data,NSError *error);

@@ -13,12 +13,6 @@
 
 @class BRTBeaconRegion;
 @class BRTBeacon;
-
-#define iszh [[NSLocale preferredLanguages][0] rangeOfString:@"zh"].location==0
-#define LOC_SHOWTIPS YES
-#define LOC_TITLE iszh?@"需要定位":@"Location Need"
-#define LOC_TIPS iszh?@"感知iBeacon设备，获取区域推送，需要定位权限“使用期间”或“始终”":@"In order to be notified about ibeacons near you, please open this app's settings and set location access to 'Always' Or 'WhenInUse'."
-
 @class BRTBeaconManager;
 
 /**
@@ -38,7 +32,6 @@
  * @param beacons 所有的beacon设备，即CLBeacon实体
  * @param region Beacon 区域
  *
- * @return void
  */
 - (void)beaconManager:(BRTBeaconManager *)manager
       didRangeBeacons:(NSArray *)beacons
@@ -51,7 +44,6 @@
  * @param region Beacon 区域
  * @param error 错误信息
  *
- * @return void
  */
 -(void)beaconManager:(BRTBeaconManager *)manager
 rangingBeaconsDidFailForRegion:(BRTBeaconRegion *)region
@@ -67,7 +59,6 @@ rangingBeaconsDidFailForRegion:(BRTBeaconRegion *)region
  * @param region Beacon 区域
  * @param error 错误信息
  *
- * @return void
  */
 -(void)beaconManager:(BRTBeaconManager *)manager
 monitoringDidFailForRegion:(BRTBeaconRegion *)region
@@ -80,7 +71,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  * @param manager Beacon 管理器
  * @param region Beacon 区域
  *
- * @return void
  */
 -(void)beaconManager:(BRTBeaconManager *)manager
       didEnterRegion:(BRTBeaconRegion *)region;
@@ -94,7 +84,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  * @param manager Beacon 管理器
  * @param region Beacon 区域
  *
- * @return void
  */
 -(void)beaconManager:(BRTBeaconManager *)manager
        didExitRegion:(BRTBeaconRegion *)region;
@@ -108,7 +97,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  * @param state Beacon 区域状态
  * @param region Beacon 区域
  *
- * @return void
  */
 -(void)beaconManager:(BRTBeaconManager *)manager
      didDetermineState:(CLRegionState)state
@@ -120,7 +108,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  * @param manager Beacon 管理器
  * @param error 错误描述信息
  *
- * @return void
  */
 -(void)beaconManagerDidStartAdvertising:(BRTBeaconManager *)manager
                                   error:(NSError *)error;
@@ -131,7 +118,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  * @param manager Beacon 管理器
  * @param beacon BRTBeacon 实体
  *
- * @return void
  */
 - (void)beaconManager:(BRTBeaconManager *)manager
           didDiscoverBeacon:(BRTBeacon *)beacon;
@@ -141,7 +127,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  *
  * @param manager Beacon 管理器
  *
- * @return void
  */
 - (void)beaconManagerDidFailDiscovery:(BRTBeaconManager *)manager;
 
@@ -162,7 +147,9 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 @property (nonatomic, weak) id <BRTBeaconManagerDelegate> delegate;
 
-@property (nonatomic,strong) CBCentralManager *centralManager;
+@property (nonatomic,readonly) CBCentralManager *centralManager;
+@property (nonatomic,readonly) CLLocationManager *locManager;
+@property (nonatomic,readonly) CBPeripheralManager *peripheralManager;
 
 
 @property (nonatomic,assign) CLLocationCoordinate2D userCoordinate;
@@ -192,7 +179,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  *
  * @param region bright beacon 区域
  *
- * @return void
  */
 -(void)startRangingBeaconsInRegion:(BRTBeaconRegion*)region;
 
@@ -204,7 +190,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  *
  * @param region bright beacon 区域
  *
- * @return void
  */
 -(void)startMonitoringForRegion:(BRTBeaconRegion*)region;
 
@@ -213,7 +198,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  *
  * @param region Bright beacon 区域
  *
- * @return void
  */
 -(void)stopRangingBeaconsInRegion:(BRTBeaconRegion*)region;
 
@@ -222,7 +206,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  *
  * @param region Bright beacon region
  *
- * @return void
  */
 -(void)stopMonitoringForRegion:(BRTBeaconRegion *)region;
 
@@ -231,7 +214,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  *
  * @param region Bright beacon 区域
  *
- * @return void
  */
 -(void)requestStateForRegion:(BRTBeaconRegion *)region;
 
@@ -246,7 +228,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  * @param identifier 唯一的区域标识
  * @param power 测量功率（1米处的RSSI值）
  *
- * @return void
  */
 -(void)startAdvertisingWithProximityUUID:(NSUUID *)proximityUUID
                                    major:(CLBeaconMajorValue)major
@@ -256,14 +237,12 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 /**
  * 是否正在模拟beacon广播
  *
- * @return void
  */
 -(BOOL)isAdvertising;
 
 /**
  * 停止模拟beacon广播
  *
- * @return void
  */
 -(void)stopAdvertising;
 
@@ -276,7 +255,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  * framework. 该方法用于扫描所有蓝牙设备.
  *
  *
- * @return void
  */
 -(void)startBrightBeaconsDiscovery;
 
@@ -284,7 +262,6 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 /**
  * 停止蓝牙扫描.
  *
- * @return void
  */
 -(void)stopBrightBeaconDiscovery;
 

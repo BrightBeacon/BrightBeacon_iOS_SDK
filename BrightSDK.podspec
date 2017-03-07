@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name         = "BrightSDK"
-  s.version      = "3.4.3"
+  s.version      = "3.4.7"
   s.summary      = "iOS library for BrightBeacon devices"
   s.homepage     = "http://www.brtbeacon.com"
   s.author       = { "BrightBeacon" => "o2owlkj@163.com" }
   s.platform     = :ios 
-  s.source       = { :git => "https://github.com/BrightBeacon/BrightBeacon_iOS_SDK.git", :tag => "3.4.3"}
+  s.source       = { :git => "https://github.com/BrightBeacon/BrightBeacon_iOS_SDK.git", :tag => "3.4.7"}
   s.source_files =  'BrightSDK/**/*.h'
   s.preserve_paths = 'BrightSDK/libBrightSDK.a'
   s.vendored_libraries = 'BrightSDK/libBrightSDK.a'
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.license      = {
     :type => 'Copyright',
     :text => <<-LICENSE
-      Copyright 2016 BrightBeacon All rights reserved.
+      Copyright 2017 BrightBeacon All rights reserved.
       LICENSE
   }
 end

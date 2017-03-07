@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "354F6BD7A201C120CD861E2C39395155A916CDFB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "B155FC082677C5D95CE47F8D36B25CEF93F8E8F7" : 9223372036854775807,
+    "354F6BD7A201C120CD861E2C39395155A916CDFB" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "590AE748-B565-4665-B769-78097EABFC74",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B155FC082677C5D95CE47F8D36B25CEF93F8E8F7" : "..\/..\/works\/git\/BrightSDK",
+    "354F6BD7A201C120CD861E2C39395155A916CDFB" : "BrightBeacon_iOS_SDK\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Demo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Demo\/Demo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/BrightBeacon\/BrightBeacon_iOS_SDK.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "354F6BD7A201C120CD861E2C39395155A916CDFB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.oschina.net\/thomasho\/BrightSDK.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B155FC082677C5D95CE47F8D36B25CEF93F8E8F7"
+    }
+  ]
+}

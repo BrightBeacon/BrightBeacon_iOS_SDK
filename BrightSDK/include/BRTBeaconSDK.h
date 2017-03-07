@@ -10,13 +10,6 @@
 #import "BRTBeacon.h"
 #import "BRTTools.h"
 
-//超时移除Beacon时间，与硬件发射频率设置配合，默认8s未收到信号移除；
-//未使用定位或IOS6以下扫描到的设备，间隔会自动*2，防止Beacon频繁误移。
-#define InvalidTime 8.0
-
-//调节扫描返回调用频率，仅内部定时处理，蓝牙扫描本身无法设置间隔
-#define ScanResTime 1.0
-
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
 
@@ -27,9 +20,15 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 
 /**
  
- BRTBeaconSDK类定义了快捷操作BrightBeacon方法.
- 
+ * BRTBeaconSDK类定义了快捷操作BrightBeacon方法.
+ *
+ *  IOS8以上新增获取定位权限、状态，请在Info.plist配置获取时提示用户内容Key：NSLocationAlwaysUsageDescription或NSLocationWhenInUseUsageDescription
+ *
+ *  1、Always:允许后台定位，可以支持后台区域推送等
+ *  2、WhenInUse:只允许运行时定位，不支持后台区域感知
+ *  使用[CLLocationManager authorizationStatus]获取定位状态
  */
+
 
 @interface BRTBeaconSDK : NSObject
 
@@ -37,6 +36,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  *  单例
  */
 + (BRTBeaconSDK*) Share;
+
 
 /// @name beacon快捷扫描BrightBeacon相关的方法
 
@@ -46,9 +46,25 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  * @param appKey BrightBeacon AppKey
  * @param completion 验证appKey有效性状态
  *
- * @return void
  */
 + (void)registerApp:(NSString *)appKey onCompletion:(BRTCompletionBlock)completion;
+
+
+/**
+ 设置超时移除Beacon时间，与硬件发射频率设置配合，默认3s未收到信号移除；
+ 未开启定位时，间隔会延迟，防止Beacon频繁误移。
+
+ @param invalidTime beacon信号丢失移除间隔
+ */
++ (void)setInvalidTime:(NSTimeInterval)invalidTime;
+
+
+/**
+ 调节扫描返回调用频率，仅内部定时处理，蓝牙扫描本身无法设置间隔，默认1s
+
+ @param scanResponseTime block回调间隔
+ */
++ (void)setScaneResponseTime:(NSTimeInterval)scanResponseTime;
 
 /**
 * BrightBeacon管理类，控制Beacon扫描、蓝牙扫描、区域检测、本地消息提醒
@@ -76,7 +92,6 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  * @param uuids uuid数组
  * @param completion 扫描Beacon回调（1秒/次）
  *
- * @return void
  */
 
 + (void) startRangingWithUuids:(NSArray*)uuids onCompletion:(RangingBrightBeaconsCompletionBlock)completion NS_AVAILABLE_IOS(6_0);
@@ -86,20 +101,18 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  * @param regions 区域数组
  * @param completion 扫描Beacon回调（1秒/次）
  *
- * @return void
  */
 + (void) startRangingBeaconsInRegions:(NSArray*)regions onCompletion:(RangingBrightBeaconsCompletionBlock)completion NS_AVAILABLE_IOS(7_0);
 
 /**
  * 停止扫描BrightBeacon设备
  *
- * @return void
  */
 + (void) stopRangingBrightBeacons;
 
 /** 
  *
- *用于修改接收后台区域监听回调类，SDK默认已经设置回调到AppDelegate，如果需要改为其他handler，此handler实体必须与AppDelegate随同启动，否则无法接收到后台beacon推送
+ *用于初始化接收后台区域监听回调类，此函数以及handler实体类都必须是与AppDelegate随同启动，否则无法接收到后台beacon推送
  *
  * 以下是在后台监听区域的回调函数，请拷贝需要的回调到AppDelegate或对应的handler类
  *<br/>监听失败回调
@@ -130,7 +143,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 
 /**
  * 开启区域监听要求IOS7以上系统；
- * 如果需要程序退出后持续监听，需要提醒用户打开位置权限->始终；
+ * 如果需要程序退出后持续监听，需要提醒用户打开位置权限->始终；并需在AppDelegate启动时调用{@link regionHandler:}
  * IOS8另需请求允许后台定位，requestAlwaysAuthorization
  * 检查状态：CLLocationManager.authorizationStatus==kCLAuthorizationStatusAuthorizedAlways.
  * 注：SDK默认只请求一直定位，可以通过BRTBeaconDefinitions.h中isLocationAlways来配置
@@ -144,7 +157,6 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  *
  * @param regions @[region1,region2]
  *
- * @return void
  */
 + (void) startMonitoringForRegions:(NSArray *)regions  NS_AVAILABLE_IOS(7_0);
 
@@ -155,7 +167,6 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  *
  * @param regions @[region1,region2]
  *
- * @return void
  */
 + (void) requestStateForRegions:(NSArray *)regions  NS_AVAILABLE_IOS(7_0);
 
@@ -164,7 +175,6 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  *
  * @param regions @[region1,region2]
  *
- * @return void
  */
 + (void) stopMonitoringForRegions:(NSArray *)regions;
 
