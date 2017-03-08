@@ -20,6 +20,10 @@
 		58597D911E603BBF00D1CF23 /* ConfigDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 58597D901E603BBF00D1CF23 /* ConfigDetailVC.m */; };
 		58597D971E63DFEA00D1CF23 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 58597D941E63DFEA00D1CF23 /* SVProgressHUD.bundle */; };
 		58597D981E63DFEA00D1CF23 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 58597D961E63DFEA00D1CF23 /* SVProgressHUD.m */; };
+		587B643F1E6F97460043663D /* AdjustVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 587B643C1E6F97460043663D /* AdjustVC.m */; };
+		587B64401E6F97460043663D /* VirtualVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 587B643E1E6F97460043663D /* VirtualVC.m */; };
+		587B64441E6FA1340043663D /* AdjustCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 587B64431E6FA1340043663D /* AdjustCell.m */; };
+		587B64461E6FA1C00043663D /* AdjustCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 587B64451E6FA1C00043663D /* AdjustCell.xib */; };
 		5897342F1E6D51450051ACC8 /* RegionHander.m in Sources */ = {isa = PBXBuildFile; fileRef = 5897342E1E6D51450051ACC8 /* RegionHander.m */; };
 		58AE85A11E6EBF0E004084E1 /* libBrightSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58AE85A01E6EBF0E004084E1 /* libBrightSDK.a */; };
 /* End PBXBuildFile section */
@@ -49,6 +53,13 @@
 		58597D951E63DFEA00D1CF23 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		58597D961E63DFEA00D1CF23 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		58597D991E63DFF600D1CF23 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		587B643B1E6F97460043663D /* AdjustVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustVC.h; sourceTree = "<group>"; };
+		587B643C1E6F97460043663D /* AdjustVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustVC.m; sourceTree = "<group>"; };
+		587B643D1E6F97460043663D /* VirtualVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualVC.h; sourceTree = "<group>"; };
+		587B643E1E6F97460043663D /* VirtualVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualVC.m; sourceTree = "<group>"; };
+		587B64421E6FA1340043663D /* AdjustCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustCell.h; sourceTree = "<group>"; };
+		587B64431E6FA1340043663D /* AdjustCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustCell.m; sourceTree = "<group>"; };
+		587B64451E6FA1C00043663D /* AdjustCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdjustCell.xib; sourceTree = "<group>"; };
 		5897342D1E6D51450051ACC8 /* RegionHander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionHander.h; sourceTree = "<group>"; };
 		5897342E1E6D51450051ACC8 /* RegionHander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionHander.m; sourceTree = "<group>"; };
 		58AE85991E6EBF0E004084E1 /* BRTBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTBeacon.h; sourceTree = "<group>"; };
@@ -108,6 +119,13 @@
 				58597D7A1E60148600D1CF23 /* ConfigVC.m */,
 				58597D8F1E603BBF00D1CF23 /* ConfigDetailVC.h */,
 				58597D901E603BBF00D1CF23 /* ConfigDetailVC.m */,
+				587B643B1E6F97460043663D /* AdjustVC.h */,
+				587B643C1E6F97460043663D /* AdjustVC.m */,
+				587B64421E6FA1340043663D /* AdjustCell.h */,
+				587B64431E6FA1340043663D /* AdjustCell.m */,
+				587B64451E6FA1C00043663D /* AdjustCell.xib */,
+				587B643D1E6F97460043663D /* VirtualVC.h */,
+				587B643E1E6F97460043663D /* VirtualVC.m */,
 				58597D571E60115A00D1CF23 /* Supporting Files */,
 			);
 			path = Demo;
@@ -214,6 +232,7 @@
 				58597D641E60115A00D1CF23 /* Assets.xcassets in Resources */,
 				58597D621E60115A00D1CF23 /* Main.storyboard in Resources */,
 				58597D971E63DFEA00D1CF23 /* SVProgressHUD.bundle in Resources */,
+				587B64461E6FA1C00043663D /* AdjustCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,14 +243,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				587B64401E6F97460043663D /* VirtualVC.m in Sources */,
 				58597D7B1E60148600D1CF23 /* ConfigVC.m in Sources */,
 				58597D701E60121300D1CF23 /* DemoVC.m in Sources */,
 				58597D5C1E60115A00D1CF23 /* AppDelegate.m in Sources */,
 				58597D8B1E60284700D1CF23 /* RegionAddVC.m in Sources */,
 				58597D751E60145500D1CF23 /* BeaconVC.m in Sources */,
+				587B643F1E6F97460043663D /* AdjustVC.m in Sources */,
 				58597D981E63DFEA00D1CF23 /* SVProgressHUD.m in Sources */,
 				58597D911E603BBF00D1CF23 /* ConfigDetailVC.m in Sources */,
 				58597D781E60147600D1CF23 /* RegionVC.m in Sources */,
+				587B64441E6FA1340043663D /* AdjustCell.m in Sources */,
 				58597D591E60115A00D1CF23 /* main.m in Sources */,
 				5897342F1E6D51450051ACC8 /* RegionHander.m in Sources */,
 			);
