@@ -71,9 +71,9 @@
 #define DEFAULT_MINOR 0
 #define DEFAULT_MEASURED -65
 //间隔(ms)
-#define DEFAULT_INTERVAL 800
+#define DEFAULT_INTERVAL 760
 #define DEFAULT_BCHECK_INTERVAL 3600
-#define DEFAULT_TCHECK_INTERVAL 3600
+#define DEFAULT_TCHECK_INTERVAL 0
 #define DEFAULT_LCHECK_INTERVAL 0
 
 /*
@@ -118,7 +118,8 @@ typedef NS_OPTIONS(NSUInteger, BrtSupports) {
     BrtSupportsAdvRFOff                 = 1 << 9,//广播频点配置
     BrtSupportsUserData                 = 1 << 10,//广播自定义数据
     BrtSupportsExtension                = 1 << 11,//自定义扩展
-    BrtSupportsEncrypt                  = 1 << 12//广播加密
+    BrtSupportsEncrypt                  = 1 << 12,//广播加密
+    BrtSupportsAB                       = 1 << 13//AB芯片
 };
 
 typedef NS_ENUM(NSInteger,DevelopPublishMode)

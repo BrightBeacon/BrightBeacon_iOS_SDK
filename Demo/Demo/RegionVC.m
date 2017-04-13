@@ -26,7 +26,7 @@
 	if ([[[UIDevice currentDevice] systemVersion] intValue]>=8) {
 		UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil];
 		[[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-	}
+    }
 }
 
 - (void)didReceiveMemoryWarning {

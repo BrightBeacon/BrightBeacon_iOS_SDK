@@ -29,10 +29,27 @@
 	//如需后台监听区域，必须在随App启动的类中调用regionHander：
     //并且hander也必须启动自行初始化，保证监听到区域自启动软件时，能成功回调该类的Region相关函数。
 	[BRTBeaconSDK  regionHander:[RegionHander new]];
+
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
+        [self performSelectorInBackground:@selector(backgroundTask) withObject:nil];
+    }
+
 	return YES;
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
 	NSLog(@"软件运行中，滑动通知内容：%@",notification);
+}
+
+- (void)backgroundTask {
+    static NSInteger count = 1;
+    if (count!=1) {
+        NSLog(@"******************************count1");
+        return;
+    }
+    while (count++) {
+        [NSThread sleepForTimeInterval:1];
+        NSLog(@"******************************count%ld",(long)count);
+    }
 }
 @end

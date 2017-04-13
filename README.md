@@ -1,12 +1,12 @@
 iOS-SDK
 =======
 
-##BrightSDK
-### 概述
+## BrightSDK
+###  概述
 
 智石开发包（BrightSDK）符合苹果的iBeacon协议、Google的eddystone协议，提供了扫描或管理iBeacon、eddystone设备、模拟iBeacon设备的API。你可以访问[智石官网（http://www.brtbeacon.com）](http://www.brtbeacon.com)了解更多信息，也可以查阅[SDK文档](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)或前往我们的[开发者社区（http://bbs.brtbeacon.com）](http://bbs.brtbeacon.com)交流和找到我们软硬件相关问题。
 
-智石开发包需要手持设备硬件支持蓝牙4.0及其以上，并要求系统版本IOS6.0及其以上。
+智石开发包需要手持设备硬件支持蓝牙4.0及其以上，并要求系统版本IOS7及其以上。
 附：支持的IOS设备列表
 iphone4s以上、
 itouch5以上、
@@ -14,7 +14,7 @@ iPad3以上、
 iPad mini均可以
 详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
 
-##更新日志
+## 更新日志
  *  3.4.7 优化区域监听，请使用regionHander:(2017.3.7)
  *  3.4.5 优化扫描(2017.1.23)
  *  3.4.4 增加单独iBeacon扫描(2016.8.12)
@@ -31,8 +31,8 @@ iPad mini均可以
  *  3.3.3 支持Google的eddystone,修复ios6.0.x
  *  3.3.2 IOS9适配：主要修复030x无法连接配置
 
-##如何集成（任选其一）
-###一、使用CocoaPods集成
+## 如何集成（任选其一）
+### 一、使用CocoaPods集成
 添加以下代码到您Pod项目的Podfile文件：
 
 ```
@@ -45,7 +45,7 @@ iPad mini均可以
 	pod update
 ```
 
-###二、使用常规集成
+### 二、使用常规集成
 
 使用如下步骤手动集成：
 - 登录BrightSDK的[开发者网站](http://developer.brtbeacon.com)下载并解压最新版本的SDK。如果您还尚未下载SDK，请 [点击这里下载](http://developer.brtbeacon.com/index/documents.shtml) 或者前往 [http://developer.brtbeacon.com/index/documents.shtml](http://developer.brtbeacon.com/index/documents.shtml) 。解压后如下图<br/>
@@ -70,7 +70,7 @@ iPad mini均可以
 2、如果出现头文件无法找到，前往 project settings 的 build settings，搜索Header Search Paths. 添加"$(SRCROOT)/../BrightSDK/include".
 
 
-##如何调用
+## 如何调用
 `1、注册APPKEY`<br/>
 
 - 登录BrightSDK的官方网站添加应用并获取 APPKEY。如果尚未注册，[请点击这里注册并创建应用 APPKEY](http://developer.brtbeacon.com)

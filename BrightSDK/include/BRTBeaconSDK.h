@@ -64,7 +64,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 
  @param scanResponseTime block回调间隔
  */
-+ (void)setScaneResponseTime:(NSTimeInterval)scanResponseTime;
++ (void)setScanResponseTime:(NSTimeInterval)scanResponseTime;
 
 /**
 * BrightBeacon管理类，控制Beacon扫描、蓝牙扫描、区域检测、本地消息提醒
