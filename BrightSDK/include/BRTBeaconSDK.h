@@ -13,7 +13,8 @@
 ////////////////////////////////////////////////////////////////////
 // Type and class definitions
 
-typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRegion* region, NSError* error);
+typedef void(^ScanBlesCompletionBlock)(NSArray* beacons,NSError* error);
+typedef void(^RangingiBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRegion* region, NSError* error);
 
 ////////////////////////////////////////////////////////////////////
 // Interface definition
@@ -29,7 +30,6 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  *  使用[CLLocationManager authorizationStatus]获取定位状态
  */
 
-
 @interface BRTBeaconSDK : NSObject
 
 /**
@@ -41,18 +41,17 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 /// @name beacon快捷扫描BrightBeacon相关的方法
 
 /**
- * 注册并验证开发者appKey，申请地址：http://developer.brtbeacon.com
+ * 注册并验证开发者appKey，申请地址：http://open.brtbeacon.com
  *
  * @param appKey BrightBeacon AppKey
- * @param completion 验证appKey有效性状态
+ * @param completion 验证appKey有效性状态,用于设备连接
  *
  */
 + (void)registerApp:(NSString *)appKey onCompletion:(BRTCompletionBlock)completion;
 
 
 /**
- 设置超时移除Beacon时间，与硬件发射频率设置配合，默认3s未收到信号移除；
- 未开启定位时，间隔会延迟，防止Beacon频繁误移。
+ 设置超时移除BrightBeacon时间，与硬件发射频率设置配合，默认3s未收到信号移除；
 
  @param invalidTime beacon信号丢失移除间隔
  */
@@ -60,7 +59,7 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 
 
 /**
- 调节扫描返回调用频率，仅内部定时处理，蓝牙扫描本身无法设置间隔，默认1s
+ 调节扫描BrightBeacon返回调用频率，默认1s
 
  @param scanResponseTime block回调间隔
  */
@@ -74,38 +73,39 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
 + (BRTBeaconManager*) BRTBeaconManager;
 
 /**
- * BrightBeacon设备数组，设备的距离会及时更新
+ * BrightBeacon设备数组
  *
- * @return NSArray
+ * @return NSSet
  */
-+ (NSArray*)BRTBeacons;
++ (NSSet<BRTBeacon *> *)brtBeacons;
+
 
 /**
- * BrightBeacon设备集合，设备的距离会及时更新，以mac为key，如无mac以（Major+Minor）为key
+ * 扫描BrightBeacon蓝牙设备（支持蓝牙连接读取参数，支持获取BrightBeacon额外参数，不需要定位权限，广播数据中无法获取设备UUID）
  *
- * @return NSDictionary
- */
-+ (NSDictionary*)BRTBeaconsDictionary;
-
-/**
- * 扫描BrightBeacon设备（支持蓝牙连接，扫描BrightBeacon额外参数），uuids为NSUUID数组:IOS6.x该参数无效；IOS7.x该参数用于构造区域BRTBeaconRegion来实现扫描、广播融合模式，提高RSSI精度(注：留空则只开启蓝牙扫描)
- * @param uuids uuid数组
- * @param completion 扫描Beacon回调（1秒/次）
+ * @param services 蓝牙广播服务特征，默认为nil，扫描所有服务，不支持后台扫描。
+ * @param completion 蓝牙扫描回调（默认1秒/次）
  *
  */
 
-+ (void) startRangingWithUuids:(NSArray*)uuids onCompletion:(RangingBrightBeaconsCompletionBlock)completion NS_AVAILABLE_IOS(6_0);
++ (void) scanBleServices:(NSArray<CBUUID *> *)services onCompletion:(ScanBlesCompletionBlock)completion NS_AVAILABLE_IOS(6_0);
+
 
 /**
- * 扫描iBeacon设备（不支持连接，能获取iBeacon协议参数），IOS7以上，感知区域中iBeacon设备,regions为BRTBeaconRegion数组(留空则启用默认的UUID)
+ 停止扫描BrightBeacon蓝牙设备
+ */
++ (void) stopScan;
+
+/**
+ * 扫描iBeacon设备（需要定位权限，不支持蓝牙连接，仅能获取iBeacon参数：参见CLBeacon），IOS7以上，感知对应UUID的iBeacon设备
  * @param regions 区域数组
- * @param completion 扫描Beacon回调（1秒/次）
+ * @param completion iBeacon扫描回调（1秒/次）
  *
  */
-+ (void) startRangingBeaconsInRegions:(NSArray*)regions onCompletion:(RangingBrightBeaconsCompletionBlock)completion NS_AVAILABLE_IOS(7_0);
++ (void) startRangingBeaconsInRegions:(NSArray<BRTBeaconRegion *> *)regions onCompletion:(RangingiBeaconsCompletionBlock)completion NS_AVAILABLE_IOS(7_0);
 
 /**
- * 停止扫描BrightBeacon设备
+ * 停止扫描iBeacon设备
  *
  */
 + (void) stopRangingBrightBeacons;
@@ -126,11 +126,10 @@ typedef void(^RangingBrightBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRe
  *<br/>模拟iBeacon回调
  *<br/>- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error;
  *
- * @param handler 用于接收后台区域监听回调函数的类。传入的handler类用作接收回调（该类务必随程序的启动即初始化，否则无法接收到回调）；若传人值为nil会返回当前使用的handler（默认为AppDelegate）
+ * @param handler 用于接收后台区域监听回调函数的类。传入的handler类用作接收回调（该类务必随程序的启动即初始化，否则无法接收到回调，默认handler为AppDelegate）
  *
- * @return handler 返回当前使用的handler
  */
-+ (id)regionHander:(id)handler;
++ (void)regionHander:(id<BRTBeaconRegionDelegate>)handler;
 
 /**
  *  请求监听状态，仅支持IOS7以上，IOS6始终返回nil

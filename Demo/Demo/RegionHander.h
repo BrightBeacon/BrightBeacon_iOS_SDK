@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BRTBeaconSDK.h"
 
-@interface RegionHander : NSObject
+@interface RegionHander : NSObject <BRTBeaconRegionDelegate>
 
 @end

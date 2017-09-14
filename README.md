@@ -4,17 +4,18 @@ iOS-SDK
 ## BrightSDK
 ###  概述
 
-智石开发包（BrightSDK）符合苹果的iBeacon协议、Google的eddystone协议，提供了扫描或管理iBeacon、eddystone设备、模拟iBeacon设备的API。你可以访问[智石官网（http://www.brtbeacon.com）](http://www.brtbeacon.com)了解更多信息，也可以查阅[SDK文档](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)或前往我们的[开发者社区（http://bbs.brtbeacon.com）](http://bbs.brtbeacon.com)交流和找到我们软硬件相关问题。
+智石开发包（BrightSDK）符合苹果的iBeacon协议、Google的eddystone协议，提供了扫描iBeacon、eddystone协议设备、配置BrightBeacon设备参数、模拟iBeacon等API。你可以访问[智石官网（http://www.brtbeacon.com）](http://www.brtbeacon.com)了解更多设备信息，或前往我们的[开发者社区（http://bbs.brtbeacon.com）](http://bbs.brtbeacon.com)交流和找到我们软硬件相关问题。
 
 智石开发包需要手持设备硬件支持蓝牙4.0及其以上，并要求系统版本IOS7及其以上。
 附：支持的IOS设备列表
-iphone4s以上、
-itouch5以上、
-iPad3以上、
+iphone4s及以上、
+itouch5及以上、
+iPad3及以上、
 iPad mini均可以
 详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
 
 ## 更新日志
+ *  3.4.8 分离蓝牙、iBeacon扫描、区域监听回调API
  *  3.4.7 优化区域监听，请使用regionHander:(2017.3.7)
  *  3.4.5 优化扫描(2017.1.23)
  *  3.4.4 增加单独iBeacon扫描(2016.8.12)
@@ -48,7 +49,7 @@ iPad mini均可以
 ### 二、使用常规集成
 
 使用如下步骤手动集成：
-- 登录BrightSDK的[开发者网站](http://developer.brtbeacon.com)下载并解压最新版本的SDK。如果您还尚未下载SDK，请 [点击这里下载](http://developer.brtbeacon.com/index/documents.shtml) 或者前往 [http://developer.brtbeacon.com/index/documents.shtml](http://developer.brtbeacon.com/index/documents.shtml) 。解压后如下图<br/>
+- 登录BrightSDK的[开发者网站](http://developer.brtbeacon.com)下载并解压最新版本的SDK。如果您还尚未下载SDK，请 [点击这里下载](https://github.com/BrightBeacon/BrightBeacon_iOS_SDK)。解压后如下图<br/>
 - 将BrightSDK的框架目录导入到您的工程中
 将下载的SDK文件解压，拖动里面的BrightSDK文件夹到工程中
 <br/>拖到工程中后，弹出以下对话框，勾选"Copy items into destination group's folder(if needed)"，并点击“Finish“按钮,
@@ -60,7 +61,7 @@ iPad mini均可以
 
 - 注意：
 
-1、BrightSDK可能需要以下本地IOS库：
+1、BrightSDK需要以下本地IOS库：
 
 ```
 	CoreBluetooth.framework
@@ -73,50 +74,45 @@ iPad mini均可以
 ## 如何调用
 `1、注册APPKEY`<br/>
 
-- 登录BrightSDK的官方网站添加应用并获取 APPKEY。如果尚未注册，[请点击这里注册并创建应用 APPKEY](http://developer.brtbeacon.com)
-- 初始化BrightSDK
-
-打开*AppDelegate.m(*代表你的工程名字)  导入文件头BRTBeaconSDK.h
+- 登录BrightSDK的官方网站添加应用并获取 APPKEY。如果尚未注册，[请点击这里注册并创建应用 APPKEY](http://open.brtbeacon.com)
 
 ```
 #import "BRTBeaconSDK.h"
-```
-在- (BOOL)application: didFinishLaunchingWithOptions:方法中调用registerApp方法来初始化SDK
 
-```
+//如需连接设备，请注册appKey.
 [BRTBeaconSDK registerApp:(NSString *)appKey onCompletion:(BRTCompletionBlock)completion];
 ```
 `2、常见的API调用`<br/>
 
  - 扫描Regions内所有iBeacon设备。
 
-IOS7以上，通过GPS扫描iBeacon设备，支持后台扫描（可以扫描到CLBeacon参数proximityUUID、Major、Minor、proximity、accuracy、rssi），效率更高，建议使用该方法。
+IOS7及以上，通过BRTBeaconRegion扫描iBeacon设备（可扫描到参数proximityUUID、Major、Minor、proximity、accuracy、rssi）。（如需后台扫描，请求后台定位权限）
 
 ```
-regions为BRTBeaconRegion数组(留空则默认的E2C56DB5-DFFB-48D2-B060-D0F5A71096E0)
+regions为BRTBeaconRegion数组(默认使用：E2C56DB5-DFFB-48D2-B060-D0F5A71096E0)
 [BRTBeaconSDK startRangingBeaconsInRegions:regions onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
 }];
 ```
- - 扫描BrightBeacon设备、uuids内的iBeacon设备。
-IOS6以上，蓝牙设备扫描融合（在第1点基础上，增加了允许连接配置、获取额外的参数如mac地址等功能），建议需要用于设备连接配置或特殊参数要求者使用。
-uuids用于1中构造BRTBeaconRegion，启用GPS扫描iBeacon设备(注：留空或iBeacon设备的UUID参数不在此数组，则仅能通过蓝牙扫描获取部分数据，无法获取到设备的UUID，也不支持后台扫描)
+ - 扫描BrightBeacon蓝牙设备。
+IOS6及以上，蓝牙设备扫描（允许连接配置、获取蓝牙参数如mac地址、电量等功能，无法获取iBeacon的proximityUUID、proximity），建议需要用于设备连接配置或特殊参数要求者使用。
+(如需后台扫描，必须限定扫描的服务，例如180a)
 
 ```
- uuids:
-	NSUUID数组，（即设备配置的UUID）
-[BRTBeaconSDK startRangingWithUuids:uuids onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
+ uuid:
+	CBUUID数组，（即设备广播数据中的服务，例：[[CBUUID alloc] initWithString:@"180a"]）
+[BRTBeaconSDK scanBleServices:(NSArray<CBUUID *> *)services onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
 }];
  ```
  
- - 监听区域方法（IOS7以上）
+ - 监听区域方法（IOS7及以上）
 
-//如需后台监听区域，必须在随App启动的类中调用regionHander：;并且hander也必须启动自行初始化，保证监听到区域自启动软件时，能成功回调该类的Region相关函数。简约使用时，可以直接利用appdelegate类。
+//如需后台监听区域，请在随App启动的类（如：appDelegate的didFinishLaunch方法）中调用regionHandler;并且handler也必须启动自行初始化，保证监听到区域自启动软件时，handler能成功回调区域相关函数。简约使用时，可以直接使用appDelegate类。
 
 ```
-	[BRTBeaconSDK  regionHander:[RegionHander new]];
+	[BRTBeaconSDK  regionHandler:handler];
 ```
 
- * 以下是在后台运行、完全退出程序监听区域的回调函数，请拷贝需要的回调到RegionHander类
+ * 以下是在前台运行、后台或完全退出程序监听区域的回调函数，请拷贝需要的回调到handler类
 
 ```
 进入区域回调
@@ -131,23 +127,22 @@ uuids用于1中构造BRTBeaconRegion，启用GPS扫描iBeacon设备(注：留空
 ```
 - 启动监听区域
 
- region：需要监听的区域，支持后台监听（<=20)，当进入区域时，APP会自启动，你有至少10s处理相关逻辑。在ios8以上startMonitoringForRegions内会调取系统获取GPS权限。你也可以自行控制调取时机或权限类型。
+ region：需要监听的区域，支持后台监听（<=20)，当进入区域时，APP会自启动，你有至少10s处理相关逻辑。在ios8以上startMonitoringForRegions内会调取系统获取定位权限。你也可以自行控制调取弹窗时机或权限类型。
  
 ```
   //ios8以上自行获取权限方式
  [[[BRTBeaconSDK Share] brtmanager] requestAlwaysAuthorization];
 ```
 //监听区域示例
- 
 ```
      BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:@"这里传人需要监听的iBeacon设备的UUID" identifier:@"区域唯一标识符，会覆盖已有相同id的区域"];
     region.notifyOnEntry = YES;//监听进入区域
     region.notifyOnExit = YES;//离开区域时回调
-    region.notifyEntryStateOnDisplay = YES;//处于区域内，锁屏唤醒时回调
+    region.notifyEntryStateOnDisplay = YES;//是否锁屏唤醒时，监测区域状态
     [BRTBeaconSDK startMonitoringForRegions:@[region]];
  ```
  
- - 立即请求指定区域状态
+ - 立即监测区域回调
  
  ```
      [BRTBeaconSDK requestStateForRegions:@[region]];
@@ -159,7 +154,7 @@ uuids用于1中构造BRTBeaconRegion，启用GPS扫描iBeacon设备(注：留空
 [[[BRTBeaconSDK Share] brtmanager] rangedRegions];
 ```
 ## 相关文档或网站
-* [集成文档](http://www.brtbeacon.com/home/document_ios.shtml)
+* [集成文档](https://github.com/BrightBeacon/BrightBeacon_iOS_SDK)
 * [API文档](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)
 * [开发者社区](http://bbs.brtbeacon.com)
 * [智石官网](http://www.brtbeacon.com)

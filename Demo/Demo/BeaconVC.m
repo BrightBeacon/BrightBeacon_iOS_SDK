@@ -37,14 +37,17 @@
 	self.dataDict = [NSMutableDictionary dictionary];
 
     //智石默认UUID
-	NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:DEFAULT_UUID];
-	BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"test1ID"];
+    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:DEFAULT_UUID];
+    BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"test1ID"];
+    //测试UUID
+    NSUUID *uuid3 = [[NSUUID alloc] initWithUUIDString:@"E2C56DB5-DFFB-48D2-B060-D0F5A71096E1"];
+    BRTBeaconRegion *region3 = [[BRTBeaconRegion alloc] initWithProximityUUID:uuid3 identifier:@"testxID"];
 
     //微信常用UUID
 	uuid = [[NSUUID alloc] initWithUUIDString:@"FDA50693-A4E2-4FB1-AFCF-C6EB07647825"];
 	BRTBeaconRegion *region2 = [[BRTBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"test2ID"];
 
-	NSArray *regions = @[region,region2];
+	NSArray *regions = @[region,region2,region3];
 	if ([CLLocationManager isRangingAvailable]) {
 		[BRTBeaconSDK startRangingBeaconsInRegions:regions onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
 			if (beacons.count) {

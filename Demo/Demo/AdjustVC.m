@@ -53,8 +53,8 @@
 {
     [self.refreshControl endRefreshing];
     [BRTBeaconSDK setInvalidTime:1];
-    [BRTBeaconSDK setScaneResponseTime:1];
-    [BRTBeaconSDK startRangingWithUuids:nil onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
+    [BRTBeaconSDK setScanResponseTime:1];
+    [BRTBeaconSDK scanBleServices:nil onCompletion:^(NSArray *beacons, NSError *error){
         [self.beaconSet addObjectsFromArray:beacons];
         if (isStarting) {
             [self beaconAdjust:beacons];
@@ -95,7 +95,7 @@
         isStarting = NO;
         CGFloat avgrssi = self.totalRssi/self.totalCount;
         NSLog(@"校准测量功率（1米处rssi）：%f",avgrssi);
-        [[BRTBeaconSDK BRTBeaconManager] stopBrightBeaconDiscovery];
+        [[BRTBeaconSDK BRTBeaconManager] stopScan];
         if (self.brtbeacon.measuredPower.integerValue != (NSInteger)avgrssi) {
             __unsafe_unretained typeof(self) weakself = self;
             [self.brtbeacon connectToBeaconWithCompletion:^(BOOL connected, NSError *error) {

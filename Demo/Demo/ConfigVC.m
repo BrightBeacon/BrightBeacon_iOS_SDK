@@ -43,7 +43,7 @@
 	[rf endRefreshing];
 	//这里的UUID用于开启GPS扫描iBeacon融合所需。
 	//蓝牙扫描能获取智石设备的mac地址等额外设备数据，并支持连接配置。
-	[BRTBeaconSDK startRangingWithUuids:nil onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
+	[BRTBeaconSDK scanBleServices:nil onCompletion:^(NSArray *beacons, NSError *error) {
 		[self.dataSet addObjectsFromArray:beacons];
 		static NSInteger count = 0;
 		if (count%5) {

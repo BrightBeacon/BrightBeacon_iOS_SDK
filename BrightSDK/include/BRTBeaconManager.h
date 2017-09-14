@@ -17,41 +17,13 @@
 
 /**
  
- BRTBeaconManagerDelegate协议定义了回调方法来响应关联的事件.
+ BRTBeaconManagerDelegate协议定义了区域监听回调方法来响应关联的事件，必须在随APP启动的指定类中(如：AppDelegate)实现，否则无法后台响应区域监听回调事件.
  */
 
-@protocol BRTBeaconManagerDelegate <NSObject>
-
-@optional
+@protocol BRTBeaconRegionDelegate <NSObject>
 
 /**
- * 范围扫描触发的回调方法
- * 检索出所有的beacon设备，每个设备都是一个CLBeacon实例.
- *
- * @param manager Beacon 管理器
- * @param beacons 所有的beacon设备，即CLBeacon实体
- * @param region Beacon 区域
- *
- */
-- (void)beaconManager:(BRTBeaconManager *)manager
-      didRangeBeacons:(NSArray *)beacons
-             inRegion:(BRTBeaconRegion *)region;
-
-/**
- * 范围扫描失败触发的回调方法，已经关联的错误信息
- *
- * @param manager Beacon 管理器
- * @param region Beacon 区域
- * @param error 错误信息
- *
- */
--(void)beaconManager:(BRTBeaconManager *)manager
-rangingBeaconsDidFailForRegion:(BRTBeaconRegion *)region
-           withError:(NSError *)error;
-
-
-/**
- * 只能在 AppDelegate 实现
+ * 需要在随APP启动的指定类中(如：AppDelegate)实现，区域监听自动启动APP，才能回调成功到指定类中事件
  *
  * 区域监听失败触发的回调方法，以及关联的错误信息
  *
@@ -99,8 +71,8 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  *
  */
 -(void)beaconManager:(BRTBeaconManager *)manager
-     didDetermineState:(CLRegionState)state
-             forRegion:(BRTBeaconRegion *)region;
+   didDetermineState:(CLRegionState)state
+           forRegion:(BRTBeaconRegion *)region;
 
 /**
  * 当设备模拟iBeacon广播信息，调用该方法.
@@ -110,7 +82,60 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
  *
  */
 -(void)beaconManagerDidStartAdvertising:(BRTBeaconManager *)manager
-                                  error:(NSError *)error;
+                                      error:(NSError *)error;
+
+
+@end
+
+
+/**
+ 
+ BRTBeaconManagerDelegate协议定义了回调方法来响应关联的事件.
+ */
+
+@protocol BRTBeaconManagerDelegate <NSObject>
+
+@optional
+
+
+/**
+ 蓝牙开关状态监听回调
+ 
+ @param state 蓝牙管理器状态
+ */
+- (void)beaconManagerDidUpdateState:(CBManagerState)state;
+
+/**
+ 定位权限状态回调
+ 
+ @param status 定位管理器权限状态
+ */
+- (void)locationManagerAuthorStatus:(CLAuthorizationStatus)status;
+
+/**
+ * 范围扫描触发的回调方法
+ * 检索出所有的beacon设备，每个设备都是一个CLBeacon实例.
+ *
+ * @param manager Beacon 管理器
+ * @param beacons 所有的beacon设备，即CLBeacon实体
+ * @param region Beacon 区域
+ *
+ */
+- (void)beaconManager:(BRTBeaconManager *)manager
+      didRangeBeacons:(NSArray *)beacons
+             inRegion:(BRTBeaconRegion *)region;
+
+/**
+ * 范围扫描失败触发的回调方法，已经关联的错误信息
+ *
+ * @param manager Beacon 管理器
+ * @param region Beacon 区域
+ * @param error 错误信息
+ *
+ */
+-(void)beaconManager:(BRTBeaconManager *)manager
+rangingBeaconsDidFailForRegion:(BRTBeaconRegion *)region
+           withError:(NSError *)error;
 
 /**
  * 在该区域使用CoreBluetooth framework发现BRTBeacon将回调该方法
@@ -146,14 +171,15 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 @interface BRTBeaconManager : NSObject <CLLocationManagerDelegate>
 
 @property (nonatomic, weak) id <BRTBeaconManagerDelegate> delegate;
+@property (nonatomic, weak) id<BRTBeaconRegionDelegate> regionDelegate;
 
 @property (nonatomic,readonly) CBCentralManager *centralManager;
 @property (nonatomic,readonly) CLLocationManager *locManager;
 @property (nonatomic,readonly) CBPeripheralManager *peripheralManager;
 
-
 @property (nonatomic,assign) CLLocationCoordinate2D userCoordinate;
 @property (nonatomic,strong) CLPlacemark *userPlacemark;
+
 /*
  *  monitoredRegions
  *
@@ -251,19 +277,18 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 
 /**
- * 开始蓝牙扫描，基于CoreBluetooth
- * framework. 该方法用于扫描所有蓝牙设备.
+ * 开始蓝牙扫描，基于CoreBluetooth framework. 该方法用于扫描对应服务的蓝牙设备.
  *
- *
+ * @prama services 蓝牙广播服务
  */
--(void)startBrightBeaconsDiscovery;
+-(void)scanBleServices:(NSArray<CBUUID *> *)services;
 
 
 /**
  * 停止蓝牙扫描.
  *
  */
--(void)stopBrightBeaconDiscovery;
+-(void)stopScan;
 
 /**
  *  获取定位权限：允许后台定位，可以支持后台区域推送，网络数据传输等

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BRTBeaconManagerDelegate Protocol Reference</title>
+	<title>BRTBeaconRegionDelegate Protocol Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -60,17 +60,15 @@
 	
 	<optgroup label="Instance Methods">
 		
-		<option value="//api/name/beaconManager:didDiscoverBeacon:">- beaconManager:didDiscoverBeacon:</option>
+		<option value="//api/name/beaconManager:didDetermineState:forRegion:">- beaconManager:didDetermineState:forRegion:</option>
 		
-		<option value="//api/name/beaconManager:didRangeBeacons:inRegion:">- beaconManager:didRangeBeacons:inRegion:</option>
+		<option value="//api/name/beaconManager:didEnterRegion:">- beaconManager:didEnterRegion:</option>
 		
-		<option value="//api/name/beaconManager:rangingBeaconsDidFailForRegion:withError:">- beaconManager:rangingBeaconsDidFailForRegion:withError:</option>
+		<option value="//api/name/beaconManager:didExitRegion:">- beaconManager:didExitRegion:</option>
 		
-		<option value="//api/name/beaconManagerDidFailDiscovery:">- beaconManagerDidFailDiscovery:</option>
+		<option value="//api/name/beaconManager:monitoringDidFailForRegion:withError:">- beaconManager:monitoringDidFailForRegion:withError:</option>
 		
-		<option value="//api/name/beaconManagerDidUpdateState:">- beaconManagerDidUpdateState:</option>
-		
-		<option value="//api/name/locationManagerAuthorStatus:">- locationManagerAuthorStatus:</option>
+		<option value="//api/name/beaconManagerDidStartAdvertising:error:">- beaconManagerDidStartAdvertising:error:</option>
 		
 	</optgroup>
 	
@@ -87,7 +85,7 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BRTBeaconManagerDelegate Protocol Reference</h1>
+					<h1 class="title">BRTBeaconRegionDelegate Protocol Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
@@ -106,7 +104,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>BRTBeaconManagerDelegate协议定义了回调方法来响应关联的事件.</p>
+						<p>BRTBeaconManagerDelegate协议定义了区域监听回调方法来响应关联的事件，必须在随APP启动的指定类中(如：AppDelegate)实现，否则无法后台响应区域监听回调事件.</p>
 					</div>
 					
 					
@@ -122,9 +120,9 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/beaconManagerDidUpdateState:" title="beaconManagerDidUpdateState:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/beaconManagerDidUpdateState:">&ndash;&nbsp;beaconManagerDidUpdateState:</a></code>
-</h3>
+	<a name="//api/name/beaconManager:monitoringDidFailForRegion:withError:" title="beaconManager:monitoringDidFailForRegion:withError:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/beaconManager:monitoringDidFailForRegion:withError:">&ndash;&nbsp;beaconManager:monitoringDidFailForRegion:withError:</a></code>
+<span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -133,198 +131,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>蓝牙开关状态监听回调</p>
+				<p>需要在随APP启动的指定类中(如：AppDelegate)实现，区域监听自动启动APP，才能回调成功到指定类中事件</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)beaconManagerDidUpdateState:(CBManagerState)<em>state</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>state</code></th>
-						<td><p>蓝牙管理器状态</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>蓝牙开关状态监听回调</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BRTBeaconManager.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/locationManagerAuthorStatus:" title="locationManagerAuthorStatus:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/locationManagerAuthorStatus:">&ndash;&nbsp;locationManagerAuthorStatus:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>定位权限状态回调</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)locationManagerAuthorStatus:(CLAuthorizationStatus)<em>status</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>status</code></th>
-						<td><p>定位管理器权限状态</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>定位权限状态回调</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BRTBeaconManager.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/beaconManager:didRangeBeacons:inRegion:" title="beaconManager:didRangeBeacons:inRegion:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/beaconManager:didRangeBeacons:inRegion:">&ndash;&nbsp;beaconManager:didRangeBeacons:inRegion:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>范围扫描触发的回调方法
-检索出所有的beacon设备，每个设备都是一个CLBeacon实例.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)beaconManager:(BRTBeaconManager *)<em>manager</em> didRangeBeacons:(NSArray *)<em>beacons</em> inRegion:(BRTBeaconRegion *)<em>region</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>manager</code></th>
-						<td><p>Beacon 管理器</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>beacons</code></th>
-						<td><p>所有的beacon设备，即CLBeacon实体</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>region</code></th>
-						<td><p>Beacon 区域</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>范围扫描触发的回调方法
-检索出所有的beacon设备，每个设备都是一个CLBeacon实例.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BRTBeaconManager.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/beaconManager:rangingBeaconsDidFailForRegion:withError:" title="beaconManager:rangingBeaconsDidFailForRegion:withError:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/beaconManager:rangingBeaconsDidFailForRegion:withError:">&ndash;&nbsp;beaconManager:rangingBeaconsDidFailForRegion:withError:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>范围扫描失败触发的回调方法，已经关联的错误信息</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)beaconManager:(BRTBeaconManager *)<em>manager</em> rangingBeaconsDidFailForRegion:(BRTBeaconRegion *)<em>region</em> withError:(NSError *)<em>error</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)beaconManager:(BRTBeaconManager *)<em>manager</em> monitoringDidFailForRegion:(BRTBeaconRegion *)<em>region</em> withError:(NSError *)<em>error</em></code></div>
 
 		    
 			
@@ -358,7 +170,9 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>范围扫描失败触发的回调方法，已经关联的错误信息</p>
+				<p>需要在随APP启动的指定类中(如：AppDelegate)实现，区域监听自动启动APP，才能回调成功到指定类中事件</p>
+
+<p>区域监听失败触发的回调方法，以及关联的错误信息</p>
 			</div>
 			
 
@@ -376,9 +190,9 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/beaconManager:didDiscoverBeacon:" title="beaconManager:didDiscoverBeacon:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/beaconManager:didDiscoverBeacon:">&ndash;&nbsp;beaconManager:didDiscoverBeacon:</a></code>
-</h3>
+	<a name="//api/name/beaconManager:didEnterRegion:" title="beaconManager:didEnterRegion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/beaconManager:didEnterRegion:">&ndash;&nbsp;beaconManager:didEnterRegion:</a></code>
+<span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -387,12 +201,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>在该区域使用CoreBluetooth framework发现BRTBeacon将回调该方法</p>
+				<p>只能在 AppDelegate 实现</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)beaconManager:(BRTBeaconManager *)<em>manager</em> didDiscoverBeacon:(BRTBeacon *)<em>beacon</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)beaconManager:(BRTBeaconManager *)<em>manager</em> didEnterRegion:(BRTBeaconRegion *)<em>region</em></code></div>
 
 		    
 			
@@ -406,8 +220,8 @@
 					</tr>
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>beacon</code></th>
-						<td><p><a href="../Classes/BRTBeacon.html">BRTBeacon</a> 实体</p></td>
+						<th scope="row" class="argument-name"><code>region</code></th>
+						<td><p>Beacon 区域</p></td>
 					</tr>
 				
 				</table>
@@ -421,7 +235,9 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>在该区域使用CoreBluetooth framework发现BRTBeacon将回调该方法</p>
+				<p>只能在 AppDelegate 实现</p>
+
+<p>在区域监听中，iOS设备进入beacon设备区域触发该方法</p>
 			</div>
 			
 
@@ -439,9 +255,9 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/beaconManagerDidFailDiscovery:" title="beaconManagerDidFailDiscovery:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/beaconManagerDidFailDiscovery:">&ndash;&nbsp;beaconManagerDidFailDiscovery:</a></code>
-</h3>
+	<a name="//api/name/beaconManager:didExitRegion:" title="beaconManager:didExitRegion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/beaconManager:didExitRegion:">&ndash;&nbsp;beaconManager:didExitRegion:</a></code>
+<span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -450,12 +266,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>当使用CoreBluetooth扫描产生错误回调该方法</p>
+				<p>只能在 AppDelegate 实现</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)beaconManagerDidFailDiscovery:(BRTBeaconManager *)<em>manager</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)beaconManager:(BRTBeaconManager *)<em>manager</em> didExitRegion:(BRTBeaconRegion *)<em>region</em></code></div>
 
 		    
 			
@@ -466,6 +282,11 @@
 					<tr>
 						<th scope="row" class="argument-name"><code>manager</code></th>
 						<td><p>Beacon 管理器</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>region</code></th>
+						<td><p>Beacon 区域</p></td>
 					</tr>
 				
 				</table>
@@ -479,7 +300,142 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>当使用CoreBluetooth扫描产生错误回调该方法</p>
+				<p>只能在 AppDelegate 实现</p>
+
+<p>在区域监听中，iOS设备离开beacon设备区域触发该方法</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BRTBeaconManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/beaconManager:didDetermineState:forRegion:" title="beaconManager:didDetermineState:forRegion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/beaconManager:didDetermineState:forRegion:">&ndash;&nbsp;beaconManager:didDetermineState:forRegion:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>只能在 AppDelegate 实现</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)beaconManager:(BRTBeaconManager *)<em>manager</em> didDetermineState:(CLRegionState)<em>state</em> forRegion:(BRTBeaconRegion *)<em>region</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>manager</code></th>
+						<td><p>Beacon 管理器</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>state</code></th>
+						<td><p>Beacon 区域状态</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>region</code></th>
+						<td><p>Beacon 区域</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>只能在 AppDelegate 实现</p>
+
+<p>在调用startMonitoringForRegion:方法，当beacon区域状态变化会触发该方法</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BRTBeaconManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/beaconManagerDidStartAdvertising:error:" title="beaconManagerDidStartAdvertising:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/beaconManagerDidStartAdvertising:error:">&ndash;&nbsp;beaconManagerDidStartAdvertising:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>当设备模拟iBeacon广播信息，调用该方法.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)beaconManagerDidStartAdvertising:(BRTBeaconManager *)<em>manager</em> error:(NSError *)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>manager</code></th>
+						<td><p>Beacon 管理器</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>错误描述信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>当设备模拟iBeacon广播信息，调用该方法.</p>
 			</div>
 			
 

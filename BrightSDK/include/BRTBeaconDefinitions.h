@@ -13,10 +13,11 @@
 /**
  * 更新日志
  *
+ *  3.4.8 分离蓝牙扫描、iBeacon扫描
  *  3.4.7 优化区域监听(regionHander)
  *
  */
-#define SDK_VERSION @"3.4.7"
+#define SDK_VERSION @"3.4.8"
 
 //////可用的配置参数列表
 #define B_NAME @"name"
@@ -147,7 +148,7 @@ typedef NS_ENUM(NSInteger,ErrorCode)
     CBErrorCode4 = 4,     //设备空间资源耗尽
     CBErrorCode5 = 5,     //操作被取消
     CBErrorCode6 = 6,     //连接超时
-    CBErrorCode7 = 7,     //设备被断开（系统错误、AppKey不正确）
+    CBErrorCode7 = 7,     //设备被断开（连接错误、AppKey不正确）
     CBErrorCode8 = 8,     //指定的UUID不允许
     CBErrorCode9 = 9,     //设备正在广播
     CBErrorCode10 = 10,     //设备连接失败(信号中断等)

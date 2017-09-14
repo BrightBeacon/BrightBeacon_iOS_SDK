@@ -510,9 +510,4 @@
  */
 - (void)writeBeaconMode:(DevelopPublishMode)mode withCompletion:(BRTCompletionBlock)completion;
 
-
-@property (nonatomic, assign)    NSInteger    rssis;
-@property (nonatomic, assign)    NSInteger    count;
-@property (nonatomic, assign)    BOOL    rssiByLocation;
-
 @end
