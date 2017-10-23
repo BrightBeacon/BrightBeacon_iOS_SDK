@@ -13,11 +13,12 @@
 /**
  * 更新日志
  *
+ *  3.4.9 修复brtBeacons
  *  3.4.8 分离蓝牙扫描、iBeacon扫描
  *  3.4.7 优化区域监听(regionHander)
  *
  */
-#define SDK_VERSION @"3.4.8"
+#define SDK_VERSION @"3.4.9"
 
 //////可用的配置参数列表
 #define B_NAME @"name"
@@ -93,6 +94,7 @@
 #define DEFAULT_LIGHT_SLEEP 0
 
 #define kNotifyConnect @"kNotifyConnect"
+#define kNotifyCancelConnect @"kNotifyCancelConnect"
 #define kNotifyDisconnect @"kNotifyDisconnect"
 
 #ifndef I2N

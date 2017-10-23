@@ -21,7 +21,7 @@ typedef void(^RangingiBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRegion*
 
 /**
  
- * BRTBeaconSDK类定义了快捷操作BrightBeacon方法.
+ * BRTBeaconSDK类定义了快捷操作BrightBeacon方法，如需自定义或使用回调方式，请直接使用BRTBeaconManager
  *
  *  IOS8以上新增获取定位权限、状态，请在Info.plist配置获取时提示用户内容Key：NSLocationAlwaysUsageDescription或NSLocationWhenInUseUsageDescription
  *
@@ -108,7 +108,7 @@ typedef void(^RangingiBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRegion*
  * 停止扫描iBeacon设备
  *
  */
-+ (void) stopRangingBrightBeacons;
++ (void) stopRangingBeacons;
 
 /** 
  *
@@ -176,14 +176,5 @@ typedef void(^RangingiBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRegion*
  *
  */
 + (void) stopMonitoringForRegions:(NSArray *)regions;
-
-/**
- * rssi 转换成 距离（米）
- *
- * @param beacon beacon设备，需要使用measured power值
- *
- * @return float 距离（米）
- */
-+ (float)rssiToDistance:(BRTBeacon*)beacon;
 
 @end

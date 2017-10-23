@@ -15,12 +15,13 @@ iPad mini均可以
 详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
 
 ## 更新日志
- *  3.4.8 分离蓝牙、iBeacon扫描、区域监听回调API
- *  3.4.7 优化区域监听，请使用regionHander:(2017.3.7)
- *  3.4.5 优化扫描(2017.1.23)
- *  3.4.4 增加单独iBeacon扫描(2016.8.12)
+ *  3.4.9 修复brtBeacons等API(2017.10)
+ *  3.4.8 分离蓝牙、iBeacon扫描、区域监听回调API(2017.9)
+ *  3.4.7 优化区域监听，请使用regionHander:(2017.3)
+ *  3.4.5 优化扫描(2017.1)
+ *  3.4.4 增加单独iBeacon扫描(2016.8)
  *  3.4.3 优化扫描
- *  3.4.2 修复部分连接问题 (2016.5.17)
+ *  3.4.2 修复部分连接问题 (2016.5)
  *  3.4.1 新增beacon.flag标识位
  *  3.4.0 优化扫描大量设备出现异常
  *  3.3.9 修正050x配置参数
@@ -49,26 +50,16 @@ iPad mini均可以
 ### 二、使用常规集成
 
 使用如下步骤手动集成：
-- 登录BrightSDK的[开发者网站](http://developer.brtbeacon.com)下载并解压最新版本的SDK。如果您还尚未下载SDK，请 [点击这里下载](https://github.com/BrightBeacon/BrightBeacon_iOS_SDK)。解压后如下图<br/>
-- 将BrightSDK的框架目录导入到您的工程中
-将下载的SDK文件解压，拖动里面的BrightSDK文件夹到工程中
-<br/>拖到工程中后，弹出以下对话框，勾选"Copy items into destination group's folder(if needed)"，并点击“Finish“按钮,
 
-<br/>注意：请务必在上述步骤中选择“Create groups for any added folders”单选按钮组。如果你选择“Create folder references for any added folders”，一个蓝色的文件夹引用将被添加到项目并且将无法找到它的资源。
-最终效果图：<br/>
+- 如果您还尚未下载SDK，请 [点击这里下载](https://github.com/BrightBeacon/BrightBeacon_iOS_SDK)，或在GitHub搜索BrightBeacon。
+- 将下载的SDK文件解压，拖动里面的BrightSDK文件夹（内含include文件夹和.a库文件）到工程中
+- 拖到工程中后，弹出以下对话框，勾选"Copy items into destination group's folder(if needed)"，并点击“Finish“按钮,
 
+注意：请务必在上述步骤中选择“Create groups for any added folders”单选按钮组。如果你选择“Create folder references for any added folders”，一个蓝色的文件夹引用将被添加到项目并且将无法找到它的资源。
 
 
-- 注意：
 
-1、BrightSDK需要以下本地IOS库：
-
-```
-	CoreBluetooth.framework
-	CoreLocation.framework
-```
-
-2、如果出现头文件无法找到，前往 project settings 的 build settings，搜索Header Search Paths. 添加"$(SRCROOT)/../BrightSDK/include".
+- 注意：如果出现头文件无法找到，前往 project settings 的 build settings，搜索Header Search Paths. 添加"$(SRCROOT)/../BrightSDK/include"，并检查实际目录地址。
 
 
 ## 如何调用
@@ -79,32 +70,36 @@ iPad mini均可以
 ```
 #import "BRTBeaconSDK.h"
 
-//如需连接设备，请注册appKey.
+//如需配置设备，请注册appKey.
 [BRTBeaconSDK registerApp:(NSString *)appKey onCompletion:(BRTCompletionBlock)completion];
 ```
 `2、常见的API调用`<br/>
 
- - 扫描Regions内所有iBeacon设备。
+ - 扫描Regions内所有iBeacon设备（IOS7及以上，需要定位权限，并打开蓝牙，传入扫描UUID）。
 
-IOS7及以上，通过BRTBeaconRegion扫描iBeacon设备（可扫描到参数proximityUUID、Major、Minor、proximity、accuracy、rssi）。（如需后台扫描，请求后台定位权限）
+通过BRTBeaconRegion扫描iBeacon设备（可扫描到参数proximityUUID、Major、Minor、proximity、accuracy、rssi），建议用于iBeacon定位、签到、区域推送等场景。
 
 ```
 regions为BRTBeaconRegion数组(默认使用：E2C56DB5-DFFB-48D2-B060-D0F5A71096E0)
 [BRTBeaconSDK startRangingBeaconsInRegions:regions onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
 }];
+//停止扫描iBeacons
+[BRTBeaconSDK stopRangingBeacons];
 ```
- - 扫描BrightBeacon蓝牙设备。
-IOS6及以上，蓝牙设备扫描（允许连接配置、获取蓝牙参数如mac地址、电量等功能，无法获取iBeacon的proximityUUID、proximity），建议需要用于设备连接配置或特殊参数要求者使用。
+ - 扫描BrightBeacon蓝牙设备（仅需打开蓝牙，支持配置BrightBeacon设备）。
+IOS6及以上，蓝牙设备扫描（允许连接配置、获取蓝牙参数如mac地址、电量等功能，无法获取iBeacon的proximityUUID、proximity），建议需要用于设备连接配置、巡检等场景。
 (如需后台扫描，必须限定扫描的服务，例如180a)
 
 ```
  uuid:
-	CBUUID数组，（即设备广播数据中的服务，例：[[CBUUID alloc] initWithString:@"180a"]）
+	CBUUID数组，（设备广播数据中的服务，例：[[CBUUID alloc] initWithString:@"180a"]；留空时能扫描所有服务，但不支持后台扫描。）
 [BRTBeaconSDK scanBleServices:(NSArray<CBUUID *> *)services onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
 }];
+//停止扫描BrightBeacon
+[BRTBeaconSDK stopScan];
  ```
  
- - 监听区域方法（IOS7及以上）
+ - 监听区域方法（IOS7及以上，需要定位权限，并打开蓝牙）
 
 //如需后台监听区域，请在随App启动的类（如：appDelegate的didFinishLaunch方法）中调用regionHandler;并且handler也必须启动自行初始化，保证监听到区域自启动软件时，handler能成功回调区域相关函数。简约使用时，可以直接使用appDelegate类。
 
@@ -127,7 +122,7 @@ IOS6及以上，蓝牙设备扫描（允许连接配置、获取蓝牙参数如m
 ```
 - 启动监听区域
 
- region：需要监听的区域，支持后台监听（<=20)，当进入区域时，APP会自启动，你有至少10s处理相关逻辑。在ios8以上startMonitoringForRegions内会调取系统获取定位权限。你也可以自行控制调取弹窗时机或权限类型。
+ region：需要监听的区域，支持后台监听（<=20)，当进入、离开区域时，APP会后台自启动，你有约10s处理相关逻辑。在IOS8以上startMonitoringForRegions内会调取系统获取定位权限。你也可以自行控制调取弹窗时机或权限类型。
  
 ```
   //ios8以上自行获取权限方式
@@ -142,7 +137,7 @@ IOS6及以上，蓝牙设备扫描（允许连接配置、获取蓝牙参数如m
     [BRTBeaconSDK startMonitoringForRegions:@[region]];
  ```
  
- - 立即监测区域回调
+ - 立即监测区域状态
  
  ```
      [BRTBeaconSDK requestStateForRegions:@[region]];

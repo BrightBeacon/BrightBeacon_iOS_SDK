@@ -324,14 +324,14 @@
 /**
  *  lightCheckInteval
  *
- *    广播状态下Beacon周边光强检测间隔，单位为：毫秒；范围：1000毫秒~10,000毫秒，即每隔指定毫秒自动检测光强并更新广播的数据
+ *    广播状态下Beacon周边光强检测间隔（已弃用）
  */
 @property (nonatomic, assign)    NSInteger    lightCheckInteval;
 
 /**
  * lightSleep
  *
- *  开启光感休眠，当环境变得完全黑暗，Beacon设备会自动降低发射频率，来提高使用寿命
+ *  开启光感休眠（已弃用）
  */
 @property (nonatomic, assign)    BOOL    lightSleep;
 
@@ -348,7 +348,7 @@
 @property (nonatomic,strong)  NSString *eddystone_Uid;
 
 /**
- *  Eddystone的Url
+ *  Eddystone的实物网链接Url，IOS10以后，必须https才能发现。
  */
 @property (nonatomic,strong)  NSString *eddystone_Url;
 
@@ -372,11 +372,22 @@
  */
 @property (strong, nonatomic)   NSString*   reserved;
 
+
+
+/**
+ * rssi 转换成 距离（米）
+ *
+ * @param beacon beacon设备，需要使用measured power值
+ *
+ * @return float 距离（米）
+ */
++ (float)rssiToDistance:(BRTBeacon*)beacon;
+
 /**
  *  转换Url为eddystone模式NSData
  *  参考：https://github.com/google/eddystone/tree/master/eddystone-url
  *
- *  @param url 例(http://www.brtbeacon.com)->()
+ *  @param url 例(https://www.brtbeacon.com)->()
  *
  *  @return NSData
  */
@@ -509,5 +520,15 @@
  * @param completion 写入完成回调
  */
 - (void)writeBeaconMode:(DevelopPublishMode)mode withCompletion:(BRTCompletionBlock)completion;
+
+
+/**
+ 距离估算方法，用于衡量不同设备距离差值，相对实际距离可能有误差
+
+ @param rssi 接收信号强度
+ @param mpower 1米处信号强度
+ @return 估算距离值
+ */
++ (float)distanceByRssi:(NSInteger)rssi oneMeterRssi:(NSInteger)mpower;
 
 @end

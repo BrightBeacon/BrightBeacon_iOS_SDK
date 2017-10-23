@@ -134,6 +134,14 @@
 	
 
 	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/distanceByRssi:oneMeterRssi:">+ distanceByRssi:oneMeterRssi:</option>
+		
+		<option value="//api/name/rssiToDistance:">+ rssiToDistance:</option>
+		
+	</optgroup>
+	
 
 	
 	<optgroup label="Instance Methods">
@@ -1674,7 +1682,7 @@ Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>lightCheckInteval</p>
 
-<p>广播状态下Beacon周边光强检测间隔，单位为：毫秒；范围：1000毫秒~10,000毫秒，即每隔指定毫秒自动检测光强并更新广播的数据</p>
+<p>广播状态下Beacon周边光强检测间隔（已弃用）</p>
 			</div>
 			
 
@@ -1722,7 +1730,7 @@ Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>lightSleep</p>
 
-<p>开启光感休眠，当环境变得完全黑暗，Beacon设备会自动降低发射频率，来提高使用寿命</p>
+<p>开启光感休眠（已弃用）</p>
 			</div>
 			
 
@@ -1845,7 +1853,7 @@ Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Eddystone的Url</p>
+				<p>Eddystone的实物网链接Url，IOS10以后，必须https才能发现。</p>
 			</div>
 			
 		    
@@ -1862,7 +1870,7 @@ Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Eddystone的Url</p>
+				<p>Eddystone的实物网链接Url，IOS10以后，必须https才能发现。</p>
 			</div>
 			
 
@@ -2020,6 +2028,69 @@ Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/rssiToDistance:" title="rssiToDistance:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/rssiToDistance:">+&nbsp;rssiToDistance:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="#//api/name/rssi">rssi</a> 转换成 距离（米）</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (float)rssiToDistance:(BRTBeacon *)<em>beacon</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>beacon</code></th>
+						<td><p>beacon设备，需要使用measured power值</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>float 距离（米）</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p><a href="#//api/name/rssi">rssi</a> 转换成 距离（米）</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BRTBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/eddystone_Url_From:" title="eddystone_Url_From:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/eddystone_Url_From:">&ndash;&nbsp;eddystone_Url_From:</a></code>
 </h3>
@@ -2047,7 +2118,7 @@ Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>url</code></th>
-						<td><p>例(<a href="http://www.brtbeacon.com">http://www.brtbeacon.com</a>)->()</p></td>
+						<td><p>例(<a href="https://www.brtbeacon.com">https://www.brtbeacon.com</a>)->()</p></td>
 					</tr>
 				
 				</table>
@@ -2961,6 +3032,74 @@ Major, Minor, Power and Advertising interval.</p>
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/distanceByRssi:oneMeterRssi:" title="distanceByRssi:oneMeterRssi:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/distanceByRssi:oneMeterRssi:">+&nbsp;distanceByRssi:oneMeterRssi:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>距离估算方法，用于衡量不同设备距离差值，相对实际距离可能有误差</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (float)distanceByRssi:(NSInteger)<em>rssi</em> oneMeterRssi:(NSInteger)<em>mpower</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>rssi</code></th>
+						<td><p>接收信号强度</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>mpower</code></th>
+						<td><p>1米处信号强度</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>估算距离值</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>距离估算方法，用于衡量不同设备距离差值，相对实际距离可能有误差</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BRTBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -2976,7 +3115,7 @@ Major, Minor, Power and Advertising interval.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2017 智石科技. All rights reserved. Updated: 2017-09-14</p>
+						<p class="copyright">Copyright &copy; 2017 智石科技. All rights reserved. Updated: 2017-10-23</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>

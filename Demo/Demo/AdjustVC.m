@@ -39,7 +39,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [BRTBeaconSDK stopRangingBrightBeacons];
+    [BRTBeaconSDK stopScan];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -61,6 +61,10 @@
         NSLog(@"设备不支持");
     }
 }
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [BRTBeaconSDK stopRangingBeacons];
+}
 
 #pragma mark - Table view data source
 
