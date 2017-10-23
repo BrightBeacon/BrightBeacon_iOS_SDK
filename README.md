@@ -18,20 +18,6 @@ iPad mini均可以
  *  3.4.9 修复brtBeacons等API(2017.10)
  *  3.4.8 分离蓝牙、iBeacon扫描、区域监听回调API(2017.9)
  *  3.4.7 优化区域监听，请使用regionHander:(2017.3)
- *  3.4.5 优化扫描(2017.1)
- *  3.4.4 增加单独iBeacon扫描(2016.8)
- *  3.4.3 优化扫描
- *  3.4.2 修复部分连接问题 (2016.5)
- *  3.4.1 新增beacon.flag标识位
- *  3.4.0 优化扫描大量设备出现异常
- *  3.3.9 修正050x配置参数
- *  3.3.8 修复030x连接即配置参数异常，修复0401固件升级
- *  3.3.7 连接优化，支持固件050x
- *  3.3.6 修复部分设备名乱码
- *  3.3.5 新增位置反馈
- *  3.3.4 新增自定义广播数据段、定频固件0313、CB系列040x固件支持
- *  3.3.3 支持Google的eddystone,修复ios6.0.x
- *  3.3.2 IOS9适配：主要修复030x无法连接配置
 
 ## 如何集成（任选其一）
 ### 一、使用CocoaPods集成
@@ -71,7 +57,7 @@ iPad mini均可以
 #import "BRTBeaconSDK.h"
 
 //如需配置设备，请注册appKey.
-[BRTBeaconSDK registerApp:(NSString *)appKey onCompletion:(BRTCompletionBlock)completion];
+	[BRTBeaconSDK registerApp:(NSString *)appKey onCompletion:(BRTCompletionBlock)completion];
 ```
 `2、常见的API调用`<br/>
 
@@ -81,10 +67,10 @@ iPad mini均可以
 
 ```
 regions为BRTBeaconRegion数组(默认使用：E2C56DB5-DFFB-48D2-B060-D0F5A71096E0)
-[BRTBeaconSDK startRangingBeaconsInRegions:regions onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
-}];
-//停止扫描iBeacons
-[BRTBeaconSDK stopRangingBeacons];
+	[BRTBeaconSDK startRangingBeaconsInRegions:regions onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
+	}];
+	//停止扫描iBeacons
+	[BRTBeaconSDK stopRangingBeacons];
 ```
  - 扫描BrightBeacon蓝牙设备（仅需打开蓝牙，支持配置BrightBeacon设备）。
 IOS6及以上，蓝牙设备扫描（允许连接配置、获取蓝牙参数如mac地址、电量等功能，无法获取iBeacon的proximityUUID、proximity），建议需要用于设备连接配置、巡检等场景。
@@ -93,11 +79,11 @@ IOS6及以上，蓝牙设备扫描（允许连接配置、获取蓝牙参数如m
 ```
  uuid:
 	CBUUID数组，（设备广播数据中的服务，例：[[CBUUID alloc] initWithString:@"180a"]；留空时能扫描所有服务，但不支持后台扫描。）
-[BRTBeaconSDK scanBleServices:(NSArray<CBUUID *> *)services onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
-}];
-//停止扫描BrightBeacon
-[BRTBeaconSDK stopScan];
- ```
+	[BRTBeaconSDK scanBleServices:(NSArray<CBUUID *> *)services onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
+	}];
+	//停止扫描BrightBeacon
+	[BRTBeaconSDK stopScan];
+```
  
  - 监听区域方法（IOS7及以上，需要定位权限，并打开蓝牙）
 
@@ -110,43 +96,44 @@ IOS6及以上，蓝牙设备扫描（允许连接配置、获取蓝牙参数如m
  * 以下是在前台运行、后台或完全退出程序监听区域的回调函数，请拷贝需要的回调到handler类
 
 ```
-进入区域回调
--(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region{
-}
-离开区域回调
--(void)beaconManager:(BRTBeaconManager *)manager didExitRegion:(BRTBeaconRegion *)region{
-}
-屏幕点亮区域检测、requestStateForRegions回调
--(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region{
-}
+	进入区域回调
+	-(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region{
+	}
+	离开区域回调
+	-(void)beaconManager:(BRTBeaconManager *)manager didExitRegion:(BRTBeaconRegion *)region{
+	}
+	屏幕点亮区域检测、requestStateForRegions回调
+	-(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region{
+	}
 ```
 - 启动监听区域
 
  region：需要监听的区域，支持后台监听（<=20)，当进入、离开区域时，APP会后台自启动，你有约10s处理相关逻辑。在IOS8以上startMonitoringForRegions内会调取系统获取定位权限。你也可以自行控制调取弹窗时机或权限类型。
  
 ```
-  //ios8以上自行获取权限方式
- [[[BRTBeaconSDK Share] brtmanager] requestAlwaysAuthorization];
+ 	//ios8以上自行获取权限方式
+ 	[[[BRTBeaconSDK Share] brtmanager] requestAlwaysAuthorization];
 ```
-//监听区域示例
+
 ```
+	//监听区域示例
      BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:@"这里传人需要监听的iBeacon设备的UUID" identifier:@"区域唯一标识符，会覆盖已有相同id的区域"];
     region.notifyOnEntry = YES;//监听进入区域
     region.notifyOnExit = YES;//离开区域时回调
     region.notifyEntryStateOnDisplay = YES;//是否锁屏唤醒时，监测区域状态
     [BRTBeaconSDK startMonitoringForRegions:@[region]];
- ```
+```
  
  - 立即监测区域状态
  
- ```
-     [BRTBeaconSDK requestStateForRegions:@[region]];
- ```
+```
+    [BRTBeaconSDK requestStateForRegions:@[region]];
+```
 - 监听的所有区域；当前活跃的区域
 
 ```
-[[[BRTBeaconSDK Share] brtmanager] monitoredRegions];
-[[[BRTBeaconSDK Share] brtmanager] rangedRegions];
+	[[[BRTBeaconSDK Share] brtmanager] monitoredRegions];
+	[[[BRTBeaconSDK Share] brtmanager] rangedRegions];
 ```
 ## 相关文档或网站
 * [集成文档](https://github.com/BrightBeacon/BrightBeacon_iOS_SDK)
