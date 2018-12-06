@@ -48,7 +48,7 @@ iPad mini均可以
 - 注意：如果出现头文件无法找到，前往 project settings 的 build settings，搜索Header Search Paths. 添加"$(SRCROOT)/../BrightSDK/include"，并检查实际目录地址。
 
 ## 三、IOS8以上配置定位权限
-* 打开Info.plist添加使用期间“WhenInUse”定位描述说明：NSLocationWhenInUseUsageDescription，（填写描述如：用于室内地图导航）
+* 打开Info.plist添加使用期间“WhenInUse”定位描述说明：NSLocationWhenInUseUsageDescription，（填写描述如：用于扫描iBeacon设备）
 * 若应用需要区域监听功能,需使用后台及使用期间定位权限“Always”(含“WhenInUse”)，需添加3项以支持不同IOS版本：NSLocationAlwaysAndWhenInUseUsageDescription、NSLocationAlwaysUsageDescription和NSLocationWhenInUseUsageDescription
 
 ## 如何调用
