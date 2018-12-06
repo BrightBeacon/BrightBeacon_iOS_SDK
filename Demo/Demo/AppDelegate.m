@@ -11,7 +11,7 @@
 #import "RegionHander.h"
 
 @interface AppDelegate ()
-
+@property (nonatomic,strong) RegionHander *handler;
 @end
 
 @implementation AppDelegate
@@ -28,7 +28,8 @@
 
 	//如需后台监听区域，必须在随App启动的类中调用regionHander：
     //并且hander也必须启动自行初始化，保证监听到区域自启动软件时，能成功回调该类的Region相关函数。
-	[BRTBeaconSDK  regionHander:[RegionHander new]];
+    self.handler = [RegionHander new];
+	[BRTBeaconSDK  regionHander:self.handler];
 
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
         [self performSelectorInBackground:@selector(backgroundTask) withObject:nil];

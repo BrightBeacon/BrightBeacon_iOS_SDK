@@ -23,10 +23,11 @@ typedef void(^RangingiBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRegion*
  
  * BRTBeaconSDK类定义了快捷操作BrightBeacon方法，如需自定义或使用回调方式，请直接使用BRTBeaconManager
  *
- *  IOS8以上新增获取定位权限、状态，请在Info.plist配置获取时提示用户内容Key：NSLocationAlwaysUsageDescription或NSLocationWhenInUseUsageDescription
+ * IOS8.0以后，至少需在plist配置普通定位权限描述：NSLocationWhenInUseUsageDescription
  *
- *  1、Always:允许后台定位，可以支持后台区域推送等
- *  2、WhenInUse:只允许运行时定位，不支持后台区域感知
+ * 如需最高权限，额外添加以下2个描述。
+ * IOS8.0~IOS9.0，更高权限需添加：NSLocationAlwaysUsageDescription
+ * IOS10.0以后，更高权限需添加：NSLocationAlwaysAndWhenInUseUsageDescription
  *  使用[CLLocationManager authorizationStatus]获取定位状态
  */
 

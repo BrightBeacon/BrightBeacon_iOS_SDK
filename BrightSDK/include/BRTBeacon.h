@@ -50,7 +50,7 @@
  * beacon 050x读写参数回调
  *
  * @param beacon 关联的beacon实体
- * @param data 返回数据信息
+ * @param value 返回数据信息
  * @param error 返回错误信息
  *
  */
