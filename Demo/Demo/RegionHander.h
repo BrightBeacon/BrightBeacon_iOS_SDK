@@ -10,5 +10,7 @@
 #import "BRTBeaconSDK.h"
 
 @interface RegionHander : NSObject <BRTBeaconRegionDelegate>
+//通知权限申请
++ (void)registerNotification;
 
 @end

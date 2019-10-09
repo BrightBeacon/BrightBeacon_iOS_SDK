@@ -8,6 +8,7 @@
 
 #import "RegionVC.h"
 #import "BRTBeaconSDK.h"
+#import "RegionHander.h"
 
 @interface RegionVC ()
 
@@ -22,11 +23,8 @@
 	self.regions = [[BRTBeaconSDK BRTBeaconManager] monitoredRegions];
 	[self.tableView reloadData];
 
-	//IOS8.0 推送必须询求用户同意，来触发通知（按你程序所需）
-	if ([[[UIDevice currentDevice] systemVersion] intValue]>=8) {
-		UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil];
-		[[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    }
+    //注册通知服务
+    [RegionHander registerNotification];
 }
 
 - (void)didReceiveMemoryWarning {

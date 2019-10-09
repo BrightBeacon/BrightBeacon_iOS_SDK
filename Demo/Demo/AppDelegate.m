@@ -19,7 +19,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
-	if(launchOptions)NSLog(@"软件被通知启动，滑动通知内容：%@",launchOptions);
+    /* APP未启动，点击推送消息的情况下 iOS10遗弃UIApplicationLaunchOptionsLocalNotificationKey，
+     使用代理UNUserNotificationCenterDelegate方法didReceiveNotificationResponse:withCompletionHandler:获取本地推送
+     */
+    UILocalNotification *notification = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey];
+    if (notification) {
+        NSLog(@"localUserInfo:%@",notification);
+        //APP未启动，点击推送消息
+        [self application:application didReceiveLocalNotification:notification];
+    }
 
     //设置appkey，连接、加密设备，后台管理所需
     [BRTBeaconSDK registerApp:DEFAULT_KEY onCompletion:^(BOOL complete, NSError *error) {
@@ -32,25 +40,20 @@
 	[BRTBeaconSDK  regionHander:self.handler];
 
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
-        [self performSelectorInBackground:@selector(backgroundTask) withObject:nil];
+        //后台唤醒APP操作。
     }
 
 	return YES;
 }
 
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-	NSLog(@"软件运行中，滑动通知内容：%@",notification);
-}
-
-- (void)backgroundTask {
-    static NSInteger count = 1;
-    if (count!=1) {
-        NSLog(@"******************************count1");
-        return;
-    }
-    while (count++) {
-        [NSThread sleepForTimeInterval:1];
-        NSLog(@"******************************count%ld",(long)count);
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(id)notification {
+    NSString *className = NSStringFromClass([notification class]);
+    if ([notification isKindOfClass:[UILocalNotification class]]) {
+        NSLog(@"IOS9软件运行中，滑动通知内容：%@",notification);
+        //((UILocalNotification*)notification).userInfo
+    }else if([className isEqualToString:@"UNNotification"]) {
+        NSLog(@"IOS10软件运行中，滑动通知内容：%@",notification);
+        //((UNNotification*)notification).request.content.userInfo
     }
 }
 @end
