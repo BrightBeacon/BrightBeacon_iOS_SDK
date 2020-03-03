@@ -15,7 +15,8 @@ iPad mini均可以
 详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
 
 ## 更新日志
- *  3.5.0 修复IOS13读取,功率设置+4问题(2019.10)
+
+ *  3.5.0 修复IOS13读取,功率设定(2020.03)
  *  3.4.9 修复brtBeacons等API(2017.10)
  *  3.4.8 分离蓝牙、iBeacon扫描、区域监听回调API(2017.9)
  *  3.4.7 优化区域监听，请使用regionHander:(2017.3)
