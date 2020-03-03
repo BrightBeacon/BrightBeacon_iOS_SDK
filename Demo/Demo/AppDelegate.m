@@ -42,7 +42,6 @@
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
         //后台唤醒APP操作。
     }
-
 	return YES;
 }
 
