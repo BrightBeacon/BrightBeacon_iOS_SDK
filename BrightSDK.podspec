@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.license      = {
     :type => 'Copyright',
     :text => <<-LICENSE
-      Copyright 2019 BrightBeacon All rights reserved.
+      Copyright 2020 BrightBeacon All rights reserved.
       LICENSE
   }
 end

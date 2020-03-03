@@ -13,12 +13,13 @@
 /**
  * 更新日志
  *
+ *  3.5.0 修复IOS13读取
  *  3.4.9 修复brtBeacons
  *  3.4.8 分离蓝牙扫描、iBeacon扫描
  *  3.4.7 优化区域监听(regionHander)
  *
  */
-#define SDK_VERSION @"3.4.9"
+#define SDK_VERSION @"3.5.0"
 
 //////可用的配置参数列表
 #define B_NAME @"name"
