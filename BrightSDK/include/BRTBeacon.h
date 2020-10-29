@@ -146,17 +146,10 @@
  *  accuracy
  *
  *   该值单位‘米’，值越小表明位置越近，负值无效，仅作参考距离
+ *   和测量功率（measured power：距离一米的rssi值）也有关.
  *
  */
 @property (nonatomic) CLLocationAccuracy accuracy;
-
-/**
- *  distance
- *
- *    根据接收信号强度指示（rssi）和测量功率（measured power：距离一米的rssi值）估算出的beacon设备到手机的距离.
- *
- */
-@property (nonatomic, strong)   NSNumber*               distance;
 
 /**
  *  proximity
@@ -198,7 +191,7 @@
  *
  *    标示连接状态.
  */
-@property (nonatomic, readonly)   BOOL                  isConnected;
+@property (nonatomic, assign)   BOOL isConnected;
 /**
  *  battery
  *
@@ -288,10 +281,11 @@
  *  power
  *
  *  以分贝计的发射功率，连接后可用
- *  TI芯片：0：-23dBm 1：-6dBm 2：0dBm 3：+4dBm
- *  Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 6：-4dBm 7：0dBm 8：+4dBm
+ *  TI芯片：-23dBm -6dBm 0dBm +4dBm
+ *  Nordic芯片：-30dBm -20dBm -16dBm -12dBm -8dBm -4dBm 0dBm +4dBm
+ *  Nordic芯片：-40dBm -20dBm -16dBm -12dBm -8dBm -4dBm 0dBm +3dBm +4dBm
  */
-@property (nonatomic, assign)   NSInteger           power;
+@property (nonatomic, assign)   NSNumber*           power;
 
 /**
  *  advInterval
@@ -312,21 +306,21 @@
  *
  *    广播状态下Beacon的电量检测间隔，单位为：秒；范围：1800秒~43200秒（12小时），即每隔指定秒自动检测电量并更新广播的数据
  */
-@property (nonatomic, assign)    NSInteger    batteryCheckInteval;
+@property (nonatomic, assign)    NSNumber*    batteryCheckInteval;
 
 /**
  *  temperatureCheckInteval
  *
  *    广播状态下Beacon周边温度检测间隔，单位为：秒；范围：10秒~43200秒（12小时），即每隔指定秒自动检测电量并更新广播的数据
  */
-@property (nonatomic, assign)    NSInteger    temperatureCheckInteval;
+@property (nonatomic, assign)    NSNumber*    temperatureCheckInteval;
 
 /**
  *  lightCheckInteval
  *
  *    广播状态下Beacon周边光强检测间隔（已弃用）
  */
-@property (nonatomic, assign)    NSInteger    lightCheckInteval;
+@property (nonatomic, assign)    NSNumber*    lightCheckInteval;
 
 /**
  * lightSleep
@@ -372,39 +366,7 @@
  */
 @property (strong, nonatomic)   NSString*   reserved;
 
-
-
-/**
- * rssi 转换成 距离（米）
- *
- * @param beacon beacon设备，需要使用measured power值
- *
- * @return float 距离（米）
- */
-+ (float)rssiToDistance:(BRTBeacon*)beacon;
-
-/**
- *  转换Url为eddystone模式NSData
- *  参考：https://github.com/google/eddystone/tree/master/eddystone-url
- *
- *  @param url 例(https://www.brtbeacon.com)->()
- *
- *  @return NSData
- */
-- (NSData*)eddystone_Url_From:(NSString*)url;
-
-/**
- *  将eddystone模式下的Url字符串转换为普通url
- *
- *  @param eddystoneUrl eddystone-URL字符串
- *
- *  @return NSString
- */
-- (NSString*)eddystone_Url_To:(NSString*)eddystoneUrl;
-
 /// @name 连接beacon相关的方法
-
-
 /**
  * 检测beacon设备是否支持某些属性
  */
@@ -457,9 +419,9 @@
 - (void)sendBeaconValue:(NSArray *)values withDelegate:(id<BRTBeaconDelegate>)delegate;
 
 /**
- * 写入设备信息
+ * 写入设备信息（支持所有版本BrightBeacon设备）
  *
- * @param values 设备信息(参见:可用的配置参数列表)
+ * @param values 设备信息（参见BRTBeaconDefinitions.h：可用的配置参数列表）
  * @param completion 写入完成回调
  *
  */
@@ -504,7 +466,7 @@
  * 重置beacon设备默认值，该操作要求已经成功执行 {@link registerApp:};
  *
  */
--(void)resetBeaconToDefault;
+-(void)resetBeaconToDefault:(void(^)(BOOL complete, NSError *error))block;
 
 /**
  * 重置beacon设备默认KEY，该操作可以解除设备开发者绑定，让beacon设备可以重新被连接设定新的APP_KEY，该操作要求已经成功执行[BRTBeaconManager registerApp:APP_KEY];
@@ -520,15 +482,5 @@
  * @param completion 写入完成回调
  */
 - (void)writeBeaconMode:(DevelopPublishMode)mode withCompletion:(BRTCompletionBlock)completion;
-
-
-/**
- 距离估算方法，用于衡量不同设备距离差值，相对实际距离可能有误差
-
- @param rssi 接收信号强度
- @param mpower 1米处信号强度
- @return 估算距离值
- */
-+ (float)distanceByRssi:(NSInteger)rssi oneMeterRssi:(NSInteger)mpower;
 
 @end

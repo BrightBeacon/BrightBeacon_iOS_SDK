@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BRTBeaconDelegate Protocol Reference</title>
+	<title>BRTTools Class Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -43,8 +43,6 @@
 							<select id="jump-to">
 	<option value="top">Jump To&#133;</option>
 	
-	<option value="overview">Overview</option>
-	
 
 	
 	
@@ -56,17 +54,17 @@
 	
 
 	
-
-	
-	<optgroup label="Instance Methods">
+	<optgroup label="Class Methods">
 		
-		<option value="//api/name/beacon:didUpdateValue:error:">- beacon:didUpdateValue:error:</option>
+		<option value="//api/name/distanceByRssi:oneMeterRssi:">+ distanceByRssi:oneMeterRssi:</option>
 		
-		<option value="//api/name/beaconConnection:withError:">- beaconConnection:withError:</option>
+		<option value="//api/name/eddystoneFromUrl:">+ eddystoneFromUrl:</option>
 		
-		<option value="//api/name/beaconDidDisconnect:withError:">- beaconDidDisconnect:withError:</option>
+		<option value="//api/name/urlFromEddystone:">+ urlFromEddystone:</option>
 		
 	</optgroup>
+	
+
 	
 	
 </select>
@@ -81,29 +79,21 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BRTBeaconDelegate Protocol Reference</h1>
+					<h1 class="title">BRTTools Class Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<th>Conforms to</th>
+	<th>Inherits from</th>
 	<td>NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BRTBeacon.h</td>
+	<td>BRTTools.h</td>
 </tr>
 						</tbody></table></div>
 					
 
                     
-					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>BRTBeaconDelegate 定义了 beacon 连接相关的委托方法，beacon 的连接是一个异步操作，因此你只需要实现例如beaconDidDisconnect:相关方法，它们会被自动回调.</p>
-					</div>
-					
-					
 
 					
 					
@@ -116,8 +106,8 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/beaconConnection:withError:" title="beaconConnection:withError:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/beaconConnection:withError:">&ndash;&nbsp;beaconConnection:withError:</a></code>
+	<a name="//api/name/eddystoneFromUrl:" title="eddystoneFromUrl:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/eddystoneFromUrl:">+&nbsp;eddystoneFromUrl:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -127,12 +117,13 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>beacon连接产生错误回调该方法.</p>
+				<p>转换Url为eddystone模式NSData
+参考：<a href="https://github.com/google/eddystone/tree/master/eddystone-url">https://github.com/google/eddystone/tree/master/eddystone-url</a></p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)beaconConnection:(BRTBeacon *)<em>beacon</em> withError:(NSError *)<em>error</em></code></div>
+			<div class="method-subsection method-declaration"><code>+ (NSData *)eddystoneFromUrl:(NSString *)<em>url</em></code></div>
 
 		    
 			
@@ -141,13 +132,8 @@
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>beacon</code></th>
-						<td><p>关联的beacon实体</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>error</code></th>
-						<td><p>错误的描述信息</p></td>
+						<th scope="row" class="argument-name"><code>url</code></th>
+						<td><p>例(<a href="https://www.brtbeacon.com">https://www.brtbeacon.com</a>)->()</p></td>
 					</tr>
 				
 				</table>
@@ -155,13 +141,19 @@
 			
 
 			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData</p>
+			</div>
+			
 
 			
 
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>beacon连接产生错误回调该方法.</p>
+				<p>转换Url为eddystone模式NSData
+参考：<a href="https://github.com/google/eddystone/tree/master/eddystone-url">https://github.com/google/eddystone/tree/master/eddystone-url</a></p>
 			</div>
 			
 
@@ -172,15 +164,15 @@
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BRTBeacon.h</code></p>
+				<p><code class="declared-in-ref">BRTTools.h</code></p>
 			</div>
 			
 			
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/beaconDidDisconnect:withError:" title="beaconDidDisconnect:withError:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/beaconDidDisconnect:withError:">&ndash;&nbsp;beaconDidDisconnect:withError:</a></code>
+	<a name="//api/name/urlFromEddystone:" title="urlFromEddystone:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/urlFromEddystone:">+&nbsp;urlFromEddystone:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -190,12 +182,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>beacon与设备已经断开连接回调该方法</p>
+				<p>将eddystone模式下的Url字符串转换为普通url</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)beaconDidDisconnect:(BRTBeacon *)<em>beacon</em> withError:(NSError *)<em>error</em></code></div>
+			<div class="method-subsection method-declaration"><code>+ (NSString *)urlFromEddystone:(NSString *)<em>eddyUrl</em></code></div>
 
 		    
 			
@@ -204,13 +196,8 @@
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>beacon</code></th>
-						<td><p>关联的beacon实体</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>error</code></th>
-						<td><p>错误的描述信息</p></td>
+						<th scope="row" class="argument-name"><code>eddystoneUrl</code></th>
+						<td><p>eddystone-URL字符串</p></td>
 					</tr>
 				
 				</table>
@@ -218,13 +205,18 @@
 			
 
 			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSString</p>
+			</div>
+			
 
 			
 
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>beacon与设备已经断开连接回调该方法</p>
+				<p>将eddystone模式下的Url字符串转换为普通url</p>
 			</div>
 			
 
@@ -235,15 +227,15 @@
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BRTBeacon.h</code></p>
+				<p><code class="declared-in-ref">BRTTools.h</code></p>
 			</div>
 			
 			
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/beacon:didUpdateValue:error:" title="beacon:didUpdateValue:error:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/beacon:didUpdateValue:error:">&ndash;&nbsp;beacon:didUpdateValue:error:</a></code>
+	<a name="//api/name/distanceByRssi:oneMeterRssi:" title="distanceByRssi:oneMeterRssi:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/distanceByRssi:oneMeterRssi:">+&nbsp;distanceByRssi:oneMeterRssi:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -253,12 +245,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>beacon 050x读写参数回调</p>
+				<p>距离估算方法，用于衡量不同设备距离差值，相对实际距离可能有误差</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)beacon:(BRTBeacon *)<em>beacon</em> didUpdateValue:(NSData *)<em>value</em> error:(NSError *)<em>error</em></code></div>
+			<div class="method-subsection method-declaration"><code>+ (double)distanceByRssi:(NSInteger)<em>rssi</em> oneMeterRssi:(NSInteger)<em>mpower</em></code></div>
 
 		    
 			
@@ -267,18 +259,13 @@
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>beacon</code></th>
-						<td><p>关联的beacon实体</p></td>
+						<th scope="row" class="argument-name"><code>rssi</code></th>
+						<td><p>接收信号强度</p></td>
 					</tr>
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>error</code></th>
-						<td><p>返回错误信息</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>data</code></th>
-						<td><p>返回数据信息</p></td>
+						<th scope="row" class="argument-name"><code>mpower</code></th>
+						<td><p>1米处信号强度</p></td>
 					</tr>
 				
 				</table>
@@ -286,13 +273,18 @@
 			
 
 			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>估算距离值</p>
+			</div>
+			
 
 			
 
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>beacon 050x读写参数回调</p>
+				<p>距离估算方法，用于衡量不同设备距离差值，相对实际距离可能有误差</p>
 			</div>
 			
 
@@ -303,7 +295,7 @@
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BRTBeacon.h</code></p>
+				<p><code class="declared-in-ref">BRTTools.h</code></p>
 			</div>
 			
 			

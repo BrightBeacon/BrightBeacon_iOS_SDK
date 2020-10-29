@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B5D8098242DD5E000D8818F /* libBrightSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58AE85A01E6EBF0E004084E1 /* libBrightSDK.a */; };
+		2B5D80A2242DD8A400D8818F /* ScanInBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5D80A1242DD8A400D8818F /* ScanInBackground.m */; };
+		2B5D80A8242DDBC000D8818F /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5D80A6242DDBBF00D8818F /* SVProgressHUD.m */; };
+		2B5D80A9242DDBC000D8818F /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2B5D80A7242DDBBF00D8818F /* SVProgressHUD.bundle */; };
 		58597D591E60115A00D1CF23 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58597D581E60115A00D1CF23 /* main.m */; };
 		58597D5C1E60115A00D1CF23 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58597D5B1E60115A00D1CF23 /* AppDelegate.m */; };
 		58597D621E60115A00D1CF23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58597D601E60115A00D1CF23 /* Main.storyboard */; };
@@ -18,17 +22,20 @@
 		58597D7B1E60148600D1CF23 /* ConfigVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 58597D7A1E60148600D1CF23 /* ConfigVC.m */; };
 		58597D8B1E60284700D1CF23 /* RegionAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 58597D8A1E60284700D1CF23 /* RegionAddVC.m */; };
 		58597D911E603BBF00D1CF23 /* ConfigDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 58597D901E603BBF00D1CF23 /* ConfigDetailVC.m */; };
-		58597D971E63DFEA00D1CF23 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 58597D941E63DFEA00D1CF23 /* SVProgressHUD.bundle */; };
-		58597D981E63DFEA00D1CF23 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 58597D961E63DFEA00D1CF23 /* SVProgressHUD.m */; };
 		587B643F1E6F97460043663D /* AdjustVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 587B643C1E6F97460043663D /* AdjustVC.m */; };
 		587B64401E6F97460043663D /* VirtualVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 587B643E1E6F97460043663D /* VirtualVC.m */; };
 		587B64441E6FA1340043663D /* AdjustCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 587B64431E6FA1340043663D /* AdjustCell.m */; };
 		587B64461E6FA1C00043663D /* AdjustCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 587B64451E6FA1C00043663D /* AdjustCell.xib */; };
 		5897342F1E6D51450051ACC8 /* RegionHander.m in Sources */ = {isa = PBXBuildFile; fileRef = 5897342E1E6D51450051ACC8 /* RegionHander.m */; };
-		58AE85A11E6EBF0E004084E1 /* libBrightSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58AE85A01E6EBF0E004084E1 /* libBrightSDK.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B5D80A0242DD8A400D8818F /* ScanInBackground.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanInBackground.h; sourceTree = "<group>"; };
+		2B5D80A1242DD8A400D8818F /* ScanInBackground.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanInBackground.m; sourceTree = "<group>"; };
+		2B5D80A4242DDBBF00D8818F /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		2B5D80A5242DDBBF00D8818F /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		2B5D80A6242DDBBF00D8818F /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		2B5D80A7242DDBBF00D8818F /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		58597D541E60115A00D1CF23 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58597D581E60115A00D1CF23 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58597D5A1E60115A00D1CF23 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -49,10 +56,6 @@
 		58597D8A1E60284700D1CF23 /* RegionAddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAddVC.m; sourceTree = "<group>"; };
 		58597D8F1E603BBF00D1CF23 /* ConfigDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigDetailVC.h; sourceTree = "<group>"; };
 		58597D901E603BBF00D1CF23 /* ConfigDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigDetailVC.m; sourceTree = "<group>"; };
-		58597D941E63DFEA00D1CF23 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		58597D951E63DFEA00D1CF23 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		58597D961E63DFEA00D1CF23 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
-		58597D991E63DFF600D1CF23 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
 		587B643B1E6F97460043663D /* AdjustVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustVC.h; sourceTree = "<group>"; };
 		587B643C1E6F97460043663D /* AdjustVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustVC.m; sourceTree = "<group>"; };
 		587B643D1E6F97460043663D /* VirtualVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualVC.h; sourceTree = "<group>"; };
@@ -77,18 +80,100 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58AE85A11E6EBF0E004084E1 /* libBrightSDK.a in Frameworks */,
+				2B5D8098242DD5E000D8818F /* libBrightSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B5D8099242DD6FE00D8818F /* 扫描iBeacon */ = {
+			isa = PBXGroup;
+			children = (
+				58597D731E60145500D1CF23 /* BeaconVC.h */,
+				58597D741E60145500D1CF23 /* BeaconVC.m */,
+			);
+			name = "扫描iBeacon";
+			sourceTree = "<group>";
+		};
+		2B5D809A242DD71700D8818F /* 监听区域（支持APP自启动10s） */ = {
+			isa = PBXGroup;
+			children = (
+				5897342D1E6D51450051ACC8 /* RegionHander.h */,
+				5897342E1E6D51450051ACC8 /* RegionHander.m */,
+				58597D761E60147600D1CF23 /* RegionVC.h */,
+				58597D771E60147600D1CF23 /* RegionVC.m */,
+				58597D891E60284700D1CF23 /* RegionAddVC.h */,
+				58597D8A1E60284700D1CF23 /* RegionAddVC.m */,
+			);
+			name = "监听区域（支持APP自启动10s）";
+			sourceTree = "<group>";
+		};
+		2B5D809B242DD73A00D8818F /* 扫描连接蓝牙 */ = {
+			isa = PBXGroup;
+			children = (
+				58597D791E60148600D1CF23 /* ConfigVC.h */,
+				58597D7A1E60148600D1CF23 /* ConfigVC.m */,
+				58597D8F1E603BBF00D1CF23 /* ConfigDetailVC.h */,
+				58597D901E603BBF00D1CF23 /* ConfigDetailVC.m */,
+			);
+			name = "扫描连接蓝牙";
+			sourceTree = "<group>";
+		};
+		2B5D809C242DD76500D8818F /* 校准测量功率 */ = {
+			isa = PBXGroup;
+			children = (
+				587B643C1E6F97460043663D /* AdjustVC.m */,
+				587B643B1E6F97460043663D /* AdjustVC.h */,
+				587B64421E6FA1340043663D /* AdjustCell.h */,
+				587B64431E6FA1340043663D /* AdjustCell.m */,
+				587B64451E6FA1C00043663D /* AdjustCell.xib */,
+			);
+			name = "校准测量功率";
+			sourceTree = "<group>";
+		};
+		2B5D809D242DD77F00D8818F /* 模拟iBeacon */ = {
+			isa = PBXGroup;
+			children = (
+				587B643D1E6F97460043663D /* VirtualVC.h */,
+				587B643E1E6F97460043663D /* VirtualVC.m */,
+			);
+			name = "模拟iBeacon";
+			sourceTree = "<group>";
+		};
+		2B5D809F242DD82900D8818F /* 后台保持（常驻后台示例） */ = {
+			isa = PBXGroup;
+			children = (
+				2B5D80A0242DD8A400D8818F /* ScanInBackground.h */,
+				2B5D80A1242DD8A400D8818F /* ScanInBackground.m */,
+			);
+			name = "后台保持（常驻后台示例）";
+			sourceTree = "<group>";
+		};
+		2B5D80A3242DDBBF00D8818F /* SVProgessHUD */ = {
+			isa = PBXGroup;
+			children = (
+				2B5D80A5242DDBBF00D8818F /* SVProgressHUD-Prefix.pch */,
+				2B5D80A4242DDBBF00D8818F /* SVProgressHUD.h */,
+				2B5D80A6242DDBBF00D8818F /* SVProgressHUD.m */,
+				2B5D80A7242DDBBF00D8818F /* SVProgressHUD.bundle */,
+			);
+			path = SVProgessHUD;
+			sourceTree = "<group>";
+		};
+		2BFFC4F1242DB1C80036F9AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		58597D4B1E60115A00D1CF23 = {
 			isa = PBXGroup;
 			children = (
 				58597D561E60115A00D1CF23 /* Demo */,
 				58597D551E60115A00D1CF23 /* Products */,
+				2BFFC4F1242DB1C80036F9AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,25 +192,12 @@
 				58597D5B1E60115A00D1CF23 /* AppDelegate.m */,
 				58597D6E1E60121200D1CF23 /* DemoVC.h */,
 				58597D6F1E60121200D1CF23 /* DemoVC.m */,
-				5897342D1E6D51450051ACC8 /* RegionHander.h */,
-				5897342E1E6D51450051ACC8 /* RegionHander.m */,
-				58597D731E60145500D1CF23 /* BeaconVC.h */,
-				58597D741E60145500D1CF23 /* BeaconVC.m */,
-				58597D761E60147600D1CF23 /* RegionVC.h */,
-				58597D771E60147600D1CF23 /* RegionVC.m */,
-				58597D891E60284700D1CF23 /* RegionAddVC.h */,
-				58597D8A1E60284700D1CF23 /* RegionAddVC.m */,
-				58597D791E60148600D1CF23 /* ConfigVC.h */,
-				58597D7A1E60148600D1CF23 /* ConfigVC.m */,
-				58597D8F1E603BBF00D1CF23 /* ConfigDetailVC.h */,
-				58597D901E603BBF00D1CF23 /* ConfigDetailVC.m */,
-				587B643B1E6F97460043663D /* AdjustVC.h */,
-				587B643C1E6F97460043663D /* AdjustVC.m */,
-				587B64421E6FA1340043663D /* AdjustCell.h */,
-				587B64431E6FA1340043663D /* AdjustCell.m */,
-				587B64451E6FA1C00043663D /* AdjustCell.xib */,
-				587B643D1E6F97460043663D /* VirtualVC.h */,
-				587B643E1E6F97460043663D /* VirtualVC.m */,
+				2B5D8099242DD6FE00D8818F /* 扫描iBeacon */,
+				2B5D809A242DD71700D8818F /* 监听区域（支持APP自启动10s） */,
+				2B5D809B242DD73A00D8818F /* 扫描连接蓝牙 */,
+				2B5D809C242DD76500D8818F /* 校准测量功率 */,
+				2B5D809D242DD77F00D8818F /* 模拟iBeacon */,
+				2B5D809F242DD82900D8818F /* 后台保持（常驻后台示例） */,
 				58597D571E60115A00D1CF23 /* Supporting Files */,
 			);
 			path = Demo;
@@ -134,17 +206,14 @@
 		58597D571E60115A00D1CF23 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				58AE85981E6EBF0E004084E1 /* include */,
-				58AE85A01E6EBF0E004084E1 /* libBrightSDK.a */,
-				58597D991E63DFF600D1CF23 /* SVProgressHUD-Prefix.pch */,
-				58597D941E63DFEA00D1CF23 /* SVProgressHUD.bundle */,
-				58597D951E63DFEA00D1CF23 /* SVProgressHUD.h */,
-				58597D961E63DFEA00D1CF23 /* SVProgressHUD.m */,
 				58597D601E60115A00D1CF23 /* Main.storyboard */,
 				58597D631E60115A00D1CF23 /* Assets.xcassets */,
 				58597D651E60115A00D1CF23 /* LaunchScreen.storyboard */,
 				58597D681E60115A00D1CF23 /* Info.plist */,
 				58597D581E60115A00D1CF23 /* main.m */,
+				58AE85981E6EBF0E004084E1 /* include */,
+				58AE85A01E6EBF0E004084E1 /* libBrightSDK.a */,
+				2B5D80A3242DDBBF00D8818F /* SVProgessHUD */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -210,6 +279,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -228,10 +298,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B5D80A9242DDBC000D8818F /* SVProgressHUD.bundle in Resources */,
 				58597D671E60115A00D1CF23 /* LaunchScreen.storyboard in Resources */,
 				58597D641E60115A00D1CF23 /* Assets.xcassets in Resources */,
 				58597D621E60115A00D1CF23 /* Main.storyboard in Resources */,
-				58597D971E63DFEA00D1CF23 /* SVProgressHUD.bundle in Resources */,
 				587B64461E6FA1C00043663D /* AdjustCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,13 +314,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				587B64401E6F97460043663D /* VirtualVC.m in Sources */,
+				2B5D80A2242DD8A400D8818F /* ScanInBackground.m in Sources */,
 				58597D7B1E60148600D1CF23 /* ConfigVC.m in Sources */,
+				2B5D80A8242DDBC000D8818F /* SVProgressHUD.m in Sources */,
 				58597D701E60121300D1CF23 /* DemoVC.m in Sources */,
 				58597D5C1E60115A00D1CF23 /* AppDelegate.m in Sources */,
 				58597D8B1E60284700D1CF23 /* RegionAddVC.m in Sources */,
 				58597D751E60145500D1CF23 /* BeaconVC.m in Sources */,
 				587B643F1E6F97460043663D /* AdjustVC.m in Sources */,
-				58597D981E63DFEA00D1CF23 /* SVProgressHUD.m in Sources */,
 				58597D911E603BBF00D1CF23 /* ConfigDetailVC.m in Sources */,
 				58597D781E60147600D1CF23 /* RegionVC.m in Sources */,
 				587B64441E6FA1340043663D /* AdjustCell.m in Sources */,
@@ -379,11 +450,12 @@
 				DEVELOPMENT_TEAM = L2S5E9QH3S;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Demo/SVProgressHUD-Prefix.pch";
+				GCC_PREFIX_HEADER = "Demo/SVProgessHUD/SVProgressHUD-Prefix.pch";
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../BrightSDK";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../BrightSDK/\"";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.o2o.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -397,11 +469,12 @@
 				DEVELOPMENT_TEAM = L2S5E9QH3S;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Demo/SVProgressHUD-Prefix.pch";
+				GCC_PREFIX_HEADER = "Demo/SVProgessHUD/SVProgressHUD-Prefix.pch";
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../BrightSDK";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../BrightSDK/\"";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.o2o.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

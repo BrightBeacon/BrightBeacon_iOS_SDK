@@ -13,15 +13,18 @@
 /**
  * 更新日志
  *
+ *  3.5.2 默认使用CLBeaconIdentityConstraint
+ *  3.5.1 修复连接超时不回调
  *  3.5.0 修复IOS13读取
  *  3.4.9 修复brtBeacons
  *  3.4.8 分离蓝牙扫描、iBeacon扫描
  *  3.4.7 优化区域监听(regionHander)
  *
  */
-#define SDK_VERSION @"3.5.0"
+#define SDK_VERSION @"3.5.2"
 
-//////可用的配置参数列表
+////////////////////////////////////////////////////////////////////
+// 可用的配置参数列表（用于writeBeaconValues：）
 #define B_NAME @"name"
 #define B_UUID @"uuid"
 #define B_MAJOR @"major"
@@ -58,7 +61,7 @@
 //040x版本串口数据
 #define B_SerialData @"serialData"
 
-//0313 注：至少保持一个广播频点，如果设置全部关闭，默认2402
+//0313及以后 注：至少保持一个广播频点，如果设置全部关闭，默认2402
 #define B_Off2402 @"off2402"
 #define B_Off2426 @"off2426"
 #define B_Off2480 @"off2480"
@@ -67,14 +70,14 @@
 #define B_BROADCAT_INTERVAL @"broadcatInterval"
 
 
-/////恢复默认参数
+/////恢复默认参数列表
 #define DEFAULT_KEY @"00000000000000000000000000000000"   //32-0
 #define DEFAULT_UUID @"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
 #define DEFAULT_MAJOR 0
 #define DEFAULT_MINOR 0
 #define DEFAULT_MEASURED -65
 //间隔(ms)
-#define DEFAULT_INTERVAL 760
+#define DEFAULT_INTERVAL 852
 #define DEFAULT_BCHECK_INTERVAL 3600
 #define DEFAULT_TCHECK_INTERVAL 0
 #define DEFAULT_LCHECK_INTERVAL 0
@@ -84,10 +87,7 @@
  * TI芯片   -23    -6      0       +4
  * Nordic  -40    -30    -20     -16    -12    -8      -4       0     +4
  */
-
-#define DEFAULT_TX  2
-#define DEFAULT_TX_PLUS  7
-//针对BrtSupportsExtension设备，请直接使用功率数值。
+//所有设备，请直接使用功率数值。
 #define DEFAULT_TX_EX  0
 
 #define DEFAULT_NAME  @"BrightBeacon"

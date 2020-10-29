@@ -84,7 +84,7 @@ typedef void(^RangingiBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRegion*
 /**
  * 扫描BrightBeacon蓝牙设备（支持蓝牙连接读取参数，支持获取BrightBeacon额外参数，不需要定位权限，广播数据中无法获取设备UUID）
  *
- * @param services 蓝牙广播服务特征，默认为nil，扫描所有服务，不支持后台扫描。
+ * @param services 蓝牙广播服务特征，默认为nil，扫描所有服务，不支持后台扫描。(BrightBeacon包含@[[CBUUID UUIDWithString:@"180a"]] 特征）
  * @param completion 蓝牙扫描回调（默认1秒/次）
  *
  */
@@ -139,7 +139,7 @@ typedef void(^RangingiBeaconsCompletionBlock)(NSArray* beacons, BRTBeaconRegion*
  *
  *  @return 区域监听状态 nil为无监听 示例：{in:@YES,out:@NO,display:@YES}
  */
-+ (NSDictionary*)isMonitoring:(NSDictionary*)dict NS_AVAILABLE_IOS(6_0);
++ (NSDictionary*)isMonitoring:(NSDictionary*)dict NS_AVAILABLE_IOS(7_0);
 
 /**
  * 开启区域监听要求IOS7以上系统；

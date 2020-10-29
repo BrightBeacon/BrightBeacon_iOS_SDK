@@ -8,10 +8,6 @@
 
 #import "RegionHander.h"
 
-#define IOS8 ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0 && [[UIDevice currentDevice].systemVersion doubleValue] < 9.0)
-#define IOS8_10 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 && [[UIDevice currentDevice].systemVersion doubleValue] < 10.0)
-#define IOS10 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
-
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif
@@ -30,9 +26,6 @@
 -(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region {
     NSLog(@"进入区域：%@",region);
     [self sendLocalNotification:NSLocalizedString(@"您已经进入了Beacon体验区",nil)];
-//    [BRTBeaconSDK startRangingBeaconsInRegions:@[region] onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
-//        NSLog(@"进入区域启动扫描：%ld",beacons.count);
-//    }];
 }
 -(void)beaconManager:(BRTBeaconManager *)manager didExitRegion:(BRTBeaconRegion *)region {
     NSLog(@"离开区域：%@",region);
@@ -40,9 +33,15 @@
 }
 
 -(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region {
-    NSLog(@"锁屏点亮、检测区域状态：%@->%ld",region,(long)state);
+    NSLog(@"触发：1、锁屏点亮 2、requestState: 3、伴随didEnterRegion:/didExitRegion：%@->%ld",region,(long)state);
     NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"你监听的Beacon区域状态：%@,锁屏点亮屏幕会收到此推送",nil),(state==CLRegionStateUnknown)?@"未知":(state=CLRegionStateInside)?@"区域内":@"区域外"];
     [self sendLocalNotification:msg];
+//    [BRTBeaconSDK startRangingBeaconsInRegions:@[region] onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
+//        NSLog(@"进入区域启动iBeacon扫描：%ld",beacons.count);
+//    }];
+//    [BRTBeaconSDK scanBleServices:@[[CBUUID UUIDWithString:@"180a"]] onCompletion:^(NSArray<BRTBeacon *> *beacons, NSError *error) {
+//        NSLog(@"进入区域启动蓝牙扫描(需要与iBeacon扫描同时启动)：%@",beacons.firstObject.macAddress);
+//    }];
 }
 
 - (void)beaconManager:(BRTBeaconManager *)manager monitoringDidFailForRegion:(BRTBeaconRegion *)region withError:(NSError *)error {
@@ -55,16 +54,16 @@
 
 //通知权限申请
 + (void)registerNotification {
-    //IOS8.0 推送必须询求用户同意，来触发通知（按你程序所需）
+    //IOS8.0以后 推送必须询求用户同意，来触发通知（按你程序所需）
     UIApplication *application = [UIApplication sharedApplication];
-    if (IOS10) {
+    if (@available(iOS 10.0, *)) {
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
             if (!error) {
                 NSLog(@"推送权限：succeeded!");
             }
         }];
-    } else if (IOS8_10){//iOS8-iOS10
+    } else if (@available(iOS 8.0, *)){//iOS8-iOS10
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound) categories:nil];
         [application registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
@@ -76,7 +75,14 @@
 //发送本地通知
 - (void)sendLocalNotification:(NSString*)msg
 {
-    if (IOS10) {
+    static NSTimeInterval time = 0;
+    if(CFAbsoluteTimeGetCurrent() - time < 1){
+        NSLog(@"%@ 本地通知太频繁，可能导致部分推送看不到",msg);
+        return;
+    }else{
+        time = CFAbsoluteTimeGetCurrent();
+    }
+    if (@available(iOS 10.0, *)) {
         [self addlocalNotificationForNewVersion:msg sub:NSLocalizedString(@"查看更多",nil) info:nil];
     }else{
         [self addLocalNotificationForOldVersion:msg sub:NSLocalizedString(@"查看更多",nil) info:nil];
@@ -86,7 +92,7 @@
 /**
  iOS 10以前版本添加本地通知
  */
-- (void)addLocalNotificationForOldVersion:(NSString *)msg sub:(NSString *)subtitle info:(NSDictionary *) info {
+- (void)addLocalNotificationForOldVersion:(NSString *)msg sub:(NSString *)subtitle info:(NSDictionary *) info __IOS_AVAILABLE(4.0){
     
     //定义本地通知对象
     UILocalNotification *notification = [[UILocalNotification alloc] init];
@@ -116,7 +122,7 @@
 /**
  iOS 10以后的本地通知
  */
-- (void)addlocalNotificationForNewVersion:(NSString *)msg sub:(NSString *)subtitle info:(NSDictionary *)info {
+- (void)addlocalNotificationForNewVersion:(NSString *)msg sub:(NSString *)subtitle info:(NSDictionary *)info __IOS_AVAILABLE(10.0){
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
@@ -125,7 +131,8 @@
     content.sound = [UNNotificationSound defaultSound];
     content.userInfo = info;
     
-    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1.0 repeats:NO];
+    //UNTimeIntervalNotificationTrigger （本地通知） 一定时间之后，重复或者不重复推送通知。我们可以设置timeInterval（时间间隔>0）和repeats（是否重复）。
+    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.001 repeats:NO];
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"OXNotification" content:content trigger:trigger];
     
     [center addNotificationRequest:request withCompletionHandler:^(NSError *_Nullable error) {
@@ -134,8 +141,9 @@
 }
 
 #pragma mark - UNUserNotificationCenterDelegate
+// The method will be called on the delegate only if the application is in the foreground. If the method is not implemented or the handler is not called in a timely manner then the notification will not be presented. The application can choose to have the notification presented as a sound, badge, alert and/or in the notification list. This decision should be based on whether the information in the notification is otherwise visible to the user.
 // iOS 10收到前台通知
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler __IOS_AVAILABLE(10.0) {
     
     NSDictionary * userInfo = notification.request.content.userInfo;
     UNNotificationRequest *request = notification.request; // 收到推送的请求
@@ -155,8 +163,9 @@
     }
     completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
 }
-// iOS 10收到后台通知
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+// The method will be called on the delegate when the user responded to the notification by opening the application, dismissing the notification or choosing a UNNotificationAction. The delegate must be set before the application returns from application:didFinishLaunchingWithOptions:.
+// iOS 10后台点击通知后调用
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler __IOS_AVAILABLE(10.0) {
     [[UIApplication sharedApplication].delegate application:[UIApplication sharedApplication] didReceiveLocalNotification:(id)response.notification];
     completionHandler();
 }

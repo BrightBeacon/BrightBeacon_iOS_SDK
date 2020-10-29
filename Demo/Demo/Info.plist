@@ -20,6 +20,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>用于扫描蓝牙设备</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>用于感应Beacon设备、打开区域推送功能</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -30,7 +32,10 @@
 	<string>用于扫描iBeacon、监听iBeacon区域</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>bluetooth-central</string>
 		<string>fetch</string>
+		<string>location</string>
+		<string>processing</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

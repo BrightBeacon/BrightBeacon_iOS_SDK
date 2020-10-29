@@ -36,7 +36,7 @@
 monitoringDidFailForRegion:(BRTBeaconRegion *)region
            withError:(NSError *)error;
 /**
- * 只能在 AppDelegate 实现
+ * 需要在随APP启动的指定类中(如：AppDelegate)实现，区域监听自动启动APP，才能回调成功到指定类中事件
  *
  * 在区域监听中，iOS设备进入beacon设备区域触发该方法
  *
@@ -49,7 +49,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
 
 
 /**
- * 只能在 AppDelegate 实现
+ * 需要在随APP启动的指定类中(如：AppDelegate)实现，区域监听自动启动APP，才能回调成功到指定类中事件
  *
  * 在区域监听中，iOS设备离开beacon设备区域触发该方法
  *
@@ -61,7 +61,7 @@ monitoringDidFailForRegion:(BRTBeaconRegion *)region
        didExitRegion:(BRTBeaconRegion *)region;
 
 /**
- * 只能在 AppDelegate 实现
+ * 需要在随APP启动的指定类中(如：AppDelegate)实现，区域监听自动启动APP，才能回调成功到指定类中事件
  *
  * 在调用startMonitoringForRegion:方法，当beacon区域状态变化会触发该方法
  *
@@ -198,34 +198,34 @@ rangingBeaconsDidFailForRegion:(BRTBeaconRegion *)region
 /// @name CoreLocation based iBeacon monitoring and ranging methods
 
 /**
- * 范围扫描所有的可见的Bright Beacon设备.
- * 检索Bright Beacon设备，通过回调函数beaconManager:didRangeBeacons:inRegion:
+ * 范围扫描所有的可见的Beacon设备.
+ * 检索Beacon设备，通过回调函数beaconManager:didRangeBeacons:inRegion:
  * 返回一个NSArray包含的
  * BRTBeacon 对象。
  *
  * @param region bright beacon 区域
  *
  */
--(void)startRangingBeaconsInRegion:(BRTBeaconRegion*)region;
+-(void)startRangingBeaconsInRegion:(BRTBeaconRegion*)region API_AVAILABLE(ios(7.0));
 
 /**
  * 开始监测区域Start monitoring for particular region.
- * 该功能在后台也能够工作.
+ * 该功能在后台也能够工作.(需要定位权限始终并打开蓝牙）
  * 只要你进入或者离开区域，都会回调: beaconManager:didEnterRegtion:
  * 或 beaconManager:didExitRegion:
  *
  * @param region bright beacon 区域
  *
  */
--(void)startMonitoringForRegion:(BRTBeaconRegion*)region;
+-(void)startMonitoringForRegion:(BRTBeaconRegion*)region API_AVAILABLE(ios(7.0));
 
 /**
- * 停止范围扫描 Bright beacon设备.
+ * 停止范围扫描beacon设备.
  *
- * @param region Bright beacon 区域
+ * @param region beacon 区域
  *
  */
--(void)stopRangingBeaconsInRegion:(BRTBeaconRegion*)region;
+-(void)stopRangingBeaconsInRegion:(BRTBeaconRegion*)region API_AVAILABLE(ios(7.0));
 
 /**
  * 注销程序iOS区域检测
@@ -233,7 +233,7 @@ rangingBeaconsDidFailForRegion:(BRTBeaconRegion *)region
  * @param region Bright beacon region
  *
  */
--(void)stopMonitoringForRegion:(BRTBeaconRegion *)region;
+-(void)stopMonitoringForRegion:(BRTBeaconRegion *)region API_AVAILABLE(ios(7.0));
 
 /**
  * 允许为特定区域验证当前状态
@@ -241,7 +241,7 @@ rangingBeaconsDidFailForRegion:(BRTBeaconRegion *)region
  * @param region Bright beacon 区域
  *
  */
--(void)requestStateForRegion:(BRTBeaconRegion *)region;
+-(void)requestStateForRegion:(BRTBeaconRegion *)region API_AVAILABLE(ios(7.0));
 
 /// @name 转换设备为 iBeacon
 

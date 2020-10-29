@@ -14,7 +14,7 @@
 		<div class="container" class="hide-in-xcode">
 			
 			<h1 id="library-title">
-				<a href="../index.html">BrightSDK </a>
+				<a href="../index.html">BRTBeaconSDK </a>
 			</h1>
 
 			<p id="developer-home">
@@ -65,8 +65,6 @@
 		<option value="//api/name/broadcastInterval">broadcastInterval</option>
 		
 		<option value="//api/name/broadcastMode">broadcastMode</option>
-		
-		<option value="//api/name/distance">distance</option>
 		
 		<option value="//api/name/eddystone_Uid">eddystone_Uid</option>
 		
@@ -134,14 +132,6 @@
 	
 
 	
-	<optgroup label="Class Methods">
-		
-		<option value="//api/name/distanceByRssi:oneMeterRssi:">+ distanceByRssi:oneMeterRssi:</option>
-		
-		<option value="//api/name/rssiToDistance:">+ rssiToDistance:</option>
-		
-	</optgroup>
-	
 
 	
 	<optgroup label="Instance Methods">
@@ -152,10 +142,6 @@
 		
 		<option value="//api/name/disconnectBeacon">- disconnectBeacon</option>
 		
-		<option value="//api/name/eddystone_Url_From:">- eddystone_Url_From:</option>
-		
-		<option value="//api/name/eddystone_Url_To:">- eddystone_Url_To:</option>
-		
 		<option value="//api/name/isSupport:">- isSupport:</option>
 		
 		<option value="//api/name/readBeaconChangesWithCompletion:">- readBeaconChangesWithCompletion:</option>
@@ -164,7 +150,7 @@
 		
 		<option value="//api/name/readBeaconValuesCompletion:">- readBeaconValuesCompletion:</option>
 		
-		<option value="//api/name/resetBeaconToDefault">- resetBeaconToDefault</option>
+		<option value="//api/name/resetBeaconToDefault:">- resetBeaconToDefault:</option>
 		
 		<option value="//api/name/resetSDKKEY">- resetSDKKEY</option>
 		
@@ -561,54 +547,6 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 
 <p>beacon的接收信号强度指示（Received Signal Strength Indicator）以分贝为单位.
 该值是根据本次beacon发射的信号所收集到样本的平均值.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BRTBeacon.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/distance" title="distance"></a>
-	<h3 class="method-title"><code><a href="#//api/name/distance">&nbsp;&nbsp;distance</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>distance</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSNumber *distance</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>distance</p>
-
-<p>根据接收信号强度指示（rssi）和测量功率（measured power：距离一米的rssi值）估算出的beacon设备到手机的距离.</p>
 			</div>
 			
 
@@ -1426,7 +1364,7 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger power</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSNumber *power</code></div>
 
 		    
 			
@@ -1441,8 +1379,9 @@ beacon设备的物理地址.可以唯一标识Bright Beacon设备，非BrightBea
 				<p>power</p>
 
 <p>以分贝计的发射功率，连接后可用
-TI芯片：0：-23dBm 1：-6dBm 2：0dBm 3：+4dBm
-Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 6：-4dBm 7：0dBm 8：+4dBm</p>
+TI芯片：-23dBm -6dBm 0dBm +4dBm
+Nordic芯片：-30dBm -20dBm -16dBm -12dBm -8dBm -4dBm 0dBm +4dBm
+Nordic芯片：-40dBm -20dBm -16dBm -12dBm -8dBm -4dBm 0dBm +3dBm +4dBm</p>
 			</div>
 			
 
@@ -1572,7 +1511,7 @@ Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger batteryCheckInteval</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSNumber *batteryCheckInteval</code></div>
 
 		    
 			
@@ -1620,7 +1559,7 @@ Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger temperatureCheckInteval</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSNumber *temperatureCheckInteval</code></div>
 
 		    
 			
@@ -1668,7 +1607,7 @@ Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger lightCheckInteval</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSNumber *lightCheckInteval</code></div>
 
 		    
 			
@@ -2027,197 +1966,6 @@ Nordic芯片：0：-40dBm 1：-30dBm 2：-20dBm 3：-16dBm 4：-12dBm 5：-8dBm 
 			
 		</div>
 	</div>
-</div><div class="section-method">
-	<a name="//api/name/rssiToDistance:" title="rssiToDistance:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/rssiToDistance:">+&nbsp;rssiToDistance:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p><a href="#//api/name/rssi">rssi</a> 转换成 距离（米）</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>+ (float)rssiToDistance:(BRTBeacon *)<em>beacon</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>beacon</code></th>
-						<td><p>beacon设备，需要使用measured power值</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>float 距离（米）</p>
-			</div>
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p><a href="#//api/name/rssi">rssi</a> 转换成 距离（米）</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BRTBeacon.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/eddystone_Url_From:" title="eddystone_Url_From:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/eddystone_Url_From:">&ndash;&nbsp;eddystone_Url_From:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>转换Url为eddystone模式NSData
-参考：<a href="https://github.com/google/eddystone/tree/master/eddystone-url">https://github.com/google/eddystone/tree/master/eddystone-url</a></p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (NSData *)eddystone_Url_From:(NSString *)<em>url</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>url</code></th>
-						<td><p>例(<a href="https://www.brtbeacon.com">https://www.brtbeacon.com</a>)->()</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>NSData</p>
-			</div>
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>转换Url为eddystone模式NSData
-参考：<a href="https://github.com/google/eddystone/tree/master/eddystone-url">https://github.com/google/eddystone/tree/master/eddystone-url</a></p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BRTBeacon.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/eddystone_Url_To:" title="eddystone_Url_To:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/eddystone_Url_To:">&ndash;&nbsp;eddystone_Url_To:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>将eddystone模式下的Url字符串转换为普通url</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (NSString *)eddystone_Url_To:(NSString *)<em>eddystoneUrl</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>eddystoneUrl</code></th>
-						<td><p>eddystone-URL字符串</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>NSString</p>
-			</div>
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>将eddystone模式下的Url字符串转换为普通url</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BRTBeacon.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
 </div>
 						</div>
 						
@@ -2529,7 +2277,7 @@ Major, Minor, Power and Advertising interval.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>写入设备信息</p>
+				<p>写入设备信息（支持所有版本BrightBeacon设备）</p>
 			</div>
 			
 		    
@@ -2544,7 +2292,7 @@ Major, Minor, Power and Advertising interval.</p>
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>values</code></th>
-						<td><p>设备信息(参见:可用的配置参数列表)</p></td>
+						<td><p>设备信息（参见BRTBeaconDefinitions.h：可用的配置参数列表）</p></td>
 					</tr>
 				
 					<tr>
@@ -2563,7 +2311,7 @@ Major, Minor, Power and Advertising interval.</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>写入设备信息</p>
+				<p>写入设备信息（支持所有版本BrightBeacon设备）</p>
 			</div>
 			
 
@@ -2876,8 +2624,8 @@ Major, Minor, Power and Advertising interval.</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/resetBeaconToDefault" title="resetBeaconToDefault"></a>
-	<h3 class="method-title"><code><a href="#//api/name/resetBeaconToDefault">&ndash;&nbsp;resetBeaconToDefault</a></code>
+	<a name="//api/name/resetBeaconToDefault:" title="resetBeaconToDefault:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/resetBeaconToDefault:">&ndash;&nbsp;resetBeaconToDefault:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -2892,7 +2640,7 @@ Major, Minor, Power and Advertising interval.</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)resetBeaconToDefault</code></div>
+			<div class="method-subsection method-declaration"><code>- (void)resetBeaconToDefault:(void ( ^ ) ( BOOL complete , NSError *error ))<em>block</em></code></div>
 
 		    
 			
@@ -3032,74 +2780,6 @@ Major, Minor, Power and Advertising interval.</p>
 			
 		</div>
 	</div>
-</div><div class="section-method">
-	<a name="//api/name/distanceByRssi:oneMeterRssi:" title="distanceByRssi:oneMeterRssi:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/distanceByRssi:oneMeterRssi:">+&nbsp;distanceByRssi:oneMeterRssi:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>距离估算方法，用于衡量不同设备距离差值，相对实际距离可能有误差</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>+ (float)distanceByRssi:(NSInteger)<em>rssi</em> oneMeterRssi:(NSInteger)<em>mpower</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>rssi</code></th>
-						<td><p>接收信号强度</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>mpower</code></th>
-						<td><p>1米处信号强度</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>估算距离值</p>
-			</div>
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>距离估算方法，用于衡量不同设备距离差值，相对实际距离可能有误差</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BRTBeacon.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
 </div>
 						</div>
 						
@@ -3115,7 +2795,7 @@ Major, Minor, Power and Advertising interval.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2017 智石科技. All rights reserved. Updated: 2017-10-23</p>
+						<p class="copyright">Copyright &copy; 2020 智石科技. All rights reserved. Updated: 2020-10-28</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>

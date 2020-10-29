@@ -149,7 +149,7 @@
     BRTBeacon *beacon = [self.beaconSorted objectAtIndex:indexPath.row];
     cell.lblName.text = beacon.name;
     cell.lblMac.text = [NSString stringWithFormat:@"%@,%@ MAC%@", beacon.major, beacon.minor, beacon.macAddress];
-    cell.lblRSSI.text = [NSString stringWithFormat:@"%.2f米", beacon.distance.floatValue];
+    cell.lblRSSI.text = [NSString stringWithFormat:@"%.2f米", beacon.accuracy];
     if (isStarting&&[beacon isEqual:self.brtbeacon]) {
         [cell startAnimating];
         NSInteger remaining = 19 - self.totalCount;

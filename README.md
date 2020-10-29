@@ -15,7 +15,9 @@ iPad mini均可以
 详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
 
 ## 更新日志
-
+ 
+ *  3.5.2 默认使用BeaconConstraints扫描iBeacon(2020.10)
+ *  3.5.1 修复默认值设置(2020.04)
  *  3.5.0 修复IOS13读取,功率设定(2020.03)
  *  3.4.9 修复brtBeacons等API(2017.10)
  *  3.4.8 分离蓝牙、iBeacon扫描、区域监听回调API(2017.9)
@@ -141,6 +143,8 @@ IOS6及以上，蓝牙设备扫描（允许连接配置、获取蓝牙参数如m
 	[[[BRTBeaconSDK Share] brtmanager] rangedRegions];
 ```
 ## 相关文档或网站
+* [关于后台区域监听（必读）](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/LocationAwarenessPG/RegionMonitoring/RegionMonitoring.html#//apple_ref/doc/uid/TP40009497-CH9-SW1)
+* [区域监听回调相关描述](https://developer.apple.com/documentation/corelocation/cllocationmanagerdelegate/1423570-locationmanager)
 * [集成文档](https://github.com/BrightBeacon/BrightBeacon_iOS_SDK)
 * [API文档](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)
 * [开发者社区](http://bbs.brtbeacon.com)

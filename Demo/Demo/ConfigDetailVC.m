@@ -171,7 +171,7 @@ typedef NS_ENUM(NSUInteger, SettingType) {
 			break;
 		case 4:
 			cell.textLabel.text = @"发射功率";
-			tf.text = @(self.beacon.power).stringValue;
+			tf.text = self.beacon.power.stringValue;
 			tf.tag = SettingTypeTX;
 			break;
 		case 5:

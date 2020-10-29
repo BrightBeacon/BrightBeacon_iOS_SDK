@@ -1,69 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "042F3391-3ED7-4723-9385-DD4FEFFF6314"
    type = "1"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            uuid = "638788AB-F985-48F1-B23C-B73B4006C6D1"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Demo/RegionHander.m"
-            timestampString = "592288221.435623"
+            filePath = "../../BrightSDK/BrightSDK/BRTBeaconManager.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "-beaconManager:didDetermineState:forRegion:"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
+            landmarkName = "-stopScan"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            uuid = "9EDE4E33-CF87-458F-A3F0-A51D199C0CBF"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Demo/RegionHander.m"
-            timestampString = "592288221.435697"
+            filePath = "../../BrightSDK/BrightSDK/BRTBeaconManager.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "-beaconManager:didExitRegion:"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
+            landmarkName = "-scanBleServices:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "894A1387-B5D4-4351-ADDF-90D607DFAA82"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Demo/RegionHander.m"
-            timestampString = "592288221.435751"
+            filePath = "../../BrightSDK/BrightSDK/BRTBeaconManager.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "-beaconManager:didEnterRegion:"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "-connectPeripheral:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            uuid = "6801EECB-6190-406A-8D12-E46E5E55C327"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Demo/RegionHander.m"
-            timestampString = "592288221.435801"
+            filePath = "../../BrightSDK/BrightSDK/BRTBeaconSDK.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "-beaconManager:monitoringDidFailForRegion:withError:"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
+            landmarkName = "-scanBrightBeaconsCompletionBlockTimmer"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

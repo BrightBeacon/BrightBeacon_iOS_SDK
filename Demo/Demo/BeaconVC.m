@@ -50,8 +50,9 @@
 	NSArray *regions = @[region,region2,region3];
 	if ([CLLocationManager isRangingAvailable]) {
 		[BRTBeaconSDK startRangingBeaconsInRegions:regions onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
+            NSLog(@"%@",beacons);
 			if (beacons.count) {
-				[self.dataDict setObject:beacons.copy forKey:region.proximityUUID.UUIDString];
+				[self.dataDict setObject:[beacons sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"rssi" ascending:NO]]] forKey:region.proximityUUID.UUIDString];
 			}else{
 				[self.dataDict removeObjectForKey:region.proximityUUID.UUIDString];
 			}
