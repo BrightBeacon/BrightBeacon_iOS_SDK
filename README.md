@@ -1,148 +1,214 @@
-iOS-SDK
-=======
+# BrightBeacon iOS SDK
 
-## BrightSDK
-###  概述
+智石开发包（BrightSDK）符合苹果的iBeacon协议、Google的eddystone协议，提供了扫描iBeacon、eddystone协议设备、配置BrightBeacon设备参数、模拟iBeacon等API。你可以访问[智石官网（http://www.brtbeacon.com）](http://www.brtbeacon.com)了解更多设备信息。
 
-智石开发包（BrightSDK）符合苹果的iBeacon协议、Google的eddystone协议，提供了扫描iBeacon、eddystone协议设备、配置BrightBeacon设备参数、模拟iBeacon等API。你可以访问[智石官网（http://www.brtbeacon.com）](http://www.brtbeacon.com)了解更多设备信息，或前往我们的[开发者社区（http://bbs.brtbeacon.com）](http://bbs.brtbeacon.com)交流和找到我们软硬件相关问题。
+当前SDK用于  iBeacon 扫描与区域监听、以及BrightBeacon BLE 扫描、设备连接配置。
 
-智石开发包需要手持设备硬件支持蓝牙4.0及其以上，并要求系统版本IOS7及其以上。
-附：支持的IOS设备列表
-iphone4s及以上、
-itouch5及以上、
-iPad3及以上、
-iPad mini均可以
-详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
+当前SDK版本：**3.5.3**。本次改为 XCFramework 分平台分发
 
 ## 更新日志
- 
- *  3.5.2 默认使用BeaconConstraints扫描iBeacon(2020.10)
- *  3.5.1 修复默认值设置(2020.04)
- *  3.5.0 修复IOS13读取,功率设定(2020.03)
- *  3.4.9 修复brtBeacons等API(2017.10)
- *  3.4.8 分离蓝牙、iBeacon扫描、区域监听回调API(2017.9)
- *  3.4.7 优化区域监听，请使用regionHander:(2017.3)
+
+- 3.5.3 本次改为 XCFramework 分平台分发
+- 3.5.2 默认使用 `CLBeaconIdentityConstraint` 扫描 iBeacon
+- 3.5.1 修复默认值设置
+- 3.5.0 修复 iOS 13 读取、功率设定
+- 3.4.9 修复 `brtBeacons` 等 API
+- 3.4.8 分离蓝牙、iBeacon 扫描、区域监听回调 API
+- 3.4.7 优化区域监听，请使用 `regionHander:`
+
+## 先运行示例
+
+打开 [`Examples/BrightSDKDemo.xcworkspace`](Examples/BrightSDKDemo.xcworkspace)：
+
+- **BrightSDKSwiftDemo**：独立纯 Swift 工程，无桥接头。
+- **BrightSDKOCDemo**：独立纯 Objective-C 工程，无 Swift 依赖。
+
+选择模拟器即可查看界面；真实扫描、连接使用 iPhone，真机签名选择自己的 Team。SDK 最低 iOS 12。
+
+详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
+
+代码按 `App / Features / SDK` 组织。所有 SDK 调用集中在各自的 `Sources/SDK/BrightSDKClient` 中，`AppDelegate` 只负责窗口与首页。两个工程引用同一份 SDK
+
+[Swift 四步接入](Examples/SwiftDemo/INTEGRATION.md) · [OC 四步接入](Examples/ObjectiveCDemo/INTEGRATION.md)
 
 ## 如何集成（任选其一）
-### 一、使用CocoaPods集成
-添加以下代码到您Pod项目的Podfile文件：
 
+产物：[`BrightSDK.xcframework`](BrightSDK.xcframework)。包含真机 arm64，以及模拟器 arm64 / x86_64。
+
+### 一、使用手动集成
+
+1. 将整个 `BrightSDK.xcframework` 加入 App Target。
+2. 选择 **Do Not Embed**，因为它包含静态库。
+3. 删除旧 `libBrightSDK.a` 的链接引用和旧目录搜索配置，避免重复链接。
+4. 配置蓝牙权限；使用 iBeacon 时额外配置定位权限。
+
+Swift：
+
+```swift
+import BrightSDK
 ```
-	pod 'BrightSDK'
-```
-在Podfile文件目录运行命令：
-(PS：请事先更新你本地的CocoaPods库：pod repo update，并pod install)
 
-```
-	pod update
+Objective-C：
+
+```objc
+@import BrightSDK;
 ```
 
-### 二、使用常规集成
+头文件和模块配置已在 XCFramework 中，不需要 Swift 桥接头。不要单独把真机 `.a` 用到 arm64 模拟器；架构相同不代表平台相同。
 
-使用如下步骤手动集成：
+### 二、使用CocoaPods集成
 
-- 如果您还尚未下载SDK，请 [点击这里下载](https://github.com/BrightBeacon/BrightBeacon_iOS_SDK)，或在GitHub搜索BrightBeacon。
-- 将下载的SDK文件解压，拖动里面的BrightSDK文件夹（内含include文件夹和.a库文件）到工程中
-- 拖到工程中后，弹出以下对话框，勾选"Copy items into destination group's folder(if needed)"，并点击“Finish“按钮,
+当前仓库的 podspec 是 **3.5.3 配置**。直接引用集成本地文件夹：
 
-注意：请务必在上述步骤中选择“Create groups for any added folders”单选按钮组。如果你选择“Create folder references for any added folders”，一个蓝色的文件夹引用将被添加到项目并且将无法找到它的资源。
-
-
-
-- 注意：如果出现头文件无法找到，前往 project settings 的 build settings，搜索Header Search Paths. 添加"$(SRCROOT)/../BrightSDK/include"，并检查实际目录地址。
-
-## 三、IOS8以上配置定位权限
-* 打开Info.plist添加使用期间“WhenInUse”定位描述说明：NSLocationWhenInUseUsageDescription，（填写描述如：用于扫描iBeacon设备）
-* 若应用需要区域监听功能,需使用后台及使用期间定位权限“Always”(含“WhenInUse”)，需添加3项以支持不同IOS版本：NSLocationAlwaysAndWhenInUseUsageDescription、NSLocationAlwaysUsageDescription和NSLocationWhenInUseUsageDescription
-
-## 如何调用
-`1、注册APPKEY`<br/>
-
-- 登录BrightSDK的官方网站添加应用并获取 APPKEY。如果尚未注册，[请点击这里注册并创建应用 APPKEY](http://open.brtbeacon.com)
-
+```ruby
+pod 'BrightSDK', :path => '../BrightBeacon_iOS_SDK'
 ```
+
+或者通过远端 tag 来 CocoaPods 集成：
+
+```ruby
+pod 'BrightSDK', '~> 3.5.3'
+```
+
+执行 `pod install`，随后打开宿主 App 的 `.xcworkspace`。不要同时手动链接 XCFramework 和通过 Pod 引入同一 SDK。
+
+## 三、配置定位权限
+
+扫描 iBeacon 需要定位权限；扫描和连接 BrightBeacon 蓝牙设备需要蓝牙权限。根据你的功能范围，在 `Info.plist` 中配置：
+
+```xml
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>用于扫描和连接 BrightBeacon 蓝牙设备</string>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>用于前台扫描 iBeacon 和展示附近设备</string>
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>用于后台监听 iBeacon 区域并触发进入/离开提醒</string>
+```
+
+如需后台区域监听或后台蓝牙扫描，可按需开启：
+
+```xml
+<key>UIBackgroundModes</key>
+<array>
+  <string>location</string>
+  <string>bluetooth-central</string>
+</array>
+```
+
+区域监听最多建议不超过系统限制的 20 个区域。后台唤醒后系统只给应用很短的处理时间，请在 `AppDelegate` 启动阶段完成 `regionHander:` 注册接收通知消息回调类。
+
+## 两种扫描有什么区别
+
+| | iBeacon 扫描 | BLE 扫描 |
+| --- | --- | --- |
+| 用途 | 扫描已知UUID的任意iBeacon设备 | 扫描BrightBeacon设备蓝牙广播 |
+| 结果 | UUID、Major、Minor、RSSI、Accuracy | Major、Minor、RSSI、蓝牙的 MAC地址 |
+| 权限 | 蓝牙、定位 | 蓝牙 |
+| AppKey | 不需要 | 扫描不需要；连接时可选填 |
+| 连接 | 无法建立连接 | 选择支持连接的设备后建立连接 |
+
+**iBeacon 回调对象是 `BRTBeacon`，不是原生 `CLBeacon`。** Swift 应按 `[BRTBeacon]` 解析，错误转换会导致列表为空。
+
+BLE 的“本机标识”是 `CBPeripheral.identifier`，由当前 iPhone 分配，不是设备的全局硬件 ID，也不是 iBeacon UUID。`CBUUID` 则用于服务、特征等标识。[Apple 说明](https://developer.apple.com/documentation/corebluetooth/cbpeer/identifier)
+
+## Objective-C 示例
+
+注册 AppKey：
+
+```objc
 #import "BRTBeaconSDK.h"
-
-//如需配置设备，请注册appKey.
-	[BRTBeaconSDK registerApp:(NSString *)appKey onCompletion:(BRTCompletionBlock)completion];
-```
-`2、常见的API调用`<br/>
-
- - 扫描Regions内所有iBeacon设备（IOS7及以上，需要定位权限，并打开蓝牙，传入扫描UUID）。
-
-通过BRTBeaconRegion扫描iBeacon设备（可扫描到参数proximityUUID、Major、Minor、proximity、accuracy、rssi），建议用于iBeacon定位、签到、区域推送等场景。
-
-```
-regions为BRTBeaconRegion数组(默认使用：E2C56DB5-DFFB-48D2-B060-D0F5A71096E0)
-	[BRTBeaconSDK startRangingBeaconsInRegions:regions onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
-	}];
-	//停止扫描iBeacons
-	[BRTBeaconSDK stopRangingBeacons];
-```
- - 扫描BrightBeacon蓝牙设备（仅需打开蓝牙，支持配置BrightBeacon设备）。
-IOS6及以上，蓝牙设备扫描（允许连接配置、获取蓝牙参数如mac地址、电量等功能，无法获取iBeacon的proximityUUID、proximity），建议需要用于设备连接配置、巡检等场景。
-(如需后台扫描，必须限定扫描的服务，例如180a)
-
-```
- uuid:
-	CBUUID数组，（设备广播数据中的服务，例：[[CBUUID alloc] initWithString:@"180a"]；留空时能扫描所有服务，但不支持后台扫描。）
-	[BRTBeaconSDK scanBleServices:(NSArray<CBUUID *> *)services onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error){
-	}];
-	//停止扫描BrightBeacon
-	[BRTBeaconSDK stopScan];
-```
- 
- - 监听区域方法（IOS7及以上，需要定位权限，并打开蓝牙）
-
-//如需后台监听区域，请在随App启动的类（如：appDelegate的didFinishLaunch方法）中调用regionHandler;并且handler也必须启动自行初始化，保证监听到区域自启动软件时，handler能成功回调区域相关函数。简约使用时，可以直接使用appDelegate类。
-
-```
-	[BRTBeaconSDK  regionHandler:handler];
+[BRTBeaconSDK registerApp:DEFAULT_KEY onCompletion:^(BOOL complete, NSError *error) {
+    NSLog(@"register: %@ error: %@", complete ? @"YES" : @"NO", error);
+}];
 ```
 
- * 以下是在前台运行、后台或完全退出程序监听区域的回调函数，请拷贝需要的回调到handler类
+扫描 iBeacon：
 
-```
-	进入区域回调
-	-(void)beaconManager:(BRTBeaconManager *)manager didEnterRegion:(BRTBeaconRegion *)region{
-	}
-	离开区域回调
-	-(void)beaconManager:(BRTBeaconManager *)manager didExitRegion:(BRTBeaconRegion *)region{
-	}
-	屏幕点亮区域检测、requestStateForRegions回调
-	-(void)beaconManager:(BRTBeaconManager *)manager didDetermineState:(CLRegionState)state forRegion:(BRTBeaconRegion *)region{
-	}
-```
-- 启动监听区域
+```objc
+NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:DEFAULT_UUID];
+BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"default"];
 
- region：需要监听的区域，支持后台监听（<=20)，当进入、离开区域时，APP会后台自启动，你有约10s处理相关逻辑。在IOS8以上startMonitoringForRegions内会调取系统获取定位权限。你也可以自行控制调取弹窗时机或权限类型。
- 
-```
- 	//ios8以上自行获取权限方式
- 	[[[BRTBeaconSDK Share] brtmanager] requestAlwaysAuthorization];
+[BRTBeaconSDK startRangingBeaconsInRegions:@[region] onCompletion:^(NSArray *beacons, BRTBeaconRegion *region, NSError *error) {
+    NSLog(@"beacons: %@", beacons);
+}];
+
+[BRTBeaconSDK stopRangingBeacons];
 ```
 
-```
-	//监听区域示例
-     BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:@"这里传人需要监听的iBeacon设备的UUID" identifier:@"区域唯一标识符，会覆盖已有相同id的区域"];
-    region.notifyOnEntry = YES;//监听进入区域
-    region.notifyOnExit = YES;//离开区域时回调
-    region.notifyEntryStateOnDisplay = YES;//是否锁屏唤醒时，监测区域状态
-    [BRTBeaconSDK startMonitoringForRegions:@[region]];
-```
- 
- - 立即监测区域状态
- 
-```
-    [BRTBeaconSDK requestStateForRegions:@[region]];
-```
-- 监听的所有区域；当前活跃的区域
+扫描 BrightBeacon 蓝牙设备：
 
+```objc
+CBUUID *service = [CBUUID UUIDWithString:@"180A"];
+[BRTBeaconSDK scanBleServices:@[service] onCompletion:^(NSArray<BRTBeacon *> *beacons, NSError *error) {
+    NSLog(@"ble beacons: %@", beacons);
+}];
+
+[BRTBeaconSDK stopScan];
 ```
-	[[[BRTBeaconSDK Share] brtmanager] monitoredRegions];
-	[[[BRTBeaconSDK Share] brtmanager] rangedRegions];
+
+后台区域监听：
+
+```objc
+// AppDelegate didFinishLaunchingWithOptions 中尽早注册 handler
+self.handler = [RegionHander new];
+[BRTBeaconSDK regionHander:self.handler];
+
+NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:DEFAULT_UUID];
+BRTBeaconRegion *region = [[BRTBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"default"];
+region.notifyOnEntry = YES;
+region.notifyOnExit = YES;
+region.notifyEntryStateOnDisplay = YES;
+
+[BRTBeaconSDK startMonitoringForRegions:@[region]];
 ```
+
+
+
+## Swift BLE 扫描：
+
+```swift
+BRTBeaconSDK.scanBleServices(nil) { devices, error in
+    let beacons = devices as? [BRTBeacon] ?? []
+    // 回到主线程更新界面，保存用户选择的 BRTBeacon。
+}
+BRTBeaconSDK.stopScan()
+```
+
+iBeacon 扫描：
+
+```swift
+let region = BRTBeaconRegion(
+    proximityUUID: UUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")!,
+    identifier: "my.beacon"
+)!
+BRTBeaconSDK.startRangingBeacons(in: [region]) { devices, region, error in
+    let beacons = devices as? [BRTBeacon] ?? []
+}
+BRTBeaconSDK.stopRangingBeacons()
+```
+
+UUID 要与实际 Beacon 配置一致。
+
+连接扫描列表中的 `BRTBeacon`：
+
+```swift
+// appKey 为用户输入；空字符串使用 SDK 默认凭据。
+BRTBeaconSDK.registerApp(appKey, onCompletion: nil)
+beacon.connectToBeacon { connected, error in
+    // 根据真实回调显示连接结果。
+}
+beacon.disconnectBeacon()
+```
+
+- 未设置自定义密钥的设备可留空；有密钥的设备填写对应 AppKey。
+- 每次连接都设置本次凭据，防止沿用上一台设备的密钥。
+- `onCompletion:nil` 表示设置凭据，不增加联网验证前置条件；不是跳过设备鉴权。
+- SDK 没有公开广播字段可可靠判断设备是否必须自定义 AppKey，不按名称或型号猜测。
+
+OC 对应调用与完整权限、停止和断开处理见独立示例。用户应在退出扫描页或进入后台时停止前台扫描。
+
 ## 相关文档或网站
+
 * [关于后台区域监听（必读）](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/LocationAwarenessPG/RegionMonitoring/RegionMonitoring.html#//apple_ref/doc/uid/TP40009497-CH9-SW1)
 * [区域监听回调相关描述](https://developer.apple.com/documentation/corelocation/cllocationmanagerdelegate/1423570-locationmanager)
 * [集成文档](https://github.com/BrightBeacon/BrightBeacon_iOS_SDK)

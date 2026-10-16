@@ -1,0 +1,663 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BD01BC7E8D7131DFF51DB4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5ABD82107970D6B3ED565F /* UIKit.framework */; };
+		2A75E714CEFF6FB0D750D2FB /* ScannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C67BC8EEF2A98AFD7614F9 /* ScannerUITests.swift */; };
+		37083E2F7474FA383AFFB70F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E168099B1769F77D5BEAE9B /* CoreLocation.framework */; };
+		47764FA5B965BA158DEC5B8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C8EA07E52E6AF3B902B1E0 /* Foundation.framework */; };
+		4C7C35AD632F2EBD3AAFF78A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6795D20E6458B8F7CF08CA5 /* Security.framework */; };
+		53DC318C63B71EC2A1F69586 /* BrightSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B84C924C68429818C9A4D3 /* BrightSDK.xcframework */; };
+		6A3E93743E3A5F267B7E87C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C8EA07E52E6AF3B902B1E0 /* Foundation.framework */; };
+		70253E3D43310C36782943C0 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD299BB8C58AEC4FFC005B1E /* CoreBluetooth.framework */; };
+		7338446C88F33E497275EC3E /* ScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28B718EEE937AE317D84322 /* ScannerController.swift */; };
+		792B2A88F6A5CEB12968723F /* BrightSDKClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD7BEF78D44B6E9D5D63E /* BrightSDKClient.swift */; };
+		88808068CE70D1D87445E1D3 /* ConnectionKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1327975419118C89ED15F4 /* ConnectionKeyTests.swift */; };
+		8DF56CF4A0DAD4C70FCDA818 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C8EA07E52E6AF3B902B1E0 /* Foundation.framework */; };
+		97468050EE2C4FFF7B9464C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803EEB4FE3777568C9872C6B /* AppDelegate.swift */; };
+		9BF980E3B28E00030D38922A /* BeaconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831CE1DDF50ED90DF5194100 /* BeaconCell.swift */; };
+		9FE28310F602D45E93CCC613 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8D201004A18CD30291E6B /* HomeController.swift */; };
+		E9021D036E9CCE921DB45E9F /* IntegrationGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D517701AFB2AA8CA38E292F /* IntegrationGuide.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		26CB23E34AB40973524AAD70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8683FFA69FA9F38945CBCA88 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E51539F2BFC0598ACC59B6AE;
+			remoteInfo = BrightSDKSwiftDemo;
+		};
+		D267FC598281B736FB440752 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8683FFA69FA9F38945CBCA88 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E51539F2BFC0598ACC59B6AE;
+			remoteInfo = BrightSDKSwiftDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		07B84C924C68429818C9A4D3 /* BrightSDK.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = BrightSDK.xcframework; path = ../../BrightSDK.xcframework; sourceTree = "<group>"; };
+		113AD7BEF78D44B6E9D5D63E /* BrightSDKClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BrightSDKClient.swift; sourceTree = "<group>"; };
+		180FE4FCCF13589BB658864A /* INTEGRATION.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = INTEGRATION.md; sourceTree = "<group>"; };
+		33C67BC8EEF2A98AFD7614F9 /* ScannerUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScannerUITests.swift; sourceTree = "<group>"; };
+		3E168099B1769F77D5BEAE9B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		41C8EA07E52E6AF3B902B1E0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		4F5ABD82107970D6B3ED565F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		6A1327975419118C89ED15F4 /* ConnectionKeyTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConnectionKeyTests.swift; sourceTree = "<group>"; };
+		7D517701AFB2AA8CA38E292F /* IntegrationGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntegrationGuide.swift; sourceTree = "<group>"; };
+		803EEB4FE3777568C9872C6B /* AppDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		831CE1DDF50ED90DF5194100 /* BeaconCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BeaconCell.swift; sourceTree = "<group>"; };
+		8C9DC60443E9010D7B7F9E2E /* BrightSDKSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrightSDKSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD299BB8C58AEC4FFC005B1E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
+		B2C8D201004A18CD30291E6B /* HomeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		B6795D20E6458B8F7CF08CA5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		B9FFEA0FF1A6CF6943F193CC /* BrightSDKSwiftDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrightSDKSwiftDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC4EAE3E93A68DA0C2FA2A39 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C28B718EEE937AE317D84322 /* ScannerController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScannerController.swift; sourceTree = "<group>"; };
+		D2617FA2041BE2DEB07EDD8E /* BrightSDKSwiftDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrightSDKSwiftDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1BEFFEF9ACA25A05D8E1ECD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A3E93743E3A5F267B7E87C9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B2ADFC073DCB8221A4D2E8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47764FA5B965BA158DEC5B8A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A67A8E6DFC71EDD78318F13A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DF56CF4A0DAD4C70FCDA818 /* Foundation.framework in Frameworks */,
+				53DC318C63B71EC2A1F69586 /* BrightSDK.xcframework in Frameworks */,
+				0BD01BC7E8D7131DFF51DB4C /* UIKit.framework in Frameworks */,
+				70253E3D43310C36782943C0 /* CoreBluetooth.framework in Frameworks */,
+				37083E2F7474FA383AFFB70F /* CoreLocation.framework in Frameworks */,
+				4C7C35AD632F2EBD3AAFF78A /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		096E5DD9F5A8CB9E43B3160C /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				D2EF5ED0FFBE4587DC564D92 /* Home */,
+				41F3B55F231AD0558752CAAA /* Scanner */,
+				22B818B81B8D8120993033F4 /* Integration */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		22B818B81B8D8120993033F4 /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				7D517701AFB2AA8CA38E292F /* IntegrationGuide.swift */,
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
+		246D16F6A44326121CD47620 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C9DC60443E9010D7B7F9E2E /* BrightSDKSwiftDemo.app */,
+				B9FFEA0FF1A6CF6943F193CC /* BrightSDKSwiftDemoUITests.xctest */,
+				D2617FA2041BE2DEB07EDD8E /* BrightSDKSwiftDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		41F3B55F231AD0558752CAAA /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				C28B718EEE937AE317D84322 /* ScannerController.swift */,
+				831CE1DDF50ED90DF5194100 /* BeaconCell.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+		588C1091869FE4F40379E802 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				113AD7BEF78D44B6E9D5D63E /* BrightSDKClient.swift */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		5A887F066441CD1C44C042C6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7FB87F88775D282DE6FBF3C0 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5D519A9EB5085686E2790525 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6A1327975419118C89ED15F4 /* ConnectionKeyTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		7311C085146764AE8F5604D0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				803EEB4FE3777568C9872C6B /* AppDelegate.swift */,
+				BC4EAE3E93A68DA0C2FA2A39 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7FB87F88775D282DE6FBF3C0 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				41C8EA07E52E6AF3B902B1E0 /* Foundation.framework */,
+				4F5ABD82107970D6B3ED565F /* UIKit.framework */,
+				AD299BB8C58AEC4FFC005B1E /* CoreBluetooth.framework */,
+				3E168099B1769F77D5BEAE9B /* CoreLocation.framework */,
+				B6795D20E6458B8F7CF08CA5 /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		87BEEE68A9D42AC4D20FB6BF /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				33C67BC8EEF2A98AFD7614F9 /* ScannerUITests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		8A7D99DA74F1AC3598295E3C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				588C1091869FE4F40379E802 /* SDK */,
+				096E5DD9F5A8CB9E43B3160C /* Features */,
+				7311C085146764AE8F5604D0 /* App */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		D2EF5ED0FFBE4587DC564D92 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B2C8D201004A18CD30291E6B /* HomeController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E788130C78490CB7B6C21444 = {
+			isa = PBXGroup;
+			children = (
+				246D16F6A44326121CD47620 /* Products */,
+				5A887F066441CD1C44C042C6 /* Frameworks */,
+				8A7D99DA74F1AC3598295E3C /* Sources */,
+				07B84C924C68429818C9A4D3 /* BrightSDK.xcframework */,
+				87BEEE68A9D42AC4D20FB6BF /* UITests */,
+				5D519A9EB5085686E2790525 /* Tests */,
+				180FE4FCCF13589BB658864A /* INTEGRATION.md */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F84B3B877FC9F9A10A290A7 /* BrightSDKSwiftDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0216FEB12E64A85607919C81 /* Build configuration list for PBXNativeTarget "BrightSDKSwiftDemoTests" */;
+			buildPhases = (
+				9F388DF6F2F58EACB08B54C6 /* Sources */,
+				5B2ADFC073DCB8221A4D2E8D /* Frameworks */,
+				C90E4629A79F19F94731B36C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4D23A57810C182885564E17 /* PBXTargetDependency */,
+			);
+			name = BrightSDKSwiftDemoTests;
+			productName = BrightSDKSwiftDemoTests;
+			productReference = D2617FA2041BE2DEB07EDD8E /* BrightSDKSwiftDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		82C28D676E242EA172F0754D /* BrightSDKSwiftDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FC0D8C9EF96E6C5F0D01848 /* Build configuration list for PBXNativeTarget "BrightSDKSwiftDemoUITests" */;
+			buildPhases = (
+				1565BACFFEE876E5A99629FF /* Sources */,
+				1BEFFEF9ACA25A05D8E1ECD2 /* Frameworks */,
+				D17C0A13302E6F1F6C0328BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA5BE886DFBAB325EA074EBA /* PBXTargetDependency */,
+			);
+			name = BrightSDKSwiftDemoUITests;
+			productName = BrightSDKSwiftDemoUITests;
+			productReference = B9FFEA0FF1A6CF6943F193CC /* BrightSDKSwiftDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		E51539F2BFC0598ACC59B6AE /* BrightSDKSwiftDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48A51768BDBBEA5EE40FACB4 /* Build configuration list for PBXNativeTarget "BrightSDKSwiftDemo" */;
+			buildPhases = (
+				D768A428344C65D018C919C4 /* Sources */,
+				A67A8E6DFC71EDD78318F13A /* Frameworks */,
+				64EDD6AAD185844D31138929 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BrightSDKSwiftDemo;
+			productName = BrightSDKSwiftDemo;
+			productReference = 8C9DC60443E9010D7B7F9E2E /* BrightSDKSwiftDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8683FFA69FA9F38945CBCA88 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 07108307FD6CEC377061BC4A /* Build configuration list for PBXProject "BrightSDKSwiftDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E788130C78490CB7B6C21444;
+			productRefGroup = 246D16F6A44326121CD47620 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E51539F2BFC0598ACC59B6AE /* BrightSDKSwiftDemo */,
+				82C28D676E242EA172F0754D /* BrightSDKSwiftDemoUITests */,
+				4F84B3B877FC9F9A10A290A7 /* BrightSDKSwiftDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		64EDD6AAD185844D31138929 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C90E4629A79F19F94731B36C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D17C0A13302E6F1F6C0328BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1565BACFFEE876E5A99629FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A75E714CEFF6FB0D750D2FB /* ScannerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F388DF6F2F58EACB08B54C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88808068CE70D1D87445E1D3 /* ConnectionKeyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D768A428344C65D018C919C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				792B2A88F6A5CEB12968723F /* BrightSDKClient.swift in Sources */,
+				97468050EE2C4FFF7B9464C4 /* AppDelegate.swift in Sources */,
+				9BF980E3B28E00030D38922A /* BeaconCell.swift in Sources */,
+				9FE28310F602D45E93CCC613 /* HomeController.swift in Sources */,
+				E9021D036E9CCE921DB45E9F /* IntegrationGuide.swift in Sources */,
+				7338446C88F33E497275EC3E /* ScannerController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DA5BE886DFBAB325EA074EBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BrightSDKSwiftDemo;
+			target = E51539F2BFC0598ACC59B6AE /* BrightSDKSwiftDemo */;
+			targetProxy = 26CB23E34AB40973524AAD70 /* PBXContainerItemProxy */;
+		};
+		F4D23A57810C182885564E17 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BrightSDKSwiftDemo;
+			target = E51539F2BFC0598ACC59B6AE /* BrightSDKSwiftDemo */;
+			targetProxy = D267FC598281B736FB440752 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2658932FF7588D9EDEB1AFBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)/include",
+				);
+				INFOPLIST_FILE = Sources/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.brtbeacon.BrightSDKDemo.Swift;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2988FC7C8739B5F4304F3640 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brtbeacon.BrightSDKDemo.Swift.UITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = BrightSDKSwiftDemo;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		34AF8AA118170B3FBA02E68A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brtbeacon.BrightSDKDemo.Swift.Tests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BrightSDKSwiftDemo.app/BrightSDKSwiftDemo";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		43F2B0D4D5009AAEF74301A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		4AC900AB28480C76B3E2DA0B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4C82AB238BFD5896C0448B3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brtbeacon.BrightSDKDemo.Swift.UITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = BrightSDKSwiftDemo;
+			};
+			name = Debug;
+		};
+		B92CA35C23B47428051498A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brtbeacon.BrightSDKDemo.Swift.Tests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BrightSDKSwiftDemo.app/BrightSDKSwiftDemo";
+			};
+			name = Debug;
+		};
+		FDB2843044FA78AFD7207C0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_TESTABILITY = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)/include",
+				);
+				INFOPLIST_FILE = Sources/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.brtbeacon.BrightSDKDemo.Swift;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0216FEB12E64A85607919C81 /* Build configuration list for PBXNativeTarget "BrightSDKSwiftDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34AF8AA118170B3FBA02E68A /* Release */,
+				B92CA35C23B47428051498A6 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07108307FD6CEC377061BC4A /* Build configuration list for PBXProject "BrightSDKSwiftDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AC900AB28480C76B3E2DA0B /* Debug */,
+				43F2B0D4D5009AAEF74301A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0FC0D8C9EF96E6C5F0D01848 /* Build configuration list for PBXNativeTarget "BrightSDKSwiftDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2988FC7C8739B5F4304F3640 /* Release */,
+				4C82AB238BFD5896C0448B3A /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48A51768BDBBEA5EE40FACB4 /* Build configuration list for PBXNativeTarget "BrightSDKSwiftDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2658932FF7588D9EDEB1AFBE /* Release */,
+				FDB2843044FA78AFD7207C0D /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8683FFA69FA9F38945CBCA88 /* Project object */;
+}
